@@ -1,0 +1,189 @@
+﻿@model IEnumerable<ShopWatch.Models.DATHANG>
+
+@{
+    ViewBag.Title = "Đơn hàng đã đặt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+
+<h2 style="text-align:center;font-weight: 400; font-family: 'Times New Roman' , Times, serif;margin-bottom:30px;">THÔNG TIN ĐƠN HÀNG ĐÃ ĐẶT</h2>
+
+<div style="margin-top:150px">
+
+</div>
+<div class="margin-bottom:120px" style="padding:10px">
+
+
+
+    <table class="table">
+        <tr>
+            <th>
+                <label>NGAYMUA</label>
+
+            </th>
+            <th>
+                <label>TONGTIEN</label>
+
+            </th>
+            <th>
+                <label>TRANGTHAI</label>
+
+            </th>
+            <th>
+                <label>THANHTOAN</label>
+
+            </th>
+            <th>
+                <label>TINHTRANGDH</label>
+            </th>
+            <th>
+                <label>KHACHHANG</label>
+            </th>
+            <th>TUYCHON</th>
+            @foreach (var item in Model)
+            {
+
+
+            <tr>
+
+                <td>
+                    @String.Format("{0:dd/MM/yyyy}", item.NGAYMUA)
+                </td>
+                <td class="text-center" style="font-size:16px;color:brown;font-weight:500">
+                    @String.Format("{0:N0}", item.TONGTIEN)
+                </td>
+                <td>
+                    @if (item.TRANGTHAI == false)
+                    {
+                        <text>CHƯA THANH TOÁN</text>
+                    }
+                    else
+                    {
+                        <text>ĐÃ THANH TOÁN</text>
+                    }
+                </td>
+                <td>
+                    @if (item.HINHTHUCTHANHTOAN == false)
+                    {
+                        <text>COD</text>
+                    }
+                    else
+                    {
+                        <text>ONLINE</text>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TINHTRANGDH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KHACHHANG.TENKHACHHANG)
+                </td>
+                <td>
+                    @{
+                        DateTime ngayHienTai = DateTime.Now;
+                        TimeSpan khoangThoiGian = (ngayHienTai - (item.NGAYNHAN ?? ngayHienTai));
+                    }
+
+
+                    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Edit", new { id = item.MADH })'">Đã nhận</button>
+                    <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Details", new { id = item.MADH })'">Details Order</button>
+
+                    @if (item.NGAYNHAN != null && khoangThoiGian.TotalDays <= 5)
+                    {
+
+                        <input name="tenkhachhang" value="@item.KHACHHANG.TENKHACHHANG" type="hidden" />
+                        <input name="avatar" value="@item.KHACHHANG.AVATAR" type="hidden" />
+                        <input name="makhachhang" value="@item.KHACHHANG.MAKHACHHANG" type="hidden" />
+                        <input name="noidung" value="NỘI DUNG:HŨY ĐƠN HÀNG" type="hidden" />
+                        <input name="ngayhuy" value="@DateTime.Now" type="hidden" />
+                        <input name="title" value="TITLE:HŨY ĐƠN" type="hidden" />
+                        <button type="button" class="btn btn-danger cancel-order-btn" data-id="@item.MADH">Hủy đơn</button>
+                    }
+
+                </td>
+            </tr>
+        }
+        </table>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/signalr/5.0.12/signalr.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('.cancel-order-btn').on('click', function (event) {
+                event.preventDefault();
+                var orderId = $(this).data('id');
+                var tenkhachhang = $('input[name="tenkhachhang"]').val();
+                var avatar = $('input[name="avatar"]').val();
+                var makhachhang = $('input[name="makhachhang"]').val();
+                var noidung = $('input[name="noidung"]').val();
+                var ngayhuy = $('input[name="ngayhuy"]').val();
+                var title = $('input[name="title"]').val();
+                showConfirmation(orderId, tenkhachhang, avatar, makhachhang, noidung, ngayhuy, title);
+            });
+        });
+
+        function showConfirmation(orderId, tenkhachhang, avatar, makhachhang, noidung, ngayhuy, title) {
+            Swal.fire({
+                title: 'Bạn có chắc chắn muốn hủy đơn này?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+
+                if (result.isConfirmed) {
+                    console.log('hahahah');
+                    $.ajax({
+                        url: '/DatHang/CancelOrder',
+                        type: 'POST',
+                        data: { id: orderId },
+                        success: function (response) {
+                            console.log('hahjdhjss');
+                           @* window.location.href = '/DatHang/DonHang';*@
+                            var chatHub = $.connection.chat;
+                            console.log(chatHub, 'hhahahah');
+                            
+                            $.connection.hub.start().done(function () {
+                              @*  chatHub.server.Message("hahaha")*@
+                                console.log(chatHub, 'Kết nối SignalR thành công!')
+                                chatHub.server.cancelOrderAndNotify(orderId, tenkhachhang, avatar, makhachhang, noidung, ngayhuy, title);
+                                console.log('hhahahawddsddh', orderId, tenkhachhang, avatar, makhachhang, noidung, ngayhuy, title);  
+                                @* window.location.href = '/DatHang/DonHang';*@
+
+                            });
+                        },
+                        error: function (xhr, status, error) {
+
+                        }
+                    });
+                }
+            });
+        }
+
+     
+       
+    </script>
+

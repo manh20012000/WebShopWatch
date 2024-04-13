@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "ChatAdmis";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+
+<body>
+    <div id="chatBox">
+        <div id="chatMessages"></div>
+        <input type="text" id="messageInput" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/signalr/5.0.12/signalr.min.js"></script>
+    <script>
+        $(function () {
+            // Kết nối tới Hub SignalR
+            console.log('hhahahah')
+            var chatHub = $.connection.chat;
+            console.log(chatHub, 'hhahahah')
+            // Lắng nghe sự kiện khi kết nối thành công
+            $.connection.hub.start().done(function () {
+                console.log('Kết nối SignalR thành công!');
+            });
+            console.log('hhahahawddsddh')
+        
+            
+        });
+    </script>
+</body>

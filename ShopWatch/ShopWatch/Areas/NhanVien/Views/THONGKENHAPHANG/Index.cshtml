@@ -1,0 +1,111 @@
+﻿@model IEnumerable<ShopWatch.Models.MetaDATA.DataCHITIETNHAPHANG>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+<style>
+    .edit-button,
+    .delete-button {
+        display: inline-block;
+        padding: 8px 16px;
+        margin-right: 10px;
+        background: linear-gradient(to right, #87CEFA, #4682B4);
+        border: none;
+        color: white;
+        font-size: 14px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .bnts {
+        background-color: burlywood;
+        margin-left: 20px;
+    }
+
+    .seache {
+        display: flex;
+        padding: 20px
+    }
+</style>
+<div class="row">
+    <div class="col-xs-12 row" style="flex-direction:row">
+        @using (Html.BeginForm("index", "THONGKENHAPHANG", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="input-group-container">
+                <div class="seache row">
+                    <div class="col-sm-4">
+                        <input type="number" name="month" class="form-control" placeholder="Tháng" min="1" max="12" aria-label="thang" aria-describedby="basic-addon2">
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="number" name="year" class="form-control" placeholder="Năm" min="2000" max="2100" aria-label="nam" aria-describedby="basic-addon2">
+                    </div>
+                    <div class="col-sm-4">
+                        <button class="btn btn-outline-secondary bnts" type="submit">Thống kê</button>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (ViewBag.Tongtien != null)
+        {
+            <div style="flex-direction:row">
+                <lable style="color:red;font-size:20px">TỔNG TIỀN  :</lable> <label style="color:red;font-size:20px">@ViewBag.Tongtien VND</label>
+            </div>
+        }
+    </div>
+    </div>
+
+<table id="example" class="tablet">
+    <tr style="background-color:#04AA6D; color: white;">
+        <th style=" padding: 15px; text-align: center;">
+            MANHAPHANG
+
+        </th>
+        <th style=" padding: 15px; text-align: center;">
+            NGAYTHONGKE
+
+        </th>
+        <th style=" padding: 15px; text-align: center;">
+            TENNHANVIENNHAPHANG
+        </th>
+        <th style=" padding: 15px; text-align: center;">
+            MATHANG
+        </th>
+        <th style=" padding: 15px; text-align: center;">
+            SOLUONG
+        </th>
+        <th style=" padding: 15px; text-align: center;">
+            TONGTIEN
+        </th>
+
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+<tr>
+    <td class="text-center" style="font-weight:700;height:60px;">
+        @Html.DisplayFor(modelItem => item.MANHAPHANG)
+    </td>
+    <td class="text-center" style="font-weight:700;height:60px;">
+        @Html.DisplayFor(modelItem => item.NGAYTHONGKE)
+    </td>
+    <td class="text-center" style="font-weight:700;height:60px;">
+        @Html.DisplayFor(modelItem => item.TENNHANVIEN)
+    </td>
+    <td class="text-center" style="font-weight:700;height:60px;">
+        @Html.DisplayFor(modelItem => item.TENHANG)
+    </td>
+    <td class="text-center" style="font-weight:700;height:60px;">
+        @Html.DisplayFor(modelItem => item.SOLUONG)
+    </td>
+    <td class="text-center" style="font-weight:700;height:60px;">
+        @Html.DisplayFor(modelItem => item.TONGTIEN)
+        </td>
+</tr>
+        }
+    }
+
+</table>

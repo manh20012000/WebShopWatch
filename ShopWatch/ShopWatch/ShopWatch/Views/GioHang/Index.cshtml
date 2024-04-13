@@ -1,0 +1,648 @@
+﻿@model IEnumerable<ShopWatch.Models.MetaDATA.ChitietgiohangViewModel>
+
+@{
+
+    ViewBag.Title = "Index";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<style>
+    .quantity-control {
+        padding: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .button_down {
+        padding: 8px 12px;
+        background-color: white;
+        border: 0px
+    }
+
+    .button_up {
+        padding: 8px 12px;
+        background-color: white;
+        border: 0px
+    }
+
+    .input_value {
+        width: 30px;
+        border: 0px;
+        text-align: center;
+    }
+
+    .table th {
+        margin-top: 80px;
+    }
+    /* Style cho container chứa các phần tử */
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 0 -15px;
+    }
+
+    /* Style cho mỗi hộp vận chuyển */
+    .shippingbox {
+        background-color: #fffcfc;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .shippingbox h5 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        /* Style cho form bên trong hộp vận chuyển */
+        .shippingbox form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Style cho nhãn và input */
+        .shippingbox label {
+            margin-bottom: 5px;
+        }
+
+        .shippingbox input[type="text"] {
+            padding: 10px;
+            border: 1px solid red;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        /* Style cho nút */
+        .shippingbox button {
+            padding: 10px 20px;
+            background-color: #eaba8c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .shippingbox button:hover {
+                background-color: red;
+            }
+
+            .shippingbox button:active {
+                background-color: #fff; /* Màu nền trắng khi nút được click */
+                color: #007bff; /* Màu chữ */
+            }
+
+    /* Style cho tổng số */
+    .grandtotal {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    #total-price {
+        font-size: 20px;
+        font-weight: bold;
+        color: red;
+    }
+
+
+    .col-sm-6 button {
+        max-width: 100%;
+        background-color: #efc8a2;
+        transition: background-color 0.3s ease;
+    }
+
+        .col-sm-6 button:hover {
+            background-color: #0056b3;
+        }
+
+    #chitietdathang input[type="submit"]:active {
+        background-color: #ff6347; /* Màu sắc khác khi nút được click */
+    }
+</style>
+
+
+
+<div style="padding:10px">
+
+    <div class="row" style="margin-top: 90px">
+        <div class="col-md-12" style="margin-top: 90px">
+            <div>
+                <h3 class="title">
+                    GIỎ HÀNG
+                </h3>
+
+            </div>
+            <div class="clearfix">
+            </div>
+            <table id="example" class="table">
+                <tr style="background-color: white; color: #776969; font-weight: 400; line-height: 1">
+                    <th style=" padding: 15px; text-align: center;">
+
+                    </th>
+                    <th style=" padding: 15px; text-align: center; font-family: 'Cairo', sans-serif">
+                        ẢNH
+                    </th>
+                    <th style=" padding: 15px; text-align: center; font-family: 'Cairo', sans-serif">
+                        TÊN HÀNG
+                    </th>
+
+
+                    <th style=" padding: 15px; text-align: center; font-family: 'Cairo', sans-serif">
+                        SALE
+                    </th>
+                    <th style=" padding: 15px; text-align: center; font-family: 'Cairo', sans-serif">
+                        GIÁ HÀNG
+                    </th>
+                    <th style=" padding: 15px; text-align: center; font-family: 'Cairo', sans-serif">
+                        SỐ LƯỢNG
+                    </th>
+                    <th style=" padding: 15px; text-align: center;">
+
+                    </th>
+                </tr>
+
+                @{
+                    decimal tongtien = 0;
+
+                    if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-center" style="width:60px;height:60px;">
+                                    <input type="checkbox" class="product-checkbox" />
+
+                                <td class="text-center" style="font-weight:700 ;display:none">
+                                    @Html.DisplayFor(modelItem => item.MATHANG.MAMATHANG)
+                                </td>
+                                <td class="text-center" style="font-weight:700">
+                                    <img src="@item.MATHANG.ANHSANPHAM" alt="" style="width:100px;height:100px">
+                                </td>
+                                <td class="text-center" style="font-weight:700;width:200px">
+                                    <div class="shop-details">
+                                        <div class="productname">
+                                            <label style="color: #1c1c1c; font-size: 12px; font-weight: 400; text-transform: uppercase; font-family: 'Cairo', sans-serif ">
+                                                @item.MATHANG.TENHANG
+
+                                            </label>
+
+                                        </div>
+                                        @*<p style="font-size:14px">
+                                                Guarantee:
+                                                <span class="light-red" style="font-size:18px">
+                                                    @item.MATHANG.BAOHANH
+                                                </span>
+                                            </p>
+                                            <p style="font-size:14px">
+                                                Type:
+                                                <span class="light-red" style="font-size:18px">
+                                                    @item.MATHANG.LOAI
+                                                </span>
+                                            </p>
+                                            <p style="font-size:14px">
+                                                Size:
+                                                <span class="light-red" style="font-size:18px">
+                                                    @item.MATHANG.KICHTHUOC
+                                                </span>
+                                            </p>*@
+
+                                    </div>
+                                </td>
+                                <td class="text-center" style="font-weight:700">
+
+                                    <label style="color:red;font-size:16px">
+                                        @if (item.MATHANG.SALE != null)
+                                        {
+                                            <span class="phantram-giamgia-label" style="font-size:18px;font-weight:600">
+                                                @item.MATHANG.SALE.PHANTRAMSALE   %
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="phantram-giamgia-label" style="font-size:18px;font-weight:600;display:none">
+                                                0
+                                            </span>
+                                        }
+                                    </label>
+
+                                </td>
+                                <td class="text-center" style="font-size:18px;color:red;font-weight:500">
+                                    <label class="gia-hang-label"> @String.Format("{0:N0}", @item.MATHANG.GIAHANG) VND</label>
+                                </td>
+
+
+                                <td class="text-center">
+                                    <div class="quantity-control" id="quantity-control" style="flex-direction:row">
+                                        <button class="quantity-decrease button_down">-</button>
+                                        <input type="text" id="quantityInput" class="quantity-input input_value" style="border:0px; padding:0px" value="1" />
+                                        <button class="quantity-increase button_up">+</button>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+
+                                    <a href="@Url.Action("xoa_sanpham", new { id_ctgh = item.MACHITIETGIOHANG })" class="btn btn-outline-secondary" style="color: brown">
+                                        Xóa
+                                        <i class="fas fa-info-circle"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+                @* <tr>
+                        <td class="text-center" style="font-weight:700">
+                            <button class="pull-left">
+                                Tiếp tục mua hàng
+                            </button>
+                            <button class="pull-right" style="margin-left:20px;">
+                                @Html.ActionLink("Đơn hàng", "DonHang", "DatHang")
+                            </button>
+
+                        </td>
+                    </tr>*@
+
+            </table>
+            <div class="clearfix">
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <div class="shippingbox">
+                        <h5>
+                            Estimate Shipping And Tax
+                        </h5>
+                        <form>
+                            <label>
+                                Select Country *
+                            </label>
+                            <select class="" style=" width: 100%; height: 30px">
+                                <option value="AL">
+                                    Alabama
+                                </option>
+                                <option value="AK">
+                                    Alaska
+                                </option>
+                                <option value="AZ">
+                                    Arizona
+                                </option>
+                                <option value="AR">
+                                    Arkansas
+                                </option>
+                                <option value="CA">
+                                    California
+                                </option>
+                                <option value="CO">
+                                    Colorado
+                                </option>
+                                <option value="CT">
+                                    Connecticut
+                                </option>
+                                <option value="DE">
+                                    Delaware
+                                </option>
+                                <option value="DC">
+                                    District Of Columbia
+                                </option>
+                                <option value="FL">
+                                    Florida
+                                </option>
+                                <option value="GA">
+                                    Georgia
+                                </option>
+                                <option value="HI">
+                                    Hawaii
+                                </option>
+                                <option value="ID">
+                                    Idaho
+                                </option>
+                                <option selected="" value="IL">
+                                    Illinois
+                                </option>
+                                <option value="IN">
+                                    Indiana
+                                </option>
+                                <option value="IA">
+                                    Iowa
+                                </option>
+                                <option value="KS">
+                                    Kansas
+                                </option>
+                                <option value="KY">
+                                    Kentucky
+                                </option>
+                                <option value="LA">
+                                    Louisiana
+                                </option>
+                                <option value="ME">
+                                    Maine
+                                </option>
+                                <option value="MD">
+                                    Maryland
+                                </option>
+                                <option value="MA">
+                                    Massachusetts
+                                </option>
+                                <option value="MI">
+                                    Michigan
+                                </option>
+                                <option value="MN">
+                                    Minnesota
+                                </option>
+                                <option value="MS">
+                                    Mississippi
+                                </option>
+                                <option value="MO">
+                                    Missouri
+                                </option>
+                                <option value="MT">
+                                    Montana
+                                </option>
+                                <option value="NE">
+                                    Nebraska
+                                </option>
+                                <option value="NV">
+                                    Nevada
+                                </option>
+                                <option value="NH">
+                                    New Hampshire
+                                </option>
+                                <option value="NJ">
+                                    New Jersey
+                                </option>
+                                <option value="NM">
+                                    New Mexico
+                                </option>
+                                <option value="NY">
+                                    New York
+                                </option>
+                                <option value="NC">
+                                    North Carolina
+                                </option>
+                                <option value="ND">
+                                    North Dakota
+                                </option>
+                                <option value="OH">
+                                    Ohio
+                                </option>
+                                <option value="OK">
+                                    Oklahoma
+                                </option>
+                                <option value="OR">
+                                    Oregon
+                                </option>
+                                <option value="PA">
+                                    Pennsylvania
+                                </option>
+                                <option value="RI">
+                                    Rhode Island
+                                </option>
+                                <option value="SC">
+                                    South Carolina
+                                </option>
+                                <option value="SD">
+                                    South Dakota
+                                </option>
+                                <option value="TN">
+                                    Tennessee
+                                </option>
+                                <option value="TX">
+                                    Texas
+                                </option>
+                                <option value="UT">
+                                    Utah
+                                </option>
+                                <option value="VT">
+                                    Vermont
+                                </option>
+                                <option value="VA">
+                                    Virginia
+                                </option>
+                                <option value="WA">
+                                    Washington
+                                </option>
+                                <option value="WV">
+                                    West Virginia
+                                </option>
+                                <option value="WI">
+                                    Wisconsin
+                                </option>
+                                <option value="WY">
+                                    Wyoming
+                                </option>
+                            </select>
+
+                           
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="shippingbox">
+                        <h5>
+                            Discount Codes
+                        </h5>
+                        <form>
+                            <label>
+                                Enter your coupon code if you have one
+                            </label>
+                            <input type="text" name="" style=" width: 100%; height: 30px">
+                            <div class="clearfix">
+                            </div>
+                            <button>
+                                Get A Qoute
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="">
+                        <div class="grandtotal">
+                            <div class="subtotal">
+                                <label id="total-price" style="font-size:20px;font-weight:bold;color:red">Tổng Tiền: 0 VND</label>
+                            </div>
+                        </div>
+                        <form id="chitietdathang" action="/GioHang/form_DatHang" method="post">
+                            <div class="text-center" style="margin-top:50px;">
+                                <input type="submit" class="bx-columns btn btn-primary" value=" ĐẶT HÀNG" style="width:120px;height:40px;border-radius:10px" />
+                            </div>
+                        </form>
+                        <a href="/GioHang/form_DatHang" style="font-weight: 400;font-size:20px;"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix">
+    </div>
+    <div class="clearfix">
+    </div>
+    <!-- Newsletter -->
+
+    <div class="newsletter">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="newsletter_text d-flex flex-column justify-content-center align-items-lg-start align-items-md-center text-center">
+                        <h4>Newsletter</h4>
+                        <p>Subscribe to our newsletter and get 20% off your first purchase</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <form action="post">
+                        <div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
+                            <input id="newsletter_email" type="email" placeholder="Your email" required="required" data-error="Valid email is required.">
+                            <button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300" value="Submit">subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        <!-- Bootstrap core JavaScript==================================================-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            var selectedItems = []; // Danh sách các sản phẩm đã chọn
+            var tongtien = 0; // Biến lưu tổng số tiền
+
+            function updateTotalPrice() {
+                var totalPriceDisplay = document.getElementById('total-price');
+                totalPriceDisplay.textContent = "Tổng Tiền: " + tongtien.toLocaleString() + ' VND'; // Hiển thị tổng giá tiền với định dạng số ngăn cách hàng nghìn
+            }
+            function calculatePriceAndAdd(row, quantity) {
+                var giaHang = parseFloat(row.querySelector('.gia-hang-label').textContent.replace(/\D/g, '')); // Lấy giá hàng từ phần tử HTML và chuyển đổi thành số
+                var phanTramGiamGia = parseFloat(row.querySelector('.phantram-giamgia-label').textContent.replace(/\D/g, '')); // Lấy phần trăm giảm giá từ phần tử HTML và chuyển đổi thành số
+
+                if (isNaN(phanTramGiamGia)) {
+                    phanTramGiamGia = 0; // Nếu không có giảm giá, đặt phần trăm giảm giá là 0
+                }
+
+                var giaTien = giaHang * quantity * (1 - phanTramGiamGia / 100); // Tính toán giá tiền dựa trên giá hàng, số lượng và phần trăm
+
+                var mamathang = row.querySelector('.text-center:nth-child(2)').textContent.trim(); // Lấy mã mặt hàng từ phần tử HTML
+                var chitietDatHang = {
+                    MAMATHANG: mamathang,
+                    SOLUONG: quantity,
+                    GiaTien: giaTien,
+                    GIABAN: giaHang * quantity,
+                };
+
+                var index = selectedItems.findIndex(item => item.MAMATHANG === mamathang); // Tìm kiếm sản phẩm trong danh sách đã chọn
+                if (index === -1) { // Nếu sản phẩm chưa được chọn
+                    selectedItems.push(chitietDatHang); // Thêm sản phẩm vào danh sách
+                } else { // Nếu sản phẩm đã được chọn
+                    selectedItems[index].SOLUONG = quantity; // Cập nhật số lượng mới
+                    selectedItems[index].GiaTien = giaTien; // Cập nhật giá tiền mới
+                }
+
+                tongtien = selectedItems.reduce(function (total, item) {
+                    return total + item.GiaTien; // Tính tổng giá tiền từ danh sách các sản phẩm đã chọn
+                }, 0);
+
+                updateTotalPrice(); // Cập nhật tổng giá tiền
+            }
+            function toggleQuantityControl(row, show) {
+                var quantityControl = row.querySelector('.quantity-control');
+                quantityControl.style.display = 'flex'; // Hiển thị điều khiển số lượng luôn
+            }
+
+            var increaseButtons = document.querySelectorAll('.quantity-increase');
+            var decreaseButtons = document.querySelectorAll('.quantity-decrease');
+            var checkboxes = document.querySelectorAll('.product-checkbox');
+
+            increaseButtons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var row = this.closest('tr');
+                    var checkbox = row.querySelector('.product-checkbox');
+                    var quantityInput = row.querySelector('.quantity-input');
+                    var quantity = parseInt(quantityInput.value) + 1;
+
+                    // Kiểm tra checkbox có được chọn không
+                    if (checkbox.checked) {
+                        quantityInput.value = quantity;
+                        calculatePriceAndAdd(row, quantity); // Cập nhật giá trị số lượng và tính giá tiền mới
+                    }
+                });
+            });
+            decreaseButtons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var row = this.closest('tr');
+                    var quantityInput = row.querySelector('.quantity-input');
+                    var quantity = parseInt(quantityInput.value) - 1;
+                    if (quantity >= 1) { // Kiểm tra số lượng không nhỏ hơn 1
+                        quantityInput.value = quantity;
+                        calculatePriceAndAdd(row, quantity); // Cập nhật giá trị số lượng và tính giá tiền mới
+                    }
+                });
+            });
+
+            checkboxes.forEach(function (checkbox) {
+                checkbox.addEventListener('change', function () {
+                    var row = this.closest('tr');
+                    var mamathang = row.querySelector('.text-center:nth-child(2)').textContent.trim(); // Lấy mã mặt hàng từ phần tử HTML
+                    var quantityInput = row.querySelector('.quantity-input');
+
+                    if (this.checked) {
+                        if (parseInt(quantityInput.value) === 0) {
+                            quantityInput.value = 1; // Chỉ đặt giá trị mặc định là 1 nếu số lượng là 0
+                        }
+                        calculatePriceAndAdd(row, parseInt(quantityInput.value)); // Cập nhật giá trị số lượng và tính giá tiền mới khi checkbox được chọn
+                    } else {
+                        quantityInput.value = 1; // Đặt số lượng về 0
+                        var index = selectedItems.findIndex(item => item.MAMATHANG === mamathang); // Tìm kiếm sản phẩm trong danh sách đã chọn
+                        if (index !== -1) {
+                            selectedItems.splice(index, 1); // Loại bỏ sản phẩm khỏi danh sách nếu checkbox không được chọn
+                        }
+                        tongtien = selectedItems.reduce(function (total, item) {
+                            return total + item.GiaTien; // Tính tổng giá tiền từ danh sách các sản phẩm đã chọn
+                        }, 0);
+                        updateTotalPrice(); // Cập nhật tổng giá tiền
+                    }
+                });
+            });
+          
+            $('#chitietdathang').submit(function (event) {
+                if (tongtien === 0) {
+                    // Hiển thị cảnh báo
+                    alert('Vui lòng chọn sản phẩm trước khi đặt hàng.');
+                    // Ngăn chặn việc gửi form
+                    event.preventDefault();
+                    return;
+                }
+                event.preventDefault();
+                var requestData = {
+                    selectedItemsData: selectedItems,
+                    giatien: tongtien,
+                };
+                console.log(requestData)
+                $.ajax({
+                    type: 'POST',
+                    url: '/DatHang/DonHang',
+                    contentType: 'application/json',
+                    data: JSON.stringify(requestData),
+                    success: function (response) {
+
+                        console.log('Data sent successfully');
+                        window.location.href = `/GioHang/form_DatHang?selectedItemsData=${encodeURIComponent(JSON.stringify(requestData.selectedItemsData))}&giatien=${encodeURIComponent(requestData.giatien)}`;
+                    },
+                    error: function (error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+        </script>
+        <script type="text/javascript" src="~/assets/KhachHang/js/jquery-1.10.2.min.js">
+        </script>
+        <script type="text/javascript" src="~/assets/KhachHang/js/bootstrap.min.js">
+        </script>
+        <script defer src="~/assets/KhachHang/js/jquery.flexslider.js">
+        </script>
+        <script type="text/javascript" src="~/assets/KhachHang/js/jquery.carouFredSel-6.2.1-packed.js">
+        </script>
+        <script type="text/javascript" src="~/assets/KhachHang/js/script.min.js">
+        </script>
+

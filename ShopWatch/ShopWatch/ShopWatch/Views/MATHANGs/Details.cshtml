@@ -1,0 +1,99 @@
+﻿@model ShopWatch.Models.MATHANG
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MATHANG</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TENHANG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENHANG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ANHSANPHAM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ANHSANPHAM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NGAYSANXUAT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGAYSANXUAT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TENHANGSANXUAT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENHANGSANXUAT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GIAHANG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GIAHANG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BAOHANH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BAOHANH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LOAI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOAI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KICHTHUOC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KICHTHUOC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TRANGTHAI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TRANGTHAI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SALE.MASALE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SALE.MASALE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MAMATHANG }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ShopWatch.Models.DATHANG>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            <label>NGAYMUA</label>
+         
+        </th>
+        <th>
+            <label>TONGTIEN</label>
+          
+        </th>
+        <th>
+            <label>TRANGTHAI</label>
+          
+        </th>
+        <th>
+            <label>THANHTOAN</label>
+          
+        </th>
+       
+        <th>
+            <label>KHACHHANG</label>
+            
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @String.Format("{0:dd/MM/yyyy}", item.NGAYMUA)
+
+    </td>
+    <td class="text-center" style="font-size:16px;color:brown;font-weight:500">
+        @String.Format("{0:N0}", item.TONGTIEN)
+    </td>
+    <td>
+        @if (item.TRANGTHAI == false)
+        {
+            <text>CHƯA THANH TOÁN</text>
+        }
+        else
+        {
+            <text>ĐÃ THANH TOÁN</text>
+        }
+    </td>
+    <td>
+        @if (item.HINHTHUCTHANHTOAN == false)
+        {
+            <text>COD</text>
+        }
+        else
+        {
+            <text>ONLINE</text>
+        }
+    </td>
+    
+    <td>
+        @Html.DisplayFor(modelItem => item.KHACHHANG.TENKHACHHANG)
+    </td>
+   
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.MADH }) |
+        @Html.ActionLink("Details", "Details", new { id = item.MADH }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.MADH })
+    </td>
+</tr>
+}
+
+</table>

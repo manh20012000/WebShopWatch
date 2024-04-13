@@ -1,0 +1,120 @@
+﻿@model ShopWatch.Models.DATHANG
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>Details</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h4>DATHANG</h4>
+            <hr />
+            <div class="row">
+                <div class="col-sm-3">
+                    <label class="label">@Html.DisplayNameFor(model => model.NGAYMUA)</label>
+                </div>
+                <div class="col-sm-9">
+                    <dd>@Html.DisplayFor(model => model.NGAYMUA)</dd>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <label class="label">@Html.DisplayNameFor(model => model.TONGTIEN)</label>
+                </div>
+                <div class="col-sm-9">
+                    <dd style="font-weight: bold; color: red;">@Html.DisplayFor(model => model.TONGTIEN)</dd>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <label class="label">@Html.DisplayNameFor(model => model.TRANGTHAI)</label>
+                </div>
+                <div class="col-sm-9">
+                    <dd>
+                        @if (Model.TRANGTHAI == false)
+                        {
+                            <text>CHƯA THANH TOÁN</text>
+                        }
+                        else
+                        {
+                            <text>ĐÃ THANH TOÁN</text>
+                        }
+                    </dd>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <label class="label">@Html.DisplayNameFor(model => model.HINHTHUCTHANHTOAN)</label>
+                </div>
+                <div class="col-sm-9">
+                    <dd>
+                        @if (Model.HINHTHUCTHANHTOAN == false)
+                        {
+                            <text>COD</text>
+                        }
+                        else
+                        {
+                            <text>ONLINE</text>
+                        }
+                    </dd>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <label class="label">@Html.DisplayNameFor(model => model.DIADIEM.TENDIACHI)</label>
+                </div>
+                <div class="col-sm-9">
+                    <dd>@Html.DisplayFor(model => model.DIADIEM.TENDIACHI)</dd>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <label class="label">@Html.DisplayNameFor(model => model.KHACHHANG.TENKHACHHANG)</label>
+                </div>
+                <div class="col-sm-9">
+                    <dd>@Html.DisplayFor(model => model.KHACHHANG.TENKHACHHANG)</dd>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <label class="label">@Html.DisplayNameFor(model => model.QUANLYVOUCHER.GHICHU)</label>
+                </div>
+                <div class="col-sm-9">
+                    <dd>@Html.DisplayFor(model => model.QUANLYVOUCHER.GHICHU)</dd>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <label class="label">@Html.DisplayNameFor(model => model.THANHTOAN.PHUONGTHUCTHANHTOAN)</label>
+                </div>
+                <div class="col-sm-9">
+                    <dd>@Html.DisplayFor(model => model.THANHTOAN.PHUONGTHUCTHANHTOAN)</dd>
+                </div>
+            </div>
+
+           
+        </div>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MADH }, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-secondary" })
+</p>
+
+<style>
+    .label {
+        font-weight: bold;
+        color: #333; /* Màu chữ của tên cột */
+    }
+</style>

@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ShopWatch.Models.MetaDATA.CustomerMessage>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+<style>
+    /* CSS styles here */
+    .avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+    }
+</style>
+<body>
+    <h1>Danh sách chờ</h1>
+    <ul>
+        @foreach (var user in Model)
+        {
+            <li>
+                <img src="@user.avatar" class="avatar" />
+                <a href="@Url.Action("ChatWithUser", "Admin", new { id = user.id })">@user.name</a>
+            </li>
+        }
+    </ul>
+</body>
+

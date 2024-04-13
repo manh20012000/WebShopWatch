@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ShopWatch.Models.MetaDATA.CustomerMessage>
+@{
+    ViewBag.Title = "Danhsachcho";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+
+<style>
+    /* CSS cho khung chứa danh sách khách hàng */
+    .client-list {
+        max-height: 300px; /* Đặt kích thước tối đa của danh sách */
+        overflow-y: auto; /* Hiển thị thanh cuộn khi cần thiết */
+        padding-right: 20px; /* Để tránh việc che phủ nội dung bởi thanh cuộn */
+        list-style: none; /* Ẩn ký hiệu danh sách */
+        margin: 0;
+        padding: 0;
+    }
+
+        /* CSS cho mỗi phần tử trong danh sách */
+        .client-list li {
+            margin-bottom: 20px; /* Khoảng cách giữa các phần tử */
+            padding: 10px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            cursor: pointer; /* Biến con trỏ thành dấu nhấp chuột khi di chuột qua */
+        }
+
+            .client-list li:hover {
+                background-color: #e0e0e0; /* Hiệu ứng khi di chuột qua */
+            }
+
+    /* CSS cho avatar hình tròn */
+    .client-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%; /* Để tạo hình tròn */
+        margin-right: 10px;
+    }
+
+    /* CSS cho tên khách hàng */
+    .client-name {
+        font-weight: bold; /* Để làm đậm */
+    }
+
+    /* CSS cho nút chuyển hướng */
+    .redirect-button {
+        background-color: #007bff; /* Màu nền của nút */
+        color: white; /* Màu chữ của nút */
+        padding: 8px 16px; /* Độ dài và rộng của nút */
+        border: none; /* Không có viền */
+        border-radius: 5px; /* Bo tròn viền */
+        cursor: pointer; /* Biến con trỏ thành dấu nhấp chuột khi di chuột qua */
+    }
+
+        .redirect-button:hover {
+            background-color: #0056b3; /* Hiệu ứng khi di chuột qua */
+        }
+</style>
+
+<div> danh sách tin nhắn chờ </div>
+<div class="chat-container">
+    <!-- Danh sách khách hàng đang chờ kết nối -->
+    <ul class="client-list">
+        @foreach (var client in Model)
+        {
+            <li>
+                <form action="/Chat/StartChat" method="post">
+                    <input type="hidden" name="userId" value="@client.id" />
+                    <div class="client-info">
+                        <img src="@client.avatar" alt="Client Avatar" class="client-avatar">
+                        <span class="client-name">@client.name</span>
+                    </div>
+                    <div class="message-preview">
+                        <p>@client.chat</p>
+                    </div>
+                    <button type="submit" class="redirect-button">Start Chat</button>
+                </form>
+            </li>
+        }
+    </ul>
+</div>

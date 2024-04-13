@@ -1,0 +1,397 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/favicon.png">
+    <title>
+        Welcome to FlatShop
+    </title>
+    <link href="~/assets/KhachHang/css/bootstrap.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,500italic,100italic,100' rel='stylesheet' type='text/css'>
+    <link href="~/assets/KhachHang/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/KhachHang/css/flexslider.css" type="text/css" media="screen" />
+    <link href="~/assets/KhachHang/css/style.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Colo Shop</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Colo Shop Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/styles/bootstrap4/bootstrap.min.css">
+    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/styles/responsive.css">
+
+   <style>
+       .navbar_menu li a {
+           color: #333; /* Màu văn bản mặc định */
+           text-decoration: none; /* Loại bỏ gạch chân mặc định */
+       }
+
+           .navbar_menu li a.selected {
+               color: #000; /* Màu văn bản được chọn */
+               font-weight: bold; /* Văn bản được chọn in đậm */
+           }
+
+   </style>
+
+</head>
+<body>
+
+
+        <header class="header trans_300">
+
+            <div class="top_nav" style="background-color: #d69a62 ">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="top_nav_left" style="color: #fff; text-align: center; text-transform: uppercase; font-family: 'Open Sans', sans-serif">NHÀ PHÂN PHỐI CHÍNH HÃNG CÁC THƯƠNG HIỆU ĐỒNG HỒ HÀNG ĐẦU VIỆT NAM</div>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <div class="top_nav_right">
+                                <ul class="top_nav_menu" style="">
+
+                                    <!-- Currency / Language / My Account -->
+
+
+                                    <li class="account" style="background: #d69a62">
+                                        <a href="#" style="color: #fff; text-align: center; font-family: 'Open Sans', sans-serif;  ">
+                                            My Account
+                                            <i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <ul class="account_selection">
+                                            <li><a href="/TAIKHOANs/Dangnhap"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
+                                            <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Navigation -->
+
+            <div class="main_nav_container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-right">
+                            <div class="logo_container">
+                                <a href="#">
+                                    <img src="~/assets/KhachHang/images/logo-removebg-preview.png" alt="" style="line-height: inherit; height: 31px; margin-bottom: 13px; vertical-align: middle; width: 95%">
+                                </a>
+                            </div>
+                            <nav class="navbar" style="color: black; margin-top: 10px;  font-weight: bold  ">
+                                <ul class="navbar_menu">
+                                    <li><a href="/MATHANG/homeIndex">Home<span class="underline"></span></a></li>
+                                    <li><a href="/MATHANG/mathang">Shop<span class="underline"></span></a></li>
+                                    <li><a href="/DatHang/DonHang">Order<span class="underline"></span></a></li>
+                                    <li><a href="/KHACHHANGs/Edit">Profile<span class="underline"></span></a></li>
+                                    <li><a href="#">Blog<span class="underline"></span></a></li>
+                                    <li><a href="contact.html">Contact<span class="underline"></span></a></li>
+                                </ul>
+                                <ul class="navbar_user">
+                              
+                                    <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                                    <li class="checkout">
+                                        <a href="/GioHang/Index">
+                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                            <span id="checkout_items" class="checkout_items">2</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="hamburger_container">
+                                    <i class="fa fa-bars" aria-hidden="true"></i>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </header>       
+    @RenderBody()
+     
+        <div class="deal_ofthe_week" style="background-color: #fcf9f9;padding:0 20px 0 20px">
+            <div class="w w-auto">
+                <div class="row align-items-center">
+                    <div class="col-lg-8" @*style="margin-left: -65px;"*@>
+                        <div class="deal_ofthe_week_img" style=" margin-right: 10%">
+                            <img src="../../assets/KhachHang/images/noi.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 text-center deal_ofthe_week_col">
+                        <div class="deal_ofthe_week_content d-flex flex-column align-items-center float-right">
+                            <div class="section_title">
+                                <h3 style="font-family: 'Alumni Sans', sans-serif; font-weight: 700;  ">TISSOT PRS </h3>
+                            </div>
+                            <div class="timer_unit" style=" margin-top: 40px; margin-left: 40px; font-family: 'Alumni Sans', sans-serif; font-weight:500">Tuyển chọn mẫu đồng hồ bán chạy</div>
+
+                            <div class="red_button deal_ofthe_week_button"><a href="#">shop now</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Best Sellers -->
+
+        <div class="best_sellers">
+            <div class="container">
+                <div class="row">
+                    <div class="col text-center">
+                        <div class="section_title new_arrivals_title">
+                            <h2>Best Sellers</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Benefit -->
+
+            <div class="benefit">
+                <div class="container">
+                    <div class="row benefit_row">
+                        <div class="col-lg-3 benefit_col">
+                            <div class="benefit_item d-flex flex-row align-items-center">
+                                <div class="benefit_icon"><i class="fa fa-truck" aria-hidden="true"></i></div>
+                                <div class="benefit_content">
+                                    <h6>free shipping</h6>
+                                    <p>Suffered Alteration in Some Form</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 benefit_col">
+                            <div class="benefit_item d-flex flex-row align-items-center">
+                                <div class="benefit_icon"><i class="fa fa-money" aria-hidden="true"></i></div>
+                                <div class="benefit_content">
+                                    <h6>cach on delivery</h6>
+                                    <p>The Internet Tend To Repeat</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 benefit_col">
+                            <div class="benefit_item d-flex flex-row align-items-center">
+                                <div class="benefit_icon"><i class="fa fa-undo" aria-hidden="true"></i></div>
+                                <div class="benefit_content">
+                                    <h6>45 days return</h6>
+                                    <p>Making it Look Like Readable</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 benefit_col">
+                            <div class="benefit_item d-flex flex-row align-items-center">
+                                <div class="benefit_icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
+                                <div class="benefit_content">
+                                    <h6>opening all week</h6>
+                                    <p>8AM - 09PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blogs -->
+
+            <div class="blogs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col text-center">
+                            <div class="section_title">
+                                <h2>Latest Blogs</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row blogs_container">
+                        <div class="col-lg-4 blog_item_col">
+                            <div class="blog_item">
+                                <div class="blog_background" style="background-image: url('../../assets/KhachHang/images/Screenshot 2024-04-08 005709.png')"></div>
+                                <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+                                    <h4 class="blog_title">ĐỒNG HỒ TISSOT</h4>
+                                    <span class="blog_meta">by admin | dec 01, 2017</span>
+                                    <a class="blog_more" href="#">Read more</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 blog_item_col">
+                            <div class="blog_item">
+                                <div class="blog_background" style="background-image: url('../../assets/KhachHang/images/Screenshot 2024-04-08 005735.png')"></div>
+                                <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+                                    <h4 class="blog_title">ĐỒNG HỒ HAMILTON</h4>
+                                    <span class="blog_meta">by admin | dec 01, 2017</span>
+                                    <a class="blog_more" href="#">Read more</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 blog_item_col">
+                            <div class="blog_item">
+                                <div class="blog_background" style="background-image: url('../../assets/KhachHang/images/Screenshot 2024-04-08 005755.png')"></div>
+                                <div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+                                    <h4 class="blog_title">FREDERIQUE CONSTANT</h4>
+                                    <span class="blog_meta">by admin | dec 01, 2017</span>
+                                    <a class="blog_more" href="#">Read more</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Newsletter -->
+
+            <div class="newsletter">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="newsletter_text d-flex flex-column justify-content-center align-items-lg-start align-items-md-center text-center">
+                                <h4>Newsletter</h4>
+                                <p>Subscribe to our newsletter and get 20% off your first purchase</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <form action="post">
+                                <div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
+                                    <input id="newsletter_email" type="email" placeholder="Your email" required="required" data-error="Valid email is required.">
+                                    <button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300" value="Submit">subscribe</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+
+            <footer class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
+                                <ul class="footer_nav">
+                                    <li><a href="#">Blog</a></li>
+                                    <li><a href="#">FAQs</a></li>
+                                    <li><a href="contact.html">Contact us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="footer_social d-flex flex-row align-items-center justify-content-lg-end justify-content-center">
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="footer_nav_container">
+                                <div class="cr">©2018 All Rights Reserverd. Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#">Colorlib</a> &amp; distributed by <a href="https://themewagon.com">ThemeWagon</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    <script src="~/assets/KhachHang/js/jquery-3.2.1.min.js"></script>
+    <script src="~/assets/KhachHang/styles/bootstrap4/popper.js"></script>
+    <script src="~/assets/KhachHang/styles/bootstrap4/bootstrap.min.js"></script>
+    <script src="~/assets/KhachHang/plugins/Isotope/isotope.pkgd.min.js"></script>
+    <script src="~/assets/KhachHang/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+    <script src="~/assets/KhachHang/plugins/easing/easing.js"></script>
+    <script src="~/assets/KhachHang/js/custom.js"></script>
+    <link href="~/assets/KhachHang/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/styles/responsive.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/styles/bootstrap4/bootstrap.min.css">
+<!-- Bootstrap core JavaScript==================================================-->
+<script type="text/javascript" src="~/assets/KhachHang/js/jquery-1.10.2.min.js">
+</script>
+<script type="text/javascript" src="~/assets/KhachHang/js/bootstrap.min.js">
+</script>
+<script defer src="~/assets/KhachHang/js/jquery.flexslider.js">
+</script>
+<script type="text/javascript" src="~/assets/KhachHang/js/jquery.carouFredSel-6.2.1-packed.js">
+</script>
+<script type="text/javascript" src="~/assets/KhachHang/js/script.min.js">
+</script>
+<!-- Bootstrap core JavaScript==================================================-->
+<script type="text/javascript" src="js/jquery-1.10.2.min.js">
+</script>
+<script type="text/javascript" src="js/bootstrap.min.js">
+</script>
+<script defer src="js/jquery.flexslider.js">
+</script>
+<script type="text/javascript" src="js/jquery.carouFredSel-6.2.1-packed.js">
+</script>
+<script src="~/assets/NhanVien/vendor/libs/jquery/jquery.js"></script>
+<script src="~/assets/NhanVien/vendor/libs/popper/popper.js"></script>
+<script src="~/assets/NhanVien/vendor/js/bootstrap.js"></script>
+<script src="~/assets/NhanVien/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="~/assets/NhanVien/vendor/js/menu.js"></script>
+<script src="~/assets/NhanVien/vendor/libs/apex-charts/apexcharts.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var links = document.querySelectorAll('.navbar_menu li a');
+
+            links.forEach(function (link) {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+
+                    // Xóa lớp 'selected' từ tất cả các liên kết
+                    links.forEach(function (otherLink) {
+                        otherLink.classList.remove('selected');
+                    });
+
+                    // Thêm lớp 'selected' vào liên kết được nhấn
+                    this.classList.add('selected');
+
+                    // Chuyển hướng đến đường dẫn của liên kết
+                    setTimeout(function () {
+                        window.location.href = link.href;
+                    }, 300);
+                });
+            });
+        });
+    </script>
+<script src="~/assets/NhanVien/js/dashboards-analytics.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<script src="~/assets/NhanVien/js/jquery.datetimepicker.full.js"></script>
+<script src="~/assets/Admin/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<script src="~/assets/Admin/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/assets/Admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="~/assets/Admin/plugins/fastclick/fastclick.min.js"></script>
+<script src="~/assets/Admin/dist/js/app.min.js"></script>
+<script src="~/assets/Admin/dist/js/demo.js"></script>
+<script src="~/assets/Admin/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/assets/Admin/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="~/assets/Admin/plugins/datatables/dataTables.alphabetSearch.js"></script>
+
+@*    <script type="text/javascript" src="js/script.min.js"></script>*@
+<script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
+<script src="~/signalr/hubs"></script>
+@RenderSection("script", required: false)
+</body>
+</html>
