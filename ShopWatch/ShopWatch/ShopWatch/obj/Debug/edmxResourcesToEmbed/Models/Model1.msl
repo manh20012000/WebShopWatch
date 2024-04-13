@@ -206,16 +206,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="DIADIEMs">
-      <EntityTypeMapping TypeName="DHModel.DIADIEM">
-        <MappingFragment StoreEntitySet="DIADIEM">
-          <ScalarProperty Name="SDT" ColumnName="SDT" />
-          <ScalarProperty Name="TENDIACHI" ColumnName="TENDIACHI" />
-          <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
-          <ScalarProperty Name="MADIADIEM" ColumnName="MADIADIEM" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="DATHANGs">
       <EntityTypeMapping TypeName="DHModel.DATHANG">
         <MappingFragment StoreEntitySet="DATHANG">
@@ -247,6 +237,17 @@
           <ScalarProperty Name="CONTEN" ColumnName="CONTEN" />
           <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
           <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DIADIEMs">
+      <EntityTypeMapping TypeName="DHModel.DIADIEM">
+        <MappingFragment StoreEntitySet="DIADIEM">
+          <ScalarProperty Name="MACDINH" ColumnName="MACDINH" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="TENDIACHI" ColumnName="TENDIACHI" />
+          <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
+          <ScalarProperty Name="MADIADIEM" ColumnName="MADIADIEM" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

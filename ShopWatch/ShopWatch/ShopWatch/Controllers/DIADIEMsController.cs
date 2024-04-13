@@ -29,7 +29,22 @@ namespace ShopWatch.Controllers
             }
             return RedirectToAction("Dangnhap", "TAIKHOANs");
         }
+        public ActionResult capnhatdiachi(int diadiemId)
+        {
+            // Tìm địa điểm có DIADIEM.MACDING = true
+            var diadiemToUpdate = db.DIADIEMs.FirstOrDefault(d => d.MACDINH == true);
+            if (diadiemToUpdate != null)
+            {
+                // Set DIADIEM.MACDING của địa điểm tìm được thành false
+                diadiemToUpdate.MACDINH = false;
 
+                // Lưu thay đổi vào cơ sở dữ liệu
+                db.SaveChanges();
+            }
+             
+            // Chuyển hướng đến action và controller mong muốn
+            return RedirectToAction("Index", "DIADIEMs");
+        }
         // GET: DIADIEMs/Details/5
         public ActionResult Details(int? id)
         {
@@ -48,8 +63,15 @@ namespace ShopWatch.Controllers
         // GET: DIADIEMs/Create
         public ActionResult Create()
         {
-            ViewBag.MAKHACHHANG = new SelectList(db.KHACHHANGs, "MAKHACHHANG", "TENKHACHHANG");
-            return View();
+            if (Session["EmailClient"] != null)
+            {
+                string userEmail = Session["EmailClient"] as string;
+                var khachhang = db.KHACHHANGs.FirstOrDefault(kh => kh.EMAIL == userEmail);
+
+                ViewBag.KHANHHANG = khachhang;
+                return View();
+            }
+            return RedirectToAction("Dangnhap", "TAIKHOANs");
         }
 
         // POST: DIADIEMs/Create
@@ -61,6 +83,7 @@ namespace ShopWatch.Controllers
         {
             if (ModelState.IsValid)
             {
+                dIADIEM.MACDINH = false;
                 db.DIADIEMs.Add(dIADIEM);
                 db.SaveChanges();
                 return RedirectToAction("Index");

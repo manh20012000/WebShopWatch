@@ -187,6 +187,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KHACHHANGsController.cs" />
     <Compile Include="Controllers\MATHANGsController.cs" />
+    <Compile Include="Controllers\QUANLYVOUCHERsController.cs" />
     <Compile Include="Controllers\TAIKHOANsController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -5100,10 +5101,6 @@
     <Content Include="Views\DatHang\DonHang.cshtml" />
     <Content Include="Views\GioHang\form_DatHang.cshtml" />
     <Content Include="Views\GioHang\Index.cshtml" />
-    <Content Include="Views\Home\danhsach.cshtml" />
-    <Content Include="Views\Home\homeIndex.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\KHACHHANGs\Edit.cshtml" />
     <Content Include="Views\KHACHHANGs\edit_2.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -5116,7 +5113,6 @@
     <Content Include="Views\TAIKHOANs\Register.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\DIADIEMs\Create.cshtml" />
     <Content Include="Views\DIADIEMs\Delete.cshtml" />
     <Content Include="Views\DIADIEMs\Details.cshtml" />
     <Content Include="Views\DIADIEMs\Edit.cshtml" />
@@ -5139,6 +5135,21 @@
     <Content Include="Views\MATHANG\mathang.cshtml" />
     <Content Include="Views\MATHANG\homeIndex.cshtml" />
     <Content Include="Views\MATHANG\Chitietmathang.cshtml" />
+    <Content Include="Views\DIADIEMs\Create.cshtml" />
+    <Content Include="Views\KHACHHANGs\Details.cshtml" />
+    <Content Include="Views\KHACHHANGs\Edit.cshtml" />
+    <Content Include="Views\VOUCHERs\Create.cshtml" />
+    <Content Include="Views\VOUCHERs\Delete.cshtml" />
+    <Content Include="Views\VOUCHERs\Details.cshtml" />
+    <Content Include="Views\VOUCHERs\Edit.cshtml" />
+    <Content Include="Views\VOUCHERs\Index.cshtml" />
+    <Content Include="Views\VOUCHERs\VoucherIndex.cshtml" />
+    <Content Include="Views\QUANLYVOUCHERs\Create.cshtml" />
+    <Content Include="Views\QUANLYVOUCHERs\Delete.cshtml" />
+    <Content Include="Views\QUANLYVOUCHERs\Details.cshtml" />
+    <Content Include="Views\QUANLYVOUCHERs\Edit.cshtml" />
+    <Content Include="Views\QUANLYVOUCHERs\Index.cshtml" />
+    <Content Include="Views\QUANLYVOUCHERs\VoucherIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -37,17 +37,17 @@
         <EntityTypeShape EntityType="DHModel.TAIKHOAN" Width="1.5" PointX="0.75" PointY="16.125" />
         <AssociationConnector Association="DHModel.FK__KHACHHANG__EMAIL__4AB81AF0" />
         <AssociationConnector Association="DHModel.FK__NHANVIEN__EMAIL__398D8EEE" />
-        <EntityTypeShape EntityType="DHModel.DIADIEM" Width="1.5" PointX="5.25" PointY="14.375" />
-        <AssociationConnector Association="DHModel.FK__DIADIEM__MAKHACH__571DF1D5" />
         <EntityTypeShape EntityType="DHModel.DATHANG" Width="1.5" PointX="7.5" PointY="11.875" />
         <AssociationConnector Association="DHModel.FK__CHITIETDAT__MADH__60A75C0F" />
-        <AssociationConnector Association="DHModel.FK__DATHANG__MADIADI__5AEE82B9" />
         <AssociationConnector Association="DHModel.FK__DATHANG__MAKHACH__59FA5E80" />
         <AssociationConnector Association="DHModel.FK__DATHANG__MAQUANL__5BE2A6F2" />
         <AssociationConnector Association="DHModel.FK__DATHANG__MATHANH__5CD6CB2B" />
         <AssociationConnector Association="DHModel.FK__DATHANG__MAVANDO__5DCAEF64" />
         <EntityTypeShape EntityType="DHModel.SIGNARL" Width="1.5" PointX="5.25" PointY="0.75" />
         <AssociationConnector Association="DHModel.FK__SIGNARL__MAKHACH__0C85DE4D" />
+        <EntityTypeShape EntityType="DHModel.DIADIEM" Width="1.5" PointX="5.25" PointY="14.375" />
+        <AssociationConnector Association="DHModel.FK__DATHANG__MADIADI__5AEE82B9" />
+        <AssociationConnector Association="DHModel.FK__DIADIEM__MAKHACH__571DF1D5" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -346,8 +346,8 @@ D:\LaptrinhWedNangCao\ShopWatch\ShopWatch\ShopWatch\ShopWatch\bin\System.Web.Web
 D:\LaptrinhWedNangCao\ShopWatch\ShopWatch\ShopWatch\ShopWatch\bin\System.Web.WebPages.Razor.xml
 D:\LaptrinhWedNangCao\ShopWatch\ShopWatch\ShopWatch\ShopWatch\bin\Newtonsoft.Json.xml
 D:\LaptrinhWedNangCao\ShopWatch\ShopWatch\ShopWatch\ShopWatch\bin\Antlr3.Runtime.pdb
-D:\LaptrinhWedNangCao\ShopWatch\ShopWatch\ShopWatch\ShopWatch\obj\Debug\ShopWatch.csproj.AssemblyReference.cache
 D:\LaptrinhWedNangCao\ShopWatch\ShopWatch\ShopWatch\ShopWatch\obj\Debug\ShopWatch.csproj.CoreCompileInputs.cache
 D:\LaptrinhWedNangCao\ShopWatch\ShopWatch\ShopWatch\ShopWatch\obj\Debug\ShopWatch.csproj.CopyComplete
 D:\LaptrinhWedNangCao\ShopWatch\ShopWatch\ShopWatch\ShopWatch\obj\Debug\ShopWatch.dll
 D:\LaptrinhWedNangCao\ShopWatch\ShopWatch\ShopWatch\ShopWatch\obj\Debug\ShopWatch.pdb
+D:\LaptrinhWedNangCao\ShopWatch\ShopWatch\ShopWatch\ShopWatch\obj\Debug\ShopWatch.csproj.AssemblyReference.cache

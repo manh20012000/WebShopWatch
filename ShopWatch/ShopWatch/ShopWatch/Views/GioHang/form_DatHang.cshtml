@@ -1,4 +1,5 @@
 ﻿@model ShopWatch.Models.MetaDATA.DatHangMetaData
+
 @{
 
     ViewBag.Title = "form_DatHang";
@@ -6,30 +7,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
-
+<div style="margin:200px 10px 10px 10px"></div>
 <h2 style=" text-align:center;color:black;margin-bottom:30px;font-weight:400;font-family:'Times New Roman', Times, serif">ĐẶT HÀNG </h2>
 
-@using (Html.BeginForm("AccepDonhang", "DatHang", FormMethod.Post, new { id = "submitForm" }))
+@using (Html.BeginForm("AccepDonhang", "DatHang", FormMethod.Post, new { id = "submitForm", @class = "needs-validation", novalidate = "novalidate" }))
 {
     @Html.AntiForgeryToken()
-    <center>
-        <
-            <div style="width: 600px; font-weight: 500; font-family: 'Times New Roman', Times, serif; color: black ">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Thông tin khách hàng</h2>
                 <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group" style=" text-align:center;">
-                    @Html.LabelFor(model => model.KHACHHANG.TENKHACHHANG, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10" style="">
-                        @Html.EditorFor(model => model.KHACHHANG.TENKHACHHANG, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.KHACHHANG.TENKHACHHANG, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group" style=" text-align:center;display:none">
-                    @Html.LabelFor(model => model.KHACHHANG.MAKHACHHANG, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10" style="">
-                        @Html.EditorFor(model => model.KHACHHANG.MAKHACHHANG, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.KHACHHANG.MAKHACHHANG, "", new { @class = "text-danger" })
-                    </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.KHACHHANG.TENKHACHHANG, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.KHACHHANG.TENKHACHHANG, new { htmlAttributes = new { @class = "form-control", required = "required", readOnly = "readOnly", style = "text-transform: uppercase;" } })
+                    @Html.ValidationMessageFor(model => model.KHACHHANG.TENKHACHHANG, "", new { @class = "text-danger" })
                 </div>
                 @{
                     bool hasXu = Model.KHACHHANG.XU != null && Model.KHACHHANG.XU != 0;
@@ -54,158 +46,153 @@
                         </div>
                     </div>
                 }
+                <!-- Ngày mua -->
+            <div class="form-group">
                 <div class="form-group">
                     @Html.LabelFor(model => model.NGAYMUA, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.NGAYMUA, new { htmlAttributes = new { @class = "form-control" } })
+                  
+                        @Html.EditorFor(model => model.NGAYMUA, new { htmlAttributes = new { @class = "form-control", readOnly = "readOnly" } })
                         @Html.ValidationMessageFor(model => model.NGAYMUA, "", new { @class = "text-danger" })
                     </div>
                 </div>
+            </div>
+            <div class="col-md-6">
+                <h2>Thông tin đơn hàng</h2>
+                <hr />
+                <!-- Mã vận đơn -->
                 <div class="form-group">
-                    @Html.LabelFor(model => model.MAVANDON, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.MAVANDON, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.MAVANDON, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.MAVANDON, htmlAttributes: new { @class = "control-label" }) :
+                    @Html.DisplayFor(model => model.MAVANDON, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MAVANDON, "", new { @class = "text-danger" })
+                </div>
+                <!-- Địa chỉ -->
+                <div class="form-group">
+                    <label for="diachi">ĐỊA CHỈ</label>
+                    <div class="border p-3">
+                        @if (ViewBag.DIACHI != null)
+                        {
+                            <p>ĐỊA CHỈ : @ViewBag.DIACHI.TENDIACHI</p>
+                            <p> SDT    : @ViewBag.DIACHI.SDT</p>
+                        }
                     </div>
                 </div>
-
-                <button type="button" onclick="toggleAddressList('addressList')">Chọn địa chỉ nhận hàng</button>
-                <center>
-                    <div id="addressList" class="col-md-10" style="display: none; position: absolute; z-index: 1; background-color: white; border: 1px solid #ccc; padding: 10px; height: 500px; width: 504px; overflow-y: auto; background-color: antiquewhite;">
-                        @foreach (var address in ViewBag.DIACHI.Items)
-                        {
-                            <div onclick="selectAddress('@address.MADIADIEM','@address.TENDIACHI', '@address.SDT')" style="width: 400px; height: 50px; border-radius: 10px; border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; cursor: pointer;">
-                                <label style="font-size: 15px;">@address.TENDIACHI - @address.SDT</label>
+                <!-- Mã địa điểm -->
+                <input name="MADIADIEM" type="hidden" value="@ViewBag.DIACHI.MADIADIEM" />
+            </div>
+        </div>
+    </div>
+    <!-- Chọn voucher -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Chọn voucher thanh toán</h2>
+                <hr />
+                @{
+                    var vouchers = ViewBag.Voucherss;
+                    if (vouchers != null)
+                    {
+                        <div id="voucherList" class="border p-3">
+                            <div class="mb-3">
+                                <p>Phần trăm giảm giá: @vouchers.PHANTRAMGIAMGIA %</p>
+                                <p>Hết hạn: @ViewBag.MAQUANLYVOUCHER.NGAYKETTHUC - Áp dụng cho: @vouchers.DIEUKIEN</p>
                             </div>
-                        }
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            <label id="selectedAddressLabel" class="control-label col-md-2" style="font-size: 15px; display: none; width: 720px; height: 30px;"></label>
-                            <input name="MADIADIEM" type="hidden" id="selectedAddressId" />
                         </div>
-                    </div>
-                </center>
-
-
-                <button type="button" onclick="toggleAddressList('voucherList')">Chọn voucher thanh toán</button>
-                <center>
-                    <div id="voucherList" class="col-md-10" style="display: none; position: absolute; z-index: 1; background-color: white; border: 1px solid #ccc; padding: 10px; height: 300px; width: 504px; overflow-y: auto; background-color: antiquewhite;">
-                        @foreach (var voucher in ViewBag.VOUCHER.Items)
+                        <div class="form-group">
+                            <input name="MAQUANLYVOUCHER" type="hidden" value="@ViewBag.MAQUANLYVOUCHER.MAQUANLYVOUCHER" />
+                        </div>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-primary mb-3" onclick="toggleAddressList('voucherList')">Chọn voucher thanh toán</button>
+                        <div id="voucherList" class="border p-3" style="display: none;">
+                            @foreach (var voucher in ViewBag.VOUCHER.Items)
                         {
-                            <div onclick="selectVoucher('@voucher.MAQUANLYVOUCHER', '@voucher.VOUCHER.PHANTRAMGIAMGIA')" style="width: 400px; height: 50px; border-radius: 10px; border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; cursor: pointer;">
-                                <label style="font-size: 15px;">Phần trăm giảm giá: @voucher.VOUCHER.PHANTRAMGIAMGIA %</label>
-                                <label style="font-size: 15px;">Hết hạn: @voucher.NGAYKETTHUC - Áp dụng cho: @voucher.VOUCHER.DIEUKIEN</label>
-                            </div>
-                        }
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            <label id="selectedVoucherLabel" class="control-label col-md-2" style="font-size: 15px; display: none; width: 350px; height: 30px;"></label>
+                                <div onclick="selectVoucher('@voucher.MAQUANLYVOUCHER', '@voucher.VOUCHER.PHANTRAMGIAMGIA')" class="mb-3">
+                                    <p>Phần trăm giảm giá: @voucher.VOUCHER.PHANTRAMGIAMGIA %</p>
+                                    <p>Hết hạn: @voucher.NGAYKETTHUC - Áp dụng cho: @voucher.VOUCHER.DIEUKIEN</p>
+                                </div>
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label id="selectedVoucherLabel" class="control-label" style="font-size: 15px; display: none;"></label>
                             <input name="MAQUANLYVOUCHER" type="hidden" id="selectedVoucherId" />
                         </div>
-                    </div>
-                </center>
-
+                        }
+                    }
+                </div>
+        </div>
+    </div>
+    <!-- Hình thức thanh toán -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Hình thức thanh toán</h2>
+                <hr />
                 <div class="form-group">
-                    <label class="control-label col-md-2" style="font-size:15px">Hình thức thanh toán</label>
-                    <div class="col-md-10">
-                        <select class="form-control" name="HINHTHUCTHANHTOAN" id="drTypePayment">
-                            <option value="false" selected>COD</option>
-                            <option value="true">Chuyển khoản</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group" id="load_form_payment" style="display:none;">
-                    <h4> <label>Chọn phương thức thanh toán:</label><br /></h4>
-                    <h5>Cách 1: Chuyển hướng sang VNPAY chọn phương thức thanh toán</h5>
-                    <label><input type="radio" name="TypePaymentVN" value="0" checked /> Cổng thanh toán VNPAYQR </label>
-                    <h5>Cách 2: Tách phương thức thanh toán tại site của Merchant</h5>
-                    <label><input type="radio" name="TypePaymentVN" value="1" /> Thanh toán qua ứng dụng hỗ trợ VNPAYQR </label><br />
-                    <label><input type="radio" name="TypePaymentVN" value="2" /> ATM-Tài khoản ngân hàng nội địa </label><br />
-                    <label><input type="radio" name="TypePaymentVN" value="3" /> Thanh toán qua thẻ quốc tế </label><br />
-                </div>
-                <input type="hidden" id="typePaymentHidden" name="TypePaymentVN" />
-                <div id="addressDetails" style="display: none;">
-                    <h4>Selected Address Details</h4>
-                    <p id="addressInfo"></p>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.TONGTIEN, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.TONGTIEN, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.TONGTIEN, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="THANH TOÁN" class="btn btn-default" />
-                    </div>
+                    <label for="drTypePayment">Hình thức thanh toán</label>
+                    <select class="form-control" name="HINHTHUCTHANHTOAN" id="drTypePayment">
+                        <option value="false" selected>COD</option>
+                        <option value="true">Chuyển khoản</option>
+                    </select>
                 </div>
             </div>
-    </center>
-
-    <center>
-        <div class="row" style="width:600px;margin-left:10px;font-weight:600;font-size:16px; margin-bottom:20px;">
-
-            <table class="table" id="sortableTable">
-
-                <tr>
-
-                    <th class="filter__link" data-column="1">
-                        Tên sản phẩm
-                    </th>
-                    <th class="filter__link" data-column="2">
-                        Số lượng
-                    </th>
-                    <th class="filter__link" data-column="3">
-                        Đơn giá
-                    </th>
-                    <th class="filter__link" data-column="5">
-                        Tổng
-                    </th>
-                    <th></th>
-                </tr>
-
-
-
-                @*   @foreach (var item in ViewBag.danhsachGH)*@
-                <!--{
-
-            <tr>
-                <td>-->
-                @*  @item.MATHANG.TENHANG*@
-                <!--</td>
-            <td>-->
-                @*     @item.SOLUONGMUA*@
-                <!--</td>
-             <td>-->
-                @* @String.Format("{0:N0}", item.DONGIA)*@
-
-                <!--</td>
-            <td>-->
-                @{
-                    @*                                double tempTong = (double)(item.GIABAN);*@
-                    @*  @String.Format("{0:N0}", tempTong)*@
-                    <!--}
-                </td>-->
-                    @* <td>
-                           @Html.ActionLink("Xóa", "xoa_sanpham", new { id_ctgh = item.MACHITIETGIOHANG })
-                    </td>*@
-                    <!--</tr>-->
-
-                }
-            </table>
-            @* <button>
-                @Html.ActionLink("Đặt Hàng", "DatHang", "DatHang");
-            </button>*@
         </div>
+    </div>
+    <!-- Load form thanh toán -->
+    <div class="container mt-4" id="load_form_payment" style="display:none;">
+        <h2>Chọn phương thức thanh toán</h2>
+        <hr />
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="TypePaymentVN" id="typePayment1" value="0" checked>
+            <label class="form-check-label" for="typePayment1">
+                Cổng thanh toán VNPAYQR
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="TypePaymentVN" id="typePayment2" value="1">
+            <label class="form-check-label" for="typePayment2">
+                Thanh toán qua ứng dụng hỗ trợ VNPAYQR
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="TypePaymentVN" id="typePayment3" value="2">
+            <label class="form-check-label" for="typePayment3">
+                ATM-Tài khoản ngân hàng nội địa
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="TypePaymentVN" id="typePayment4" value="3">
+            <label class="form-check-label" for="typePayment4">
+                Thanh toán qua thẻ quốc tế
+            </label>
+        </div>
+    </div>
+    <input type="hidden" id="typePaymentHidden" name="TypePaymentVN" />
+    <!-- Tổng tiền -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Tổng tiền</h2>
+                <hr />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TONGTIEN, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.TONGTIEN, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.TONGTIEN, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Nút submit -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary">Thanh toán</button>
+            </div>
+        </div>
+    </div>
+}
 
-    </center>
-
-    <script>
+<script>
         function toggleAddressList(listId) {
             var addressList = document.getElementById(listId);
             addressList.style.display = addressList.style.display === "none" ? "block" : "none";
@@ -278,6 +265,6 @@
             form.action = "@Url.Action("PayOnline", "DatHang")";
         }
     };
-    </script>
+</script>
 }
 

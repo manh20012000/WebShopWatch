@@ -97,7 +97,8 @@ namespace ShopWatch.Controllers
         [HttpPost]
         public ActionResult Dangnhap(TAIKHOAN tAIKHOAN)
         {
-
+            tAIKHOAN.MATKHAU = "11";
+            tAIKHOAN.EMAIL = "a@gmail.com";
             var f_password = GetMD5(tAIKHOAN.MATKHAU);
             var data = db.TAIKHOANs.Where(s => s.EMAIL.Equals(tAIKHOAN.EMAIL) && s.MATKHAU.Equals(f_password)).ToList();
             if (data.Count() > 0)

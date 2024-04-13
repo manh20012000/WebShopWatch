@@ -68,9 +68,9 @@
     <NavigationProperty Name="GIOHANGs" Relationship="Self.FK__GIOHANG__MAKHACH__6477ECF3" FromRole="KHACHHANG" ToRole="GIOHANG" />
     <NavigationProperty Name="QUANLYVOUCHERs" Relationship="Self.FK__QUANLYVOU__MAKHA__4F7CD00D" FromRole="KHACHHANG" ToRole="QUANLYVOUCHER" />
     <NavigationProperty Name="TAIKHOAN" Relationship="DHModel.FK__KHACHHANG__EMAIL__4AB81AF0" FromRole="KHACHHANG" ToRole="TAIKHOAN" />
-    <NavigationProperty Name="DIADIEMs" Relationship="DHModel.FK__DIADIEM__MAKHACH__571DF1D5" FromRole="KHACHHANG" ToRole="DIADIEM" />
     <NavigationProperty Name="DATHANGs" Relationship="DHModel.FK__DATHANG__MAKHACH__59FA5E80" FromRole="KHACHHANG" ToRole="DATHANG" />
     <NavigationProperty Name="SIGNARLs" Relationship="DHModel.FK__SIGNARL__MAKHACH__0C85DE4D" FromRole="KHACHHANG" ToRole="SIGNARL" />
+    <NavigationProperty Name="DIADIEMs" Relationship="DHModel.FK__DIADIEM__MAKHACH__571DF1D5" FromRole="KHACHHANG" ToRole="DIADIEM" />
   </EntityType>
   <EntityType Name="MATHANG">
     <Key>
@@ -431,19 +431,10 @@
       <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
       <End Role="NHANVIEN" EntitySet="NHANVIENs" />
     </AssociationSet>
-    <EntitySet Name="DIADIEMs" EntityType="DHModel.DIADIEM" />
-    <AssociationSet Name="FK__DIADIEM__MAKHACH__571DF1D5" Association="DHModel.FK__DIADIEM__MAKHACH__571DF1D5">
-      <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
-      <End Role="DIADIEM" EntitySet="DIADIEMs" />
-    </AssociationSet>
     <EntitySet Name="DATHANGs" EntityType="DHModel.DATHANG" />
     <AssociationSet Name="FK__CHITIETDAT__MADH__60A75C0F" Association="DHModel.FK__CHITIETDAT__MADH__60A75C0F">
       <End Role="DATHANG" EntitySet="DATHANGs" />
       <End Role="CHITIETDATHANG" EntitySet="CHITIETDATHANGs" />
-    </AssociationSet>
-    <AssociationSet Name="FK__DATHANG__MADIADI__5AEE82B9" Association="DHModel.FK__DATHANG__MADIADI__5AEE82B9">
-      <End Role="DIADIEM" EntitySet="DIADIEMs" />
-      <End Role="DATHANG" EntitySet="DATHANGs" />
     </AssociationSet>
     <AssociationSet Name="FK__DATHANG__MAKHACH__59FA5E80" Association="DHModel.FK__DATHANG__MAKHACH__59FA5E80">
       <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
@@ -465,6 +456,15 @@
     <AssociationSet Name="FK__SIGNARL__MAKHACH__0C85DE4D" Association="DHModel.FK__SIGNARL__MAKHACH__0C85DE4D">
       <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
       <End Role="SIGNARL" EntitySet="SIGNARLs" />
+    </AssociationSet>
+    <EntitySet Name="DIADIEMs" EntityType="DHModel.DIADIEM" />
+    <AssociationSet Name="FK__DATHANG__MADIADI__5AEE82B9" Association="DHModel.FK__DATHANG__MADIADI__5AEE82B9">
+      <End Role="DIADIEM" EntitySet="DIADIEMs" />
+      <End Role="DATHANG" EntitySet="DATHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DIADIEM__MAKHACH__571DF1D5" Association="DHModel.FK__DIADIEM__MAKHACH__571DF1D5">
+      <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+      <End Role="DIADIEM" EntitySet="DIADIEMs" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="TAIKHOAN">
@@ -501,29 +501,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="DIADIEM">
-    <Key>
-      <PropertyRef Name="MADIADIEM" />
-    </Key>
-    <Property Name="MADIADIEM" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="MAKHACHHANG" Type="Int32" />
-    <Property Name="TENDIACHI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="SDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="KHACHHANG" Relationship="DHModel.FK__DIADIEM__MAKHACH__571DF1D5" FromRole="DIADIEM" ToRole="KHACHHANG" />
-    <NavigationProperty Name="DATHANGs" Relationship="DHModel.FK__DATHANG__MADIADI__5AEE82B9" FromRole="DIADIEM" ToRole="DATHANG" />
-  </EntityType>
-  <Association Name="FK__DIADIEM__MAKHACH__571DF1D5">
-    <End Type="DHModel.KHACHHANG" Role="KHACHHANG" Multiplicity="0..1" />
-    <End Type="DHModel.DIADIEM" Role="DIADIEM" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="KHACHHANG">
-        <PropertyRef Name="MAKHACHHANG" />
-      </Principal>
-      <Dependent Role="DIADIEM">
-        <PropertyRef Name="MAKHACHHANG" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="DATHANG">
     <Key>
       <PropertyRef Name="MADH" />
@@ -543,11 +520,11 @@
     <Property Name="NGAYHUY" Type="DateTime" Precision="0" />
     <Property Name="TUYCHON" Type="Boolean" />
     <NavigationProperty Name="CHITIETDATHANGs" Relationship="DHModel.FK__CHITIETDAT__MADH__60A75C0F" FromRole="DATHANG" ToRole="CHITIETDATHANG" />
-    <NavigationProperty Name="DIADIEM" Relationship="DHModel.FK__DATHANG__MADIADI__5AEE82B9" FromRole="DATHANG" ToRole="DIADIEM" />
     <NavigationProperty Name="KHACHHANG" Relationship="DHModel.FK__DATHANG__MAKHACH__59FA5E80" FromRole="DATHANG" ToRole="KHACHHANG" />
     <NavigationProperty Name="QUANLYVOUCHER" Relationship="DHModel.FK__DATHANG__MAQUANL__5BE2A6F2" FromRole="DATHANG" ToRole="QUANLYVOUCHER" />
     <NavigationProperty Name="THANHTOAN" Relationship="DHModel.FK__DATHANG__MATHANH__5CD6CB2B" FromRole="DATHANG" ToRole="THANHTOAN" />
     <NavigationProperty Name="TRANGTHAIGIAOHANG" Relationship="DHModel.FK__DATHANG__MAVANDO__5DCAEF64" FromRole="DATHANG" ToRole="TRANGTHAIGIAOHANG" />
+    <NavigationProperty Name="DIADIEM" Relationship="DHModel.FK__DATHANG__MADIADI__5AEE82B9" FromRole="DATHANG" ToRole="DIADIEM" />
   </EntityType>
   <Association Name="FK__CHITIETDAT__MADH__60A75C0F">
     <End Type="DHModel.DATHANG" Role="DATHANG" Multiplicity="0..1" />
@@ -558,18 +535,6 @@
       </Principal>
       <Dependent Role="CHITIETDATHANG">
         <PropertyRef Name="MADH" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__DATHANG__MADIADI__5AEE82B9">
-    <End Type="DHModel.DIADIEM" Role="DIADIEM" Multiplicity="0..1" />
-    <End Type="DHModel.DATHANG" Role="DATHANG" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="DIADIEM">
-        <PropertyRef Name="MADIADIEM" />
-      </Principal>
-      <Dependent Role="DATHANG">
-        <PropertyRef Name="MADIADIEM" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -643,6 +608,42 @@
         <PropertyRef Name="MAKHACHHANG" />
       </Principal>
       <Dependent Role="SIGNARL">
+        <PropertyRef Name="MAKHACHHANG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="DIADIEM">
+    <Key>
+      <PropertyRef Name="MADIADIEM" />
+    </Key>
+    <Property Name="MADIADIEM" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MAKHACHHANG" Type="Int32" />
+    <Property Name="TENDIACHI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MACDINH" Type="Boolean" />
+    <NavigationProperty Name="DATHANGs" Relationship="DHModel.FK__DATHANG__MADIADI__5AEE82B9" FromRole="DIADIEM" ToRole="DATHANG" />
+    <NavigationProperty Name="KHACHHANG" Relationship="DHModel.FK__DIADIEM__MAKHACH__571DF1D5" FromRole="DIADIEM" ToRole="KHACHHANG" />
+  </EntityType>
+  <Association Name="FK__DATHANG__MADIADI__5AEE82B9">
+    <End Type="DHModel.DIADIEM" Role="DIADIEM" Multiplicity="0..1" />
+    <End Type="DHModel.DATHANG" Role="DATHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DIADIEM">
+        <PropertyRef Name="MADIADIEM" />
+      </Principal>
+      <Dependent Role="DATHANG">
+        <PropertyRef Name="MADIADIEM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DIADIEM__MAKHACH__571DF1D5">
+    <End Type="DHModel.KHACHHANG" Role="KHACHHANG" Multiplicity="0..1" />
+    <End Type="DHModel.DIADIEM" Role="DIADIEM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHACHHANG">
+        <PropertyRef Name="MAKHACHHANG" />
+      </Principal>
+      <Dependent Role="DIADIEM">
         <PropertyRef Name="MAKHACHHANG" />
       </Dependent>
     </ReferentialConstraint>

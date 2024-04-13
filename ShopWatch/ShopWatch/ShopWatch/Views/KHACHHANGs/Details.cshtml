@@ -1,0 +1,55 @@
+﻿@model ShopWatch.Models.KHACHHANG
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="margin-top:200px">
+
+</div>
+<form action="/DIADIEMs/Index">
+    <div class="form-row">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="ĐỊA CHỈ" class="btn btn-default" />
+        </div>
+    </div>
+</form>
+<h2>Details</h2>
+
+<div>
+   
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TENKHACHHANG)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TENKHACHHANG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SDT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AVATAR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AVATAR)
+        </dd>
+
+       
+
+    </dl>
+</div>
+<div class="form-row">
+    <div >
+        <button class="col-md-offset-2 col-md-10"> @Html.ActionLink("Edit", "Edit", new { id = Model.MAKHACHHANG })</button>
+       
+    </div>
+</div>
+

@@ -3,44 +3,78 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+
 }
-<h2>ĐỊA CHỈ GIAO HÀNG </h2>
+<div style="margin:200px 10px 10px 10px">
+    <h2>ĐỊA CHỈ GIAO HÀNG </h2>
 
-<button style="margin:10px">
-    @Html.ActionLink("Create New", "Create")
-</button>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TENDIACHI)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SDT)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.KHACHHANG.TENKHACHHANG)
-        </th>
-        <th></th>
-    </tr>
+    <button style="margin:10px;width:150px;height:50px;border-radius:10px;background-color:coral">
+        @Html.ActionLink("Create New", "Create")
+    </button>
 
-    @foreach (var item in Model)
-    {
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TENDIACHI)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SDT)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KHACHHANG.TENKHACHHANG)
-            </td>
-            <td>
-             
-             @*   @Html.ActionLink("Details", "Details", new { id = item.MADIADIEM }) |*@
-                @Html.ActionLink("Delete", "Delete", new { id = item.MADIADIEM })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.TENDIACHI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SDT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KHACHHANG.TENKHACHHANG)
+            </th>
+            <th>CHỌNDD</th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TENDIACHI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SDT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KHACHHANG.TENKHACHHANG)
+        </td>
+        <td>  <input type="radio" name="diadiem" class="diadiem" data-id="@item.MADIADIEM" value="@item.MADIADIEM" @(item.MACDINH.GetValueOrDefault() ? "checked" : "") /></td>
+      
+        <td>
+
+            @*   @Html.ActionLink("Details", "Details", new { id = item.MADIADIEM }) |*@
+            @Html.ActionLink("Delete", "Delete", new { id = item.MADIADIEM })
+        </td>
+    </tr>
+        }
+
+    </table>
+</div>
+
+     <script>
+         document.addEventListener('DOMContentLoaded', function () {
+         var radioButtons = document.querySelectorAll('.diadiem');
+         radioButtons.forEach(function(radioButton) {
+             radioButton.addEventListener('click', function () {
+                 var selectedDiadiemId = this.getAttribute('data-id');
+                 console.log('Selected Diadiem ID:', selectedDiadiemId);
+                 // Gửi ID của địa điểm được chọn đến server qua AJAX
+                 $.ajax({
+                     url: '/DIADIEMs/capnhatdiachi',
+                     type: 'POST',
+                     contentType: 'application/json',
+                     data: JSON.stringify({ diadiemId: selectedDiadiemId }),
+                     success: function (result) {
+                         // Xử lý kết quả nếu cần
+                     },
+                     error: function (xhr, status, error) {
+                         // Xử lý lỗi nếu có
+                     }
+                 });
+             });
+         });
+     });
+
+</script>

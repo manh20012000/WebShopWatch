@@ -17,23 +17,30 @@ namespace ShopWatch.Controllers
         // GET: KHACHHANGs
         public ActionResult Index()
         {
-            var kHACHHANGs = db.KHACHHANGs.Include(k => k.TAIKHOAN);
-            return View(kHACHHANGs.ToList());
+            var email = Session["EmailClient"] as string;
+            KHACHHANG user = db.KHACHHANGs.FirstOrDefault(u => u.EMAIL == email);
+            int? khachhang = GetMaKH();
+            if (user == null)
+            {
+                return RedirectToAction("Dangnhap", "TAIKHOANs");
+            }
+       
+            return View(user);
         }
 
         // GET: KHACHHANGs/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details()
         {
-            if (id == null)
+            var email = Session["EmailClient"] as string;
+            KHACHHANG user = db.KHACHHANGs.FirstOrDefault(u => u.EMAIL == email);
+            int? khachhang = GetMaKH();
+            if (user == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Dangnhap", "TAIKHOANs");
             }
-            KHACHHANG kHACHHANG = db.KHACHHANGs.Find(id);
-            if (kHACHHANG == null)
-            {
-                return HttpNotFound();
-            }
-            return View(kHACHHANG);
+
+
+            return View(user);
         }
 
         // GET: KHACHHANGs/Create

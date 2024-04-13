@@ -29,8 +29,6 @@ namespace ShopWatch.Controllers
 
             return RedirectToAction("homeIndex", "Home");
         }
-
-  
         public ActionResult mathang(string searchValue, string brand, string price, string size, string type, int page = 1) {
             if (Session["EmailClient"] != null)
             {
@@ -73,11 +71,8 @@ namespace ShopWatch.Controllers
             return RedirectToAction("Dangnhap", "TAIKHOANs");
 
         }
-
-
         public ActionResult homeIndex( int page = 1)
         {
-           
                 int pageSize = 10;
                 var items = db.MATHANGs.Where(x => x.TRANGTHAI == false);
                 return View(items.ToList().ToPagedList(page, pageSize));

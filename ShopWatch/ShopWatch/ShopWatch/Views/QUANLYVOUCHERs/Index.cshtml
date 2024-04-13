@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ShopWatch.Models.QUANLYVOUCHER>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GHICHU)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NOIDUNG)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NGAYBATDAU)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NGAYKETTHUC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TRANGTHAI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KHACHHANG.TENKHACHHANG)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VOUCHER.DIEUKIEN)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.GHICHU)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOIDUNG)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NGAYBATDAU)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NGAYKETTHUC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TRANGTHAI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KHACHHANG.TENKHACHHANG)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VOUCHER.DIEUKIEN)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MAQUANLYVOUCHER }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MAQUANLYVOUCHER }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MAQUANLYVOUCHER })
+        </td>
+    </tr>
+}
+
+</table>

@@ -56,6 +56,7 @@
     <Property Name="MAKHACHHANG" Type="int" />
     <Property Name="TENDIACHI" Type="nvarchar(max)" />
     <Property Name="SDT" Type="nvarchar" MaxLength="50" />
+    <Property Name="MACDINH" Type="bit" />
   </EntityType>
   <EntityType Name="GIOHANG">
     <Key>

@@ -144,12 +144,14 @@ namespace ShopWatch.Controllers
         public ActionResult form_DatHang(string  selectedItemsData, double giatien)
         {
             if (Session["EmailClient"] != null)
-            {
+            {  
                 string decodedData = HttpUtility.UrlDecode(selectedItemsData);
                 // Chuyển đổi chuỗi JSON thành mảng đối tượng
                 var itemsArray = JsonConvert.DeserializeObject<List<CHITIETDATHANG>>(decodedData);
                 var email = Session["EmailClient"] as string;
                 Session["SelectedItemsData"] = itemsArray;
+                Session["sessionVoucher"] = itemsArray;
+             var voucher = Session["sessionVoucher"] as VOUCHER;
                 KHACHHANG user = db.KHACHHANGs.FirstOrDefault(u => u.EMAIL == email);
                 var NGAYMUA = DateTime.Now;
                 var danhsachdonhang = db.DATHANGs.Where(m => m.MAKHACHHANG == user.MAKHACHHANG).ToList();
@@ -165,7 +167,15 @@ namespace ShopWatch.Controllers
 
                 ViewBag.VOUCHER = new SelectList(quanLyVoucherList.ToList(), "VOUCHER");
                 ViewBag.danhsachGH = selectedItemsData;
-                ViewBag.DIACHI = new SelectList(db.DIADIEMs.Where(dd => dd.MAKHACHHANG == user.MAKHACHHANG).ToList(),"MADIADIEM");
+                ViewBag.DIACHI = db.DIADIEMs.FirstOrDefault(dd => dd.MACDINH == true);
+                var vouchersQL = Session["SessionQUANLYVOUCHER"] as QUANLYVOUCHER;
+               
+                if (vouchersQL != null)
+                {  ViewBag.MAQUANLYVOUCHER = vouchersQL;
+                  var vouchers  = db.VOUCHERs.Find(vouchersQL.MAVOUCHER);
+                   ViewBag.Voucherss = vouchers;
+                    giatien = (double)((giatien * vouchers.PHANTRAMGIAMGIA) / 100);
+                }
                 DatHangMetaData dathang = new DatHangMetaData
                 {
                     NGAYMUA = NGAYMUA,
