@@ -24,14 +24,15 @@
     }
 </style>
 
-<h2 style="text-align:center;font-weight: 400; font-family: 'Times New Roman' , Times, serif;margin-bottom:30px;">THÔNG TIN ĐƠN HÀNG ĐÃ ĐẶT</h2>
 
-<div style="margin-top:150px">
+<div style="margin-top:200px">
 
 </div>
+<h2 style="text-align:center;font-weight: 400; font-family: 'Times New Roman' , Times, serif;margin-bottom:30px;">THÔNG TIN ĐƠN HÀNG ĐÃ ĐẶT</h2>
+
 <div class="margin-bottom:120px" style="padding:10px">
 
-
+      
 
     <table class="table">
         <tr>
@@ -57,13 +58,14 @@
             <th>
                 <label>KHACHHANG</label>
             </th>
-            <th>TUYCHON</th>
+            <th>
+                TUYCHON
+                <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("ListOder", "DatHang")'">Đã nhận</button>
+                <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("ListCanceOder", "DatHang")'">CANCEORDER</button>
+            </th>
             @foreach (var item in Model)
             {
-
-
             <tr>
-
                 <td>
                     @String.Format("{0:dd/MM/yyyy}", item.NGAYMUA)
                 </td>
@@ -165,12 +167,12 @@
                            @* window.location.href = '/DatHang/DonHang';*@
                             var chatHub = $.connection.chat;
                             console.log(chatHub, 'hhahahah');
-                            
+
                             $.connection.hub.start().done(function () {
                               @*  chatHub.server.Message("hahaha")*@
                                 console.log(chatHub, 'Kết nối SignalR thành công!')
                                 chatHub.server.cancelOrderAndNotify(orderId, tenkhachhang, avatar, makhachhang, noidung, ngayhuy, title);
-                                console.log('hhahahawddsddh', orderId, tenkhachhang, avatar, makhachhang, noidung, ngayhuy, title);  
+                                console.log('hhahahawddsddh', orderId, tenkhachhang, avatar, makhachhang, noidung, ngayhuy, title);
                                 @* window.location.href = '/DatHang/DonHang';*@
 
                             });
@@ -183,7 +185,7 @@
             });
         }
 
-     
-       
+
+
     </script>
 

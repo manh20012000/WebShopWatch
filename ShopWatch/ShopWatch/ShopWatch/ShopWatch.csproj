@@ -5150,6 +5150,8 @@
     <Content Include="Views\QUANLYVOUCHERs\Edit.cshtml" />
     <Content Include="Views\QUANLYVOUCHERs\Index.cshtml" />
     <Content Include="Views\QUANLYVOUCHERs\VoucherIndex.cshtml" />
+    <Content Include="Views\DatHang\ListCanceOder.cshtml" />
+    <Content Include="Views\DatHang\ListOder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

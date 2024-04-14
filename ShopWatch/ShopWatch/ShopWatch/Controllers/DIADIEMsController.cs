@@ -39,9 +39,11 @@ namespace ShopWatch.Controllers
                 diadiemToUpdate.MACDINH = false;
 
                 // Lưu thay đổi vào cơ sở dữ liệu
-                db.SaveChanges();
+                
             }
-             
+            var dd = db.DIADIEMs.Find(diadiemId);
+            dd.MACDINH = true;
+             db.SaveChanges();
             // Chuyển hướng đến action và controller mong muốn
             return RedirectToAction("Index", "DIADIEMs");
         }

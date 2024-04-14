@@ -21,7 +21,7 @@
     <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/styles/responsive.css">
     <style>
         body {
-            font-family: Arial;
+            font-family: 'Times New Roman', Times, sans-serif;
         }
 
         .coupon {
@@ -33,21 +33,21 @@
             display: flex;
             flex-direction: column;
             position: relative;
-            border: 3px dotted #f22929;
-            border-radius: 9px;
+            border: 3px dotted #112d49;
+            border-radius: 15px;
         }
 
-        .promo {
+        /*.promo {
             background: #ccc;
             padding: 3px;
-        }
+        }*/
 
         .expire {
             color: red;
         }
 
         .button {
-            background-color: #04AA6D; /* Green */
+            background-color: red; /* Green */
             border: none;
             color: white;
             padding: 10px 20px;
@@ -62,19 +62,21 @@
         }
 
         .button2 {
-            background-color: white;
-            color: #3e7bb7;
-            border: 1px solid #f99a40;
+            background-color: red;
+            color: white;
+            font-weight: 500;
         }
 
             .button2:hover {
-                background-color: #f99a40;
-                color: #3e7bb7;
+                background-color: white;
+                color: #10263d;
+                border: 2px solid #ff0000;
+                font-weight: 500;
             }
 
         .apsolut {
             position: absolute;
-            bottom: 1px;
+            bottom: -8px;
             right: 10px;
         }
     </style>
@@ -128,12 +130,12 @@
                             </div>
                             <nav class="navbar" style="color: black; margin-top: 10px;  font-weight: bold  ">
                                 <ul class="navbar_menu">
-                                    <li><a href="/MATHANG/homeIndex">Home<span class="underline"></span></a></li>
-                                    <li><a href="/MATHANG/mathang">Shop<span class="underline"></span></a></li>
-                                    <li><a href="/DatHang/DonHang">Order<span class="underline"></span></a></li>
-                                    <li><a href="/KHACHHANGs/Details">Profile<span class="underline"></span></a></li>
-                                    <li><a href="/QUANLYVOUCHERs/VoucherIndex">listVoucher<span class="underline"></span></a></li>
-                                    <li><a href="contact.html">Contact<span class="underline"></span></a></li>
+                                    <li><a href="#">home</a></li>
+                                    <li><a href="/MatHang/Chitietmathang?id=N-30887L">shop</a></li>
+                                    <li><a href="#">promotion</a></li>
+                                    <li><a href="#">pages</a></li>
+                                    <li><a href="#">blog</a></li>
+                                    <li><a href="contact.html">contact</a></li>
                                 </ul>
                                 <ul class="navbar_user">
                                     <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
@@ -157,30 +159,30 @@
         </header>
 
 
-        <div class="card" style="margin-top:150px">
+        <div class="card" style="margin-top:150px; border:0">
             <img src="https://cdn.vuahanghieu.com/unsafe/1200x0/left/top/smart/filters:quality(90)/https://admin.vuahanghieu.com/upload/entrusted/1681961923_event-qua-tang-sinh-nhat.png" style="width: 100%; display: block;margin-left:7px" />
 
 
             <div class="wrrap" style=" display: flex; flex-wrap: wrap; ">
                 @foreach (var item in Model)
                 {
-                    <div class="coupon">
-                        <div class="container" style="background-color:white; ">
-                            <h2 style=" background-color: #4789cc; width: 109%; height: 80px; object-fit: cover; margin-left: -15px; font-size: 20px; text-align: center; line-height: 2.5; "><b>@Html.DisplayFor(modelItem => item.VOUCHER.PHANTRAMGIAMGIA) %</b></h2>
-                            <p>@Html.DisplayFor(modelItem => item.VOUCHER.DIEUKIEN)</p>
-                        </div>
+                    <div class="coupon " style="background-color: #f9ff59;height:auto">
                         <div class="container">
-                            <p>Mã voucher:  <span class="promo">   @Html.ActionLink("Details", "Details", new { id = item.MAVOUCHER })</span></p>
-
-                            <p>NGÀY KẾT THÚC :   @String.Format("{0:dd/MM/yyyy}", item.NGAYKETTHUC)</p>
+                            <p style="font-size: 50px; line-height: 1; margin: 20px auto 0; text-align: center; color: #3d2209; font-weight: 700 ">@Html.DisplayFor(modelItem => item.VOUCHER.PHANTRAMGIAMGIA)% OFF</p>
+                            <p style="font-size: 18px; margin: 0; line-height: 1; color: #112d49; text-transform: uppercase; font-weight: 500"> @Html.DisplayFor(modelItem => item.VOUCHER.DIEUKIEN)</p>
                         </div>
-                        <div style=" display:flex"> 
-                        <button class="button button2 apsolut">
-                               <a href="/QUANLYVOUCHERs/MuaNgay?id=@item.VOUCHER.MAVOUCHER"> MUA NGAY</a>
-                               </button></div>
+                        <hr color="#107010" style=" height:0.5px" />
+                        <div class="container" style=" font-family: 'Times New Roman', Times, sans-serif;">
+                            <p style=" color: #112d49; text-transform: uppercase">Mã voucher:  <span class="promo" style=" color: #112d49; text-transform: uppercase">   @Html.ActionLink("Details", "Details", new { id = item.MAVOUCHER })</span></p>
+
+
+                        </div>
+                        <div style=" display:flex">
+                            <p style="color:darkorchid">NGÀY KẾT THÚC :   @String.Format("{0:dd/MM/yyyy}", item.NGAYKETTHUC)</p>
+                            <button class="button button2 apsolut" style=" font-weight: 600;bottom:10px"><a href="/QUANLYVOUCHERs/MuaNgay?id=@item.MAQUANLYVOUCHER"> MUA NGAY</a></button>
+                        </div>
 
                     </div>
-
                 }
 
 
@@ -262,3 +264,21 @@
     <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/styles/bootstrap4/bootstrap.min.css">
 </body>
 </html>
+
+
+@foreach (var item in Model)
+{
+    <div class="coupon" style="background-color: #f9ff59 ">
+        <div class="container">
+            <p style="font-size: 80px; line-height: 1; margin: 20px auto 0; text-align: center; color: #3d2209; font-weight: 700 ">@Html.DisplayFor(modelItem => item.VOUCHER.PHANTRAMGIAMGIA)% OFF</p>
+            <p style="font-size: 20px; margin: 0; line-height: 1; color: #112d49; text-transform: uppercase; font-weight: 700"> @Html.DisplayFor(modelItem => item.VOUCHER.DIEUKIEN)</p>
+        </div>
+        <hr color="#107010" style=" height:0.5px" />
+        <div class="container" style=" font-family: 'Times New Roman', Times, sans-serif;">
+            <p style=" color: #112d49; text-transform: uppercase">Mã voucher:  <span class="promo" style=" color: #112d49; text-transform: uppercase">   @Html.ActionLink("Details", "Details", new { id = item.MAVOUCHER })</span></p>
+            @*<p>NGÀY KẾT THÚC :   @String.Format("{0:dd/MM/yyyy}", item.NGAYKETTHUC)</p>*@
+        </div>
+        <button class="button" style=" font-weight: 500"><a href="/QUANLYVOUCHERs/MuaNgay?id=@item.MAQUANLYVOUCHER"> MUA NGAY</a></button>
+
+    </div>
+}

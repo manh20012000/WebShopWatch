@@ -26,7 +26,13 @@ namespace ShopWatch.Controllers
             {
                 return RedirectToAction("Dangnhap", "TAIKHOANs");
             }
-            var danhsachdonhang = db.DATHANGs.Where(m => m.MAKHACHHANG == user.MAKHACHHANG).ToList();
+            DateTime ngayHienTai = DateTime.Now;
+
+            var danhsachdonhang = db.DATHANGs
+                       .Where(m => m.MAKHACHHANG == user.MAKHACHHANG &&
+                        m.TUYCHON != false||
+                        DbFunctions.AddDays(m.NGAYNHAN, 5) >= DateTime.Now)
+                      .ToList();
             return View(danhsachdonhang);
         }
       
@@ -65,13 +71,14 @@ namespace ShopWatch.Controllers
                          MAVANDON = (int)dATHANG.MAVANDON,
                          VITRI = diadiem.TENDIACHI,
                          THOIGIANGIAOHANG = DateTime.Now,
+                         THOIGIANNHANHANG=null,
                      };
                      db.TRANGTHAIGIAOHANGs.Add(giaohang);
                      DATHANG dathang = new DATHANG
                      {
                          HINHTHUCTHANHTOAN = false,
                          TONGTIEN = dATHANG.TONGTIEN,
-                         MAKHACHHANG = dATHANG.KHACHHANG.MAKHACHHANG,
+                         MAKHACHHANG = dATHANG.MAKHACHHANG,
                          MADIADIEM = dATHANG.MADIADIEM,
                          MAQUANLYVOUCHER = dATHANG.MAQUANLYVOUCHER,
                          NGAYMUA = dATHANG.NGAYMUA,
@@ -83,35 +90,11 @@ namespace ShopWatch.Controllers
                      db.DATHANGs.Add(dathang);
                     DateTime StartDate = DateTime.Today;
                     DateTime EndDate = StartDate.AddYears(1);
-                    if (dATHANG.TONGTIEN >= 10000000)
+                     if (dATHANG.TONGTIEN >= 50000000)
                     {
                         QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
                         {
-                            MAKHACHHANG = dATHANG.KHACHHANG.MAKHACHHANG,
-                            MAVOUCHER = 3,
-                            NGAYBATDAU = StartDate,
-                            NGAYKETTHUC = EndDate,
-                            TRANGTHAI = true,
-                        };
-                        db.QUANLYVOUCHERs.Add(newQuanlyVoucher);
-                    }
-                    else if (dATHANG.TONGTIEN >= 20000000)
-                    {
-                        QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
-                        {
-                            MAKHACHHANG = dATHANG.KHACHHANG.MAKHACHHANG,
-                            MAVOUCHER = 4,
-                            NGAYBATDAU = StartDate,
-                            NGAYKETTHUC = EndDate,
-                            TRANGTHAI = true,
-                        }; db.QUANLYVOUCHERs.Add(newQuanlyVoucher);
-
-                    }
-                    else if (dATHANG.TONGTIEN >= 50000000)
-                    {
-                        QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
-                        {
-                            MAKHACHHANG = dATHANG.KHACHHANG.MAKHACHHANG,
+                            MAKHACHHANG = dATHANG.MAKHACHHANG,
                             MAVOUCHER = 5,
                             NGAYBATDAU = StartDate,
                             NGAYKETTHUC = EndDate,
@@ -123,7 +106,7 @@ namespace ShopWatch.Controllers
                     {
                         QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
                         {
-                            MAKHACHHANG = dATHANG.KHACHHANG.MAKHACHHANG,
+                            MAKHACHHANG = dATHANG.MAKHACHHANG,
                             MAVOUCHER = 6,
                             NGAYBATDAU = StartDate,
                             NGAYKETTHUC = EndDate,
@@ -177,13 +160,14 @@ namespace ShopWatch.Controllers
                             MAVANDON = (int)Dathang.MAVANDON,
                             VITRI = diadiems.TENDIACHI,
                             THOIGIANGIAOHANG = DateTime.Now,
+                            THOIGIANNHANHANG = null,
                         };
                         db.TRANGTHAIGIAOHANGs.Add(giaohang);
                         DATHANG dathang = new DATHANG
                         {
                             HINHTHUCTHANHTOAN = true,
                             TONGTIEN = Dathang.TONGTIEN,
-                            MAKHACHHANG = Dathang.KHACHHANG.MAKHACHHANG,
+                            MAKHACHHANG = Dathang.MAKHACHHANG,
                             MADIADIEM = Dathang.MADIADIEM,
                             MAQUANLYVOUCHER = Dathang.MAQUANLYVOUCHER,
                             NGAYMUA = Dathang.NGAYMUA,
@@ -196,35 +180,11 @@ namespace ShopWatch.Controllers
 
                         DateTime StartDate = DateTime.Today;
                         DateTime EndDate = StartDate.AddYears(1);
-                        if (Dathang.TONGTIEN >= 10000000)
+                         if (Dathang.TONGTIEN >= 50000000)
                         {
                             QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
                             {
-                                MAKHACHHANG = Dathang.KHACHHANG.MAKHACHHANG,
-                                MAVOUCHER = 3,
-                                NGAYBATDAU = StartDate,
-                                NGAYKETTHUC = EndDate,
-                                TRANGTHAI = true,
-                            };
-                            db.QUANLYVOUCHERs.Add(newQuanlyVoucher);
-                        }
-                        else if (Dathang.TONGTIEN >= 20000000)
-                        {
-                            QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
-                            {
-                                MAKHACHHANG = Dathang.KHACHHANG.MAKHACHHANG,
-                                MAVOUCHER = 4,
-                                NGAYBATDAU = StartDate,
-                                NGAYKETTHUC = EndDate,
-                                TRANGTHAI = true,
-                            }; db.QUANLYVOUCHERs.Add(newQuanlyVoucher);
-
-                        }
-                        else if (Dathang.TONGTIEN >= 50000000)
-                        {
-                            QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
-                            {
-                                MAKHACHHANG = Dathang.KHACHHANG.MAKHACHHANG,
+                                MAKHACHHANG = Dathang.MAKHACHHANG,
                                 MAVOUCHER = 5,
                                 NGAYBATDAU = StartDate,
                                 NGAYKETTHUC = EndDate,
@@ -236,7 +196,7 @@ namespace ShopWatch.Controllers
                         {
                             QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
                             {
-                                MAKHACHHANG = Dathang.KHACHHANG.MAKHACHHANG,
+                                MAKHACHHANG = Dathang.MAKHACHHANG,
                                 MAVOUCHER = 6,
                                 NGAYBATDAU = StartDate,
                                 NGAYKETTHUC = EndDate,
@@ -415,14 +375,15 @@ namespace ShopWatch.Controllers
                 return HttpNotFound();
             }
             dATHANG.NGAYNHAN = DateTime.Now;
+            dATHANG.TUYCHON = true;
             dATHANG.TINHTRANGDH = "đã nhận hàng";
             db.SaveChanges();
             return RedirectToAction("DonHang");
         }
+
         [HttpPost]
         public ActionResult CancelOrder(string id)
         {
-            // Xử lý hủy đơn hàng với mã đơn hàng là id
             DATHANG dATHANG = db.DATHANGs.Find(id);
             if (dATHANG == null)
             {
@@ -430,13 +391,23 @@ namespace ShopWatch.Controllers
             }
             dATHANG.NGAYHUY = DateTime.Now;
             dATHANG.TINHTRANGDH = "đã hủy";
+            
             db.SaveChanges();
 
             // Chuyển hướng về view DonHang
             return RedirectToAction("DonHang");
         }
-  
-    protected override void Dispose(bool disposing)
+      public ActionResult ListCanceOder()
+        {
+            var danhsachdonhang = db.DATHANGs.Where(m => m.TUYCHON ==false).ToList();
+            return View(danhsachdonhang);
+        }
+        public ActionResult ListOder()
+        {
+            var danhsachdonhang = db.DATHANGs.Where(m => m.TUYCHON == true).ToList();
+            return View(danhsachdonhang);
+        }
+        protected override void Dispose(bool disposing)
         {
             if (disposing)
             {

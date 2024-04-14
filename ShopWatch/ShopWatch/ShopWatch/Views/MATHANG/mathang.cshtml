@@ -101,7 +101,7 @@
                 <option value="ĐH SMARTWATCH">ĐH SMARTWATCH</option>
                 <option value="cao cấp">cao cấp</option>
             </select>
-            <input type="submit" style="height: 40px;width:100px;" value="search" />
+            <input type="submit" style="height: 40px;width:100px;border-radius:10px;background-color:burlywood" value="search" />
         </form>
     </div>
 </div>
@@ -155,7 +155,9 @@
             </div>
         </div>
     </div>
-</div>
+</div><center>
+    <div style="margin-left:20px;">@Html.PagedListPager(Model, page => Url.Action("homeIndex", new { page }))</div>
+</center>
 <div class="deal_ofthe_week" style="background-color: #fcf9f9;padding:0 20px 0 20px">
     <div class="w w-auto">
         <div class="row align-items-center">
@@ -199,7 +201,5 @@
             window.location.href = url;
         }
     </script>*@
-<center>
-    <div style="margin-left:20px">@Html.PagedListPager(Model, page => Url.Action("homeIndex", new { page }))</div>
-</center>
+
 
