@@ -22,7 +22,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
 
         public ActionResult Product(string searchValue, int page = 1)
         {
-            int pageSize = 10;
+            int pageSize = 6;
 
             if (Session["UserEmail"] != null)
             {

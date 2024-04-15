@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ShopWatch.Models;
 using PagedList;
+using ShopWatch.Models.MetaDATA;
 namespace ShopWatch.Areas.NhanVien.Controllers
 {
     public class QUANLYVOUCHERsController : Controller
@@ -50,8 +51,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
         // GET: NhanVien/QUANLYVOUCHERs/Create
         public ActionResult Create()
         {
-            ViewBag.MAKHACHHANG = new SelectList(db.KHACHHANGs, "MAKHACHHANG", "TENKHACHHANG");
-            ViewBag.MAVOUCHER = new SelectList(db.VOUCHERs, "MAVOUCHER", "DIEUKIEN");
+          
             return View();
         }
 
@@ -60,18 +60,52 @@ namespace ShopWatch.Areas.NhanVien.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MAQUANLYVOUCHER,MAKHACHHANG,MAVOUCHER,GHICHU,NOIDUNG,NGAYBATDAU,NGAYKETTHUC,TRANGTHAI")] QUANLYVOUCHER qUANLYVOUCHER)
+        public ActionResult Create(VoucherShare shrarevoucher )
         {
             if (ModelState.IsValid)
             {
-                db.QUANLYVOUCHERs.Add(qUANLYVOUCHER);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    if (shrarevoucher.PHANTRAMGIAMGIA != null)
+                    {
+                        VOUCHER vOUCHER = new VOUCHER
+                        {
+                            PHANTRAMGIAMGIA = shrarevoucher.PHANTRAMGIAMGIA,
+                            DIEUKIEN = shrarevoucher.DIEUKIEN,
+                        };
+                        var vocheradd = db.VOUCHERs.Add(vOUCHER);
+                        var listkhachhang = db.KHACHHANGs;
+                        foreach(var khachhang in listkhachhang)
+                        {
+                            QUANLYVOUCHER qUANLYVOUCHER = new QUANLYVOUCHER
+                            {
+                                MAVOUCHER = vocheradd.MAVOUCHER,
+                                NGAYBATDAU=shrarevoucher.NGAYBATDAU,
+                                NGAYKETTHUC=shrarevoucher.NGAYKETTHUC,
+                                MAKHACHHANG=khachhang.MAKHACHHANG,
+                                TRANGTHAI=true,
+                                
+
+                            };
+                            db.QUANLYVOUCHERs.Add(qUANLYVOUCHER);
+                        }
+
+                    }
+                    db.SaveChanges(); 
+                   return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                    TempData["ThongBao"] = "sãy ra lỗi !"+ex;
+                } 
+              
+                
             }
 
-            ViewBag.MAKHACHHANG = new SelectList(db.KHACHHANGs, "MAKHACHHANG", "TENKHACHHANG", qUANLYVOUCHER.MAKHACHHANG);
-            ViewBag.MAVOUCHER = new SelectList(db.VOUCHERs, "MAVOUCHER", "DIEUKIEN", qUANLYVOUCHER.MAVOUCHER);
-            return View(qUANLYVOUCHER);
+           /* ViewBag.MAKHACHHANG = new SelectList(db.KHACHHANGs, "MAKHACHHANG", "TENKHACHHANG", qUANLYVOUCHER.MAKHACHHANG);
+            ViewBag.MAVOUCHER = new SelectList(db.VOUCHERs, "MAVOUCHER", "DIEUKIEN", qUANLYVOUCHER.MAVOUCHER);*/
+            return View();
         }
 
         // GET: NhanVien/QUANLYVOUCHERs/Edit/5

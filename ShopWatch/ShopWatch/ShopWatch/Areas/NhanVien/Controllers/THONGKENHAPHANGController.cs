@@ -25,35 +25,42 @@ namespace ShopWatch.Areas.NhanVien.Controllers
                 {
                     if (month.HasValue && year.HasValue)
                     {
-                        var thongke = db.NHAPHANGs
-                                    .Where(nh => nh.NGAYNHAP.Value.Month == month && nh.NGAYNHAP.Value.Year == year);
-                        if (thongke != null)
+                        try
                         {
-                            
-                            var thongkenhaphang = (
-                                from ct in db.CHITIETPHIEUNHAPs
-                                join nh in db.NHAPHANGs.Where(n => n.NGAYNHAP.Value.Month == month && n.NGAYNHAP.Value.Year == year)
-                                    on ct.MANHAPHANG equals nh.MANHAPHANG
-                                select new DataCHITIETNHAPHANG
-                                {
-                                    SOLUONG = ct.SOLUONG,
-                                    TONGTIEN = ct.SOLUONG * ct.GIANHAP,
-                                    NGAYTHONGKE = String.Format("{0:dd/MM/yyyy}", nh.NGAYNHAP),
-                                    MANHAPHANG = nh.MANHAPHANG,
-                                    TENHANG = ct.MATHANG.TENHANG,
-                                    TENNHANVIEN=nh.NHANVIEN.TENNV,
-                                    MAMATHANG=ct.MAMATHANG,
-                                  
-                                }
-                            ).ToList();
-                           
-                             foreach(var item in thongkenhaphang)
+                            var thongke = db.NHAPHANGs
+                                    .Where(nh => nh.NGAYNHAP.Value.Month == month && nh.NGAYNHAP.Value.Year == year);
+                            if (thongke != null)
                             {
-                                Money += item.TONGTIEN ?? 0;
+
+                                var thongkenhaphang = (
+                                    from ct in db.CHITIETPHIEUNHAPs
+                                    join nh in db.NHAPHANGs.Where(n => n.NGAYNHAP.Value.Month == month && n.NGAYNHAP.Value.Year == year)
+                                        on ct.MANHAPHANG equals nh.MANHAPHANG
+                                    select new DataCHITIETNHAPHANG
+                                    {
+                                        SOLUONG = ct.SOLUONG,
+                                        TONGTIEN = ct.SOLUONG * ct.GIANHAP,
+                                        NGAYTHONGKE = nh.NGAYNHAP,
+                                        MANHAPHANG = nh.MANHAPHANG,
+                                        TENHANG = ct.MATHANG.TENHANG,
+                                        TENNHANVIEN = nh.NHANVIEN.TENNV,
+                                        MAMATHANG = ct.MAMATHANG,
+
+                                    }
+                                ).ToList();
+
+                                foreach (var item in thongkenhaphang)
+                                {
+                                    Money += item.TONGTIEN ?? 0;
+                                }
+                                ViewBag.Tongtien = Money;
+                                ViewBag.Thongkenhaphang = thongkenhaphang;
+                                return View(thongkenhaphang);
                             }
-                            ViewBag.Tongtien = Money;
-                            ViewBag.Thongkenhaphang = thongkenhaphang;
-                            return View(thongkenhaphang);
+                        }
+                        catch(Exception ex)
+                        {
+                            Console.WriteLine(ex);
                         }
                     }
                     ViewBag.Tongtien = 0.0;

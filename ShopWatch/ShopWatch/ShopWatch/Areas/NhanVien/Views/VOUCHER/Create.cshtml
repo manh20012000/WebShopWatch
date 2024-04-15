@@ -12,7 +12,7 @@
     <div class="form-row">
         <div class="form-group col-md-12">
             @Html.LabelFor(model => model.PHANTRAMGIAMGIA, htmlAttributes: new { @class = "control-label" })
-            @Html.EditorFor(model => model.PHANTRAMGIAMGIA, new { htmlAttributes = new { type = "number", min = "0", max = "100", @class = "form-control", placeholder = "Nhập phần trăm giảm giá (<100)" } })
+            @Html.EditorFor(model => model.PHANTRAMGIAMGIA, new { htmlAttributes = new { type = "number", min = "0", max = "100", @class = "form-control", placeholder = "Nhập phần trăm giảm giá (<100%)" } })
             @Html.ValidationMessageFor(model => model.PHANTRAMGIAMGIA," ", new { @class = "text-danger" })
         </div>
         <div class="form-group col-md-12">

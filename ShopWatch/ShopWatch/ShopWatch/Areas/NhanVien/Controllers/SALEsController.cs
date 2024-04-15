@@ -24,7 +24,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
                 {
                     int pageSize = 20;
                     var validSales = db.SALEs
-                       .Where(s => s.NGAYHETHAN >= DateTime.Now && s.TRANGTHAI != true)
+                       .Where(s => s.NGAYHETHAN >= DateTime.Now && s.TRANGTHAI == false)
                         .ToList();
                     return View(validSales.ToList().ToPagedList(page, pageSize));
                 }

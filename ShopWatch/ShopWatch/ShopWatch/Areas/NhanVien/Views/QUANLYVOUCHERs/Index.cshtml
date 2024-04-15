@@ -7,17 +7,22 @@
     Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
 }
 
-<h2>Danh sách quản ly voucher</h2>
+<div style="display:flex; align-items: center; justify-content: space-between;">
+    <h2>Danh sách quản ly voucher</h2>
+    <button style="padding: 8px; border-radius: 10px;" onclick="location.href='@Url.Action("Create", "QUANLYVOUCHERs")'">Add QuanlyVoucher</button>
+
+
+</div>
+
 
 <table class="table">
     <tr style="background-color:#04AA6D;">
-        <th class="text-center">
+       @* <th class="text-center">
             <label>GHI CHÚ</label>
         </th>
         <th class="text-center">
             <label>NOIDUNG</label>
-            
-        </th>
+        </th>*@
         <th class="text-center">
             <label>NGAYBATDAU</label>
       
@@ -25,12 +30,16 @@
         <th class="text-center">
             <label>NGAYKETTHUC</label>
             
-        </th>
+        </th><th class="text-center">
+         <label>MAKHACHHANG</label>
+
+</th>
       
-        <th class="text-center">
-            <label>TENKHACHHANG</label>
-         
-        </th>
+             <th class="text-center">
+                 <label>TENKHACHHANG</label>
+
+
+             </th>
         <th class="text-center">
             <label>DIEUKIEN</label>
             
@@ -40,23 +49,26 @@
     @foreach (var item in Model)
     {
 <tr>
-    <td class="text-center">
-        @Html.DisplayFor(modelItem => item.GHICHU)
-    </td>
-    <td class="text-center">
-        @Html.DisplayFor(modelItem => item.NOIDUNG)
-    </td>
+    @* <td class="text-center">
+            @Html.DisplayFor(modelItem => item.GHICHU)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.NOIDUNG)
+        </td>*@
     <td class="text-center">
         @String.Format("{0:dd/MM/yyyy}", item.NGAYBATDAU)
-     
+
     </td>
     <td class="text-center">
         @String.Format("{0:dd/MM/yyyy}", item.NGAYKETTHUC)
     </td>
-   
+    <td class="text-center">
+        @Html.DisplayFor(modelItem => item.KHACHHANG.MAKHACHHANG)
+    </td>
     <td class="text-center">
         @Html.DisplayFor(modelItem => item.KHACHHANG.TENKHACHHANG)
     </td>
+  
     <td class="text-center">
         @Html.DisplayFor(modelItem => item.VOUCHER.DIEUKIEN)
     </td>

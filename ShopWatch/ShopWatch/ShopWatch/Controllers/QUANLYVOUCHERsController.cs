@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ShopWatch.Models;
-
+using ShopWatch.Models.MetaDATA;
 namespace ShopWatch.Controllers
 {
     public class QUANLYVOUCHERsController : Controller
@@ -62,28 +62,41 @@ namespace ShopWatch.Controllers
         // GET: QUANLYVOUCHERs/Create
         public ActionResult Create()
         {
-            ViewBag.MAKHACHHANG = new SelectList(db.KHACHHANGs, "MAKHACHHANG", "TENKHACHHANG");
-            ViewBag.MAVOUCHER = new SelectList(db.VOUCHERs, "MAVOUCHER", "DIEUKIEN");
+          
             return View();
         }
-
         // POST: QUANLYVOUCHERs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MAQUANLYVOUCHER,MAKHACHHANG,MAVOUCHER,GHICHU,NOIDUNG,NGAYBATDAU,NGAYKETTHUC,TRANGTHAI")] QUANLYVOUCHER qUANLYVOUCHER)
+        public ActionResult Create([Bind(Include = "PHANTRAMGIAMGIA,DIEUKIEN,NGAYBATDAU,NGAYKETTHUC,")] VoucherShare quanlyvoucherShare)
         {
             if (ModelState.IsValid)
             {
-                db.QUANLYVOUCHERs.Add(qUANLYVOUCHER);
+                VOUCHER voucher = new VOUCHER
+                {
+                    DIEUKIEN = quanlyvoucherShare.DIEUKIEN,
+                    PHANTRAMGIAMGIA = quanlyvoucherShare.PHANTRAMGIAMGIA,
+                };
+                 
+                var addvoucher = db.VOUCHERs.Add(voucher);
+                var listforVoucher = db.KHACHHANGs.ToList();
+                foreach(var Khachhang in listforVoucher)
+                {
+                    QUANLYVOUCHER QLVC = new QUANLYVOUCHER
+                    {
+                        MAKHACHHANG=Khachhang.MAKHACHHANG,
+                        NGAYBATDAU = quanlyvoucherShare.NGAYBATDAU,
+                        NGAYKETTHUC=quanlyvoucherShare.NGAYKETTHUC,
+                        MAVOUCHER = voucher.MAVOUCHER,
+                    };
+                    db.QUANLYVOUCHERs.Add(QLVC);
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.MAKHACHHANG = new SelectList(db.KHACHHANGs, "MAKHACHHANG", "TENKHACHHANG", qUANLYVOUCHER.MAKHACHHANG);
-            ViewBag.MAVOUCHER = new SelectList(db.VOUCHERs, "MAVOUCHER", "DIEUKIEN", qUANLYVOUCHER.MAVOUCHER);
-            return View(qUANLYVOUCHER);
+            return View();
         }
 
         // GET: QUANLYVOUCHERs/Edit/5

@@ -127,12 +127,10 @@
                                             @Html.DisplayFor(modelItem => item.NHANVIEN.TENNV)
                                         </td>
                                         <td class="text-center tble ">
-                                            
-                                                    <button id="btnGroupDrop1">
-                                                           @Html.ActionLink("CreateMulti", "CreateMulti", "CHITIETPHIEUNHAPs1", new { id = item.MANHAPHANG }, new { @class = "btn btn-primary" })
-                                                    </button>
-                                                   
+                                            <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("CreateMulti", "CHITIETPHIEUNHAPs1",new { id = item.MANHAPHANG })'">ImportProduct</button>
                                          
+
+
                                         </td>
 
                                     </tr>

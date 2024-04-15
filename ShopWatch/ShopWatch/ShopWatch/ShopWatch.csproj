@@ -235,6 +235,7 @@
     <Compile Include="Models\MetaDATA\MathangViewModel.cs" />
     <Compile Include="Models\MetaDATA\OderView.cs" />
     <Compile Include="Models\MetaDATA\VnPaymentResponseModel.cs" />
+    <Compile Include="Models\MetaDATA\VoucherShare.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

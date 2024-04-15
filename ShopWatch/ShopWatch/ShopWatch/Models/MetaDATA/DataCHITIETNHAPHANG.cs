@@ -12,7 +12,7 @@ namespace ShopWatch.Models.MetaDATA
         public Nullable<int> SOLUONG { get; set; }
         public Nullable<int> MANHAPHANG { get; set; }
         public Nullable<double> TONGTIEN { get; set; }
-        public string NGAYTHONGKE { get; set; }
+        public Nullable<System.DateTime> NGAYTHONGKE { get; set; }
         public String TENNHANVIEN { get; set; }
        
         public  String  TENHANG { get; set; }

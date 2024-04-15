@@ -17,9 +17,9 @@ namespace ShopWatch.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public KHACHHANG()
         {
+            this.DATHANGs = new HashSet<DATHANG>();
             this.GIOHANGs = new HashSet<GIOHANG>();
             this.QUANLYVOUCHERs = new HashSet<QUANLYVOUCHER>();
-            this.DATHANGs = new HashSet<DATHANG>();
             this.SIGNARLs = new HashSet<SIGNARL>();
             this.DIADIEMs = new HashSet<DIADIEM>();
         }
@@ -33,12 +33,12 @@ namespace ShopWatch.Models
         public Nullable<double> XU { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GIOHANG> GIOHANGs { get; set; }
+        public virtual ICollection<DATHANG> DATHANGs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<QUANLYVOUCHER> QUANLYVOUCHERs { get; set; }
+        public virtual ICollection<GIOHANG> GIOHANGs { get; set; }
         public virtual TAIKHOAN TAIKHOAN { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DATHANG> DATHANGs { get; set; }
+        public virtual ICollection<QUANLYVOUCHER> QUANLYVOUCHERs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SIGNARL> SIGNARLs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

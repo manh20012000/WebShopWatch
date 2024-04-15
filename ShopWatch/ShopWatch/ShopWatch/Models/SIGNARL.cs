@@ -21,7 +21,6 @@ namespace ShopWatch.Models
         public Nullable<System.DateTime> TIME { get; set; }
         public string TENKHACHHANG { get; set; }
         public string AVATAR { get; set; }
-        public string MADH { get; set; }
     
         public virtual KHACHHANG KHACHHANG { get; set; }
     }

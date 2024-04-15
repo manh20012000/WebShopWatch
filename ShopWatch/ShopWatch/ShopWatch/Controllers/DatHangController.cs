@@ -90,12 +90,36 @@ namespace ShopWatch.Controllers
                      db.DATHANGs.Add(dathang);
                     DateTime StartDate = DateTime.Today;
                     DateTime EndDate = StartDate.AddYears(1);
-                     if (dATHANG.TONGTIEN >= 50000000)
+                    if (dATHANG.TONGTIEN >= 15000000)
                     {
                         QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
                         {
                             MAKHACHHANG = dATHANG.MAKHACHHANG,
-                            MAVOUCHER = 5,
+                            MAVOUCHER = 2,
+                            NGAYBATDAU = StartDate,
+                            NGAYKETTHUC = EndDate,
+                            TRANGTHAI = true,
+                        }; db.QUANLYVOUCHERs.Add(newQuanlyVoucher);
+
+                    }
+                   else if (dATHANG.TONGTIEN >= 20000000)
+                    {
+                        QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
+                        {
+                            MAKHACHHANG = dATHANG.MAKHACHHANG,
+                            MAVOUCHER = 3,
+                            NGAYBATDAU = StartDate,
+                            NGAYKETTHUC = EndDate,
+                            TRANGTHAI = true,
+                        }; db.QUANLYVOUCHERs.Add(newQuanlyVoucher);
+
+                    }
+                    else if (dATHANG.TONGTIEN >= 50000000)
+                    {
+                        QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
+                        {
+                            MAKHACHHANG = dATHANG.MAKHACHHANG,
+                            MAVOUCHER = 4,
                             NGAYBATDAU = StartDate,
                             NGAYKETTHUC = EndDate,
                             TRANGTHAI = true,
@@ -107,7 +131,7 @@ namespace ShopWatch.Controllers
                         QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
                         {
                             MAKHACHHANG = dATHANG.MAKHACHHANG,
-                            MAVOUCHER = 6,
+                            MAVOUCHER = 5,
                             NGAYBATDAU = StartDate,
                             NGAYKETTHUC = EndDate,
                             TRANGTHAI = true,
@@ -180,24 +204,48 @@ namespace ShopWatch.Controllers
 
                         DateTime StartDate = DateTime.Today;
                         DateTime EndDate = StartDate.AddYears(1);
-                         if (Dathang.TONGTIEN >= 50000000)
+                        if (dathang.TONGTIEN >= 20000000)
                         {
                             QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
                             {
-                                MAKHACHHANG = Dathang.MAKHACHHANG,
-                                MAVOUCHER = 5,
+                                MAKHACHHANG = dathang.MAKHACHHANG,
+                                MAVOUCHER = 2,
                                 NGAYBATDAU = StartDate,
                                 NGAYKETTHUC = EndDate,
                                 TRANGTHAI = true,
                             }; db.QUANLYVOUCHERs.Add(newQuanlyVoucher);
 
                         }
-                        else if (Dathang.TONGTIEN >= 100000000)
+                        else if (dathang.TONGTIEN >= 20000000)
                         {
                             QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
                             {
-                                MAKHACHHANG = Dathang.MAKHACHHANG,
-                                MAVOUCHER = 6,
+                                MAKHACHHANG = dathang.MAKHACHHANG,
+                                MAVOUCHER = 3,
+                                NGAYBATDAU = StartDate,
+                                NGAYKETTHUC = EndDate,
+                                TRANGTHAI = true,
+                            }; db.QUANLYVOUCHERs.Add(newQuanlyVoucher);
+
+                        }
+                        else if (dathang.TONGTIEN >= 50000000)
+                        {
+                            QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
+                            {
+                                MAKHACHHANG = dathang.MAKHACHHANG,
+                                MAVOUCHER = 4,
+                                NGAYBATDAU = StartDate,
+                                NGAYKETTHUC = EndDate,
+                                TRANGTHAI = true,
+                            }; db.QUANLYVOUCHERs.Add(newQuanlyVoucher);
+
+                        }
+                        else if (dathang.TONGTIEN >= 100000000)
+                        {
+                            QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
+                            {
+                                MAKHACHHANG = dathang.MAKHACHHANG,
+                                MAVOUCHER = 5,
                                 NGAYBATDAU = StartDate,
                                 NGAYKETTHUC = EndDate,
                                 TRANGTHAI = true,
