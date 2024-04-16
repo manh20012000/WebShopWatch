@@ -6,63 +6,99 @@
     Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
 }
 
-<h2>Danh sách sale</h2>
-
-<button style="background-color:aquamarine;width:10%;height:5%;margin:2%">
-    @Html.ActionLink("Create New", "Create")
-</button>
-<table class="table">
-    <tr style="background-color:#04AA6D;">
-        <th class="text-center">
-            <label>PHANTRAMSALE</label>
-        </th>
-        <th class="text-center">
-            <label>NGAYBATDAU</label>
-        </th>
-        <th class="text-center">
-            <label>NGAYHETHAN</label>
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td class="text-center">
-                <label style="color:red;font-size:18px">@Html.DisplayFor(modelItem => item.PHANTRAMSALE)<label>%</label></label>
-            </td>
-            <td class="text-center">
-                <label>@String.Format("{0:dd/MM/yyyy}", item.NGAYBATDAU)</label>
-
-            </td>
-            <td class="text-center">
-                <label>@String.Format("{0:dd/MM/yyyy}", item.NGAYHETHAN)</label>
-            </td>
-            <td class="text-center">
-                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                    <div class="btn-group" role="group">
-                        <button id="btnGroupDrop1"
-                                type="button" style="color:brown"
-                                class="btn btn-outline-secondary dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false">
-                            Tùy chọn
-                        </button>
-                        <div class="dropdown-menu" aria-labelledb0pxy="btnGroupDrop1" style="width:20px">
-
-                            @Html.ActionLink("Edit", "Edit", new { id = item.MASALE }, new { @class = " btn btn-primary" })
-
-                            @Html.ActionLink("Delete", "Delete", new { id = item.MASALE }, new { @class = "btn btn-primary" })
-                        </div>
-                    </div>
-                </div>
-            </td>
-
-        </tr>
+<style>
+    #table-wrapper {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background-color: #04AA6D;
     }
 
-</table>
+    #table-scroll {
+        height: 550px;
+        overflow: auto;
+        margin-top: 20px;
+    }
+
+    #table-wrapper table {
+        width: 100%;
+    }
+
+
+
+        #table-wrapper table thead th .text {
+            position: absolute;
+            top: -20px;
+            z-index: 2;
+            height: 20px;
+            width: 35%;
+            border: 1px solid red;
+        }
+</style>
+<h2>Danh sách sale</h2>
+
+<button style="background-color:aquamarine;width:10%;height:5%;margin:2%" onclick="location.href='@Url.Action("Create", "SALEs")'">
+    Thêm SALEs
+</button>
+<div  >
+    <div id="table-scroll">
+        <table class="table">
+            <thead id="table-wrapper">
+                <tr style="background-color:#04AA6D;">
+                    <th class="text-center">
+                        <label>PHANTRAMSALE</label>
+                    </th>
+                    <th class="text-center">
+                        <label>NGAYBATDAU</label>
+                    </th>
+                    <th class="text-center">
+                        <label>NGAYHETHAN</label>
+                    </th>
+                    <th></th>
+                </tr>
+            </theadid="table-wrapper">
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td class="text-center">
+                            <label style="color:red;font-size:18px">@Html.DisplayFor(modelItem => item.PHANTRAMSALE)<label>%</label></label>
+                        </td>
+                        <td class="text-center">
+                            <label>@String.Format("{0:dd/MM/yyyy}", item.NGAYBATDAU)</label>
+
+                        </td>
+                        <td class="text-center">
+                            <label>@String.Format("{0:dd/MM/yyyy}", item.NGAYHETHAN)</label>
+                        </td>
+                        <td class="text-center">
+                            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                <div class="btn-group" role="group">
+                                    <button id="btnGroupDrop1"
+                                            type="button" style="color:brown"
+                                            class="btn btn-outline-secondary dropdown-toggle"
+                                            data-bs-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false">
+                                        Tùy chọn
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledb0pxy="btnGroupDrop1" style="width:20px">
+
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.MASALE }, new { @class = " btn btn-primary" })
+
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.MASALE }, new { @class = "btn btn-primary" })
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
 @*<td>
         @Html.ActionLink("Edit", "Edit", new { id = item.MASALE }) |

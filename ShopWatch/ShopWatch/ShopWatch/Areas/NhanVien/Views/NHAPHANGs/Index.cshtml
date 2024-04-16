@@ -67,6 +67,10 @@
             width: 35%;
             border: 1px solid red;
         }
+    tbody {
+        height:30px;
+        overflow: scroll;
+    }
 </style>
 
 <div class="row">
@@ -91,51 +95,51 @@
             <div id="table-wrapper">
                 <div id="table-scroll">
                
-                        <table id="example" class="tablel table-bordered table-striped">
-                       
+                    <table id="example" class="tablel table-bordered table-striped">
+
+                        <tr>
+                            <th class="text-center">
+                                <label>MÃ PHIẾU NHẬP </label>
+                            </th>
+                            <th class="text-center">
+                                <label>THÀNH TIỀN </label>
+                            </th>
+                            <th class="text-center">
+                                <label>NGÀY NHẬP </label>
+
+                            </th>
+                            <th class="text-center">
+                                <label>TÊN NHÂN VIÊN </label>
+                            </th>
+                            <th class="text-center">
+                            </th>
+                        </tr>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
                                 <tr>
-                                    <th class="text-center" >
-                                        <label>MÃ PHIẾU NHẬP </label>
-                                    </th>
-                                    <th class="text-center">
-                                        <label>THÀNH TIỀN </label>
-                                    </th>
-                                    <th class="text-center">
-                                        <label>NGÀY NHẬP </label>
+                                    <td class="text-center tble">
+                                        @Html.DisplayFor(modelItem => item.MANHAPHANG)
+                                    </td>
+                                    <td class="text-center tble">
+                                        @String.Format("{0:N0}", item.THANHTIEN)
+                                    </td>
+                                    <td class="text-center tble ">
+                                        @String.Format("{0:dd/MM/yyyy}", item.NGAYNHAP)
 
-                                    </th>
-                                    <th class="text-center" >
-                                        <label>TÊN NHÂN VIÊN </label>
-                                    </th>
-                                    <th class="text-center" >
-                                        </th>
+                                    </td>
+                                    <td class="text-center tble ">
+                                        @Html.DisplayFor(modelItem => item.NHANVIEN.TENNV)
+                                    </td>
+                                    <td class="text-center tble ">
+                                        <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("CreateMulti", "CHITIETPHIEUNHAPs1",new { id = item.MANHAPHANG })'">ImportProduct</button>
+
+                                    </td>
+
                                 </tr>
-                                @foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <td class="text-center tble">
-                                            @Html.DisplayFor(modelItem => item.MANHAPHANG)
-                                        </td>
-                                        <td class="text-center tble">
-                                            @String.Format("{0:N0}", item.THANHTIEN)
-                                        </td>
-                                        <td class="text-center tble ">
-                                            @String.Format("{0:dd/MM/yyyy}", item.NGAYNHAP)
-
-                                        </td>
-                                        <td class="text-center tble ">
-                                            @Html.DisplayFor(modelItem => item.NHANVIEN.TENNV)
-                                        </td>
-                                        <td class="text-center tble ">
-                                            <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("CreateMulti", "CHITIETPHIEUNHAPs1",new { id = item.MANHAPHANG })'">ImportProduct</button>
-                                         
-
-
-                                        </td>
-
-                                    </tr>
-                                }
-                            </table>
+                            }
+                        </tbody>
+                    </table>
 
                 </div>
               

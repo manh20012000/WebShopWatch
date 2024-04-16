@@ -20,7 +20,8 @@ namespace ShopWatch.Controllers
         public ActionResult DonHang()
         {
             var email = Session["EmailClient"] as string;
-            KHACHHANG user = db.KHACHHANGs.FirstOrDefault(u => u.EMAIL == email);
+            try { 
+             KHACHHANG user = db.KHACHHANGs.FirstOrDefault(u => u.EMAIL == email);
             int? khachhang = GetMaKH();
             if (khachhang == null)
             {
@@ -34,6 +35,12 @@ namespace ShopWatch.Controllers
                         DbFunctions.AddDays(m.NGAYNHAN, 5) >= DateTime.Now)
                       .ToList();
             return View(danhsachdonhang);
+
+            } catch(Exception ex)
+            {
+
+            }
+            return View();
         }
       
         static string GenerateRandomString(int length, string characters)
@@ -64,8 +71,9 @@ namespace ShopWatch.Controllers
                 string randomString = GenerateRandomString(length, characters);
                 var ItemsData = Session["SelectedItemsData"] as List<CHITIETDATHANG>;
                  if (dATHANG.HINHTHUCTHANHTOAN == false) // Kiểm tra hình thức thanh toán
-                 {
-                     var diadiem = db.DIADIEMs.Find(dATHANG.MADIADIEM);
+                {
+                    try { 
+                    var diadiem = db.DIADIEMs.Find(dATHANG.MADIADIEM);
                      TRANGTHAIGIAOHANG giaohang = new TRANGTHAIGIAOHANG
                      {
                          MAVANDON = (int)dATHANG.MAVANDON,
@@ -92,10 +100,11 @@ namespace ShopWatch.Controllers
                     DateTime EndDate = StartDate.AddYears(1);
                     if (dATHANG.TONGTIEN >= 15000000)
                     {
+                         var vc = db.VOUCHERs.FirstOrDefault(vch => vch.PHANTRAMGIAMGIA == 5);
                         QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
                         {
                             MAKHACHHANG = dATHANG.MAKHACHHANG,
-                            MAVOUCHER = 2,
+                            MAVOUCHER = vc.MAVOUCHER,
                             NGAYBATDAU = StartDate,
                             NGAYKETTHUC = EndDate,
                             TRANGTHAI = true,
@@ -103,11 +112,12 @@ namespace ShopWatch.Controllers
 
                     }
                    else if (dATHANG.TONGTIEN >= 20000000)
-                    {
-                        QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
+                        {
+                            var vc = db.VOUCHERs.FirstOrDefault(vch => vch.PHANTRAMGIAMGIA == 7);
+                            QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
                         {
                             MAKHACHHANG = dATHANG.MAKHACHHANG,
-                            MAVOUCHER = 3,
+                            MAVOUCHER = vc.MAVOUCHER,
                             NGAYBATDAU = StartDate,
                             NGAYKETTHUC = EndDate,
                             TRANGTHAI = true,
@@ -115,11 +125,12 @@ namespace ShopWatch.Controllers
 
                     }
                     else if (dATHANG.TONGTIEN >= 50000000)
-                    {
-                        QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
+                        {
+                            var vc = db.VOUCHERs.FirstOrDefault(vch => vch.PHANTRAMGIAMGIA == 10);
+                            QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
                         {
                             MAKHACHHANG = dATHANG.MAKHACHHANG,
-                            MAVOUCHER = 4,
+                            MAVOUCHER = vc.MAVOUCHER,
                             NGAYBATDAU = StartDate,
                             NGAYKETTHUC = EndDate,
                             TRANGTHAI = true,
@@ -127,11 +138,12 @@ namespace ShopWatch.Controllers
 
                     }
                     else if (dATHANG.TONGTIEN >= 100000000)
-                    {
-                        QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
+                        {
+                            var vc = db.VOUCHERs.FirstOrDefault(vch => vch.PHANTRAMGIAMGIA == 12);
+                            QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
                         {
                             MAKHACHHANG = dATHANG.MAKHACHHANG,
-                            MAVOUCHER = 5,
+                            MAVOUCHER = vc.MAVOUCHER,
                             NGAYBATDAU = StartDate,
                             NGAYKETTHUC = EndDate,
                             TRANGTHAI = true,
@@ -152,13 +164,18 @@ namespace ShopWatch.Controllers
                         var mathang = db.CHITIETGIOHANGs.FirstOrDefault(gh => gh.MAMATHANG == item.MAMATHANG);
                              db.CHITIETGIOHANGs.Remove(mathang);
                      }
-                  if(dATHANG.MAQUANLYVOUCHER!=null){
+                          if(dATHANG.MAQUANLYVOUCHER!=null){
 
-                     var voucher = db.QUANLYVOUCHERs.Find(dATHANG.MAQUANLYVOUCHER);
-                     voucher.TRANGTHAI = false;
+                             var voucher = db.QUANLYVOUCHERs.Find(dATHANG.MAQUANLYVOUCHER);
+                             voucher.TRANGTHAI = false;
+                        }
+                          db.SaveChanges();
+                    }catch (Exception)
+                    {
+
+                    }
+                     
                 }
-                     db.SaveChanges();
-             }
                 return RedirectToAction("DonHang");
             }
             return RedirectToAction("LoginUser", "TAIKHOANs");
@@ -170,124 +187,135 @@ namespace ShopWatch.Controllers
             var code = new { Success = false, Code = Dathang.HINHTHUCTHANHTOAN, Url = "" };
             if (ModelState.IsValid)
             {
-                if (Session["EmailClient"] != null)
+                try
                 {
-                    int length = 6;
-                    string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-                    string randomString = GenerateRandomString(length, characters);
-                    var ItemsData = Session["SelectedItemsData"] as List<CHITIETDATHANG>;
-                    if (Dathang.HINHTHUCTHANHTOAN == true) // Kiểm tra hình thức thanh toán
+                  if (Session["EmailClient"] != null)
                     {
-                        var diadiems = db.DIADIEMs.Find(Dathang.MADIADIEM);
-                        TRANGTHAIGIAOHANG giaohang = new TRANGTHAIGIAOHANG
+                        int length = 6;
+                        string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                        string randomString = GenerateRandomString(length, characters);
+                        var ItemsData = Session["SelectedItemsData"] as List<CHITIETDATHANG>;
+                        if (Dathang.HINHTHUCTHANHTOAN == true) // Kiểm tra hình thức thanh toán
                         {
-                            MAVANDON = (int)Dathang.MAVANDON,
-                            VITRI = diadiems.TENDIACHI,
-                            THOIGIANGIAOHANG = DateTime.Now,
-                            THOIGIANNHANHANG = null,
-                        };
-                        db.TRANGTHAIGIAOHANGs.Add(giaohang);
-                        DATHANG dathang = new DATHANG
-                        {
-                            HINHTHUCTHANHTOAN = true,
-                            TONGTIEN = Dathang.TONGTIEN,
-                            MAKHACHHANG = Dathang.MAKHACHHANG,
-                            MADIADIEM = Dathang.MADIADIEM,
-                            MAQUANLYVOUCHER = Dathang.MAQUANLYVOUCHER,
-                            NGAYMUA = Dathang.NGAYMUA,
-                            MAVANDON = Dathang.MAVANDON,
-                            TRANGTHAI = false,
-                            MADH = randomString,
-                            TINHTRANGDH = "Đang giao",
-                        };
-                        db.DATHANGs.Add(dathang);
-
-                        DateTime StartDate = DateTime.Today;
-                        DateTime EndDate = StartDate.AddYears(1);
-                        if (dathang.TONGTIEN >= 20000000)
-                        {
-                            QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
+                            var diadiems = db.DIADIEMs.Find(Dathang.MADIADIEM);
+                            TRANGTHAIGIAOHANG giaohang = new TRANGTHAIGIAOHANG
                             {
-                                MAKHACHHANG = dathang.MAKHACHHANG,
-                                MAVOUCHER = 2,
-                                NGAYBATDAU = StartDate,
-                                NGAYKETTHUC = EndDate,
-                                TRANGTHAI = true,
-                            }; db.QUANLYVOUCHERs.Add(newQuanlyVoucher);
-
-                        }
-                        else if (dathang.TONGTIEN >= 20000000)
-                        {
-                            QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
-                            {
-                                MAKHACHHANG = dathang.MAKHACHHANG,
-                                MAVOUCHER = 3,
-                                NGAYBATDAU = StartDate,
-                                NGAYKETTHUC = EndDate,
-                                TRANGTHAI = true,
-                            }; db.QUANLYVOUCHERs.Add(newQuanlyVoucher);
-
-                        }
-                        else if (dathang.TONGTIEN >= 50000000)
-                        {
-                            QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
-                            {
-                                MAKHACHHANG = dathang.MAKHACHHANG,
-                                MAVOUCHER = 4,
-                                NGAYBATDAU = StartDate,
-                                NGAYKETTHUC = EndDate,
-                                TRANGTHAI = true,
-                            }; db.QUANLYVOUCHERs.Add(newQuanlyVoucher);
-
-                        }
-                        else if (dathang.TONGTIEN >= 100000000)
-                        {
-                            QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
-                            {
-                                MAKHACHHANG = dathang.MAKHACHHANG,
-                                MAVOUCHER = 5,
-                                NGAYBATDAU = StartDate,
-                                NGAYKETTHUC = EndDate,
-                                TRANGTHAI = true,
+                                MAVANDON = (int)Dathang.MAVANDON,
+                                VITRI = diadiems.TENDIACHI,
+                                THOIGIANGIAOHANG = DateTime.Now,
+                                THOIGIANNHANHANG = null,
                             };
-                            db.QUANLYVOUCHERs.Add(newQuanlyVoucher);
-                        }
-                        foreach (var item in ItemsData)
-                        {
-                            CHITIETDATHANG ctdh = new CHITIETDATHANG
+                            db.TRANGTHAIGIAOHANGs.Add(giaohang);
+                            DATHANG dathang = new DATHANG
                             {
-                                MAMATHANG = item.MAMATHANG,
-                                SOLUONG = item.SOLUONG,
-                                GIABAN = item.GIABAN,
+                                HINHTHUCTHANHTOAN = true,
+                                TONGTIEN = Dathang.TONGTIEN,
+                                MAKHACHHANG = Dathang.MAKHACHHANG,
+                                MADIADIEM = Dathang.MADIADIEM,
+                                MAQUANLYVOUCHER = Dathang.MAQUANLYVOUCHER,
+                                NGAYMUA = Dathang.NGAYMUA,
+                                MAVANDON = Dathang.MAVANDON,
+                                TRANGTHAI = false,
                                 MADH = randomString,
+                                TINHTRANGDH = "Đang giao",
                             };
-                            db.CHITIETDATHANGs.Add(ctdh);
-                            var mathang = db.CHITIETGIOHANGs.FirstOrDefault(gh => gh.MAMATHANG == item.MAMATHANG);
+                            db.DATHANGs.Add(dathang);
+
+                            DateTime StartDate = DateTime.Today;
+                            DateTime EndDate = StartDate.AddYears(1);
+                            if (Dathang.TONGTIEN >= 15000000)
+                            {
+                                var vc = db.VOUCHERs.FirstOrDefault(vch => vch.PHANTRAMGIAMGIA == 5);
+                                QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
+                                {
+                                    MAKHACHHANG = Dathang.MAKHACHHANG,
+                                    MAVOUCHER = vc.MAVOUCHER,
+                                    NGAYBATDAU = StartDate,
+                                    NGAYKETTHUC = EndDate,
+                                    TRANGTHAI = true,
+                                }; db.QUANLYVOUCHERs.Add(newQuanlyVoucher);
+
+                            }
+                            else if (Dathang.TONGTIEN >= 20000000)
+                            {
+                                var vc = db.VOUCHERs.FirstOrDefault(vch => vch.PHANTRAMGIAMGIA == 7);
+                                QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
+                                {
+                                    MAKHACHHANG = Dathang.MAKHACHHANG,
+                                    MAVOUCHER = vc.MAVOUCHER,
+                                    NGAYBATDAU = StartDate,
+                                    NGAYKETTHUC = EndDate,
+                                    TRANGTHAI = true,
+                                }; db.QUANLYVOUCHERs.Add(newQuanlyVoucher);
+
+                            }
+                            else if (Dathang.TONGTIEN >= 50000000)
+                            {
+                                var vc = db.VOUCHERs.FirstOrDefault(vch => vch.PHANTRAMGIAMGIA == 10);
+                                QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
+                                {
+                                    MAKHACHHANG = Dathang.MAKHACHHANG,
+                                    MAVOUCHER = vc.MAVOUCHER,
+                                    NGAYBATDAU = StartDate,
+                                    NGAYKETTHUC = EndDate,
+                                    TRANGTHAI = true,
+                                }; db.QUANLYVOUCHERs.Add(newQuanlyVoucher);
+
+                            }
+                            else if (Dathang.TONGTIEN >= 100000000)
+                            {
+                                var vc = db.VOUCHERs.FirstOrDefault(vch => vch.PHANTRAMGIAMGIA == 12);
+                                QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
+                                {
+                                    MAKHACHHANG = Dathang.MAKHACHHANG,
+                                    MAVOUCHER = vc.MAVOUCHER,
+                                    NGAYBATDAU = StartDate,
+                                    NGAYKETTHUC = EndDate,
+                                    TRANGTHAI = true,
+                                };
+                                db.QUANLYVOUCHERs.Add(newQuanlyVoucher);
+                            }
+                            foreach (var item in ItemsData)
+                            {
+                                CHITIETDATHANG ctdh = new CHITIETDATHANG
+                                {
+                                    MAMATHANG = item.MAMATHANG,
+                                    SOLUONG = item.SOLUONG,
+                                    GIABAN = item.GIABAN,
+                                    MADH = randomString,
+                                };
+                                db.CHITIETDATHANGs.Add(ctdh);
+                                var mathang = db.CHITIETGIOHANGs.FirstOrDefault(gh => gh.MAMATHANG == item.MAMATHANG);
                                 db.CHITIETGIOHANGs.Remove(mathang);
 
+                            }
+                            if (Dathang.MAQUANLYVOUCHER != null)
+                            {
+                                var voucher = db.QUANLYVOUCHERs.Find(Dathang.MAQUANLYVOUCHER);
+                                voucher.TRANGTHAI = false;
+                            }
+                            db.SaveChanges();
+
                         }
-                        if (Dathang.MAQUANLYVOUCHER != null)
+
+
+
+                        code = new { Success = true, Code = Dathang.HINHTHUCTHANHTOAN, Url = "" };
+                        //var url = "";
+
+                        if (Dathang.HINHTHUCTHANHTOAN == true)
                         {
-                            var voucher = db.QUANLYVOUCHERs.Find(Dathang.MAQUANLYVOUCHER);
-                            voucher.TRANGTHAI = false;
+                            var url = UrlPayment(Dathang, TypePaymentVN, randomString);
+                            code = new { Success = true, Code = Dathang.HINHTHUCTHANHTOAN, Url = url };
                         }
-                        db.SaveChanges();
+
                     }
-                  
-               
-             
-                code = new { Success = true, Code = Dathang.HINHTHUCTHANHTOAN, Url = "" };
-                //var url = "";
-
-                if (Dathang.HINHTHUCTHANHTOAN == true)
-                {
-                    var url = UrlPayment(Dathang, TypePaymentVN, randomString);
-                    code = new { Success = true, Code = Dathang.HINHTHUCTHANHTOAN, Url = url };
+                    return Redirect(code.Url);
                 }
-
-            }
-            return Redirect(code.Url);
-          
+                catch (Exception)
+                {
+                    
+                }
             }
             return RedirectToAction("Dangnhap", "TAIKHOANs");
         }

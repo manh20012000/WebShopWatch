@@ -72,6 +72,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
                         {
                             PHANTRAMGIAMGIA = shrarevoucher.PHANTRAMGIAMGIA,
                             DIEUKIEN = shrarevoucher.DIEUKIEN,
+                            TRANGTHAIGIOIHAN=shrarevoucher.TRANGTHAIGIOIHAN,
                         };
                         var vocheradd = db.VOUCHERs.Add(vOUCHER);
                         var listkhachhang = db.KHACHHANGs;

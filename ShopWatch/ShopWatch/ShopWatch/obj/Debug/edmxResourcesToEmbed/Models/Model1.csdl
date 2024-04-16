@@ -39,7 +39,6 @@
     <EntitySet Name="THONGKEs" EntityType="DHModel.THONGKE" />
     <EntitySet Name="THONGKENHAPHANGs" EntityType="DHModel.THONGKENHAPHANG" />
     <EntitySet Name="TRANGTHAIGIAOHANGs" EntityType="DHModel.TRANGTHAIGIAOHANG" />
-    <EntitySet Name="VOUCHERs" EntityType="DHModel.VOUCHER" />
     <AssociationSet Name="FK__CHITIETDA__MAMAT__6A30C649" Association="DHModel.FK__CHITIETDA__MAMAT__6A30C649">
       <End Role="MATHANG" EntitySet="MATHANGs" />
       <End Role="CHITIETDATHANG" EntitySet="CHITIETDATHANGs" />
@@ -116,10 +115,6 @@
       <End Role="NHAPHANG" EntitySet="NHAPHANGs" />
       <End Role="THONGKENHAPHANG" EntitySet="THONGKENHAPHANGs" />
     </AssociationSet>
-    <AssociationSet Name="FK__QUANLYVOU__MAVOU__59063A47" Association="DHModel.FK__QUANLYVOU__MAVOU__59063A47">
-      <End Role="VOUCHER" EntitySet="VOUCHERs" />
-      <End Role="QUANLYVOUCHER" EntitySet="QUANLYVOUCHERs" />
-    </AssociationSet>
     <EntitySet Name="DIADIEMs" EntityType="DHModel.DIADIEM" />
     <AssociationSet Name="FK__DATHANG__MADIADI__6383C8BA" Association="DHModel.FK__DATHANG__MADIADI__6383C8BA">
       <End Role="DIADIEM" EntitySet="DIADIEMs" />
@@ -128,6 +123,11 @@
     <AssociationSet Name="FK__DIADIEM__MAKHACH__5FB337D6" Association="DHModel.FK__DIADIEM__MAKHACH__5FB337D6">
       <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
       <End Role="DIADIEM" EntitySet="DIADIEMs" />
+    </AssociationSet>
+    <EntitySet Name="VOUCHERs" EntityType="DHModel.VOUCHER" />
+    <AssociationSet Name="FK__QUANLYVOU__MAVOU__59063A47" Association="DHModel.FK__QUANLYVOU__MAVOU__59063A47">
+      <End Role="VOUCHER" EntitySet="VOUCHERs" />
+      <End Role="QUANLYVOUCHER" EntitySet="QUANLYVOUCHERs" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="CHITIETDATHANG">
@@ -361,16 +361,6 @@
     <Property Name="THOIGIANNHANHANG" Type="DateTime" Precision="3" />
     <NavigationProperty Name="DATHANGs" Relationship="DHModel.FK__DATHANG__MAVANDO__66603565" FromRole="TRANGTHAIGIAOHANG" ToRole="DATHANG" />
   </EntityType>
-  <EntityType Name="VOUCHER">
-    <Key>
-      <PropertyRef Name="MAVOUCHER" />
-    </Key>
-    <Property Name="MAVOUCHER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="PHANTRAMGIAMGIA" Type="Int32" />
-    <Property Name="DIEUKIEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="TRANGTHAI" Type="Boolean" />
-    <NavigationProperty Name="QUANLYVOUCHERs" Relationship="DHModel.FK__QUANLYVOU__MAVOU__59063A47" FromRole="VOUCHER" ToRole="QUANLYVOUCHER" />
-  </EntityType>
   <Association Name="FK__CHITIETDA__MAMAT__6A30C649">
     <End Type="DHModel.MATHANG" Role="MATHANG" Multiplicity="0..1" />
     <End Type="DHModel.CHITIETDATHANG" Role="CHITIETDATHANG" Multiplicity="*" />
@@ -599,18 +589,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__QUANLYVOU__MAVOU__59063A47">
-    <End Type="DHModel.VOUCHER" Role="VOUCHER" Multiplicity="0..1" />
-    <End Type="DHModel.QUANLYVOUCHER" Role="QUANLYVOUCHER" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="VOUCHER">
-        <PropertyRef Name="MAVOUCHER" />
-      </Principal>
-      <Dependent Role="QUANLYVOUCHER">
-        <PropertyRef Name="MAVOUCHER" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="DIADIEM">
     <Key>
       <PropertyRef Name="MADIADIEM" />
@@ -644,6 +622,29 @@
       </Principal>
       <Dependent Role="DIADIEM">
         <PropertyRef Name="MAKHACHHANG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="VOUCHER">
+    <Key>
+      <PropertyRef Name="MAVOUCHER" />
+    </Key>
+    <Property Name="MAVOUCHER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PHANTRAMGIAMGIA" Type="Int32" />
+    <Property Name="DIEUKIEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TRANGTHAI" Type="Boolean" />
+    <Property Name="TRANGTHAIGIOIHAN" Type="Boolean" />
+    <NavigationProperty Name="QUANLYVOUCHERs" Relationship="DHModel.FK__QUANLYVOU__MAVOU__59063A47" FromRole="VOUCHER" ToRole="QUANLYVOUCHER" />
+  </EntityType>
+  <Association Name="FK__QUANLYVOU__MAVOU__59063A47">
+    <End Type="DHModel.VOUCHER" Role="VOUCHER" Multiplicity="0..1" />
+    <End Type="DHModel.QUANLYVOUCHER" Role="QUANLYVOUCHER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VOUCHER">
+        <PropertyRef Name="MAVOUCHER" />
+      </Principal>
+      <Dependent Role="QUANLYVOUCHER">
+        <PropertyRef Name="MAVOUCHER" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

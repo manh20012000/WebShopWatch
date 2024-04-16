@@ -23,7 +23,6 @@
         <EntityTypeShape EntityType="DHModel.THONGKE" Width="1.5" PointX="3.375" PointY="0.75" />
         <EntityTypeShape EntityType="DHModel.THONGKENHAPHANG" Width="1.5" PointX="10.125" PointY="30.5" />
         <EntityTypeShape EntityType="DHModel.TRANGTHAIGIAOHANG" Width="1.5" PointX="7.875" PointY="15" />
-        <EntityTypeShape EntityType="DHModel.VOUCHER" Width="1.5" PointX="5.625" PointY="7.5" />
         <AssociationConnector Association="DHModel.FK__CHITIETDA__MAMAT__6A30C649" />
         <AssociationConnector Association="DHModel.FK__CHITIETDAT__MADH__693CA210" />
         <AssociationConnector Association="DHModel.FK__CHITIETGI__MAGIO__70DDC3D8" />
@@ -42,10 +41,11 @@
         <AssociationConnector Association="DHModel.FK__NHANVIEN__EMAIL__4222D4EF" />
         <AssociationConnector Association="DHModel.FK__NHAPHANG__MANV__44FF419A" />
         <AssociationConnector Association="DHModel.FK__THONGKENH__MANHA__75A278F5" />
-        <AssociationConnector Association="DHModel.FK__QUANLYVOU__MAVOU__59063A47" />
         <EntityTypeShape EntityType="DHModel.DIADIEM" Width="1.5" PointX="7.875" PointY="0.75" />
         <AssociationConnector Association="DHModel.FK__DATHANG__MADIADI__6383C8BA" />
         <AssociationConnector Association="DHModel.FK__DIADIEM__MAKHACH__5FB337D6" />
+        <EntityTypeShape EntityType="DHModel.VOUCHER" Width="1.5" PointX="3.375" PointY="4.875" />
+        <AssociationConnector Association="DHModel.FK__QUANLYVOU__MAVOU__59063A47" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

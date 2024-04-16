@@ -23,42 +23,59 @@
         <th class="text-center">
             <label style="color:black">ĐIỀU KIỆN</label>
         </th>
+        <th>  <label style="color:black">TRANGTHAIGIOIHAN</label></th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td class="text-center">
-                <label style="color:red;font-size:18px">@Html.DisplayFor(modelItem => item.MAVOUCHER)</label>
-            </td>
-            <td class="text-center">
-                <label style="color:red;font-size:18px">@Html.DisplayFor(modelItem => item.PHANTRAMGIAMGIA)<label>%</label></label>
-            </td>
-            <td class="text-center">
-                <label>@Html.DisplayFor(modelItem => item.DIEUKIEN)</label>
-            </td>
-            <td class="text-center">
-                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                    <div class="btn-group" role="group">
-                        <button id="btnGroupDrop1"
-                                type="button" style="color:brown"
-                                class="btn btn-outline-secondary dropdown-toggle"
-                                data-bs-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false">
-                            Tùy chọn
-                        </button>
-                        <div class="dropdown-menu" aria-labelledb0pxy="btnGroupDrop1" style="width:20px">
+<tr>
+    <td class="text-center">
+        <label style="color:red;font-size:18px">@Html.DisplayFor(modelItem => item.MAVOUCHER)</label>
+    </td>
+    <td class="text-center">
+        <label style="color:red;font-size:18px">@Html.DisplayFor(modelItem => item.PHANTRAMGIAMGIA)<label>%</label></label>
+    </td><td class="text-center">
+    <label>@Html.DisplayFor(modelItem => item.DIEUKIEN)</label>
+</td>
+    <td class="text-center">
 
-                            @Html.ActionLink("Edit", "Edit", new { id = item.MAVOUCHER }, new { @class = " btn btn-primary" })
+        @{
+            if (item.TRANGTHAIGIOIHAN == true)
+            {
 
-                            @Html.ActionLink("Delete", "Delete", new { id = item.MAVOUCHER }, new { @class = "btn btn-primary" })
-                        </div>
-                    </div>
+
+                <label style="color:red;font-size:15px"> CÁ NHÂN</label>
+            }
+            else
+            {
+                <label style="color:red;font-size:15px">MỌI NGƯỜI</label>
+            }
+        }
+
+    </td>
+    
+    <td class="text-center">
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+            <div class="btn-group" role="group">
+                <button id="btnGroupDrop1"
+                        type="button" style="color:brown"
+                        class="btn btn-outline-secondary dropdown-toggle"
+                        data-bs-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                    Tùy chọn
+                </button>
+                <div class="dropdown-menu" aria-labelledb0pxy="btnGroupDrop1" style="width:20px">
+
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MAVOUCHER }, new { @class = " btn btn-primary" })
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MAVOUCHER }, new { @class = "btn btn-primary" })
                 </div>
-            </td>
-        </tr>
+            </div>
+        </div>
+    </td>
+</tr>
     }
 
 </table>

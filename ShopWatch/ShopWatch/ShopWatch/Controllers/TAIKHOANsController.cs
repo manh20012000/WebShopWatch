@@ -35,46 +35,64 @@ namespace ShopWatch.Controllers
             var check = db.TAIKHOANs.FirstOrDefault(s => s.EMAIL == tAIKHOAN.EMAIL);
             if (check == null)
             {
-                tAIKHOAN.MATKHAU = GetMD5(tAIKHOAN.MATKHAU);
-                db.Configuration.ValidateOnSaveEnabled = false;
-                db.TAIKHOANs.Add(tAIKHOAN);
-                db.SaveChanges();
-                var Khachhang = new KHACHHANG
+                try
                 {
-                    // Gán các giá trị từ tAIKHOAN
-                    EMAIL = tAIKHOAN.EMAIL,
-                    // Các thuộc tính khác của NHANVIEN
-                };
-                db.KHACHHANGs.Add(Khachhang);
-                db.SaveChanges();
-                int id_khachhang = Khachhang.MAKHACHHANG;
+                    tAIKHOAN.MATKHAU = GetMD5(tAIKHOAN.MATKHAU);
+                    db.Configuration.ValidateOnSaveEnabled = false;
+                    db.TAIKHOANs.Add(tAIKHOAN);
+                    db.SaveChanges();
+                    var Khachhang = new KHACHHANG
+                    {
+                        // Gán các giá trị từ tAIKHOAN
+                        EMAIL = tAIKHOAN.EMAIL,
+                        // Các thuộc tính khác của NHANVIEN
+                    };
+                    db.KHACHHANGs.Add(Khachhang);
+                    db.SaveChanges();
+                    int id_khachhang = Khachhang.MAKHACHHANG;
 
-                DateTime StartDate = DateTime.Today;
-                DateTime EndDate = StartDate.AddMonths(1);
-                GIOHANG Giohang = new GIOHANG
-                {
-                    MAKHACHHANG = id_khachhang,
-                    TRANGTHAI = true,
-                };
-                db.GIOHANGs.Add(Giohang);
-                QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
-                {
-                    MAKHACHHANG = id_khachhang,
-                    MAVOUCHER = 1,
-                    NGAYBATDAU = StartDate,
-                    NGAYKETTHUC = EndDate,
-                    TRANGTHAI = true,
-                };
-                db.QUANLYVOUCHERs.Add(newQuanlyVoucher);
-                db.SaveChanges();
+                    DateTime StartDate = DateTime.Today;
+                    DateTime EndDate = StartDate.AddMonths(1);
+                    GIOHANG Giohang = new GIOHANG
+                    {
+                        MAKHACHHANG = id_khachhang,
+                        TRANGTHAI = true,
+                    };
+                    db.GIOHANGs.Add(Giohang);
+                    var vouchers = db.VOUCHERs.Where(vc => vc.TRANGTHAIGIOIHAN == false).ToList();
+                    if (vouchers != null)
+                    {
+                        foreach (var vc in vouchers)
+                        {
+                            QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
+                            {
+                                MAKHACHHANG = id_khachhang,
+                                MAVOUCHER = vc.MAVOUCHER,
+                                NGAYBATDAU = StartDate,
+                                NGAYKETTHUC = EndDate,
+                                TRANGTHAI = true,
+                            };
+                            db.QUANLYVOUCHERs.Add(newQuanlyVoucher);
+                        }
+                           ;
 
-                return RedirectToAction("Dangnhap", "TAIKHOANs");
+                    }
+
+
+                    db.SaveChanges();
+
+                    return RedirectToAction("Dangnhap", "TAIKHOANs");
+                }catch(Exception ex)
+                {
+                    TempData["ThongBao"] = "Sản lỗi với đăng  nhập"+ ex;
+                }
             }
             else
             {
                 ViewBag.error = "Email already exists";
-                return View();
+               
             }
+             return View();
         }
         public static string GetMD5(string str)
         {
@@ -98,9 +116,11 @@ namespace ShopWatch.Controllers
         public ActionResult Dangnhap(TAIKHOAN tAIKHOAN)
         {
             tAIKHOAN.MATKHAU = "11";
-            tAIKHOAN.EMAIL = "a@gmail.com";
+            tAIKHOAN.EMAIL = "m@gmail.com";
             var f_password = GetMD5(tAIKHOAN.MATKHAU);
-            var data = db.TAIKHOANs.Where(s => s.EMAIL.Equals(tAIKHOAN.EMAIL) && s.MATKHAU.Equals(f_password)).ToList();
+            try
+            {
+             var data = db.TAIKHOANs.Where(s => s.EMAIL.Equals(tAIKHOAN.EMAIL) && s.MATKHAU.Equals(f_password)).ToList();
             if (data.Count() > 0)
             {
                 var data_khachhang = db.KHACHHANGs.Where(s => s.EMAIL.Equals(tAIKHOAN.EMAIL)).FirstOrDefault();
@@ -117,7 +137,11 @@ namespace ShopWatch.Controllers
                 ViewBag.error = "Login failed";
                 return View("Login");
             }
-
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("xãy ra lỗi voi đăng nhập ");
+            }
             return View();
         }
 

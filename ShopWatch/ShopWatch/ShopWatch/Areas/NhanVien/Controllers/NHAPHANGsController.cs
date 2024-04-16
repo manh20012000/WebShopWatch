@@ -103,6 +103,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
                     if (ModelState.IsValid)
             {
                 nhaphang.THANHTIEN = 0;
+                        nhaphang.NGAYNHAP = DateTime.Now;
                 nhaphang.TRANGTHAI = false;
                 nhaphang.MANV = (int?)Session["MaNV"];
                 nhaphang.MANV = (int?)Session["MaNV"];

@@ -9,7 +9,7 @@ namespace ShopWatch.Models.MetaDATA
     {
         public Nullable<int> PHANTRAMGIAMGIA { get; set; }
         public string DIEUKIEN { get; set; }
-     
+        public bool TRANGTHAIGIOIHAN { get; set; }
         public Nullable<System.DateTime> NGAYBATDAU { get; set; }
         public Nullable<System.DateTime> NGAYKETTHUC { get; set; }
     }

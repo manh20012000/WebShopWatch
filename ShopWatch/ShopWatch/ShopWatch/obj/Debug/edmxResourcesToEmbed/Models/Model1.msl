@@ -229,16 +229,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="VOUCHERs">
-      <EntityTypeMapping TypeName="DHModel.VOUCHER">
-        <MappingFragment StoreEntitySet="VOUCHER">
-          <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
-          <ScalarProperty Name="DIEUKIEN" ColumnName="DIEUKIEN" />
-          <ScalarProperty Name="PHANTRAMGIAMGIA" ColumnName="PHANTRAMGIAMGIA" />
-          <ScalarProperty Name="MAVOUCHER" ColumnName="MAVOUCHER" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="DIADIEMs">
       <EntityTypeMapping TypeName="DHModel.DIADIEM">
         <MappingFragment StoreEntitySet="DIADIEM">
@@ -247,6 +237,17 @@
           <ScalarProperty Name="TENDIACHI" ColumnName="TENDIACHI" />
           <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
           <ScalarProperty Name="MADIADIEM" ColumnName="MADIADIEM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VOUCHERs">
+      <EntityTypeMapping TypeName="DHModel.VOUCHER">
+        <MappingFragment StoreEntitySet="VOUCHER">
+          <ScalarProperty Name="TRANGTHAIGIOIHAN" ColumnName="TRANGTHAIGIOIHAN" />
+          <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+          <ScalarProperty Name="DIEUKIEN" ColumnName="DIEUKIEN" />
+          <ScalarProperty Name="PHANTRAMGIAMGIA" ColumnName="PHANTRAMGIAMGIA" />
+          <ScalarProperty Name="MAVOUCHER" ColumnName="MAVOUCHER" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

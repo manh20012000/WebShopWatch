@@ -227,6 +227,7 @@
     <Property Name="PHANTRAMGIAMGIA" Type="int" />
     <Property Name="DIEUKIEN" Type="nvarchar(max)" />
     <Property Name="TRANGTHAI" Type="bit" />
+    <Property Name="TRANGTHAIGIOIHAN" Type="bit" />
   </EntityType>
   <Association Name="FK__CHITIETDA__MAMAT__6A30C649">
     <End Role="MATHANG" Type="Self.MATHANG" Multiplicity="0..1" />

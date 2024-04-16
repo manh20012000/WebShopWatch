@@ -266,19 +266,3 @@
 </html>
 
 
-@foreach (var item in Model)
-{
-    <div class="coupon" style="background-color: #f9ff59 ">
-        <div class="container">
-            <p style="font-size: 80px; line-height: 1; margin: 20px auto 0; text-align: center; color: #3d2209; font-weight: 700 ">@Html.DisplayFor(modelItem => item.VOUCHER.PHANTRAMGIAMGIA)% OFF</p>
-            <p style="font-size: 20px; margin: 0; line-height: 1; color: #112d49; text-transform: uppercase; font-weight: 700"> @Html.DisplayFor(modelItem => item.VOUCHER.DIEUKIEN)</p>
-        </div>
-        <hr color="#107010" style=" height:0.5px" />
-        <div class="container" style=" font-family: 'Times New Roman', Times, sans-serif;">
-            <p style=" color: #112d49; text-transform: uppercase">Mã voucher:  <span class="promo" style=" color: #112d49; text-transform: uppercase">   @Html.ActionLink("Details", "Details", new { id = item.MAVOUCHER })</span></p>
-            @*<p>NGÀY KẾT THÚC :   @String.Format("{0:dd/MM/yyyy}", item.NGAYKETTHUC)</p>*@
-        </div>
-        <button class="button" style=" font-weight: 500"><a href="/QUANLYVOUCHERs/MuaNgay?id=@item.MAQUANLYVOUCHER"> MUA NGAY</a></button>
-
-    </div>
-}
