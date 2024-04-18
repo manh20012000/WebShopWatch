@@ -46,10 +46,13 @@
         display: flex;
         padding: 20px
     }
+   
     #table-wrapper {
         position: relative;
+        position: sticky;
+        top: 0;
+        z-index: 1;
     }
-
     #table-scroll {
         max-height: 700px ;
         overflow: auto;
@@ -80,7 +83,7 @@
             @Html.AntiForgeryToken()
         <div class="input-group-container">
             <div class="seache">
-                <input type="text" name="searchValue" class="form-control" placeholder="Nhập vào tìm kiếm" aria-label="Search" aria-describedby="basic-addon2">
+                <input id="myInput" onkeyup="myFunction()"type="text" name="searchValue" class="form-control" placeholder="Nhập vào tìm kiếm" aria-label="Search" aria-describedby="basic-addon2">
                 <button class="btn btn-outline-secondary bnts" type="submit">Search</button>
             </div>
         </div>
@@ -94,26 +97,27 @@
            
             <div id="table-wrapper">
                 <div id="table-scroll">
-               
-                    <table id="example" class="tablel table-bordered table-striped">
+                    
+                    <table id="myTable" class="tablel table-bordered table-striped">
+                        <thead id="table-wrapper">
+                            <tr>
+                                <th class="text-center">
+                                    <label>MÃ PHIẾU NHẬP </label>
+                                </th>
+                                <th class="text-center">
+                                    <label>THÀNH TIỀN </label>
+                                </th>
+                                <th class="text-center">
+                                    <label>NGÀY NHẬP </label>
 
-                        <tr>
-                            <th class="text-center">
-                                <label>MÃ PHIẾU NHẬP </label>
-                            </th>
-                            <th class="text-center">
-                                <label>THÀNH TIỀN </label>
-                            </th>
-                            <th class="text-center">
-                                <label>NGÀY NHẬP </label>
-
-                            </th>
-                            <th class="text-center">
-                                <label>TÊN NHÂN VIÊN </label>
-                            </th>
-                            <th class="text-center">
-                            </th>
-                        </tr>
+                                </th>
+                                <th class="text-center">
+                                    <label>TÊN NHÂN VIÊN </label>
+                                </th>
+                                <th class="text-center">
+                                </th>
+                            </tr>
+                        </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
@@ -133,23 +137,43 @@
                                     </td>
                                     <td class="text-center tble ">
                                         <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("CreateMulti", "CHITIETPHIEUNHAPs1",new { id = item.MANHAPHANG })'">ImportProduct</button>
-
                                     </td>
-
                                 </tr>
                             }
                         </tbody>
                     </table>
-
                 </div>
-              
             </div>
         </div>
     </div>
         </div>
 
+<script>
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
 
-
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            td = tr[i].getElementsByTagName("td")[3];
+            td = tr[i].getElementsByTagName("td")[0];
+           
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
 @*<table class="table">
         <tr>
             <th>

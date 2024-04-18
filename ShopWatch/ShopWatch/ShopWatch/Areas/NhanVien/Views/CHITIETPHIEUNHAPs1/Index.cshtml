@@ -34,11 +34,13 @@
     }
 
     #table-wrapper {
-        position: relative;
+        position: relative; position: sticky;
+        top: 0;
+        z-index: 1;
     }
 
     #table-scroll {
-        height: 400px;
+        height: 450px;
         overflow: auto;
         margin-top: 20px;
     }
@@ -79,7 +81,7 @@
             @Html.AntiForgeryToken()
             <div class="input-group-container">
                 <div class="seache">
-                    <input type="text" name="searchValue" class="form-control" placeholder="Nhập vào giá tiền" aria-label="Search" aria-describedby="basic-addon2">
+                    <input id="myInput" onkeyup="myFunction()" type="text" name="searchValue" class="form-control" placeholder="Nhập vào giá tiền" aria-label="Search" aria-describedby="basic-addon2">
                     <button class="btn btn-outline-secondary bnts" type="submit">Search</button>
                 </div>
             </div>
@@ -89,9 +91,9 @@
 <div class="table-container">
     <div id="table-wrapper">
         <div id="table-scroll">
-            <table class="tablet">
-                <thead>
-                    <tr style="z-index:1">
+            <table class="tablet" id="myTable">
+                <thead id="table-wrapper">
+                    <tr>
                         <th style="padding: 15px; text-align: center;">
                             <label>Tổng tiền</label>
                         </th>
@@ -148,3 +150,70 @@
         </div>
     </div>
 </div>
+<script>
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            td2 = tr[i].getElementsByTagName("td")[3];
+           @* td = tr[i].getElementsByTagName("td")[1];
+            td = tr[i].getElementsByTagName("td")[3];*@
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            } else if (td2) {
+                txtValue = td2.textContent || td2.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    function sortTable() {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("myTable");
+        switching = true;
+        /* Make a loop that will continue until
+        no switching has been done: */
+        while (switching) {
+            // Start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /* Loop through all table rows (except the
+            first, which contains table headers): */
+            for (i = 1; i < (rows.length - 1); i++) {
+                // Start by saying there should be no switching:
+                shouldSwitch = false;
+                /* Get the two elements you want to compare,
+                one from current row and one from the next: */
+                x = rows[i].getElementsByTagName("TD")[0];
+                y = rows[i + 1].getElementsByTagName("TD")[0];
+                // Check if the two rows should switch place:
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    // If so, mark as a switch and break the loop:
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+            if (shouldSwitch) {
+                /* If a switch has been marked, make the switch
+                and mark that a switch has been done: */
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+    }
+</script>

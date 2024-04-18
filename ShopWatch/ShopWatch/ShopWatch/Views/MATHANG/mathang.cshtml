@@ -1,205 +1,471 @@
-﻿@model IPagedList<ShopWatch.Models.MATHANG>
+﻿
+@model IPagedList<ShopWatch.Models.MATHANG>
 @using PagedList;
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = "homeIndex";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "mathang";
+    Layout = null;
 }
-
-<style>
-    .product_all {
-        position: relative
-    }
-
-    .button_add_tocart {
-        position: absolute;
-        bottom: 0;
-        left: 0
-    }
-
-    .product {
-        margin-top: 20px;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-
-        .product img {
-            margin-bottom: 20px;
-            width: auto;
-            height: auto;
-            transition: transform 0.2s ease
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Colo Shop Categories</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Colo Shop Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/styles/bootstrap4/bootstrap.min.css">
+    <link href="~/assets/KhachHang/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/styles/categories_styles.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/styles/categories_responsive.css">
+    <style>
+        .pagination {
+            display: inline-block;
+            margin-left: 0; /* Điều chỉnh khoảng cách phía bên trái */
+            
+           
         }
 
-        .product:hover img {
-            transform: scale(1.4);
-        }
+            .pagination a {
+                color: black; /* Màu chữ cho các link */
+                float: left; /* Canh lề trái */
+                padding: 8px 16px; /* Khoảng cách giữa các link */
+                text-decoration: none; /* Loại bỏ gạch chân */
+                transition: background-color .3s; /* Hiệu ứng chuyển đổi màu nền */
+                background-color: blueviolet;
+            }
 
-    .top_nav {
-        background: #8B0000;
-    }
-
-    .banner_category a {
-        display: inline-block;
-        position: relative;
-        overflow: hidden;
-        transition: transform 0.3s ease; /* Hiệu ứng chuyển động */
-        will-change: transform;
-    }
-
-        .banner_category a:hover {
-            transform: scale(0.4); /* Phóng to ảnh lên 110% khi hover */
-        }
-</style>
-<div style="margin-top:200px">
-
-</div>
-
-<div style="width: 100%; height: 50px; background-color: #f2f2f2; display: flex; align-items: center; justify-content: space-between;">
-    <div style="margin-left: 20px;">
-        <a href="/Home/homeIndex">SHOP</a>
-    </div>
-
-    <div style="display: flex; align-items: center; ">
-        <form id="searchForm" action="/Home/homeIndex" method="post">
-            <input name="searchValue" type="text" placeholder="Tìm kiếm tên đồng hồ ..." style="height: 40px; margin-right: 40px;width:450px">
-
-            <select name="brand" style="height: 40px; margin-right: 10px;">
-                <option disabled selected hidden>Chọn hãng</option>
-                <option value="Heuer">Heuer</option>
-                <option value="A.Lange & Söhne">A.Lange & Söhne</option>
-                <option value="Jaeger-LeCoultre">Jaeger-LeCoultre</option>
-                <option value="Rolex">Rolex</option>
-                <option value="Hublot">Hublot</option>
-            </select>
-            <select name="price" style="height: 40px; margin-right: 10px;">
-                <option disabled selected hidden>Chọn giá</option>
-                <option value="1000000">1.000.000</option>
-                <option value="4000000">4.000.000</option>
-                <option value="7000000">7.000.000</option>
-                <option value="10000000">10.000.000</option>
-                <option value="20000000">20.000.000</option>
-                <option value="30000000">30.000.000</option>
-                <option value="50000000">50.000.000</option>
-                <option value="100000000">100.000.000</option>
-                <option value="120000000">120.000.000</option>
-                <option value="150000000">150.000.000</option>
-                <option value="250000000">250.000.000</option>
-                <option value="500000000">500.000.000</option>
-            </select>
-            <select name="size" syle="height: 40px; margin-right: 10px;">
-                <option disabled selected hidden>Chọn size</option>
-                <option value="38">38</option>
-                <option value="44">44</option>
-            </select>
-            <select name="type" style="height: 40px; margin-right: 10px;">
-                <option disabled selected hidden>Chọn loại</option>
-                <option value="Đồng hồ cơ">Đồng hồ cơ</option>
-                <option value="ĐH ĐIỆN TỬ">ĐH ĐIỆN TỬ</option>
-                <option value="ĐH SMARTWATCH">ĐH SMARTWATCH</option>
-                <option value="cao cấp">cao cấp</option>
-            </select>
-            <input type="submit" style="height: 40px;width:100px;border-radius:10px;background-color:burlywood" value="search" />
-        </form>
-    </div>
-</div>
-
-<div class="new_arrivals">
-    <div class="container">
-
-        <div class="align-self-auto">
-
-            <div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
-                @foreach (var item in Model)
-                {
-                    <!-- Product 1 -->
-
-                    <div class="product-item men product_all" style="margin:5px 0px 5px 0px">
-                        <div class="product discount product_filter" style="max-height:299px">
-                            @if (item.SALE != null)
-                            {
-                                <a href="/MatHang/Chitietmathang?id=@item.MAMATHANG">
-                                    <div style="z-index:1;width:70px" class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>Sale @item.SALE.PHANTRAMSALE%</span></div>
-                                    <img src="@item.ANHSANPHAM" alt="" style="max-width:150px; max-height:170px">
-                                    <div class="favorite favorite_left"></div>
-                                    <div class="product_info">
-                                        <h6 class="product_name">@item.TENHANG</h6>
-                                        <div class="product_price">@String.Format("{0:N0}", item.GIAHANG)</div>
-                                    </div>
-                                </a>
-                            }
-                            else
-                            {
-                                <a href="/MatHang/Chitietmathang?id=@item.MAMATHANG">
-                                    <img src="@item.ANHSANPHAM" alt="" style="max-width:150px; max-height:170px">
-                                    <div class="favorite favorite_left"></div>
-                                    <div class="product_info">
-                                        <h6 class="product_name">@item.TENHANG</h6>
-                                        <div class="product_price">@String.Format("{0:N0}", item.GIAHANG)</div>
-                                    </div>
-                                </a>
-                            }
-                        </div>
-
-                        <div class="red_button add_to_cart_button button_add_tocart">
-                            <a href="#">
-                                @Html.ActionLink("Add To Cart", "AddToCart", "GioHang", new { sanpham = item.MAMATHANG }, null)
-                            </a>
-                        </div>
-                    </div>
+                .pagination a.active {
+                    background-color: #04AA6D; /* Màu nền cho trang hiện tại */
+                    color: white; /* Màu chữ cho trang hiện tại */
                 }
 
+                .pagination a:hover:not(.active) {
+                    background-color: #ddd; /* Màu nền khi hover */
+                }
 
-            </div>
-        </div>
-    </div>
-</div><center>
-    <div style="margin-left:20px;">@Html.PagedListPager(Model, page => Url.Action("homeIndex", new { page }))</div>
-</center>
-<div class="deal_ofthe_week" style="background-color: #fcf9f9;padding:0 20px 0 20px">
-    <div class="w w-auto">
-        <div class="row align-items-center">
-            <div class="col-lg-8" @*style="margin-left: -65px;"*@>
-                <div class="deal_ofthe_week_img" style=" margin-right: 10%">
-                    <img src="../../assets/KhachHang/images/noi.jpg" alt="">
-                </div>
-            </div>
-            <div class="col-lg-4 text-center deal_ofthe_week_col">
-                <div class="deal_ofthe_week_content d-flex flex-column align-items-center float-right">
-                    <div class="section_title">
-                        <h3 style="font-family: 'Alumni Sans', sans-serif; font-weight: 700;  ">TISSOT PRS </h3>
+            /* CSS cho nút Previous và Next */
+            .pagination .prev,
+            .pagination .next {
+                padding: 8px 8px; /* Khoảng cách giữa nút Previous và Next */
+                background-color: #f1f1f1; /* Màu nền */
+                color: black; /* Màu chữ */
+                transition: background-color .3s; /* Hiệu ứng chuyển đổi màu nền */
+            }
+
+                .pagination .prev:hover,
+                .pagination .next:hover {
+                    background-color: #ddd; /* Màu nền khi hover */
+                }
+    </style>
+</head>
+
+<body>
+    <div class="super_container">
+
+        <!-- Header -->
+
+        <header class="header trans_300">
+
+            <!-- Top Navigation -->
+
+            <div class="top_nav" style="background-color: #d69a62 ">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="top_nav_left" style="color: #fff; text-align: center; text-transform: uppercase; font-family: 'Open Sans', sans-serif">NHÀ PHÂN PHỐI CHÍNH HÃNG CÁC THƯƠNG HIỆU ĐỒNG HỒ HÀNG ĐẦU VIỆT NAM</div>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <div class="top_nav_right">
+                                <ul class="top_nav_menu" style="">
+
+                                    <li class="account" style="background: #d69a62">
+                                        <a href="#" style="color: #fff; text-align: center; font-family: 'Open Sans', sans-serif;  ">
+                                            My Account
+                                            <i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <ul class="account_selection">
+                                            <li><a href="/TAIKHOANs/Dangnhap"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
+                                            <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div class="timer_unit" style=" margin-top: 40px; margin-left: 40px; font-family: 'Alumni Sans', sans-serif; font-weight:500">Tuyển chọn mẫu đồng hồ bán chạy</div>
+                </div>
+            </div>
 
-                    <div class="red_button deal_ofthe_week_button"><a href="#">shop now</a></div>
+            <!-- Main Navigation -->
+
+            <div class="main_nav_container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-right">
+                            <div class="logo_container">
+                                <a href="#">
+                                    <img src="~/assets/KhachHang/images/logo-removebg-preview.png" alt="" style="line-height: inherit; height: 31px; margin-bottom: 13px; vertical-align: middle; width: 95%">
+                                </a>
+                            </div>
+                            <nav class="navbar" style="color: black; margin-top: 10px;  font-weight: bold  ">
+                                <ul class="navbar_menu">
+                                    <li><a href="/MATHANG/homeIndex">Home<span class="underline"></span></a></li>
+                                    <li><a href="/MATHANG/mathang">Shop<span class="underline"></span></a></li>
+                                    <li><a href="/DatHang/DonHang">Order<span class="underline"></span></a></li>
+                                    <li><a href="/KHACHHANGs/Details">Profile<span class="underline"></span></a></li>
+                                    <li><a href="/QUANLYVOUCHERs/VoucherIndex">listVoucher<span class="underline"></span></a></li>
+                                    <li><a href="contact.html">Contact<span class="underline"></span></a></li>
+                                </ul>
+                                <ul class="navbar_user">
+                                    <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                                    <li class="checkout">
+                                        <a href="/GioHang/Index">
+                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                            <span id="checkout_items" class="checkout_items">2</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="hamburger_container">
+                                    <i class="fa fa-bars" aria-hidden="true"></i>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+        <div style="margin-top:200px">
+
+        </div>
+
+        <div class="container product_section_container">
+
+            <div class="row">
+                <div class="col product_section clearfix">
+                    <div class="sidebar">
+                        <h5>Product Category</h5>
+                        <select name="type" id="typeSelect" style="height: 40px; margin-bottom: 30px; margin-right: 10px; border: solid 1px #ecedee; color: red" ">
+                            <option disabled selected hidden>Chọn loại</option>
+                            <option value="Đồng hồ cơ">Đồng hồ cơ</option>
+                            <option value="ĐH ĐIỆN TỬ">ĐH ĐIỆN TỬ</option>
+                            <option value="ĐH SMARTWATCH">ĐH SMARTWATCH</option>
+                            <option value="cao cấp">cao cấp</option>
+                        </select>
+                      
+                        <div>
+                            <h5>Brand Category</h5>
+                            <select id="brandSelect" name="brand" style="height: 40px; margin-right: 10px; margin-bottom: 30px; border: solid 1px #ecedee; width: 154px;color:red">
+                                <option disabled selected hidden>Chọn hãng</option>
+                                <option value="Heuer">Heuer</option>
+                                <option value="A.Lange & Söhne">A.Lange & Söhne</option>
+                                <option value="Jaeger-LeCoultre">Jaeger-LeCoultre</option>
+                                <option value="Rolex">Rolex</option>
+                                <option value="Hublot">Hublot</option>
+                            </select>
+                        </div>
+
+
+                        <!-- Price Range Filtering -->
+                        <div >
+                            <h5>Giá</h5>
+                            <select name="price" id="priceSelect" style="height: 40px; margin-right: 10px; border: solid 1px #ecedee; width: 154px ;color:red ;margin-bottom: 30px;">
+                                <option disabled selected hidden>Chọn giá</option>
+                                <option value="1000000">1.000.000</option>
+                                <option value="4000000">4.000.000</option>
+                                <option value="7000000">7.000.000</option>
+                                <option value="10000000">10.000.000</option>
+                                <option value="20000000">20.000.000</option>
+                                <option value="30000000">30.000.000</option>
+                                <option value="50000000">50.000.000</option>
+                                <option value="100000000">100.000.000</option>
+                                <option value="120000000">120.000.000</option>
+                                <option value="150000000">150.000.000</option>
+                                <option value="250000000">250.000.000</option>
+                                <option value="500000000">500.000.000</option>
+                            </select>
+                        </div>
+                      
+                        <div>
+                            <h5>Sizes</h5>
+
+                            <select name="size" id="sizeSelect" onchange="filterProducts()" style=" border: solid 1px #ecedee;margin-right: 10px; height: 40px; margin-bottom: 30px; width: 154px;color:red">
+                                <option disabled selected hidden>Chọn size</option>
+                                <option value="38">38</option>
+                                <option value="44">44</option>
+                            </select>
+                        </div>
+                       
+
+                    </div>
+
+                    <!-- Main Content -->
+
+                    <div class="main_content">
+
+                        <!-- Products -->
+
+                        <div class="products_iso">
+                            <div class="row">
+                                <div class="col">
+
+                                    <!-- Product Sorting -->
+
+                                    <div class="product_sorting_container product_sorting_container_top">
+                                        <div>
+                                            <form id="searchForm" action="/MATHANG/mathang" method="post" style="display: flex; flex-wrap: wrap;">
+                                                <input type="hidden" id="selectedType" name="selectedType" />
+                                                <input type="hidden" id="selectedBrand" name="selectedBrand" />
+                                                <input type="hidden" id="selectedPrice" name="selectedPrice" />
+                                                <input type="hidden" id="selectedSize" name="selectedSize" />
+                                                <input name="searchValue" type="text" placeholder="Tìm kiếm tên đồng hồ ..." style="height: 40px; margin-right: 40px;width:450px;border-width:1px;padding:5px;border-radius:12px">
+                                                <input type="submit" style="height: 40px;width:100px;border-radius:10px;background-color:burlywood;border-width:0" value="search" />
+                                            </form>
+                                        </div>
+
+
+
+                                        <!-- Product Grid -->
+
+                                        <div class="product-grid">
+                                            @foreach (var item in Model)
+                                            {
+                                                <!-- Product 1 -->
+                                                <div class="product-item men">
+                                                    <div class="product discount product_filter">
+                                                        @if (item.SALE != null)
+                                                        {
+                                                            <a href="/MatHang/Chitietmathang?id=@item.MAMATHANG">
+                                                                <div class="product_image">
+                                                                    <img src="@item.ANHSANPHAM" alt="">
+                                                                </div>
+                                                                <div class="favorite favorite_left"></div>
+                                                                <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>Sale @item.SALE.PHANTRAMSALE %</span></div>
+                                                                <div class="product_info">
+                                                                    <h6 class="product_name"><a href="single.html">@item.TENHANG</a></h6>
+                                                                    <div class="product_price">@String.Format("{0:N0}", item.GIAHANG)</div>
+                                                                </div>
+                                                            </a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a href="/MatHang/Chitietmathang?id=@item.MAMATHANG">
+                                                                <div class="product_image">
+                                                                    <img src="@item.ANHSANPHAM" alt="">
+                                                                </div>
+                                                                <div class="favorite favorite_left"></div>
+                                                                <div class="product_info">
+                                                                    <h6 class="product_name"><a href="single.html">@item.TENHANG</a></h6>
+                                                                    <div class="product_price">@String.Format("{0:N0}", item.GIAHANG)</div>
+                                                                </div>
+                                                            </a>
+                                                        }
+                                                    </div>
+                                                    <button class="red_button add_to_cart_button" onclick="location.href='@Url.Action("AddToCart", "GioHang", new { sanpham = item.MAMATHANG })'">
+
+                                                        ADD TO CART
+                                                    </button>
+                                                </div>
+
+                                            }
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div> <center>
+                            <div style="margin-left:20px;">@Html.PagedListPager(Model, page => Url.Action("homeIndex", new { page }))</div>
+                        </center>
+                    </div>
                 </div>
             </div>
         </div>
+
+
+        <!-- Benefit -->
+
+        <div class="benefit">
+            <div class="container">
+                <div class="row benefit_row">
+                    <div class="col-lg-3 benefit_col">
+                        <div class="benefit_item d-flex flex-row align-items-center">
+                            <div class="benefit_icon"><i class="fa fa-truck" aria-hidden="true"></i></div>
+                            <div class="benefit_content">
+                                <h6>free shipping</h6>
+                                <p>Suffered Alteration in Some Form</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 benefit_col">
+                        <div class="benefit_item d-flex flex-row align-items-center">
+                            <div class="benefit_icon"><i class="fa fa-money" aria-hidden="true"></i></div>
+                            <div class="benefit_content">
+                                <h6>cach on delivery</h6>
+                                <p>The Internet Tend To Repeat</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 benefit_col">
+                        <div class="benefit_item d-flex flex-row align-items-center">
+                            <div class="benefit_icon"><i class="fa fa-undo" aria-hidden="true"></i></div>
+                            <div class="benefit_content">
+                                <h6>45 days return</h6>
+                                <p>Making it Look Like Readable</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 benefit_col">
+                        <div class="benefit_item d-flex flex-row align-items-center">
+                            <div class="benefit_icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
+                            <div class="benefit_content">
+                                <h6>opening all week</h6>
+                                <p>8AM - 09PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Newsletter -->
+
+        <div class="newsletter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="newsletter_text d-flex flex-column justify-content-center align-items-lg-start align-items-md-center text-center">
+                            <h4>Newsletter</h4>
+                            <p>Subscribe to our newsletter and get 20% off your first purchase</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
+                            <input id="newsletter_email" type="email" placeholder="Your email" required="required" data-error="Valid email is required.">
+                            <button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300" value="Submit">subscribe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
+                            <ul class="footer_nav">
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="#">FAQs</a></li>
+                                <li><a href="contact.html">Contact us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="footer_social d-flex flex-row align-items-center justify-content-lg-end justify-content-center">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="footer_nav_container">
+                            <div class="cr">©2018 All Rights Reserverd. Template by <a href="#">Colorlib</a> &amp; distributed by <a href="https://themewagon.com">ThemeWagon</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
-</div>
+    <script>
+        document.getElementById("typeSelect").onchange = function () {
+            document.getElementById("selectedType").value = this.value;
+        };
 
-@*<script>
+        document.getElementById("brandSelect").onchange = function () {
+            document.getElementById("selectedBrand").value = this.value;
+        };
+
+        document.getElementById("priceSelect").onchange = function () {
+            document.getElementById("selectedPrice").value = this.value;
+        };
+
+        document.getElementById("sizeSelect").onchange = function () {
+            document.getElementById("selectedSize").value = this.value;
+        };
+        var typeSelect = document.getElementById('typeSelect');
+        var brandSelect = document.getElementById('brandSelect');
+        var priceSelect = document.getElementById('priceSelect');
+        var sizeSelect = document.getElementById('sizeSelect');
+
+        // Gắn sự kiện onchange cho các phần tử select
+        typeSelect.addEventListener('change', function () {
+            document.getElementById('selectedType').value = this.value;
+            document.getElementById('searchForm').submit();
+        });
+
+        brandSelect.addEventListener('change', function () {
+            document.getElementById('selectedBrand').value = this.value;
+            document.getElementById('searchForm').submit();
+        });
+
+        priceSelect.addEventListener('change', function () {
+            document.getElementById('selectedPrice').value = this.value;
+            document.getElementById('searchForm').submit();
+        });
+
+        sizeSelect.addEventListener('change', function () {
+            document.getElementById('selectedSize').value = this.value;
+            document.getElementById('searchForm').submit();
+        });
+    </script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
         function searchProducts() {
-            // Lấy các giá trị từ các phần tử trên giao diện
-            var searchValue = document.getElementById("searchValue").value;
-            var brand = document.getElementById("brand").value;
-            var price = document.getElementById("price").value;
-            var size = document.getElementById("size").value;
-            var type = document.getElementById("type").value;
+            var input, filter, products, product, productName, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            products = document.getElementsByClassName("product-item");
 
-            // Tạo đường dẫn với các tham số đã lấy được
-            var url = "/MATHANG/homeIndex?";
-            url += "searchValue=" + encodeURIComponent(searchValue);
-            url += "&brand=" + encodeURIComponent(brand);
-            url += "&price=" + encodeURIComponent(price);
-            url += "&size=" + encodeURIComponent(size);
-            url += "&type=" + encodeURIComponent(type);
+            for (i = 0; i < products.length; i++) {
+                product = products[i];
+                productName = product.getElementsByClassName("product_name")[0];
+                txtValue = productName.textContent || productName.innerText;
 
-            // Chuyển hướng đến đường dẫn mới
-            window.location.href = url;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    product.style.display = "";
+                } else {
+                    product.style.display = "none";
+                }
+            }
         }
-    </script>*@
-
-
+    </script>
+    <script src="~/assets/KhachHang/js/jquery-3.2.1.min.js"></script>
+    <script src="~/assets/KhachHang/styles/bootstrap4/popper.js"></script>
+    <script src="~/assets/KhachHang/styles/bootstrap4/bootstrap.min.js"></script>
+    <script src="~/assets/KhachHang/plugins/Isotope/isotope.pkgd.min.js"></script>
+    <script src="~/assets/KhachHang/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+    <script src="~/assets/KhachHang/plugins/easing/easing.js"></script>
+    <script src="~/assets/KhachHang/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+    <script src="~/assets/KhachHang/js/categories_custom.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/styles/responsive.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/styles/bootstrap4/bootstrap.min.css">
+</body>
+</html>

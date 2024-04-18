@@ -6,11 +6,29 @@
     ViewBag.Title = "VoucherIndex";
     Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
 }
-<button style="width: 14%; height: 5%; margin: 2%"
-        type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Create", "VOUCHER")'">CreateVoucher</button>
 @*<button style="background-color:aquamarine;width:10%;height:5%;margin:2%">
     @Html.ActionLink("Create New", "Create")
 </button>*@
+<div class="row">
+    <div class="col-xs-7">
+        @using (Html.BeginForm("Index", "CHITIETPHIEUNHAPs1", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="input-group-container">
+                <div class="seache row" style="display:flex">
+                    <input id="myInput" onkeyup="myFunction()" type="text" name="searchValue" class="form-control col-xs-7" placeholder="Nhập vào giá tiền" aria-label="Search" aria-describedby="basic-addon2">
+                    <button class="btn btn-outline-secondary bnts col-xs-2" type="submit">Search</button>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-xs-5 text-right">
+        <!-- Sử dụng col-xs-5 để chiếm 5 phần trên 12 phần -->
+        <button class="btn btn-danger" style="width: 120px; margin: 10px 0;" onclick="location.href='@Url.Action("Create", "VOUCHER")'">
+            CreateVoucher
+        </button>
+    </div>
+</div>
 <table class="table">
     <tr style="background-color:#04AA6D;">
         <th class="text-center">

@@ -103,7 +103,7 @@ namespace ShopWatch.Controllers
             {
                 return View(model);
             }
-            return View(model);
+            return RedirectToAction("Index");
         }
 
         // GET: KHACHHANGs/Delete/5

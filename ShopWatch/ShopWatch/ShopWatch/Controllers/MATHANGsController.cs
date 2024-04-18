@@ -29,33 +29,34 @@ namespace ShopWatch.Controllers
 
             return RedirectToAction("homeIndex", "Home");
         }
-        public ActionResult mathang(string searchValue, string brand, string price, string size, string type, int page = 1) {
+          public ActionResult mathang(string searchValue, string selectedType, string selectedBrand, string selectedPrice, string selectedSize, int page = 1)
+        { 
             if (Session["EmailClient"] != null)
             {
                 int pageSize = 10;
                 var items = db.MATHANGs.Where(x => x.TRANGTHAI == false);
 
-                if (!string.IsNullOrEmpty(searchValue) || !string.IsNullOrEmpty(brand) || !string.IsNullOrEmpty(size) || !string.IsNullOrEmpty(type) || !string.IsNullOrEmpty(price))
+                if (!string.IsNullOrEmpty(searchValue) || !string.IsNullOrEmpty(selectedBrand) || !string.IsNullOrEmpty(selectedSize) || !string.IsNullOrEmpty(selectedType) || !string.IsNullOrEmpty(selectedPrice))
                 {
 
-                    if (!string.IsNullOrEmpty(price))
+                    if (!string.IsNullOrEmpty(selectedPrice))
                     {
-                        double priceValue = double.Parse(price);
+                        double priceValue = double.Parse(selectedPrice);
                         items = items.Where(x =>
-                            (price == null || x.GIAHANG <= priceValue) && // So sánh giá tiền với giá trị đã chuyển đổi sang số
+                            (selectedPrice == null || x.GIAHANG <= priceValue) && // So sánh giá tiền với giá trị đã chuyển đổi sang số
                             (searchValue == null || x.TENHANG.Contains(searchValue)) &&
-                            (size == null || SqlFunctions.PatIndex("%" + size + "%", x.KICHTHUOC.ToString()) > 0) &&
-                            (brand == null || x.TENHANGSANXUAT.Contains(brand)) &&
-                            (type == null || x.LOAI.Contains(type))
+                            (selectedSize == null || SqlFunctions.PatIndex("%" + selectedSize + "%", x.KICHTHUOC.ToString()) > 0) &&
+                            (selectedBrand == null || x.TENHANGSANXUAT.Contains(selectedBrand)) &&
+                            (selectedType == null || x.LOAI.Contains(selectedType))
                         );
                     }
                     else
                     {
                         items = items.Where(x =>
                                                   (searchValue == null || x.TENHANG.Contains(searchValue)) &&
-                                                  (size == null || SqlFunctions.PatIndex("%" + size + "%", x.KICHTHUOC.ToString()) > 0) &&
-                                                  (brand == null || x.TENHANGSANXUAT.Contains(brand)) &&
-                                                  (type == null || x.LOAI.Contains(type))
+                                                  (selectedSize == null || SqlFunctions.PatIndex("%" + selectedSize + "%", x.KICHTHUOC.ToString()) > 0) &&
+                                                  (selectedBrand == null || x.TENHANGSANXUAT.Contains(selectedBrand)) &&
+                                                  (selectedType == null || x.LOAI.Contains(selectedType))
                                               );
                     }
                 }

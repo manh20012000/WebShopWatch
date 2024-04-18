@@ -10,46 +10,51 @@
 <form action="/DIADIEMs/Index">
     <div class="form-row">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="ĐỊA CHỈ" class="btn btn-default" />
+            <input type="submit" value="ĐỊA CHỈ" class="btn btn-default" style=" background-color: #d69a62; color: white; left: 50px; margin-left: 90%;" />
         </div>
     </div>
 </form>
-<h2>Details</h2>
+<h2 style=" font-weight: 700; text-align :center">THÔNG TIN CHI TIẾT</h2>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
 
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
 <div>
-   
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TENKHACHHANG)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TENKHACHHANG)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SDT)
-        </dt>
+    <table>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.TENKHACHHANG)</th>
 
-        <dd>
-            @Html.DisplayFor(model => model.SDT)
-        </dd>
+            <th>@Html.DisplayNameFor(model => model.SDT)</th>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AVATAR)
-        </dt>
+            <th>@Html.DisplayNameFor(model => model.AVATAR)</th>
 
-        <dd>
-            @Html.DisplayFor(model => model.AVATAR)
-        </dd>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(model => model.TENKHACHHANG)</td>
+            <td>@Html.DisplayFor(model => model.SDT)</td>
+            <td>
+                >@Html.DisplayFor(model => model.AVATAR)
+            </td>
+        </tr>
+    </table>
 
-       
 
-    </dl>
 </div>
 <div class="form-row">
-    <div >
+    <div>
         <button class="col-md-offset-2 col-md-10"> @Html.ActionLink("Edit", "Edit", new { id = Model.MAKHACHHANG })</button>
-       
+
     </div>
 </div>
-

@@ -4860,7 +4860,6 @@
     <Content Include="Areas\NhanVien\Views\NHAPHANGs\Details.cshtml" />
     <Content Include="Areas\NhanVien\Views\NHAPHANGs\EditNhapHang.cshtml" />
     <Content Include="Areas\NhanVien\Views\NHAPHANGs\Index.cshtml" />
-    <Content Include="Areas\NhanVien\Views\QUANLYVOUCHERs\Create.cshtml" />
     <Content Include="Areas\NhanVien\Views\QUANLYVOUCHERs\Delete.cshtml" />
     <Content Include="Areas\NhanVien\Views\QUANLYVOUCHERs\Details.cshtml" />
     <Content Include="Areas\NhanVien\Views\QUANLYVOUCHERs\Edit.cshtml" />
@@ -5067,6 +5066,7 @@
     <Content Include="assets\KhachHang\plugins\themify-icons\fonts\themify.eot" />
     <Content Include="assets\KhachHang\plugins\themify-icons\fonts\themify.ttf" />
     <Content Include="assets\KhachHang\plugins\themify-icons\fonts\themify.woff" />
+    <Content Include="Areas\NhanVien\Views\QUANLYVOUCHERs\Create.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
