@@ -19,8 +19,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
         private DHEntities db = new DHEntities();
 
         // GET: NhanVien/MATHANGs
-
-        public ActionResult Product(string searchValue, int page = 1)
+        public ActionResult Product(string searchValue, string selectedType, string selectedBrand, string selectedPrice, string selectedSize, int page = 1)
         {
             int pageSize = 6;
 
@@ -37,33 +36,33 @@ namespace ShopWatch.Areas.NhanVien.Controllers
                 }
                 if (phanquyen == "NV QUANLYSP")
                 {
-                    var items = from mathang in db.MATHANGs
-                             
-                                where mathang.TRANGTHAI == false
-                                select new MathangViewModel
-                                {
-                                    MAMATHANG = mathang.MAMATHANG,
-                                    TENHANG = mathang.TENHANG,
-                                    GIAHANG = mathang.GIAHANG,
-                                    NGAYSANXUAT = mathang.NGAYSANXUAT,
-                                    TENHANGSANXUAT = mathang.TENHANGSANXUAT,
-                                    BAOHANH = mathang.BAOHANH,
-                                    LOAI = mathang.LOAI,
-                                    KICHTHUOC = mathang.KICHTHUOC,
-                                    ANHSANPHAM = mathang.ANHSANPHAM,
-                                    SALE = mathang.SALE.TRANGTHAI == false ? mathang.SALE : null
-                                };
-                    if (!string.IsNullOrEmpty(searchValue))
+                    var items = db.MATHANGs.Where(x => x.TRANGTHAI == false);
+                    if (!string.IsNullOrEmpty(searchValue) || !string.IsNullOrEmpty(selectedBrand) || !string.IsNullOrEmpty(selectedSize) || !string.IsNullOrEmpty(selectedType) || !string.IsNullOrEmpty(selectedPrice))
                     {
-                        items = items.Where(x =>
-                         SqlFunctions.StringConvert((double)x.GIAHANG).Contains(searchValue) ||
-                         x.TENHANG.Contains(searchValue) ||
-                         SqlFunctions.PatIndex("%" + searchValue + "%", SqlFunctions.StringConvert((double)x.GIAHANG)) > 0 ||
-                         SqlFunctions.PatIndex("%" + searchValue + "%", x.TENHANG) > 0);
 
-
+                        if (!string.IsNullOrEmpty(selectedPrice))
+                        {
+                            double priceValue = double.Parse(selectedPrice);
+                            items = items.Where(x =>
+                                (selectedPrice == null || x.GIAHANG <= priceValue) && // So sánh giá tiền với giá trị đã chuyển đổi sang số
+                                (searchValue == null || x.TENHANG.Contains(searchValue)) &&
+                                (selectedSize == null || SqlFunctions.PatIndex("%" + selectedSize + "%", x.KICHTHUOC.ToString()) > 0) &&
+                                (selectedBrand == null || x.TENHANGSANXUAT.Contains(selectedBrand)) &&
+                                (selectedType == null || x.LOAI.Contains(selectedType))
+                            );
+                        }
+                        else
+                        {
+                            items = items.Where(x =>
+                                                      (searchValue == null || x.TENHANG.Contains(searchValue)) &&
+                                                      (selectedSize == null || SqlFunctions.PatIndex("%" + selectedSize + "%", x.KICHTHUOC.ToString()) > 0) &&
+                                                      (selectedBrand == null || x.TENHANGSANXUAT.Contains(selectedBrand)) &&
+                                                      (selectedType == null || x.LOAI.Contains(selectedType))
+                                                  );
+                        }
                     }
-                        return View(items.ToList().ToPagedList(page, pageSize));
+
+                    return View(items.ToList().ToPagedList(page, pageSize));
                 }
 
                 return RedirectToAction("Index", "BackToPemission");
@@ -71,7 +70,6 @@ namespace ShopWatch.Areas.NhanVien.Controllers
 
             return RedirectToAction("LoginUser", "TAIKHOANs");
         }
-
         public ActionResult CreateMatHang()
         {
             if (Session["UserEmail"] != null)

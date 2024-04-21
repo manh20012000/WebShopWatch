@@ -26,9 +26,13 @@
 
 
 <div style="margin-top:200px">
-
+    <h2 style="text-align:center;font-weight: 400; font-family: 'Times New Roman' , Times, serif;margin-bottom:30px;">THÔNG TIN ĐƠN HÀNG ĐÃ ĐẶT</h2>
+    <div style="display:flex;justify-content:space-between;padding:0 10px 0 10px">
+        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("ListOder", "DatHang")'">Lịch sử đã nhận</button>
+        <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("ListCanceOder", "DatHang")'">Lịch sử đã hũy</button>
+    </div>
 </div>
-<h2 style="text-align:center;font-weight: 400; font-family: 'Times New Roman' , Times, serif;margin-bottom:30px;">THÔNG TIN ĐƠN HÀNG ĐÃ ĐẶT</h2>
+
 
 <div class="margin-bottom:120px" style="padding:10px">
 
@@ -36,43 +40,43 @@
 
     <table class="table">
         <tr>
-            <th>
+            <th class="text-center">
                 <label>NGAYMUA</label>
 
             </th>
-            <th>
+            <th class="text-center">
                 <label>TONGTIEN</label>
 
             </th>
-            <th>
+
+            <th class="text-center">
                 <label>TRANGTHAI</label>
 
             </th>
-            <th>
+            <th class="text-center">
                 <label>THANHTOAN</label>
 
             </th>
-            <th>
+            <th class="text-center">
                 <label>TINHTRANGDH</label>
             </th>
-            <th>
+            <th class="text-center">
                 <label>KHACHHANG</label>
             </th>
-            <th>
+            <th class="text-center">
                 TUYCHON
-                <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("ListOder", "DatHang")'">Đã nhận</button>
-                <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("ListCanceOder", "DatHang")'">CANCEORDER</button>
+
             </th>
             @foreach (var item in Model)
             {
-            <tr>
-                <td>
+<tr>
+                <td class="text-center">
                     @String.Format("{0:dd/MM/yyyy}", item.NGAYMUA)
                 </td>
                 <td class="text-center" style="font-size:16px;color:brown;font-weight:500">
                     @String.Format("{0:N0}", item.TONGTIEN)
                 </td>
-                <td>
+                <td class="text-center">
                     @if (item.TRANGTHAI == false)
                     {
                         <text>CHƯA THANH TOÁN</text>
@@ -82,7 +86,7 @@
                         <text>ĐÃ THANH TOÁN</text>
                     }
                 </td>
-                <td>
+                <td class="text-center">
                     @if (item.HINHTHUCTHANHTOAN == false)
                     {
                         <text>COD</text>
@@ -92,20 +96,20 @@
                         <text>ONLINE</text>
                     }
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.TINHTRANGDH)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.KHACHHANG.TENKHACHHANG)
                 </td>
-                <td>
+                <td class="text-center">
                     @{
                         DateTime ngayHienTai = DateTime.Now;
                         TimeSpan khoangThoiGian = (ngayHienTai - (item.NGAYNHAN ?? ngayHienTai));
                     }
 
 
-                    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Edit", new { id = item.MADH })'">Đã nhận</button>
+                    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Edit", new { id = item.MADH })'">Nhận hàng</button>
                     <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Details", new { id = item.MADH })'">Details Order</button>
 
                     @if (item.NGAYNHAN != null && khoangThoiGian.TotalDays <= 5)

@@ -1,4 +1,6 @@
-﻿@model IPagedList<ShopWatch.Models.MetaDATA.MathangViewModel>
+﻿
+
+@model IPagedList<ShopWatch.Models.MATHANG>
 @using PagedList;
 @using PagedList.Mvc;
 @{
@@ -61,20 +63,71 @@
             border: 1px solid red;
         }
 </style>
-<div class="row">
-    <div class="col-xs-12">
-        @using (Html.BeginForm("Product", "MATHANGs", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
-            <div class="input-group-container">
-                <div class="seache">
-                    <input id="myInput" onkeyup="searchTableColumns()" type="text" name="searchValue" class="form-control" placeholder="Nhập vào giá hoặc tên sản phẩm" aria-label="Search" aria-describedby="basic-addon2">
-                    <button class="btn btn-outline-secondary bnts" type="submit">Search</button>
+@*<div class="row">
+        <div class="col-xs-12">
+            @using (Html.BeginForm("Product", "MATHANGs", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="input-group-container">
+                    <div class="seache">
+                        <input id="myInput" onkeyup="searchTableColumns()" type="text" name="searchValue" class="form-control" placeholder="Nhập vào giá hoặc tên sản phẩm" aria-label="Search" aria-describedby="basic-addon2">
+                        <button class="btn btn-outline-secondary bnts" type="submit">Search</button>
+                    </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
+    </div>*@
+<div style="width: 100%; height: 50px; background-color: #f2f2f2; display: flex; align-items: center; justify-content: space-between;">
+    <div style="display: flex; justify-content: space-between; width: 100%;">
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+            <input id="myInput" onkeyup="searchTableColumns()" type="text" name="searchValue" placeholder="Nhập vào giá hoặc tên sản phẩm" aria-label="Search" aria-describedby="basic-addon2" style="width:350px;height:40px;border-radius:10px;border-width:1px">
+
+            <select name="brand" id="brandSelect" style="height: 40px; border-radius: 10px; border-width: 1px" onchange="updateHiddenInputs(); ">
+                <option disabled selected hidden>Chọn hãng</option>
+                <option value="Heuer">Heuer</option>
+                <option value="A.Lange & Söhne">A.Lange & Söhne</option>
+                <option value="Jaeger-LeCoultre">Jaeger-LeCoultre</option>
+                <option value="Rolex">Rolex</option>
+                <option value="Hublot">Hublot</option>
+            </select>
+            <select name="price" id="priceSelect" style="height: 40px; border-radius: 10px; border-width: 1px" onchange="updateHiddenInputs(); ">
+                <option disabled selected hidden>Chọn giá</option>
+                <option value="1000000">1.000.000</option>
+                <option value="4000000">4.000.000</option>
+                <option value="7000000">7.000.000</option>
+                <option value="10000000">10.000.000</option>
+                <option value="20000000">20.000.000</option>
+                <option value="30000000">30.000.000</option>
+                <option value="50000000">50.000.000</option>
+                <option value="100000000">100.000.000</option>
+                <option value="120000000">120.000.000</option>
+                <option value="150000000">150.000.000</option>
+                <option value="250000000">250.000.000</option>
+                <option value="500000000">500.000.000</option>
+            </select>
+            <select name="size" id="sizeSelect" style="height: 40px; border-radius: 10px; border-width: 1px" onchange="updateHiddenInputs(); ">
+                <option disabled selected hidden>Chọn size</option>
+                <option value="38">38</option>
+                <option value="44">44</option>
+            </select>
+            <select name="type" id="typeSelect" style="height: 40px; border-radius: 10px; border-width: 1px" onchange="updateHiddenInputs(); ">
+                <option disabled selected hidden>Chọn loại</option>
+                <option value="Đồng hồ cơ">Đồng hồ cơ</option>
+                <option value="ĐH ĐIỆN TỬ">ĐH ĐIỆN TỬ</option>
+                <option value="ĐH SMARTWATCH">ĐH SMARTWATCH</option>
+                <option value="cao cấp">cao cấp</option>
+            </select>
+        </div>
+        <form id="searchForms" action="/NhanVien/MATHANGs/Product" method="post">
+            <input type="hidden" id="selectedType" name="selectedType" />
+            <input type="hidden" id="selectedBrand" name="selectedBrand" />
+            <input type="hidden" id="selectedPrice" name="selectedPrice" />
+            <input type="hidden" id="selectedSize" name="selectedSize" />
+        </form>
     </div>
 </div>
+
+
 <div class="row">
     <div class="col-xs-12">
         <div class="box ">
@@ -82,27 +135,26 @@
             <div class="box-body" id="table-scroll">
                 <table id="myTable" class="table">
                     <thead id="table-wrapper">
-                          <tr style="background-color:#04AA6D; color: white;"class="header">
-                            <th style=" padding: 15px; text-align: center;">
+                        <tr style="background-color:#04AA6D; color: white;" class="header">
+                            <th style=" padding: 15px; text-align: center; color:antiquewhite">
                                 <label>TENHANG</label>
                             </th>
-                            <th style=" padding: 15px; text-align: center;">
+                            <th style=" padding: 15px; text-align: center; color:antiquewhite">
                                 <label>ANHSANPHAM</label>
 
                             </th>
-                            <th style=" padding: 15px; text-align: center;">
+                            <th style=" padding: 15px; text-align: center; color:antiquewhite">
                                 <label>SANXUAT</label>
 
                             </th>
-                            <th style=" padding: 15px; text-align: center;">
+                            <th style=" padding: 15px; text-align: center; color:antiquewhite">
                                 <label> LOAI</label>
                             </th>
-
-                            <th style=" padding: 15px; text-align: center;">
+                            <th style=" padding: 15px; text-align: center; color:antiquewhite">
                                 <label>HANGSANXUAT</label>
 
                             </th>
-                            <th style=" padding: 15px; text-align: center;">
+                            <th style=" padding: 15px; text-align: center; color:antiquewhite">
                                 <label>GIAHANG</label>
 
                             </th>
@@ -110,7 +162,7 @@
                                     <label>BAOHANH</label>
 
                                 </th>*@
-                            <th style=" padding: 15px; text-align: center;">
+                            <th style=" padding: 15px; text-align: center; color:antiquewhite">
                                 <label>SALE %</label>
 
                             </th>
@@ -197,20 +249,18 @@
 </div><!-- /.row -->
 <script>
     function searchTableColumns() {
-        // Declare variables 
-        var input, filter, table, tr, i, j, column_length, count_td;
+        // Declare variables
+        var input, filter, table, tr, i, j, column_length, count_td ;
         column_length = document.getElementById('myTable').rows[0].cells.length;
         input = document.getElementById("myInput");
         filter = input.value.toUpperCase();
         table = document.getElementById("myTable");
         tr = table.getElementsByTagName("tr");
-
         for (i = 0; i < tr.length; i++) {
             // Check if the row is the header row
             if (i === 0) {
                 continue; // Skip the header row
             }
-
             count_td = 0;
             for (j = 0; j < column_length - 2; j++) { // except first column
                 td = tr[i].getElementsByTagName("td")[j];
@@ -230,10 +280,51 @@
             }
         }
     }
+
+    document.getElementById("typeSelect").onchange = function () {
+        document.getElementById("selectedType").value = this.value;
+    };
+
+    document.getElementById("brandSelect").onchange = function () {
+        document.getElementById("selectedBrand").value = this.value;
+    };
+
+    document.getElementById("priceSelect").onchange = function () {
+        document.getElementById("selectedPrice").value = this.value;
+    };
+
+    document.getElementById("sizeSelect").onchange = function () {
+        document.getElementById("selectedSize").value = this.value;
+    };
+    var typeSelect = document.getElementById('typeSelect');
+    var brandSelect = document.getElementById('brandSelect');
+    var priceSelect = document.getElementById('priceSelect');
+    var sizeSelect = document.getElementById('sizeSelect');
+
+    // Gắn sự kiện onchange cho các phần tử select
+    typeSelect.addEventListener('change', function () {
+        document.getElementById('selectedType').value = this.value;
+        document.getElementById('searchForms').submit();
+    });
+
+    brandSelect.addEventListener('change', function () {
+        document.getElementById('selectedBrand').value = this.value;
+        document.getElementById('searchForms').submit();
+    });
+
+    priceSelect.addEventListener('change', function () {
+        document.getElementById('selectedPrice').value = this.value;
+        document.getElementById('searchForms').submit();
+    });
+
+    sizeSelect.addEventListener('change', function () {
+        document.getElementById('selectedSize').value = this.value;
+        document.getElementById('searchForms').submit();
+    });
 </script>
 <div>
     @Html.PagedListPager(Model, page => Url.Action("Product", new { page }))
 </div>
 @*<script src="~/assets/Admin/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="~/assets/Admin/plugins/datatables/dataTables.bootstrap.min.js"></script>
-<script src="~/assets/Admin/plugins/datatables/dataTables.alphabetSearch.js"></script>*@
+    <script src="~/assets/Admin/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="~/assets/Admin/plugins/datatables/dataTables.alphabetSearch.js"></script>*@

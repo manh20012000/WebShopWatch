@@ -1,0 +1,156 @@
+﻿@model IEnumerable<ShopWatch.Models.DATHANG>
+
+@{
+    ViewBag.Title = "GiaohangIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    ViewBag.Title = "GiaohangIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .main_education {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title {
+        color: #2bc27b;
+        margin-left: 30px;
+    }
+
+    .contents_education {
+        display: flex;
+    }
+
+    .education_line {
+        width: 3px;
+        height: auto;
+        background-color: #dbdbdb;
+        margin-right: 40px;
+    }
+
+    .box_circle {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #2bc27b;
+    }
+
+    .box_education {
+        display: flex;
+        position: relative;
+        width: 390px;
+        max-height: 150px;
+        border: 1px solid #dbdbdb;
+        padding: 19px 10px 6px 19px;
+        margin-bottom: 15px;
+    }
+
+    .box_circle {
+        display: flex;
+        position: absolute;
+        top: -3px;
+        left: -30px;
+    }
+</style>
+<div style="margin-top:200px">
+
+</div>
+<body>
+    <div class=" container">
+        <main class="row">
+            <div class="main_education">
+                <div class=" title"><h2>Education</h2></div>
+                <div class=" contents_education">
+                    <div class="education_line">
+
+                    </div>
+                    <div class="education">
+                        <div class="box_education">
+                            <div class="box_circle"></div>
+                            <div class="box">
+                                <h4>2018-2022</h4>
+                                <h3>Highh school degree</h3>
+                                <p>Lorem ipsum dolor...</p>
+                            </div>
+                        </div>
+                        <div class="box_education">
+                            <div class="box_circle"></div>
+                            <div class=" box">
+                                <h4>2018-2022</h4>
+                                <h3>Bachelor is degree </h3>
+                                <p>Lorem ipsum dolor...</p>
+                            </div>
+                        </div>
+                        <div class="box_education">
+                            <div class="box_circle"></div>
+                            <div class=" box">
+                                <h4>2018-2022</h4>
+                                <h3>Master degree</h3>
+                                <p>Lorem ipsum dolor...</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            @foreach (var item in Model)
+            {
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.NGAYMUA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TONGTIEN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TRANGTHAI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TINHTRANGDH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HINHTHUCTHANHTOAN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NGAYNHAN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NGAYHUY)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TUYCHON)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KHACHHANG.TENKHACHHANG)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QUANLYVOUCHER.GHICHU)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.THANHTOAN.PHUONGTHUCTHANHTOAN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TRANGTHAIGIAOHANG.VITRI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DIADIEM.TENDIACHI)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MADH }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.MADH }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MADH })
+                </td>
+
+
+            }
+
+
+        </main>
+    </div>
+
+</body>

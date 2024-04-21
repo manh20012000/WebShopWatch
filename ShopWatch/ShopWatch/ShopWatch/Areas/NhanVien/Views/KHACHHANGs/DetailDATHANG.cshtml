@@ -1,0 +1,77 @@
+﻿@model IEnumerable<ShopWatch.Models.CHITIETDATHANG>
+
+@{
+    ViewBag.Title = "DetailDATHANG";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>DetailDATHANG</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SOLUONG)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MATHANG.GIAHANG)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MATHANG.TENHANG)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.MATHANG.ANHSANPHAM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATHANG.NGAYNHAN)
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MATHANG.TENHANGSANXUAT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MATHANG.BAOHANH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATHANG.TINHTRANGDH)
+        </th>
+       
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.SOLUONG)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.GIABAN)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MATHANG.TENHANG)
+    </td>
+ 
+    <td>
+        <img src="@item.MATHANG.ANHSANPHAM" alt="Hình ảnh sản phẩm" class="product-image" style="width:40%;height:40%;" />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DATHANG.NGAYNHAN)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MATHANG.TENHANG)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MATHANG.BAOHANH)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DATHANG.TINHTRANGDH)
+    </td>
+
+    @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MACTDH }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MACTDH }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MACTDH })
+        </td>*@
+</tr>
+}
+
+</table>

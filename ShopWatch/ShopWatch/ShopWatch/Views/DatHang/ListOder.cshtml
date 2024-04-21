@@ -4,37 +4,53 @@
     ViewBag.Title = "ListOder";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+ <style>   table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
 <div style="margin:200px 10px 10px 10px">
 
     <h2>ListOder</h2>
 
     <table class="table">
         <tr>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.NGAYMUA)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TONGTIEN)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.TRANGTHAI)
             </th>
-            <th>
+            <th class="text-center">
                 <label>THANH TOÁN</label>
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.TINHTRANGDH)
             </th>
 
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.NGAYNHAN)
             </th>
 
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.KHACHHANG.TENKHACHHANG)
             </th>
 
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.DIADIEM.TENDIACHI)
             </th>
 
@@ -42,55 +58,54 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @String.Format("{0:dd/MM/yyyy}", item.NGAYMUA)
-                </td>
-                <td class="text-center" style="font-size:16px;color:brown;font-weight:500">
-                    @String.Format("{0:N0}", item.TONGTIEN)
-                </td>
-                <td>
-                    @if (item.TRANGTHAI == false)
-                    {
-                        <text>CHƯA THANH TOÁN</text>
-                    }
-                    else
-                    {
-                        <text>ĐÃ THANH TOÁN</text>
-                    }
-                </td>
-                <td>
-                    @if (item.HINHTHUCTHANHTOAN == false)
-                    {
-                        <text>COD</text>
-                    }
-                    else
-                    {
-                        <text>ONLINE</text>
-                    }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TINHTRANGDH)
-                </td>
+    <tr>
+        <td class="text-center">
+            @String.Format("{0:dd/MM/yyyy}", item.NGAYMUA)
+        </td>
+        <td class="text-center" style="font-size:16px;color:brown;font-weight:500">
+            @String.Format("{0:N0}", item.TONGTIEN)
+        </td>
+        <td class="text-center">
+            @if (item.TRANGTHAI == false)
+            {
+                <text>CHƯA THANH TOÁN</text>
+            }
+            else
+            {
+                <text>ĐÃ THANH TOÁN</text>
+            }
+        </td>
+        <td class="text-center">
+            @if (item.HINHTHUCTHANHTOAN == false)
+            {
+                <text>COD</text>
+            }
+            else
+            {
+                <text>ONLINE</text>
+            }
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.TINHTRANGDH)
+        </td>
 
 
-                <td>
-                    @String.Format("{0:dd/MM/yyyy}", item.NGAYNHAN)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.KHACHHANG.TENKHACHHANG)
-                </td>
+        <td class="text-center">
+            @String.Format("{0:dd/MM/yyyy}", item.NGAYNHAN)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.KHACHHANG.TENKHACHHANG)
+        </td>
 
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.DIADIEM.TENDIACHI)
-                </td>
-                @*    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.MADH }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.MADH }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.MADH })
-                    </td>*@
-            </tr>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.DIADIEM.TENDIACHI)
+        </td>
+        @*    <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.MADH }) |
+            @Html.ActionLink("Details", "Details", new { id = item.MADH }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.MADH })
+        </td>*@
+    </tr>
         }
 
     </table>

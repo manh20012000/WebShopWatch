@@ -1,10 +1,10 @@
-﻿@model IPagedList<ShopWatch.Models.SALE>
-@using PagedList;
-@using PagedList.Mvc;
+﻿@model IEnumerable<ShopWatch.Models.KHACHHANG>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
 }
+
 
 <style>
     #table-wrapper {
@@ -35,14 +35,14 @@
             border: 1px solid red;
         }
 </style>
-<h2>Danh sách sale</h2>
+<h3>DANH SACH KHACH HANG</h3>
 <div class="row">
     <div class="col-xs-12">
         @using (Html.BeginForm("Product", "MATHANGs", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
             <div class="input-group-container">
-                <div class="seache"style="justify-content:center;display:flex">
+                <div class="seache" style="justify-content:center;display:flex">
                     <input id="myInput" onkeyup="searchTableColumns()" type="text" name="searchValue" class="form-control col-xs-8" placeholder="Nhập thông tin tìm kiếm" aria-label="Search" aria-describedby="basic-addon2">
                     <button class="btn btn-outline-secondary bnts" type="submit">Search</button>
                 </div>
@@ -50,66 +50,63 @@
         }
     </div>
 </div>
-<button style="background-color:aquamarine;width:10%;height:4%;margin:2%;border-radius:10px" onclick="location.href='@Url.Action("Create", "SALEs")'">
-    Thêm SALE
-</button>
-<div  >
+<div>
     <div id="table-scroll">
         <table id="myTable" class="table">
             <thead id="table-wrapper">
-                <tr style="background-color:#04AA6D;">
-                    <th style=" padding: 15px; text-align: center; color:antiquewhite">
-                        <label>PHANTRAMSALE</label>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TENKHACHHANG)
                     </th>
-                    <th style=" padding: 15px; text-align: center; color:antiquewhite">
-                        <label>NGAYBATDAU</label>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SDT)
                     </th>
-                    <th style=" padding: 15px; text-align: center; color:antiquewhite">
-                        <label>NGAYHETHAN</label>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AVATAR)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.TAIKHOAN.EMAIL)
                     </th>
                     <th></th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 @foreach (var item in Model)
                 {
-
                     <tr>
-                        <td class="text-center">
-                            <label style="color:red;font-size:18px">@Html.DisplayFor(modelItem => item.PHANTRAMSALE)<label>%</label></label>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TENKHACHHANG)
                         </td>
-                        <td class="text-center">
-                            <label>@String.Format("{0:dd/MM/yyyy}", item.NGAYBATDAU)</label>
-
+                        <td>
+                            @{string formattedPhoneNumber = "0" + item.SDT.Substring(2, 3) + "****" + item.SDT.Substring(7);
+                                }
+                            <span>@formattedPhoneNumber</span>
+                          
                         </td>
-                        <td class="text-center">
-                            <label>@String.Format("{0:dd/MM/yyyy}", item.NGAYHETHAN)</label>
-                        </td>
-                        <td class="text-center">
-                            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                                <div class="btn-group" role="group">
-                                    <button id="btnGroupDrop1"
-                                            type="button" style="color:brown"
-                                            class="btn btn-outline-secondary dropdown-toggle"
-                                            data-bs-toggle="dropdown"
-                                            aria-haspopup="true"
-                                            aria-expanded="false">
-                                        Tùy chọn
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledb0pxy="btnGroupDrop1" style="width:0">
-
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.MASALE }, new { @class = " btn btn-primary" })
-
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.MASALE }, new { @class = "btn btn-primary" })
-                                    </div>
-                                </div>
-                            </div>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AVATAR)
                         </td>
 
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TAIKHOAN.EMAIL)
+                        </td>
+                        <td style="display:flex;background-color:burlywood;justify-content:space-around;align-content:center">
+                            <button style="background-color:aquamarine;width:50%;height:40px;margin:2%;border-radius:10px" onclick="location.href='@Url.Action("INFORODER", "KHACHHANGs",new { id = item.MAKHACHHANG })'">
+                                THÔNG TIN ĐẶT HÀNG
+                            </button>
+                            <button style="background-color:aquamarine;width:30%;height:40px;margin:2%;border-radius:10px" onclick="location.href='@Url.Action("Details", "KHACHHANGs",new { id = item.MAKHACHHANG })'">
+                               DETAIL
+                            </button>
+                           @* @Html.ActionLink("Edit", "Edit", new { id = item.MAKHACHHANG }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.MAKHACHHANG }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.MAKHACHHANG })*@
+                        </td>
                     </tr>
                 }
-            </tbody>
-        </table>
+
+                </tbody>
+</table>
     </div>
 </div>
 <script>
@@ -147,9 +144,6 @@
         }
     }
 </script>
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
-@*<td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.MASALE }) |
-        @Html.ActionLink("Details", "Details", new { id = item.MASALE }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.MASALE })
-    </td>*@
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@

@@ -179,7 +179,11 @@
                 <hr />
                 <div class="form-group">
                     @Html.LabelFor(model => model.TONGTIEN, htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.TONGTIEN, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    <label class="form-control" style="color: red; font-weight: 600;" required="required">
+                        @String.Format("{0:N0}", Model.TONGTIEN)
+                    </label>
+                    @Html.EditorFor(model => model.TONGTIEN, new { htmlAttributes = new { @type = "hidden" } })
+
                     @Html.ValidationMessageFor(model => model.TONGTIEN, "", new { @class = "text-danger" })
                 </div>
             </div>

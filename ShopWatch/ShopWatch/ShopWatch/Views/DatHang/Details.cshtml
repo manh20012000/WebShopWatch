@@ -129,8 +129,11 @@
         </div>
     </div>
 </div>
-
+    
 <p>
+    <button style="background-color:aquamarine;width:80%;height:40px;margin:2%;border-radius:10px" onclick="location.href='@Url.Action("DetailDATHANG", "KHACHHANGs",new { id = Model.MADH })'">
+        DETAIL
+    </button>
     @Html.ActionLink("Edit", "Edit", new { id = Model.MADH }, new { @class = "btn btn-primary" }) |
     @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-secondary" })
 </p>

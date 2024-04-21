@@ -163,6 +163,7 @@
     <Compile Include="Areas\NhanVien\Controllers\BackToPemissionController.cs" />
     <Compile Include="Areas\NhanVien\Controllers\CHITIETPHIEUNHAPs1Controller.cs" />
     <Compile Include="Areas\NhanVien\Controllers\DATHANGController.cs" />
+    <Compile Include="Areas\NhanVien\Controllers\KHACHHANGsController.cs" />
     <Compile Include="Areas\NhanVien\Controllers\MATHANGsController.cs" />
     <Compile Include="Areas\NhanVien\Controllers\NHANVIENsController.cs" />
     <Compile Include="Areas\NhanVien\Controllers\NHAPHANGsController.cs" />
@@ -4852,7 +4853,6 @@
     <Content Include="Areas\NhanVien\Views\MATHANGs\Delete.cshtml" />
     <Content Include="Areas\NhanVien\Views\MATHANGs\Details.cshtml" />
     <Content Include="Areas\NhanVien\Views\MATHANGs\EditProduct.cshtml" />
-    <Content Include="Areas\NhanVien\Views\MATHANGs\Product.cshtml" />
     <Content Include="Areas\NhanVien\Views\NHANVIENs\Details.cshtml" />
     <Content Include="Areas\NhanVien\Views\NHANVIENs\EditProfile.cshtml" />
     <Content Include="Areas\NhanVien\Views\NHAPHANGs\Create.cshtml" />
@@ -5067,6 +5067,14 @@
     <Content Include="assets\KhachHang\plugins\themify-icons\fonts\themify.ttf" />
     <Content Include="assets\KhachHang\plugins\themify-icons\fonts\themify.woff" />
     <Content Include="Areas\NhanVien\Views\QUANLYVOUCHERs\Create.cshtml" />
+    <Content Include="Areas\NhanVien\Views\MATHANGs\Product.cshtml" />
+    <Content Include="Areas\NhanVien\Views\KHACHHANGs\Create.cshtml" />
+    <Content Include="Areas\NhanVien\Views\KHACHHANGs\Delete.cshtml" />
+    <Content Include="Areas\NhanVien\Views\KHACHHANGs\Details.cshtml" />
+    <Content Include="Areas\NhanVien\Views\KHACHHANGs\Edit.cshtml" />
+    <Content Include="Areas\NhanVien\Views\KHACHHANGs\Index.cshtml" />
+    <Content Include="Areas\NhanVien\Views\KHACHHANGs\INFORODER.cshtml" />
+    <Content Include="Areas\NhanVien\Views\KHACHHANGs\DetailDATHANG.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -5153,6 +5161,7 @@
     <Content Include="Views\QUANLYVOUCHERs\VoucherIndex.cshtml" />
     <Content Include="Views\DatHang\ListCanceOder.cshtml" />
     <Content Include="Views\DatHang\ListOder.cshtml" />
+    <Content Include="Views\DatHang\GiaohangIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -149,14 +149,17 @@ namespace ShopWatch.Controllers
                 // Chuyển đổi chuỗi JSON thành mảng đối tượng
                 var itemsArray = JsonConvert.DeserializeObject<List<CHITIETDATHANG>>(decodedData);
                 var email = Session["EmailClient"] as string;
+
                 Session["SelectedItemsData"] = itemsArray;
                 Session["sessionVoucher"] = itemsArray;
-             var voucher = Session["sessionVoucher"] as VOUCHER;
+                var voucher = Session["sessionVoucher"] as VOUCHER;
+
                 KHACHHANG user = db.KHACHHANGs.FirstOrDefault(u => u.EMAIL == email);
                 var NGAYMUA = DateTime.Now;
                 var danhsachdonhang = db.DATHANGs.Where(m => m.MAKHACHHANG == user.MAKHACHHANG).ToList();
                 Random random = new Random();
                 int Numrd = random.Next(1000000, 9000000);
+
                 var quanLyVoucherList = db.QUANLYVOUCHERs
                       .Where(quanLyVoucher => quanLyVoucher.MAKHACHHANG == user.MAKHACHHANG &&
                             quanLyVoucher.TRANGTHAI == true &&
@@ -174,7 +177,7 @@ namespace ShopWatch.Controllers
                 {  ViewBag.MAQUANLYVOUCHER = vouchersQL;
                   var vouchers  = db.VOUCHERs.Find(vouchersQL.MAVOUCHER);
                    ViewBag.Voucherss = vouchers;
-                    giatien = (double)((giatien * vouchers.PHANTRAMGIAMGIA) / 100);
+                    giatien = (double)(giatien -(giatien* vouchers.PHANTRAMGIAMGIA / 100));
                 }
                 DatHangMetaData dathang = new DatHangMetaData
                 {

@@ -38,12 +38,39 @@ namespace ShopWatch.Controllers
 
             } catch(Exception ex)
             {
+                
+            }
+            return View();
+        }
+        public ActionResult GiaohangIndex()
+        {
+            var email = Session["EmailClient"] as string;
+            try
+            {
+                KHACHHANG user = db.KHACHHANGs.FirstOrDefault(u => u.EMAIL == email);
+                int? khachhang = GetMaKH();
+                if (khachhang == null)
+                {
+                    return RedirectToAction("Dangnhap", "TAIKHOANs");
+                }
+               
+
+                var danhsachdonhang = db.DATHANGs
+                           .Where(m => m.MAKHACHHANG == user.MAKHACHHANG &&
+                            m.TUYCHON != false)
+                          .ToList();
+                return View(danhsachdonhang);
+
+            }
+            catch (Exception ex)
+            {
 
             }
             return View();
         }
-      
-        static string GenerateRandomString(int length, string characters)
+    
+
+static string GenerateRandomString(int length, string characters)
     {
         Random random = new Random();
         StringBuilder result = new StringBuilder(length);

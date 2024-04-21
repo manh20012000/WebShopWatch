@@ -175,11 +175,13 @@
                         <div class="container" style=" font-family: 'Times New Roman', Times, sans-serif;">
                             <p style=" color: #112d49; text-transform: uppercase">Mã voucher:  <span class="promo" style=" color: #112d49; text-transform: uppercase">   @Html.ActionLink("Details", "Details", new { id = item.MAVOUCHER })</span></p>
 
-
                         </div>
                         <div style=" display:flex">
                             <p style="color:darkorchid">NGÀY KẾT THÚC :   @String.Format("{0:dd/MM/yyyy}", item.NGAYKETTHUC)</p>
-                            <button class="button button2 apsolut" style=" font-weight: 600;bottom:10px"><a href="/QUANLYVOUCHERs/MuaNgay?id=@item.MAQUANLYVOUCHER"> MUA NGAY</a></button>
+                            <button class="button button2 apsolut" style=" font-weight: 600;bottom:10px"onclick="location.href='@Url.Action("MuaNgay", "QUANLYVOUCHERs",new {id = @item.MAQUANLYVOUCHER } )'">
+                            @*<a href="/QUANLYVOUCHERs/MuaNgay?id=@item.MAQUANLYVOUCHER"> MUA NGAY</a>*@
+                                MUA NGAY
+                            </button>
                         </div>
 
                     </div>

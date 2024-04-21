@@ -131,11 +131,13 @@
 
     <div class="row" style="margin-top: 90px">
         <div class="col-md-12" style="margin-top: 90px">
-            <div>
+            <div style="width:100%;display:flex;justify-content:space-between">
                 <h3 class="title">
                     GIỎ HÀNG
                 </h3>
-
+                <button style="background-color:burlywood;width:20%;height:40px;margin:2%;border-radius:10px" onclick="location.href='@Url.Action("GiaohangIndex", "DatHang")'">
+                  DANH MỤC GIAO HÀNG
+                </button>
             </div>
             <div class="clearfix">
             </div>
@@ -234,8 +236,6 @@
                                 <td class="text-center" style="font-size:18px;color:red;font-weight:500">
                                     <label class="gia-hang-label"> @String.Format("{0:N0}", @item.MATHANG.GIAHANG) VND</label>
                                 </td>
-
-
                                 <td class="text-center">
                                     <div class="quantity-control" id="quantity-control" style="flex-direction:row">
                                         <button class="quantity-decrease button_down">-</button>

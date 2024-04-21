@@ -1,0 +1,153 @@
+﻿@model IEnumerable<ShopWatch.Models.DATHANG>
+
+@{
+    ViewBag.Title = "INFORODER";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+    #table-wrapper {
+        position: relative;
+    }
+
+    #table-scroll {
+        height: 600px;
+        overflow: auto;
+        margin-top: 20px;
+    }
+
+    #table-wrapper table {
+        width: 100%;
+    }
+
+    #table-wrapper {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background-color: #04AA6D;
+    }
+
+
+        #table-wrapper table thead th .text {
+            position: absolute;
+            top: -20px;
+            z-index: 2;
+            height: 20px;
+            width: 35%;
+            border: 1px solid red;
+        }
+</style>
+<h2>THONG TIN DAT HANG KHACH HANG</h2>
+<div class="box-body" id="table-scroll">
+    <table id="myTable" class="table">
+        <thead id="table-wrapper">
+           
+                <tr>
+                    <th class="text-center">
+                        NGAYMUA
+                    </th>
+                    <th class="text-center">
+                        TONGTIEN
+                    </th>
+                    <th class="text-center">
+                        TRANGTHAI
+                    </th>
+                    <th class="text-center">
+                        <label>THANHTOAN</label>
+
+                    </th>
+                    <th class="text-center">
+                        <label>TINHTRANGDH</label>
+                    </th>
+
+                    <th class="text-center">
+                        NGAYNHAN
+                    </th>
+                    <th class="text-center">
+                        NGAYHUY
+                    </th>
+
+                    <th class="text-center">
+                        TENKHACHHANG
+                    </th>
+                    <th class="text-center">
+                       THONG TIN THEM
+                    </th>
+
+                </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {<tr>
+                 <td class="text-center">
+                     @Html.DisplayFor(modelItem => item.NGAYMUA)
+                 </td>
+            <td class="text-center" style="font-size:16px;color:brown;font-weight:500">
+                @String.Format("{0:N0}", item.TONGTIEN)
+            </td>
+            <td class="text-center">
+                @if (item.TRANGTHAI == false)
+                {
+                    <text>CHƯA THANH TOÁN</text>
+                }
+                else
+                {
+                    <text>ĐÃ THANH TOÁN</text>
+                }
+            </td>
+            <td class="text-center">
+                @if (item.HINHTHUCTHANHTOAN == false)
+                {
+                    <text>COD</text>
+                }
+                else
+                {
+                    <text>ONLINE</text>
+                }
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.TINHTRANGDH)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.NGAYNHAN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NGAYHUY)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.KHACHHANG.TENKHACHHANG)
+            </td>
+           @* <td>
+                @Html.DisplayFor(modelItem => item.DIADIEM.TENDIACHI)
+            </td>*@
+             <td>
+                 <button style="background-color:aquamarine;width:80%;height:40px;margin:2%;border-radius:10px" onclick="location.href='@Url.Action("DetailDATHANG", "KHACHHANGs",new { id = item.MADH })'">
+                     DETAIL
+                 </button>
+                @* @Html.ActionLink("Edit", "Edit", new { id = item.MADH }) |
+                 @Html.ActionLink("Details", "Details", new { id = item.MADH }) |
+                 @Html.ActionLink("Delete", "Delete", new { id = item.MADH })*@
+             </td>
+            </tr>
+          }
+
+            </tbody>
+        </table>
+
+    </div><!-- /.box-body -->
