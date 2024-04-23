@@ -26,7 +26,7 @@ namespace ShopWatch.Models
         public Nullable<int> MAKHACHHANG { get; set; } 
         [Required(ErrorMessage = "Please enter TENDIACHI")]
         public string TENDIACHI { get; set; }
-        [RegularExpression(@"^\d{10,}$", ErrorMessage = "Phone number must be at least 10 digits")]
+        [RegularExpression(@"^\d{10}$", ErrorMessage = "Phone number must be exactly 10 digits")]
         public string SDT { get; set; }
 
         public Nullable<bool> MACDINH { get; set; }

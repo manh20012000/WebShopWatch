@@ -455,16 +455,27 @@ static string GenerateRandomString(int length, string characters)
 
         public ActionResult Details(string id)
         {
+           
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DATHANG dATHANG = db.DATHANGs.Find(id);
+            try
+            {
+             DATHANG dATHANG = db.DATHANGs.Find(id);
+
             if (dATHANG == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.DataChitietdathang = db.CHITIETDATHANGs.Where(ctdh => ctdh.MADH == id).ToList();
             return View(dATHANG);
+            }catch(Exception ex)
+            {
+
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
         public ActionResult Edit(string id)
         {

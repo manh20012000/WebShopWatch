@@ -37,6 +37,7 @@
         padding: 8px;
         text-align: left;
     }
+
     .bnts {
         background-color: burlywood;
         margin-left: 20px;
@@ -46,15 +47,16 @@
         display: flex;
         padding: 20px
     }
-   
+
     #table-wrapper {
         position: relative;
         position: sticky;
         top: 0;
         z-index: 1;
     }
+
     #table-scroll {
-        max-height: 700px ;
+        max-height: 700px;
         overflow: auto;
         margin-top: 20px;
     }
@@ -62,6 +64,7 @@
     #table-wrapper table {
         width: 100%;
     }
+
         #table-wrapper table thead th .text {
             position: absolute;
             top: -20px;
@@ -70,23 +73,25 @@
             width: 35%;
             border: 1px solid red;
         }
+
     tbody {
-        height:30px;
+        height: 30px;
         overflow: scroll;
     }
 </style>
-
+<h4 style="font-weight:bold">QUANLYVOUCHER</h4>
+<hr />
 <div class="row">
     <div class="col-xs-12">
         @using (Html.BeginForm("Index", "NHAPHANGs", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
-        <div class="input-group-container">
-            <div class="seache">
-                <input id="myInput" onkeyup="myFunction()"type="text" name="searchValue" class="form-control" placeholder="Nhập vào tìm kiếm" aria-label="Search" aria-describedby="basic-addon2">
-                <button class="btn btn-outline-secondary bnts" type="submit">Search</button>
+            <div class="input-group-container">
+                <div class="seache">
+                    <input id="myInput" onkeyup="myFunction()" type="text" name="searchValue" class="form-control" placeholder="Nhập vào tìm kiếm ,Id, ngày tháng năm,tên..." aria-label="Search" aria-describedby="basic-addon2">
+                    <button class="btn btn-outline-secondary bnts" type="submit">Search</button>
+                </div>
             </div>
-        </div>
         }
     </div>
 </div>
@@ -94,10 +99,10 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="box ">
-           
+
             <div id="table-wrapper">
                 <div id="table-scroll">
-                    
+
                     <table id="myTable" class="tablel table-bordered table-striped">
                         <thead id="table-wrapper">
                             <tr>
@@ -146,30 +151,38 @@
             </div>
         </div>
     </div>
-        </div>
+</div>
 
 <script>
     function myFunction() {
         // Declare variables
-        var input, filter, table, tr, td, i, txtValue;
+        var input, filter, table, tr, i, j, column_length, count_td;
+        column_length = document.getElementById('myTable').rows[0].cells.length;
         input = document.getElementById("myInput");
         filter = input.value.toUpperCase();
         table = document.getElementById("myTable");
         tr = table.getElementsByTagName("tr");
-
-        // Loop through all table rows, and hide those who don't match the search query
         for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[2];
-            td = tr[i].getElementsByTagName("td")[3];
-            td = tr[i].getElementsByTagName("td")[0];
-           
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
+            // Check if the row is the header row
+            if (i === 0) {
+                continue; // Skip the header row
+            }
+            count_td = 0;
+            for (j = 0; j < column_length - 2; j++) { // except first column
+                td = tr[i].getElementsByTagName("td")[j];
+                /* ADD columns here that you want you to filter to be used on */
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        count_td++;
+                    }
                 }
+            }
+
+            // Check if it's the header row or if any column contains the filter text
+            if (count_td > 0) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
             }
         }
     }

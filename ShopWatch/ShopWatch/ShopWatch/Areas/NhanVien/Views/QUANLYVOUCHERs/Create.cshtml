@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>QUANLYVOUCHER</h4>
+        <h4 style="font-weight:bold">QUANLYVOUCHER</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group ">
@@ -56,9 +56,9 @@
             </div>
             @Html.ValidationMessageFor(model => model.TRANGTHAIGIOIHAN, "", new { @class = "text-danger" })
         </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+        <div class="form-group" style="margin-top:60px">
+            <div class="col-md-offset-5 col-md-12">
+                <input type="submit" value="Create" class="btn btn-default"style="background-color:indianred;font-weight:bold" />
             </div>
         </div>
     </div>

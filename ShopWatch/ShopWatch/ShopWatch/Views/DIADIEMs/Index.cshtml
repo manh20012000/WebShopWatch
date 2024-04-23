@@ -3,8 +3,6 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
-
 }
 <div style="margin:200px 10px 10px 10px">
     <h2>ĐỊA CHỈ GIAO HÀNG </h2>
@@ -15,16 +13,16 @@
 
     <table class="table">
         <tr>
-            <th>
+            <th >
                 @Html.DisplayNameFor(model => model.TENDIACHI)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.SDT)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.KHACHHANG.TENKHACHHANG)
             </th>
-            <th>CHỌNDD</th>
+            <th class="text-center">CHỌN ĐỊA ĐIỂM </th>
             <th></th>
         </tr>
 
@@ -34,19 +32,41 @@
         <td>
             @Html.DisplayFor(modelItem => item.TENDIACHI)
         </td>
-        <td>
+        <td class="text-center">
             @Html.DisplayFor(modelItem => item.SDT)
         </td>
-        <td>
+        <td class="text-center">
             @Html.DisplayFor(modelItem => item.KHACHHANG.TENKHACHHANG)
         </td>
-        <td>  <input type="radio" name="diadiem" class="diadiem" data-id="@item.MADIADIEM" value="@item.MADIADIEM" @(item.MACDINH.GetValueOrDefault() ? "checked" : "") /></td>
-      
-        <td>
+        <td class="text-center"> <input type="radio" name="diadiem" class="diadiem" data-id="@item.MADIADIEM" value="@item.MADIADIEM" @(item.MACDINH.GetValueOrDefault() ? "checked" : "") /></td>
+        <td class="text-center">
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                <div class="btn-group" role="group">
+                    <button id="btnGroupDrop1"
+                            type="button" style="color:brown"
+                            class="btn btn-outline-secondary dropdown-toggle"
+                            data-bs-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                        Tùy chọn
+                    </button>
+                    <div class="dropdown-menu" style="width:200px">
+                        <a href="@Url.Action("Edit", new { id = item.MADIADIEM })" class="btn btn-primary">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
 
-            @*   @Html.ActionLink("Details", "Details", new { id = item.MADIADIEM }) |*@
-            @Html.ActionLink("Delete", "Delete", new { id = item.MADIADIEM })
+                        <a href="@Url.Action("Delete", new { id = item.MADIADIEM })" class="btn btn-primary">
+                            <i class="fas fa-trash-alt"></i>DELETE
+                        </a>
+                    </div>
+                </div>
+            </div>
         </td>
+        <!--<td>-->
+        @*   @Html.ActionLink("Details", "Details", new { id = item.MADIADIEM }) |*@
+        @*  @Html.ActionLink("Delete", "Delete", new { id = item.MADIADIEM })
+        @Html.ActionLink("Edit", "Edit", new { id = item.MADIADIEM })*@
+        <!--</td>-->
     </tr>
         }
 

@@ -120,16 +120,23 @@ namespace ShopWatch.Areas.NhanVien.Controllers
         }
         public ActionResult INFORODER(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                KHACHHANG kHACHHANG = db.KHACHHANGs.Find(id);
+                var danhsachdonhang = db.DATHANGs
+                          .Where(m => m.MAKHACHHANG == kHACHHANG.MAKHACHHANG)
+                         .ToList();
+                return View(danhsachdonhang);
             }
-            KHACHHANG kHACHHANG = db.KHACHHANGs.Find(id);
-            var danhsachdonhang = db.DATHANGs
-                      .Where(m => m.MAKHACHHANG == kHACHHANG.MAKHACHHANG)
-                     .ToList();
-            return View(danhsachdonhang);
-           
+            catch
+            {
+
+            }
+              return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
         public ActionResult DetailDATHANG(string  id)
         {
@@ -137,8 +144,24 @@ namespace ShopWatch.Areas.NhanVien.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var ctdhs = db.CHITIETDATHANGs.Where(ctdh => ctdh.MADH == id).ToList();
-            return View(ctdhs);
+            try
+            {
+                DATHANG dATHANG = db.DATHANGs.Find(id);
+
+                if (dATHANG == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.DataChitietdathangAdmin = db.CHITIETDATHANGs.Where(ctdh => ctdh.MADH == id).ToList();
+                return View(dATHANG);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ex:" + ex.Message);
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
 
         }
         protected override void Dispose(bool disposing)
