@@ -219,16 +219,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TRANGTHAIGIAOHANGs">
-      <EntityTypeMapping TypeName="DHModel.TRANGTHAIGIAOHANG">
-        <MappingFragment StoreEntitySet="TRANGTHAIGIAOHANG">
-          <ScalarProperty Name="THOIGIANNHANHANG" ColumnName="THOIGIANNHANHANG" />
-          <ScalarProperty Name="THOIGIANGIAOHANG" ColumnName="THOIGIANGIAOHANG" />
-          <ScalarProperty Name="VITRI" ColumnName="VITRI" />
-          <ScalarProperty Name="MAVANDON" ColumnName="MAVANDON" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="DIADIEMs">
       <EntityTypeMapping TypeName="DHModel.DIADIEM">
         <MappingFragment StoreEntitySet="DIADIEM">
@@ -248,6 +238,17 @@
           <ScalarProperty Name="DIEUKIEN" ColumnName="DIEUKIEN" />
           <ScalarProperty Name="PHANTRAMGIAMGIA" ColumnName="PHANTRAMGIAMGIA" />
           <ScalarProperty Name="MAVOUCHER" ColumnName="MAVOUCHER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TRANGTHAIGIAOHANGs">
+      <EntityTypeMapping TypeName="DHModel.TRANGTHAIGIAOHANG">
+        <MappingFragment StoreEntitySet="TRANGTHAIGIAOHANG">
+          <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+          <ScalarProperty Name="THOIGIANNHANHANG" ColumnName="THOIGIANNHANHANG" />
+          <ScalarProperty Name="THOIGIANGIAOHANG" ColumnName="THOIGIANGIAOHANG" />
+          <ScalarProperty Name="VITRI" ColumnName="VITRI" />
+          <ScalarProperty Name="MAVANDON" ColumnName="MAVANDON" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

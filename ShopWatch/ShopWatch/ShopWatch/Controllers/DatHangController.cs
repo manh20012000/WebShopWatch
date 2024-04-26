@@ -8,6 +8,7 @@ using System.Net;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.SignalR;
 using ShopWatch.Models;
 using ShopWatch.Models.MetaDATA;
 using ShopWatch.Payment;
@@ -28,8 +29,17 @@ namespace ShopWatch.Controllers
                 return RedirectToAction("Dangnhap", "TAIKHOANs");
             }
             DateTime ngayHienTai = DateTime.Now;
+                var donhang = db.DATHANGs
+                      .Where(m => m.MAKHACHHANG == user.MAKHACHHANG &&
+                       m.TUYCHON != false ||
+                       DbFunctions.AddDays(m.NGAYNHAN, 5) < DateTime.Now);
+                     foreach(var item in donhang)
+                {
+                    item.TUYCHON = true;
 
-            var danhsachdonhang = db.DATHANGs
+                }
+                db.SaveChanges();
+                var danhsachdonhang = db.DATHANGs
                        .Where(m => m.MAKHACHHANG == user.MAKHACHHANG &&
                         m.TUYCHON != false||
                         DbFunctions.AddDays(m.NGAYNHAN, 5) >= DateTime.Now)
@@ -120,7 +130,7 @@ static string GenerateRandomString(int length, string characters)
                          MAVANDON = dATHANG.MAVANDON,
                          TRANGTHAI = false,
                          MADH = randomString,
-                         TINHTRANGDH="Đang giao"
+                         TINHTRANGDH = "chờ xác nhận",
                      };
                      db.DATHANGs.Add(dathang);
                     DateTime StartDate = DateTime.Today;
@@ -244,7 +254,7 @@ static string GenerateRandomString(int length, string characters)
                                 MAVANDON = Dathang.MAVANDON,
                                 TRANGTHAI = false,
                                 MADH = randomString,
-                                TINHTRANGDH = "Đang giao",
+                                TINHTRANGDH = "chờ xác nhận",
                             };
                             db.DATHANGs.Add(dathang);
 
@@ -435,6 +445,9 @@ static string GenerateRandomString(int length, string characters)
                         }
                         //Thanh toan thanh cong
                         ViewBag.InnerText = "Giao dịch được thực hiện thành công. Cảm ơn quý khách đã sử dụng dịch vụ";
+                        var hubContext = GlobalHost.ConnectionManager.GetHubContext<MyHub1>();
+                        hubContext.Clients.All.SendNotification("Đơn hàng mới cần xác nhận");
+                      
                         //log.InfoFormat("Thanh toan thanh cong, OrderId={0}, VNPAY TranId={1}", orderId, vnpayTranId);
                     }
                     else
@@ -471,7 +484,7 @@ static string GenerateRandomString(int length, string characters)
             ViewBag.DataChitietdathang = db.CHITIETDATHANGs.Where(ctdh => ctdh.MADH == id).ToList();
             return View(dATHANG);
             }catch(Exception ex)
-            {
+            { return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             }
 

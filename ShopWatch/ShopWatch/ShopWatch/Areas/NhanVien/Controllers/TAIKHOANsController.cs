@@ -62,9 +62,17 @@ namespace ShopWatch.Areas.NhanVien.Controllers
                     {
                         return RedirectToAction("index", "NHAPHANGs");
                     }
-                    else
+                    else if(nhanvien.TENCHUCNANG == "NV KETOAN")
                     {
                         return RedirectToAction("index", "THONGKEs");
+                    }
+                    else if (nhanvien.TENCHUCNANG == "NV GIAOHANG")
+                    {
+                        return RedirectToAction("listGiaohang", "DATHANG");
+                    }
+                    else if (nhanvien.TENCHUCNANG == "NV HOTROKHACHHANG")
+                    {
+                        return RedirectToAction("index", "KHACHHANGs");
                     }
                 }
             }

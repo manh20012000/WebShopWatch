@@ -108,7 +108,9 @@ namespace ShopWatch.Areas.NhanVien.Controllers
         {
             if (Session["UserEmail"] != null)
             {
-                string phanquyen = Session["phanquyen"] as string;
+                try
+                { 
+                    string phanquyen = Session["phanquyen"] as string;
                 if (phanquyen == "NV NHAPHANG")
                 {
                         var THANHTIEN = 0;
@@ -130,6 +132,12 @@ namespace ShopWatch.Areas.NhanVien.Controllers
                         }
                     return RedirectToAction("Index", "CHITIETPHIEUNHAPs1");
                 }
+
+                }catch(Exception)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                   
                 return RedirectToAction("Index", "BackToPemission");
             }
             return RedirectToAction("LoginUser", "TAIKHOANs");

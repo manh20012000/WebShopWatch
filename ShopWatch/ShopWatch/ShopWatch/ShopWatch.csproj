@@ -173,6 +173,7 @@
     <Compile Include="Areas\NhanVien\Controllers\TAIKHOANsController.cs" />
     <Compile Include="Areas\NhanVien\Controllers\THONGKENHAPHANGController.cs" />
     <Compile Include="Areas\NhanVien\Controllers\THONGKEsController.cs" />
+    <Compile Include="Areas\NhanVien\Controllers\TRANGTHAIGIAOHANGsController.cs" />
     <Compile Include="Areas\NhanVien\Controllers\VOUCHERController.cs" />
     <Compile Include="Areas\NhanVien\NhanVienAreaRegistration.cs" />
     <Compile Include="Common\Common.cs" />
@@ -288,6 +289,7 @@
     <Compile Include="Models\VOUCHER.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="MyHub1.cs" />
     <Compile Include="Payment\MomoPayment\ConfigeMomo\Momoconfige.cs" />
     <Compile Include="Payment\VnPayLibrary.cs" />
     <Compile Include="Payment\ZaloPayment\Confige\ZalopayConfige.cs" />
@@ -5075,6 +5077,13 @@
     <Content Include="Areas\NhanVien\Views\KHACHHANGs\Index.cshtml" />
     <Content Include="Areas\NhanVien\Views\KHACHHANGs\INFORODER.cshtml" />
     <Content Include="Areas\NhanVien\Views\KHACHHANGs\DetailDATHANG.cshtml" />
+    <Content Include="Areas\NhanVien\Views\TRANGTHAIGIAOHANGs\Create.cshtml" />
+    <Content Include="Areas\NhanVien\Views\TRANGTHAIGIAOHANGs\Delete.cshtml" />
+    <Content Include="Areas\NhanVien\Views\TRANGTHAIGIAOHANGs\Details.cshtml" />
+    <Content Include="Areas\NhanVien\Views\TRANGTHAIGIAOHANGs\Edit.cshtml" />
+    <Content Include="Areas\NhanVien\Views\TRANGTHAIGIAOHANGs\Index.cshtml" />
+    <Content Include="Areas\NhanVien\Views\DATHANG\listGiaohang.cshtml" />
+    <Content Include="Areas\NhanVien\Views\KHACHHANGs\Xacnhandonhang.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

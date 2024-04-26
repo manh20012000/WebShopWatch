@@ -40,7 +40,6 @@ namespace ShopWatch.Models
         public virtual KHACHHANG KHACHHANG { get; set; }
         public virtual QUANLYVOUCHER QUANLYVOUCHER { get; set; }
         public virtual THANHTOAN THANHTOAN { get; set; }
-        public virtual TRANGTHAIGIAOHANG TRANGTHAIGIAOHANG { get; set; }
         public virtual DIADIEM DIADIEM { get; set; }
     }
 }

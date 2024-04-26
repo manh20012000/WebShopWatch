@@ -107,24 +107,25 @@
                         DateTime ngayHienTai = DateTime.Now;
                         TimeSpan khoangThoiGian = (ngayHienTai - (item.NGAYNHAN ?? ngayHienTai));
                     }
-
-
-                    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Edit", new { id = item.MADH })'">Nhận hàng</button>
-                    <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Details", new { id = item.MADH })'">Details Order</button>
-
                     @if (item.NGAYNHAN != null && khoangThoiGian.TotalDays <= 5)
                     {
-
-                        <input name="tenkhachhang" value="@item.KHACHHANG.TENKHACHHANG" type="hidden" />
-                        <input name="avatar" value="@item.KHACHHANG.AVATAR" type="hidden" />
-                        <input name="makhachhang" value="@item.KHACHHANG.MAKHACHHANG" type="hidden" />
-                        <input name="noidung" value="NỘI DUNG:HŨY ĐƠN HÀNG" type="hidden" />
-                        <input name="ngayhuy" value="@DateTime.Now" type="hidden" />
-                        <input name="title" value="TITLE:HŨY ĐƠN" type="hidden" />
-                        <button type="button" class="btn btn-danger cancel-order-btn" data-id="@item.MADH">Hủy đơn</button>
+                         <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Edit", new { id = item.MADH })'">Nhận hàng</button>
                     }
+                        <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Details", new { id = item.MADH })'">Details Order</button>
 
-                </td>
+                        @if (item.NGAYNHAN != null && khoangThoiGian.TotalDays <= 5)
+                        {
+
+                            <input name="tenkhachhang" value="@item.KHACHHANG.TENKHACHHANG" type="hidden" />
+                            <input name="avatar" value="@item.KHACHHANG.AVATAR" type="hidden" />
+                            <input name="makhachhang" value="@item.KHACHHANG.MAKHACHHANG" type="hidden" />
+                            <input name="noidung" value="NỘI DUNG:HŨY ĐƠN HÀNG" type="hidden" />
+                            <input name="ngayhuy" value="@DateTime.Now" type="hidden" />
+                            <input name="title" value="TITLE:HŨY ĐƠN" type="hidden" />
+                            <button type="button" class="btn btn-danger cancel-order-btn" data-id="@item.MADH">Hủy đơn</button>
+                        }
+
+                    </td>
             </tr>
         }
         </table>

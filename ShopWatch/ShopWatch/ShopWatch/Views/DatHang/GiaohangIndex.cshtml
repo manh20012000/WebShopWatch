@@ -64,45 +64,30 @@
     <div class=" container">
         <main class="row">
             <div class="main_education">
-                <div class=" title"><h2>Education</h2></div>
+                <div class=" title"></div>
                 <div class=" contents_education">
                     <div class="education_line">
 
                     </div>
-                    <div class="education">
-                        <div class="box_education">
-                            <div class="box_circle"></div>
-                            <div class="box">
-                                <h4>2018-2022</h4>
-                                <h3>Highh school degree</h3>
-                                <p>Lorem ipsum dolor...</p>
+                    @foreach (var item in Model)
+                    {
+                        
+                            <div class="box_education">
+                                <div class="box_circle"></div>
+                                <div class=" box">
+                                    <h4> @Html.DisplayFor(modelItem => item.NGAYMUA)</h4>
+                                    <h3>@Html.DisplayFor(modelItem => item.TINHTRANGDH) </h3>
+                                   
+                                </div>
                             </div>
-                        </div>
-                        <div class="box_education">
-                            <div class="box_circle"></div>
-                            <div class=" box">
-                                <h4>2018-2022</h4>
-                                <h3>Bachelor is degree </h3>
-                                <p>Lorem ipsum dolor...</p>
-                            </div>
-                        </div>
-                        <div class="box_education">
-                            <div class="box_circle"></div>
-                            <div class=" box">
-                                <h4>2018-2022</h4>
-                                <h3>Master degree</h3>
-                                <p>Lorem ipsum dolor...</p>
-                            </div>
-                        </div>
-
+                           
+                    }
                     </div>
-                </div>
             </div>
-            @foreach (var item in Model)
-            {
+           
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.NGAYMUA)
+               @* <td>
+                  
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TONGTIEN)
@@ -144,11 +129,7 @@
                     @Html.ActionLink("Edit", "Edit", new { id = item.MADH }) |
                     @Html.ActionLink("Details", "Details", new { id = item.MADH }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.MADH })
-                </td>
-
-
-            }
-
+                </td>*@
 
         </main>
     </div>

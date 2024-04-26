@@ -11,8 +11,7 @@ namespace ShopWatch.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class DIADIEM
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,13 +21,9 @@ namespace ShopWatch.Models
         }
     
         public int MADIADIEM { get; set; }
-       
-        public Nullable<int> MAKHACHHANG { get; set; } 
-        [Required(ErrorMessage = "Please enter TENDIACHI")]
+        public Nullable<int> MAKHACHHANG { get; set; }
         public string TENDIACHI { get; set; }
-        [RegularExpression(@"^\d{10}$", ErrorMessage = "Phone number must be exactly 10 digits")]
         public string SDT { get; set; }
-
         public Nullable<bool> MACDINH { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

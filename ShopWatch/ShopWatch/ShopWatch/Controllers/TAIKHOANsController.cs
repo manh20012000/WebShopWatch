@@ -116,7 +116,7 @@ namespace ShopWatch.Controllers
         public ActionResult Dangnhap(TAIKHOAN tAIKHOAN)
         {
             tAIKHOAN.MATKHAU = "11";
-            tAIKHOAN.EMAIL = "m@gmail.com";
+            tAIKHOAN.EMAIL = "a@gmail.com";
             var f_password = GetMD5(tAIKHOAN.MATKHAU);
             try
             {

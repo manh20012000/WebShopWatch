@@ -38,7 +38,6 @@
     <EntitySet Name="THANHTOANs" EntityType="DHModel.THANHTOAN" />
     <EntitySet Name="THONGKEs" EntityType="DHModel.THONGKE" />
     <EntitySet Name="THONGKENHAPHANGs" EntityType="DHModel.THONGKENHAPHANG" />
-    <EntitySet Name="TRANGTHAIGIAOHANGs" EntityType="DHModel.TRANGTHAIGIAOHANG" />
     <AssociationSet Name="FK__CHITIETDA__MAMAT__6A30C649" Association="DHModel.FK__CHITIETDA__MAMAT__6A30C649">
       <End Role="MATHANG" EntitySet="MATHANGs" />
       <End Role="CHITIETDATHANG" EntitySet="CHITIETDATHANGs" />
@@ -73,10 +72,6 @@
     </AssociationSet>
     <AssociationSet Name="FK__DATHANG__MATHANH__656C112C" Association="DHModel.FK__DATHANG__MATHANH__656C112C">
       <End Role="THANHTOAN" EntitySet="THANHTOANs" />
-      <End Role="DATHANG" EntitySet="DATHANGs" />
-    </AssociationSet>
-    <AssociationSet Name="FK__DATHANG__MAVANDO__66603565" Association="DHModel.FK__DATHANG__MAVANDO__66603565">
-      <End Role="TRANGTHAIGIAOHANG" EntitySet="TRANGTHAIGIAOHANGs" />
       <End Role="DATHANG" EntitySet="DATHANGs" />
     </AssociationSet>
     <AssociationSet Name="FK__GIOHANG__MAKHACH__6D0D32F4" Association="DHModel.FK__GIOHANG__MAKHACH__6D0D32F4">
@@ -129,6 +124,7 @@
       <End Role="VOUCHER" EntitySet="VOUCHERs" />
       <End Role="QUANLYVOUCHER" EntitySet="QUANLYVOUCHERs" />
     </AssociationSet>
+    <EntitySet Name="TRANGTHAIGIAOHANGs" EntityType="DHModel.TRANGTHAIGIAOHANG" />
   </EntityContainer>
   <EntityType Name="CHITIETDATHANG">
     <Key>
@@ -187,7 +183,6 @@
     <NavigationProperty Name="KHACHHANG" Relationship="DHModel.FK__DATHANG__MAKHACH__628FA481" FromRole="DATHANG" ToRole="KHACHHANG" />
     <NavigationProperty Name="QUANLYVOUCHER" Relationship="DHModel.FK__DATHANG__MAQUANL__6477ECF3" FromRole="DATHANG" ToRole="QUANLYVOUCHER" />
     <NavigationProperty Name="THANHTOAN" Relationship="DHModel.FK__DATHANG__MATHANH__656C112C" FromRole="DATHANG" ToRole="THANHTOAN" />
-    <NavigationProperty Name="TRANGTHAIGIAOHANG" Relationship="DHModel.FK__DATHANG__MAVANDO__66603565" FromRole="DATHANG" ToRole="TRANGTHAIGIAOHANG" />
     <NavigationProperty Name="DIADIEM" Relationship="DHModel.FK__DATHANG__MADIADI__6383C8BA" FromRole="DATHANG" ToRole="DIADIEM" />
   </EntityType>
   <EntityType Name="GIOHANG">
@@ -351,16 +346,6 @@
     <Property Name="TONGTIEN" Type="Double" />
     <NavigationProperty Name="NHAPHANG" Relationship="DHModel.FK__THONGKENH__MANHA__75A278F5" FromRole="THONGKENHAPHANG" ToRole="NHAPHANG" />
   </EntityType>
-  <EntityType Name="TRANGTHAIGIAOHANG">
-    <Key>
-      <PropertyRef Name="MAVANDON" />
-    </Key>
-    <Property Name="MAVANDON" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="VITRI" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="THOIGIANGIAOHANG" Type="DateTime" Precision="3" />
-    <Property Name="THOIGIANNHANHANG" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="DATHANGs" Relationship="DHModel.FK__DATHANG__MAVANDO__66603565" FromRole="TRANGTHAIGIAOHANG" ToRole="DATHANG" />
-  </EntityType>
   <Association Name="FK__CHITIETDA__MAMAT__6A30C649">
     <End Type="DHModel.MATHANG" Role="MATHANG" Multiplicity="0..1" />
     <End Type="DHModel.CHITIETDATHANG" Role="CHITIETDATHANG" Multiplicity="*" />
@@ -466,18 +451,6 @@
       </Principal>
       <Dependent Role="DATHANG">
         <PropertyRef Name="MATHANHTOAN" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__DATHANG__MAVANDO__66603565">
-    <End Type="DHModel.TRANGTHAIGIAOHANG" Role="TRANGTHAIGIAOHANG" Multiplicity="0..1" />
-    <End Type="DHModel.DATHANG" Role="DATHANG" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TRANGTHAIGIAOHANG">
-        <PropertyRef Name="MAVANDON" />
-      </Principal>
-      <Dependent Role="DATHANG">
-        <PropertyRef Name="MAVANDON" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -648,4 +621,14 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="TRANGTHAIGIAOHANG">
+    <Key>
+      <PropertyRef Name="MAVANDON" />
+    </Key>
+    <Property Name="MAVANDON" Type="Int32" Nullable="false" />
+    <Property Name="VITRI" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="THOIGIANGIAOHANG" Type="DateTime" Precision="3" />
+    <Property Name="THOIGIANNHANHANG" Type="DateTime" Precision="3" />
+    <Property Name="TRANGTHAI" Type="Boolean" />
+  </EntityType>
 </Schema>

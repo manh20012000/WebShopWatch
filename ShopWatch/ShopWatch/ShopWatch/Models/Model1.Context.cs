@@ -43,8 +43,8 @@ namespace ShopWatch.Models
         public virtual DbSet<THANHTOAN> THANHTOANs { get; set; }
         public virtual DbSet<THONGKE> THONGKEs { get; set; }
         public virtual DbSet<THONGKENHAPHANG> THONGKENHAPHANGs { get; set; }
-        public virtual DbSet<TRANGTHAIGIAOHANG> TRANGTHAIGIAOHANGs { get; set; }
         public virtual DbSet<DIADIEM> DIADIEMs { get; set; }
         public virtual DbSet<VOUCHER> VOUCHERs { get; set; }
+        public virtual DbSet<TRANGTHAIGIAOHANG> TRANGTHAIGIAOHANGs { get; set; }
     }
 }

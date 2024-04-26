@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using ShopWatch.Models;
 
 namespace ShopWatch.Areas.NhanVien.Controllers
@@ -17,9 +18,28 @@ namespace ShopWatch.Areas.NhanVien.Controllers
         // GET: NhanVien/KHACHHANGs
         public ActionResult Index()
         {
-            var kHACHHANGs = db.KHACHHANGs.Include(k => k.TAIKHOAN);
-            return View(kHACHHANGs.ToList());
-        }
+            if (Session["UserEmail"] != null)
+            {
+                string phanquyen = Session["phanquyen"] as string;
+                string userEmail = Session["UserEmail"] as string;
+
+                NHANVIEN nhanvien = db.NHANVIENs.FirstOrDefault(nv => nv.EMAIL == userEmail);
+                if (nhanvien != null)
+                {
+                    Session["MaNV"] = nhanvien.MANV;
+                    Session["Avatar"] = nhanvien.AVATAR;
+                }
+                if (phanquyen == "NV HOTROKHACHHANG")
+                {
+                    var kHACHHANGs = db.KHACHHANGs.Include(k => k.TAIKHOAN);
+                     return View(kHACHHANGs.ToList());
+                }
+                return RedirectToAction("Index", "BackToPemission");
+            }
+
+            return RedirectToAction("LoginUser", "TAIKHOANs");
+        
+    }
         // GET: NhanVien/KHACHHANGs/Details/5
         public ActionResult Details(int? id)
         {
@@ -75,7 +95,33 @@ namespace ShopWatch.Areas.NhanVien.Controllers
             ViewBag.EMAIL = new SelectList(db.TAIKHOANs, "EMAIL", "MATKHAU", kHACHHANG.EMAIL);
             return View(kHACHHANG);
         }
+        public ActionResult Xacnhan(string id)
+        {
+            if (Session["UserEmail"] != null)
+            {
+                string phanquyen = Session["phanquyen"] as string;
+                string userEmail = Session["UserEmail"] as string;
 
+                NHANVIEN nhanvien = db.NHANVIENs.FirstOrDefault(nv => nv.EMAIL == userEmail);
+                if (nhanvien != null)
+                {
+                    Session["MaNV"] = nhanvien.MANV;
+                    Session["Avatar"] = nhanvien.AVATAR;
+                }
+                if (phanquyen == "NV HOTROKHACHHANG")
+                {
+                    var dATHANGs = db.DATHANGs.Find(id);
+                    dATHANGs.TINHTRANGDH = "đang giao hàng";
+                    db.SaveChanges();
+                    return RedirectToAction("Xacnhandonhang", "KHACHHANGs");
+                }
+
+                return RedirectToAction("Index", "BackToPemission");
+            }
+
+            return RedirectToAction("LoginUser", "TAIKHOANs");
+
+        }
         // POST: NhanVien/KHACHHANGs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -92,7 +138,34 @@ namespace ShopWatch.Areas.NhanVien.Controllers
             ViewBag.EMAIL = new SelectList(db.TAIKHOANs, "EMAIL", "MATKHAU", kHACHHANG.EMAIL);
             return View(kHACHHANG);
         }
+        public ActionResult Xacnhandonhang(int page = 1)
+        {
+            int pageSize = 10;
+            if (Session["UserEmail"] != null)
+            {
+                string phanquyen = Session["phanquyen"] as string;
+                string userEmail = Session["UserEmail"] as string;
 
+                NHANVIEN nhanvien = db.NHANVIENs.FirstOrDefault(nv => nv.EMAIL == userEmail);
+                if (nhanvien != null)
+                {
+                    Session["MaNV"] = nhanvien.MANV;
+                    Session["Avatar"] = nhanvien.AVATAR;
+                }
+                if (phanquyen == "NV HOTROKHACHHANG")
+                {
+                    var dATHANGs = db.DATHANGs.Where(dd => dd.TINHTRANGDH == "chờ xác nhận");
+
+                    return View(dATHANGs.ToList().ToPagedList(page, pageSize));
+                }
+
+                return RedirectToAction("Index", "BackToPemission");
+            }
+
+            return RedirectToAction("LoginUser", "TAIKHOANs");
+
+
+        }
         // GET: NhanVien/KHACHHANGs/Delete/5
         public ActionResult Delete(int? id)
         {

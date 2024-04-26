@@ -1,0 +1,219 @@
+﻿@model IEnumerable<ShopWatch.Models.DATHANG>
+
+@{
+    ViewBag.Title = "Xacnhandonhang";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+
+<style>
+    .edit-button,
+    .delete-button {
+        display: inline-block;
+        padding: 8px 16px;
+        margin-right: 10px;
+        background: linear-gradient(to right, #87CEFA, #4682B4);
+        border: none;
+        color: white;
+        font-size: 14px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .bnts {
+        background-color: burlywood;
+        margin-left: 20px;
+    }
+
+    .seache {
+        display: flex;
+        padding: 20px
+    }
+
+    #table-wrapper {
+        position: relative;
+    }
+
+    #table-scroll {
+        height: 700px;
+        overflow: auto;
+        margin-top: 20px;
+    }
+
+    #table-wrapper table {
+        width: 100%;
+    }
+
+    #table-wrapper {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background-color: #04AA6D;
+    }
+
+
+        #table-wrapper table thead th .text {
+            position: absolute;
+            top: -20px;
+            z-index: 2;
+            height: 20px;
+            width: 35%;
+            border: 1px solid red;
+        }
+</style>
+
+<div class="row">
+    <div class="col-xs-12">
+        @using (Html.BeginForm("Index", "DATHANG", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="input-group-container">
+                <div class="seache">
+                    <input id="myInput" onkeyup="myFunction()" type="text" name="searchValue" class="form-control" placeholder="Nhập vào tìm kiếm ,Id, ngày tháng năm,tên..." aria-label="Search" aria-describedby="basic-addon2">
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box ">
+
+            <div class="box-body" id="table-scroll">
+                <table id="myTable" class="table">
+                    <thead id="table-wrapper">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NGAYMUA)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TONGTIEN)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.MAVANDON)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TINHTRANGDH)
+                            </th>
+                            <th>
+                                <label>THANHTOAN</label>
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.KHACHHANG.TENKHACHHANG)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.DIADIEM.SDT)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DIADIEM.TENDIACHI)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NGAYMUA)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TONGTIEN)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MAVANDON)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TINHTRANGDH)
+                                </td>
+                                <td class="text-center">
+                                    @if (item.HINHTHUCTHANHTOAN == false)
+                                    {
+                                        <text>COD</text>
+                                    }
+                                    else
+                                    {
+                                        <text>ONLINE</text>
+                                    }
+                                </td>
+
+
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.TUYCHON)
+                                    </td>*@
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.KHACHHANG.TENKHACHHANG)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DIADIEM.SDT)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DIADIEM.TENDIACHI)
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("XacNhan", new { id = item.MADH })'">Xác nhận</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </div><!-- /.col -->
+</div><!-- /.row -->
+<script>
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, i, j, column_length, count_td;
+        column_length = document.getElementById('myTable').rows[0].cells.length;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            // Check if the row is the header row
+            if (i === 0) {
+                continue; // Skip the header row
+            }
+            count_td = 0;
+            for (j = 0; j < column_length - 2; j++) { // except first column
+                td = tr[i].getElementsByTagName("td")[j];
+                /* ADD columns here that you want you to filter to be used on */
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        count_td++;
+                    }
+                }
+            }
+
+            // Check if it's the header row or if any column contains the filter text
+            if (count_td > 0) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+</script>
+<script src="~/Scripts/jquery.signalR-2.4.1.min.js"></script>
+<script src="~/signalr/hubs"></script>
+<script src="~/Scripts/jquery.signalR-2.4.1.min.js"></script>
+<script src="~/signalr/hubs"></script>
+<script>
+    $(function () {
+        // Kết nối tới Hub
+        var hub = $.connection.notificationHub;
+
+        // Lắng nghe sự kiện nhận thông báo
+        hub.client.displayNotification = function (message) {
+            alert(message);
+        };
+
+        // Khởi tạo kết nối
+        $.connection.hub.start();
+    });
+</script>

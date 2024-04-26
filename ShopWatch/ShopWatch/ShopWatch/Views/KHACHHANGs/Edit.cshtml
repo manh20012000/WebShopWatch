@@ -8,48 +8,119 @@
 
 </div>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>KHACHHANG</h4>
-        <hr />
+<style>
+    body {
+        font-family: 'Mulish';
+        font-weight: 100; /* Đặt độ đậm của font chữ */
+        line-height: 1.5;
+    }
+
+    #formId {
+        max-width: 440px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #ffffff;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        margin-top: 190px;
+        border-radius: 0px/0px;
+    }
+
+    .form-control {
+        border-radius: 0px/0px;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 28px; /* Tăng kích thước tiêu đề */
+        font-weight: 600; /* Tăng độ đậm của tiêu đề */
+    }
+
+    p {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
+
+    .input1 {
+        width: 100%;
+        padding: 12px;
+        border: 0px solid #808080;
+        border-radius: 0px/0px;
+        margin-bottom: 20px;
+    }
+
+        .input1:hover {
+            background-color: transparent;
+            color: #080808;
+            border: 0px solid #080808;
+        }
+
+    .forget {
+        margin: -10px 0 17px;
+        font-size: 0.9em;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .content_button {
+        width: 100%;
+        margin-top: 30px;
+        background-color: #080808;
+        color: #fff;
+        border: none;
+        border-radius: 0px/0px;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+</style>
+
+<body>
+    @using (Html.BeginForm("Edit", "KHACHHANGS", FormMethod.Post, new { @enctype = "multipart/form-data", id = "uploadForm_them" }))
+    {
+        @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.MAKHACHHANG)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TENKHACHHANG, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TENKHACHHANG, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TENKHACHHANG, "", new { @class = "text-danger" })
+        <div id="formId">
+            <input type="submit" value="ĐỊA CHỈ" class="btn btn-default bt1" style="background-color: #d69a62; color: white; left: 50px; margin-left: 180%;" formaction="/DIADIEMs/Index" />
+            <h3 style="margin-bottom:30px; font-weight:700;text-align:center">THÔNG TIN KHÁCH HÀNG</h3>
+
+            @Html.EditorFor(model => model.TENKHACHHANG, new { htmlAttributes = new { placeholder = " Họ và Tên", id = "txtdn", @class = "form-control input1  ip1 ", style = "    border-radius: 1px;" } })
+            @Html.ValidationMessageFor(model => model.TENKHACHHANG, "", new { @class = "text-danger" })
+
+            @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { placeholder = " SDT", id = "txtdn", @class = "form-control input1  ip1", style = "    border-radius: 1px;" } })
+            @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+
+            @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @cass = "form-control", style = " border-radius: 1px", readOnly = "readOnly" } })
+            @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+            <div class="col-md-10" style="margin-bottom:10px">
+                <p style="font-family: 'Mulish'; font-weight: 100; color: black; margin-top: 15px; margin-right: 80%">Hình ảnh : </p>
+                <div style="width:300px ; height:140px">
+                    <img src="@Url.Content(Model.AVATAR)" style="max-width: 200px; max-height: 140px; border-radius: 50%; " id="previewImage" />
+                </div>
+                @Html.ValidationMessageFor(model => model.AVATAR, "", new { @class = "text-danger" })
             </div>
+            <input type="file" name="AVATAR" onchange="ShowImagePreview(this, 'previewImage')" style="font-family: 'Mulish'; font-weight: 100; " />
+            <input type="submit" value="Save" class="btn btn-default content_button" ; style=" background-color: #d69a62; color: white; " />
+
+
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.SDT, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.EMAIL, "EMAIL", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-           
-                @Html.EditorFor(model => model.EMAIL , new { htmlAttributes = new { @class = "form-control", readOnly = "readOnly", } })
-                @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
-            </div>
-        </div>
+</body>
 
-        
-      
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
+<script>
+        function ShowImagePreview(imageUploader, previewImageId) {
+            if (imageUploader.files && imageUploader.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#' + previewImageId).attr('src', e.target.result);
+                }
+                reader.readAsDataURL(imageUploader.files[0]);
+            }
+        }
+</script>

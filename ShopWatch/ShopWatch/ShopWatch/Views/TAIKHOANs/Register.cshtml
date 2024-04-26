@@ -12,184 +12,264 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Colo Shop Template">
     <link rel="stylesheet" href="fontawesome-free-6.3.0-web/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/styles/bootstrap4/bootstrap.min.css">
+    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/styles/responsive.css">
 
     <style>
         /* LogIn.css */
 
 
-        body {
-            background-image: url(https://bossluxurywatch.vn/uploads/banner/anh-nen-trang-sp-co-san.jpg);
-            padding: 0;
-            background-size: contain
-        }
 
-        #formId {
-            max-width: 400px;
-            margin: 50px auto;
-            padding: 20px;
-            background: #ced4da;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        container_content {
+            width: 100%;
+            height: 100%;
+            /* max-width: 420px; // Thay đổi giá trị max-width theo nhu cầu của bạn */
         }
 
         h1 {
             text-align: center;
-            color: #dbaf56;
+            font-size: 1.8rem; /* Tăng kích thước tiêu đề */
+            font-weight: 600; /* Tăng độ đậm của tiêu đề */
+        }
+
+        p {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+
+
+        a {
+            color: #080808;
+            text-decoration: none;
         }
 
         .input1 {
             width: 100%;
             padding: 12px;
+            border: 1px solid #808080;
+            border-radius: 1px;
             margin-bottom: 20px;
-            box-sizing: border-box;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
+            background-color: transparent;
         }
 
-        .forget {
-            margin: -10px 0 17px;
-            font-size: 0.9em;
-            color: #fff;
+            .input1:hover {
+                background-color: transparent;
+                color: #080808;
+                border: 1px solid #080808;
+            }
+
+
+        .checkbox-label {
+            font-weight: 400; /* Đặt lại font-weight cho nhãn checkbox */
+            margin-bottom: 10px; /* Giảm khoảng cách dưới nhãn checkbox */
             display: flex;
-            justify-content: space-between;
+            align-items: center; /* Canh chỉnh vị trí của checkbox và nhãn */
         }
-
-        .remember-forgot {
-            color: gray;
-            font-weight: 500;
-            margin: -15px 0 15px;
-        }
-
 
         .btndangnhap {
             width: 100%;
             padding: 12px;
-            background-image: url(https://bossluxurywatch.vn/theme/frontend/images/bg_social.jpg);
+            background-color: #080808;
+            color: #fff;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             font-family: inherit;
             font-size: 1rem;
             font-weight: 600;
-            color: #fff;
+            margin-bottom: 20px; /* Tăng khoảng cách dưới nút đăng nhập */
         }
 
-        .btnIcon {
-            display: inline-block;
-            margin: 0 10px;
-            text-decoration: none;
-            color: #ffffff;
-            padding: 12px 20px;
-            border-radius: 4px;
+        /* Tùy chỉnh checkbox */
+        input[type="checkbox"] {
+            margin-right: 10px; /* Khoảng cách giữa checkbox và nhãn */
         }
 
-        #bntswithApp {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
+        .btndangnhap:hover {
+            background-color: #fff;
+            color: #080808;
+            border: 1px solid #080808;
         }
 
-        .facebook {
-            flex-basis: 48%;
-            background: #3c00a0;
-            font-family: inherit;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #fff;
-            height: 30px;
-            background-image: url(https://bossluxurywatch.vn/theme/frontend/images/bg_social.jpg);
-            border-radius: 5px;
-            border: 0;
-            outline: 0;
-            cursor: pointer;
-            transition: background 1s;
-        }
-
-        .google {
-            flex-basis: 48%;
-            text-align: center;
-            background-image: url(https://bossluxurywatch.vn/theme/frontend/images/bg_social.jpg);
-            height: 27px;
-            border-radius: 5px;
-            border: 0;
-            outline: 0;
-            cursor: pointer;
-            transition: background 1s;
-            font-family: inherit;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #fff;
+        .border_container {
+            max-width: 450px;
+            max-height: 480px;
+            margin: auto;
+            border: 1px solid #CFCFCF;
+            padding: 20px 20px 0px 20px;
+            margin-bottom: 20px;
         }
     </style>
     <title>Document</title>
 </head>
 
 <body>
+    <div class="super_container">
 
-    <div class="div1">
+        <header class="header trans_300">
 
-    </div>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div id="formId">
+            <!-- Top Navigation -->
 
-            <h1>Register</h1>
+            <div class="top_nav" style="background-color: #d69a62 ">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="top_nav_left" style="color: #fff; text-align: center; text-transform: uppercase; font-family: 'Open Sans', sans-serif">NHÀ PHÂN PHỐI CHÍNH HÃNG CÁC THƯƠNG HIỆU ĐỒNG HỒ HÀNG ĐẦU VIỆT NAM</div>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <div class="top_nav_right">
+                                <ul class="top_nav_menu" style="">
 
-
-            @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { placeholder = "   Tài khoản", id = "txtdn", @class = "form-control input1  ip1" } })
-            @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
-
-            @Html.EditorFor(model => model.TENDANGNHAP, new { htmlAttributes = new { placeholder = "Tên đăng nhập", id = "txtdn", @class = "form-control input1 ip" } })
-            @Html.ValidationMessageFor(model => model.TENDANGNHAP, "", new { @class = "text-danger" })
-
-            @Html.EditorFor(model => model.MATKHAU, new { htmlAttributes = new { placeholder = "   Mật khẩu ", id = "txtpass", @class = "form-control input1  ip2" } })
-            @Html.ValidationMessageFor(model => model.MATKHAU, "", new { @class = "text-danger" })
+                                    <!-- Currency / Language / My Account -->
 
 
-
-
-            <div class="remember-forgot">
-                <input type="checkbox" id="chebox" value="show" class="radiobtn" onclick="ischeck()" /> Remember
-
-
-            </div>
-
-
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Register" class="btn btn-default btndangnhap" id="btndangnhap" />
+                                    <li class="account" style="background: #d69a62">
+                                        <a href="#" style="color: #fff; text-align: center; font-family: 'Open Sans', sans-serif;  ">
+                                            My Account
+                                            <i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <ul class="account_selection">
+                                            <li><a href="/TAIKHOANs/Dangnhap"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
+                                            <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <center>
-                <p class=""> Hoặc </p>
-            </center>
-            <div id="bntswithApp">
-                <a href="https://m.facebook.com/login/?locale=vi_VN&refsrc=deprecated" class="btnIcon facebook">
-                    <span><i class="fa-brands fa-facebook" style="color: #024fe8;"></i> </span><span>Tiếp tục facebook</span>
-                </a>
-                <a href="https://accounts.google.com/signup/v2/webcreateaccount?continue=https%3A%2F%2Fmyaccount.google.com%3Futm_source%3Daccount-marketing-page%26utm_medium%3Dcreate-account-button&flowName=GlifWebSignIn&flowEntry=SignUp" class="btnIcon  google">
-                    <span><i class="fa-brands fa-google" style="color: #0058f0;"></i> </span><span>Tiếp tục google</span>
-                </a>
+            <!-- Main Navigation -->
+
+            <div class="main_nav_container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-right">
+                            <div class="logo_container">
+                                <a href="#">
+                                    <img src="~/assets/KhachHang/images/logo-removebg-preview.png" alt="" style="line-height: inherit; height: 31px; margin-bottom: 13px; vertical-align: middle; width: 95%">
+                                </a>
+                            </div>
+                            <nav class="navbar" style="color: black; margin-top: 10px;  font-weight: bold  ">
+                                <ul class="navbar_menu">
+                                    <li><a href="/Home/homeIndex">home</a></li>
+                                    <li><a href="/QUANLYVOUCHERs/VoucherIndex">coupon</a></li>
+                                    <li><a href="/MATHANG/mathang">product</a></li>
+                                    <li><a href="#">pages</a></li>
+                                    <li><a href="#">blog</a></li>
+                                    <li><a href="contact.html">contact</a></li>
+                                </ul>
+                                <ul class="navbar_user">
+                                    <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                                    <li class="checkout">
+                                        <a href="/GioHang/Index">
+                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="hamburger_container">
+                                    <i class="fa fa-bars" aria-hidden="true"></i>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+        <div style="margin-top:200px">
+
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="container_content">
+                <div class="border_container">
+                    <div class="form-container">
+                        <P style="font-size:1.8rem;font-weight:600;color:black">ĐĂNG KÝ TÀI KHOẢN</P>
+                        <p class="form-label" style=" text-align:center">
+                            <span style=" font-size: 16px; font-weight: 300; "> Bạn đã có tài khoản ? </span>
+                            <a href="/TAIKHOANs/Dangnhap"><u>Đăng nhập</u></a>
+                        </p>
+                        @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { placeholder = "   Tài khoản", id = "txtdn", @class = "form-control input1  ip1" } })
+                        @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+
+                        @Html.EditorFor(model => model.TENDANGNHAP, new { htmlAttributes = new { placeholder = "Tên đăng nhập", id = "txtdn", @class = "form-control input1 ip1" } })
+                        @Html.ValidationMessageFor(model => model.TENDANGNHAP, "", new { @class = "text-danger" })
+
+                        @Html.EditorFor(model => model.MATKHAU, new { htmlAttributes = new { placeholder = "   Mật khẩu ", id = "txtpass", @class = "form-control input1  ip1" } })
+                        @Html.ValidationMessageFor(model => model.MATKHAU, "", new { @class = "text-danger" })
+
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="myCheckbox" />Tôi đồng ý với các điều khoản sử dụng khi đăng ký thành viên.
+                        </label>
+                        <script>
+                            // JavaScript để xử lý sự kiện khi checkbox thay đổi
+                            document.getElementById("myCheckbox").addEventListener("change", function () {
+                                // Gửi yêu cầu đến server (nếu cần)
+
+                            });
+                        </script>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="myCheckbox" />Đăng ký nhận thông tin mới nhất và ưu đãi độc quyền.
+                        </label>
+                        <script>
+                            // JavaScript để xử lý sự kiện khi checkbox thay đổi
+                            document.getElementById("myCheckbox").addEventListener("change", function () {
+                                // Gửi yêu cầu đến server (nếu cần)
+
+                            });
+                        </script>
+
+
+
+                        <input type="submit" value="ĐĂNG KÝ" class="btn btn-default btndangnhap" id="btndangnhap" />
+
+
+
+
+                    </div>
+                </div>
 
             </div>
-            <p class="signup-already" style="text-align:center">
-                <span style=" color: #dbaf56; font-family: inherit; font-size: 1rem; font-weight: 600; "> Bạn đã có tài khoản ? </span>
-                <a href="/TAIKHOANs/Dangnhap">LogIn</a>
-            </p>
-        </div>
-    }
 
-    @*<form action="@Url.Action("Add","GIOHANG")" method="post">
-       
+        }
 
-        <input type="submit" value="Nhấn đi">
-    </form>*@
-    <script src="~/assets/KhachHang/LogIn/LogIn.js"></script>
+        @*<form action="@Url.Action("Add","GIOHANG")" method="post">
+
+
+                <input type="submit" value="Nhấn đi">
+            </form>*@
+        <script src="~/assets/KhachHang/LogIn/LogIn.js"></script>
+    </div>
+    <script src="~/assets/KhachHang/js/jquery-3.2.1.min.js"></script>
+    <script src="~/assets/KhachHang/styles/bootstrap4/popper.js"></script>
+    <script src="~/assets/KhachHang/styles/bootstrap4/bootstrap.min.js"></script>
+    <script src="~/assets/KhachHang/plugins/Isotope/isotope.pkgd.min.js"></script>
+    <script src="~/assets/KhachHang/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+    <script src="~/assets/KhachHang/plugins/easing/easing.js"></script>
+    <script src="~/assets/KhachHang/js/custom.js"></script>
+    <link href="~/assets/KhachHang/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/styles/responsive.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/KhachHang/styles/bootstrap4/bootstrap.min.css">
 </body>
 
 

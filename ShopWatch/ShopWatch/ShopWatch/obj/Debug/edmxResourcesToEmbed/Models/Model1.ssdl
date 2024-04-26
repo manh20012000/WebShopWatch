@@ -214,10 +214,11 @@
     <Key>
       <PropertyRef Name="MAVANDON" />
     </Key>
-    <Property Name="MAVANDON" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MAVANDON" Type="int" Nullable="false" />
     <Property Name="VITRI" Type="nvarchar" MaxLength="255" />
     <Property Name="THOIGIANGIAOHANG" Type="datetime" />
     <Property Name="THOIGIANNHANHANG" Type="datetime" />
+    <Property Name="TRANGTHAI" Type="bit" />
   </EntityType>
   <EntityType Name="VOUCHER">
     <Key>
@@ -346,18 +347,6 @@
       </Principal>
       <Dependent Role="DATHANG">
         <PropertyRef Name="MATHANHTOAN" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__DATHANG__MAVANDO__66603565">
-    <End Role="TRANGTHAIGIAOHANG" Type="Self.TRANGTHAIGIAOHANG" Multiplicity="0..1" />
-    <End Role="DATHANG" Type="Self.DATHANG" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TRANGTHAIGIAOHANG">
-        <PropertyRef Name="MAVANDON" />
-      </Principal>
-      <Dependent Role="DATHANG">
-        <PropertyRef Name="MAVANDON" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -553,10 +542,6 @@
     </AssociationSet>
     <AssociationSet Name="FK__DATHANG__MATHANH__656C112C" Association="Self.FK__DATHANG__MATHANH__656C112C">
       <End Role="THANHTOAN" EntitySet="THANHTOAN" />
-      <End Role="DATHANG" EntitySet="DATHANG" />
-    </AssociationSet>
-    <AssociationSet Name="FK__DATHANG__MAVANDO__66603565" Association="Self.FK__DATHANG__MAVANDO__66603565">
-      <End Role="TRANGTHAIGIAOHANG" EntitySet="TRANGTHAIGIAOHANG" />
       <End Role="DATHANG" EntitySet="DATHANG" />
     </AssociationSet>
     <AssociationSet Name="FK__DIADIEM__MAKHACH__5FB337D6" Association="Self.FK__DIADIEM__MAKHACH__5FB337D6">

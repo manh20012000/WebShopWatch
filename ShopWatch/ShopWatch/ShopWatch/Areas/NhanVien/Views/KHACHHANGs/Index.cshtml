@@ -79,15 +79,26 @@
                             @Html.DisplayFor(modelItem => item.TENKHACHHANG)
                         </td>
                         <td>
-                            @{string formattedPhoneNumber = "0" + item.SDT.Substring(2, 3) + "****" + item.SDT.Substring(7);
+                            @{
+                                if (item.SDT != null)
+                                {
+                                   string formattedPhoneNumber = "0" + item.SDT.Substring(2, 3) + "****" + item.SDT.Substring(7);
+                                   
+                                    <span>@formattedPhoneNumber</span>
                                 }
-                            <span>@formattedPhoneNumber</span>
-                          
+                            }
+
+
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.AVATAR)
-                        </td>
+                            @{
+                                if (item.AVATAR != null)
+                                { <img style="width:100px;height:100px" src=" @item.AVATAR ">
+                                }
+                            }
 
+
+                        </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.TAIKHOAN.EMAIL)
                         </td>

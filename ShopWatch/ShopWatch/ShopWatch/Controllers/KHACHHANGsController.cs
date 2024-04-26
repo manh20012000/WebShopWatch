@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -24,7 +25,7 @@ namespace ShopWatch.Controllers
             {
                 return RedirectToAction("Dangnhap", "TAIKHOANs");
             }
-       
+
             return View(user);
         }
 
@@ -73,37 +74,81 @@ namespace ShopWatch.Controllers
         {
             try
             {
+                var email = Session["EmailClient"] as string;
+                var khachhang = db.KHACHHANGs.FirstOrDefault(kh => kh.EMAIL == email);
                 int? makhachhang = GetMaKH();
                 if (makhachhang == null)
                 {
                     return RedirectToAction("Dangnhap", "TAIKHOANs");
                 }
-                var kHACHHANG = db.KHACHHANGs.Find(makhachhang);
+                var kHACHHANG = db.KHACHHANGs.Find(khachhang.MAKHACHHANG);
+                if (kHACHHANG.AVATAR == null || kHACHHANG.AVATAR.Length == 0)
+                {
+                    kHACHHANG.AVATAR = "~/assets/KhachHang/images/avatar.jpg";
+                    db.SaveChanges();
+                }
                 return View(kHACHHANG);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("loi" + ex.Message);
             }
-            return RedirectToAction("homeIndex","Home");
-   
+            return RedirectToAction("homeIndex", "Home");
+
         }
 
-      
+
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit(KHACHHANG model)
         {
-            var update = db.KHACHHANGs.Find(model.MAKHACHHANG);
-            update.TENKHACHHANG = model.TENKHACHHANG;
-            update.SDT = model.SDT;
-           /* update.DIACHI = model.DIACHI;*/
-            var kt = db.SaveChanges();
-            if(kt > 0)
+            /* var update = db.KHACHHANGs.Find(model.MAKHACHHANG);
+             update.TENKHACHHANG = model.TENKHACHHANG;
+             update.SDT = model.SDT;
+             // update.DIACHI = model.DIACHI;*//*
+             var kt = db.SaveChanges();
+             if (kt > 0)
+             {
+                 return View(model);
+             }
+             return View(model);*/
+            try
             {
-                return View(model);
+                var update = db.KHACHHANGs.Find(model.MAKHACHHANG);
+
+                if (model.AVATAR != null)
+                {
+                    var fImage = Request.Files["AVATAR"];
+                    if (fImage != null && fImage.ContentLength > 0)
+                    {
+                        string fileName = fImage.FileName;
+                        string folderName = Server.MapPath("~/assets/KhachHang/images/" + fileName);
+                        fImage.SaveAs(folderName);
+
+                 
+                        model.AVATAR = "/assets/KhachHang/images/" + fileName;
+               
+                    }
+                    else
+                    {
+                        model.AVATAR = update.AVATAR;
+                    }
+                    update.AVATAR = model.AVATAR;
+                    update.TENKHACHHANG = model.TENKHACHHANG;
+                    update.SDT = model.SDT;
+                    var kt = db.SaveChanges();
+                    if (kt > 0)
+                    {
+                        return View(model);
+                    }
+                }
             }
-            return RedirectToAction("Index");
+            catch
+            {
+
+            }
+            return View(model);
         }
 
         // GET: KHACHHANGs/Delete/5
