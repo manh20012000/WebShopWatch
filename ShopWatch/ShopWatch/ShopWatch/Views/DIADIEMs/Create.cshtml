@@ -6,49 +6,74 @@
 }
 
 
-}<div style="margin:200px 10px 10px 10px">
+}
+<style>
+    body {
+        font-family: 'Mulish';
+        font-weight: 100; /* Đặt độ đậm của font chữ */
+        line-height: 1.5;
+    }
+
+    .form-horizontal {
+        max-width: 400px; /* Độ rộng tối đa của form */
+        margin: 50px auto; /* Canh giữa theo chiều ngang */
+        padding: 20px;
+        background: #ffffff;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+    }
+
+    .form-control {
+        border-radius: 0px/0px;
+    }
+
+    .input1 {
+        width: 100%;
+        border: 0px solid #808080;
+        border-radius: 0px/0px;
+        margin-bottom: 20px;
+    }
+
+    .btn-default {
+        width: 100%;
+        padding: 12px;
+        background-color: #080808;
+        color: #fff;
+        border: none;
+        border-radius: 0px/0px;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 20px; /* Tăng khoảng cách dưới nút đăng nhập */
+    }
+</style>
+<div style="margin:200px 10px 10px 10px">
 
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-horizontal">
-            <h4> THÊM ĐỊA ĐIỂM GIAO HÀNG MỚI </h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                <input name="MAKHACHHANG" value="@ViewBag.KHANHHANG.MAKHACHHANG" type="hidden" />
-                @Html.LabelFor(model => model.MAKHACHHANG, "TENKHACHHANG", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <label class="form-control">@ViewBag.KHANHHANG.TENKHACHHANG </label>
-                   
-                    @Html.ValidationMessageFor(model => model.KHACHHANG.TENKHACHHANG, "", new { @class = "text-danger" })
+            <h4 style=" margin-bottom: 30px; text-align:center; font-weight:700"> ĐỊA ĐIỂM MỚI  </h4>
+
+            <div class="form-control" style="width: 100%;margin-bottom:15px; border-radius: 1px; ">
+                <input name="MAKHACHHANG" value="@ViewBag.KHANHHANG.MAKHACHHANG" type="hidden" style=" border-radius: 1px;" />
+                <div class="col-md-12">
+                    <label >@ViewBag.KHANHHANG.TENKHACHHANG </label>
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.TENDIACHI, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TENDIACHI, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TENDIACHI, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-              
-                @Html.LabelFor(model => model.SDT, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
-                </div>
-            </div>
+            @Html.EditorFor(model => model.TENDIACHI, new { htmlAttributes = new { placeholder = "Ten dia chi", @class = "form-control input1  ip1 ", style = " border-radius: 1px; width: 100%" } })
+            @Html.ValidationMessageFor(model => model.TENDIACHI, "", new { @class = "text-danger" })
 
 
-
+            @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { placeholder = " SDT", @class = "form-control input1  ip1 ", style = "    border-radius: 1px; width: 100%" } })
+            @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10 ">
-                    <input type="submit" value="Create" class="btn btn-default form-control" style="background-color:burlywood" />
+                    <input type="submit" value="Create" class="btn btn-default form-control" style="margin-left: -65px; width: 123%; height: 200%; color: white; font-weight: 600; background-color: black;; " />
                 </div>
             </div>
         </div>

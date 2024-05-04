@@ -32,7 +32,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AVATAR)
+            <img src="@Model.AVATAR" style="width:150px;height:150px" />
+          
         </dd>
 
         <dt>
@@ -43,25 +44,8 @@
             @Html.DisplayFor(model => model.THANHVIEN)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.XU)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.XU)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TAIKHOAN.MATKHAU)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TAIKHOAN.MATKHAU)
-        </dd>
+     
+      
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MAKHACHHANG }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

@@ -25,16 +25,12 @@ namespace ShopWatch.Areas.NhanVien.Controllers
         [HttpGet]
         public ActionResult LoginUser()
         {
-
             return View();
-
         }
         [HttpPost]
-
         public ActionResult LoginUser(TAIKHOAN taikhoan)
         {
             string f_password = GetMD5(taikhoan.MATKHAU);
-
             try
             {
                 TAIKHOAN check = db.TAIKHOANs.FirstOrDefault(tk => tk.EMAIL == taikhoan.EMAIL && tk.MATKHAU == f_password);
@@ -72,7 +68,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
                     }
                     else if (nhanvien.TENCHUCNANG == "NV HOTROKHACHHANG")
                     {
-                        return RedirectToAction("index", "KHACHHANGs");
+                        return RedirectToAction("Xacnhandonhang", "KHACHHANGs");
                     }
                 }
             }

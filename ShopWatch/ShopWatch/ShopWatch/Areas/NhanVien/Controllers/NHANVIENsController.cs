@@ -120,9 +120,17 @@ namespace ShopWatch.Areas.NhanVien.Controllers
                 {
                     return RedirectToAction("index", "NHAPHANGs");
                 }
-                else
+                else if (User.TENCHUCNANG == "NV KETOAN")
                 {
                     return RedirectToAction("index", "THONGKEs");
+                }
+                else if (User.TENCHUCNANG == "NV GIAOHANG")
+                {
+                    return RedirectToAction("listGiaohang", "DATHANG");
+                }
+                else if (User.TENCHUCNANG == "NV HOTROKHACHHANG")
+                {
+                    return RedirectToAction("index", "KHACHHANGs");
                 }
             }
             ViewBag.EMAIL = new SelectList(db.TAIKHOANs, "EMAIL", "MATKHAU", nhanvien.EMAIL);

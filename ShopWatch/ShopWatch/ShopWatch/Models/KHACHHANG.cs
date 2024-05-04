@@ -11,19 +11,20 @@ namespace ShopWatch.Models
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class KHACHHANG
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public KHACHHANG()
         {
             this.DATHANGs = new HashSet<DATHANG>();
+            this.DIADIEMs = new HashSet<DIADIEM>();
             this.GIOHANGs = new HashSet<GIOHANG>();
+            this.NOTIFICATIONs = new HashSet<NOTIFICATION>();
             this.QUANLYVOUCHERs = new HashSet<QUANLYVOUCHER>();
             this.SIGNARLs = new HashSet<SIGNARL>();
-            this.DIADIEMs = new HashSet<DIADIEM>();
         }
-
+    
         public int MAKHACHHANG { get; set; }
         public string TENKHACHHANG { get; set; }
         public string SDT { get; set; }
@@ -31,17 +32,19 @@ namespace ShopWatch.Models
         public string AVATAR { get; set; }
         public string THANHVIEN { get; set; }
         public Nullable<double> XU { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DATHANG> DATHANGs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DIADIEM> DIADIEMs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GIOHANG> GIOHANGs { get; set; }
         public virtual TAIKHOAN TAIKHOAN { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NOTIFICATION> NOTIFICATIONs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QUANLYVOUCHER> QUANLYVOUCHERs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SIGNARL> SIGNARLs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DIADIEM> DIADIEMs { get; set; }
     }
 }

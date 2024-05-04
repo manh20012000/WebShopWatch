@@ -124,6 +124,20 @@
     <Property Name="MANV" Type="int" />
     <Property Name="TRANGTHAI" Type="bit" />
   </EntityType>
+  <EntityType Name="NOTIFICATION">
+    <Key>
+      <PropertyRef Name="MANOTIFICATION" />
+    </Key>
+    <Property Name="MANOTIFICATION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SENDID" Type="int" />
+    <Property Name="EMAIL" Type="nvarchar(max)" />
+    <Property Name="NOIDUNG" Type="nvarchar(max)" />
+    <Property Name="THOIGIAN" Type="datetime" />
+    <Property Name="MADH" Type="nvarchar" MaxLength="20" />
+    <Property Name="TENKH" Type="nvarchar" MaxLength="255" />
+    <Property Name="AVATAR" Type="varchar(max)" />
+    <Property Name="TENCHUCNANG" Type="nvarchar" MaxLength="255" />
+  </EntityType>
   <EntityType Name="QUANLYVOUCHER">
     <Key>
       <PropertyRef Name="MAQUANLYVOUCHER" />
@@ -143,8 +157,8 @@
     </Key>
     <Property Name="MASALE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="PHANTRAMSALE" Type="int" />
-    <Property Name="NGAYBATDAU" Type="datetime" />
-    <Property Name="NGAYHETHAN" Type="datetime" />
+    <Property Name="NGAYBATDAU" Type="date" />
+    <Property Name="NGAYHETHAN" Type="date" />
     <Property Name="TRANGTHAI" Type="bit" />
   </EntityType>
   <EntityType Name="SIGNARL">
@@ -230,7 +244,7 @@
     <Property Name="TRANGTHAI" Type="bit" />
     <Property Name="TRANGTHAIGIOIHAN" Type="bit" />
   </EntityType>
-  <Association Name="FK__CHITIETDA__MAMAT__6A30C649">
+  <Association Name="FK__CHITIETDA__MAMAT__619B8048">
     <End Role="MATHANG" Type="Self.MATHANG" Multiplicity="0..1" />
     <End Role="CHITIETDATHANG" Type="Self.CHITIETDATHANG" Multiplicity="*" />
     <ReferentialConstraint>
@@ -242,7 +256,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CHITIETDAT__MADH__693CA210">
+  <Association Name="FK__CHITIETDAT__MADH__60A75C0F">
     <End Role="DATHANG" Type="Self.DATHANG" Multiplicity="0..1" />
     <End Role="CHITIETDATHANG" Type="Self.CHITIETDATHANG" Multiplicity="*" />
     <ReferentialConstraint>
@@ -254,7 +268,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CHITIETGI__MAGIO__70DDC3D8">
+  <Association Name="FK__CHITIETGI__MAGIO__68487DD7">
     <End Role="GIOHANG" Type="Self.GIOHANG" Multiplicity="0..1" />
     <End Role="CHITIETGIOHANG" Type="Self.CHITIETGIOHANG" Multiplicity="*" />
     <ReferentialConstraint>
@@ -266,7 +280,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CHITIETGI__MAMAT__6FE99F9F">
+  <Association Name="FK__CHITIETGI__MAMAT__6754599E">
     <End Role="MATHANG" Type="Self.MATHANG" Multiplicity="0..1" />
     <End Role="CHITIETGIOHANG" Type="Self.CHITIETGIOHANG" Multiplicity="*" />
     <ReferentialConstraint>
@@ -278,7 +292,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CHITIETPH__MAMAT__4F7CD00D">
+  <Association Name="FK__CHITIETPH__MAMAT__46E78A0C">
     <End Role="MATHANG" Type="Self.MATHANG" Multiplicity="0..1" />
     <End Role="CHITIETPHIEUNHAP" Type="Self.CHITIETPHIEUNHAP" Multiplicity="*" />
     <ReferentialConstraint>
@@ -290,7 +304,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CHITIETPH__MANHA__5070F446">
+  <Association Name="FK__CHITIETPH__MANHA__47DBAE45">
     <End Role="NHAPHANG" Type="Self.NHAPHANG" Multiplicity="0..1" />
     <End Role="CHITIETPHIEUNHAP" Type="Self.CHITIETPHIEUNHAP" Multiplicity="*" />
     <ReferentialConstraint>
@@ -302,7 +316,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__DATHANG__MADIADI__6383C8BA">
+  <Association Name="FK__DATHANG__MADIADI__5AEE82B9">
     <End Role="DIADIEM" Type="Self.DIADIEM" Multiplicity="0..1" />
     <End Role="DATHANG" Type="Self.DATHANG" Multiplicity="*" />
     <ReferentialConstraint>
@@ -314,7 +328,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__DATHANG__MAKHACH__628FA481">
+  <Association Name="FK__DATHANG__MAKHACH__59FA5E80">
     <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
     <End Role="DATHANG" Type="Self.DATHANG" Multiplicity="*" />
     <ReferentialConstraint>
@@ -326,7 +340,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__DATHANG__MAQUANL__6477ECF3">
+  <Association Name="FK__DATHANG__MAQUANL__5BE2A6F2">
     <End Role="QUANLYVOUCHER" Type="Self.QUANLYVOUCHER" Multiplicity="0..1" />
     <End Role="DATHANG" Type="Self.DATHANG" Multiplicity="*" />
     <ReferentialConstraint>
@@ -338,7 +352,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__DATHANG__MATHANH__656C112C">
+  <Association Name="FK__DATHANG__MATHANH__5CD6CB2B">
     <End Role="THANHTOAN" Type="Self.THANHTOAN" Multiplicity="0..1" />
     <End Role="DATHANG" Type="Self.DATHANG" Multiplicity="*" />
     <ReferentialConstraint>
@@ -350,7 +364,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__DIADIEM__MAKHACH__5FB337D6">
+  <Association Name="FK__DATHANG__MAVANDO__5DCAEF64">
+    <End Role="TRANGTHAIGIAOHANG" Type="Self.TRANGTHAIGIAOHANG" Multiplicity="0..1" />
+    <End Role="DATHANG" Type="Self.DATHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRANGTHAIGIAOHANG">
+        <PropertyRef Name="MAVANDON" />
+      </Principal>
+      <Dependent Role="DATHANG">
+        <PropertyRef Name="MAVANDON" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DIADIEM__MAKHACH__571DF1D5">
     <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
     <End Role="DIADIEM" Type="Self.DIADIEM" Multiplicity="*" />
     <ReferentialConstraint>
@@ -362,7 +388,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__GIOHANG__MAKHACH__6D0D32F4">
+  <Association Name="FK__GIOHANG__MAKHACH__6477ECF3">
     <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
     <End Role="GIOHANG" Type="Self.GIOHANG" Multiplicity="*" />
     <ReferentialConstraint>
@@ -374,7 +400,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__HINHANH__MAMATHA__4CA06362">
+  <Association Name="FK__HINHANH__MAMATHA__440B1D61">
     <End Role="MATHANG" Type="Self.MATHANG" Multiplicity="0..1" />
     <End Role="HINHANH" Type="Self.HINHANH" Multiplicity="*" />
     <ReferentialConstraint>
@@ -386,7 +412,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__KHACHHANG__EMAIL__534D60F1">
+  <Association Name="FK__KHACHHANG__EMAIL__4AB81AF0">
     <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="0..1" />
     <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="*" />
     <ReferentialConstraint>
@@ -398,7 +424,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__MATHANG__MASALE__49C3F6B7">
+  <Association Name="FK__MATHANG__MASALE__412EB0B6">
     <End Role="SALE" Type="Self.SALE" Multiplicity="0..1" />
     <End Role="MATHANG" Type="Self.MATHANG" Multiplicity="*" />
     <ReferentialConstraint>
@@ -410,7 +436,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__NHANVIEN__EMAIL__4222D4EF">
+  <Association Name="FK__NHANVIEN__EMAIL__398D8EEE">
     <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="0..1" />
     <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
     <ReferentialConstraint>
@@ -422,7 +448,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__NHAPHANG__MANV__44FF419A">
+  <Association Name="FK__NHAPHANG__MANV__3C69FB99">
     <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
     <End Role="NHAPHANG" Type="Self.NHAPHANG" Multiplicity="*" />
     <ReferentialConstraint>
@@ -434,7 +460,31 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__QUANLYVOU__MAKHA__5812160E">
+  <Association Name="FK__NOTIFICAT__SENDI__72C60C4A">
+    <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+    <End Role="NOTIFICATION" Type="Self.NOTIFICATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHACHHANG">
+        <PropertyRef Name="MAKHACHHANG" />
+      </Principal>
+      <Dependent Role="NOTIFICATION">
+        <PropertyRef Name="SENDID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__NOTIFICATI__MADH__73BA3083">
+    <End Role="DATHANG" Type="Self.DATHANG" Multiplicity="0..1" />
+    <End Role="NOTIFICATION" Type="Self.NOTIFICATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DATHANG">
+        <PropertyRef Name="MADH" />
+      </Principal>
+      <Dependent Role="NOTIFICATION">
+        <PropertyRef Name="MADH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__QUANLYVOU__MAKHA__4F7CD00D">
     <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
     <End Role="QUANLYVOUCHER" Type="Self.QUANLYVOUCHER" Multiplicity="*" />
     <ReferentialConstraint>
@@ -446,7 +496,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__QUANLYVOU__MAVOU__59063A47">
+  <Association Name="FK__QUANLYVOU__MAVOU__5070F446">
     <End Role="VOUCHER" Type="Self.VOUCHER" Multiplicity="0..1" />
     <End Role="QUANLYVOUCHER" Type="Self.QUANLYVOUCHER" Multiplicity="*" />
     <ReferentialConstraint>
@@ -458,7 +508,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__SIGNARL__MAKHACH__787EE5A0">
+  <Association Name="FK__SIGNARL__MAKHACH__6FE99F9F">
     <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
     <End Role="SIGNARL" Type="Self.SIGNARL" Multiplicity="*" />
     <ReferentialConstraint>
@@ -470,7 +520,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__THONGKENH__MANHA__75A278F5">
+  <Association Name="FK__THONGKENH__MANHA__6D0D32F4">
     <End Role="NHAPHANG" Type="Self.NHAPHANG" Multiplicity="0..1" />
     <End Role="THONGKENHAPHANG" Type="Self.THONGKENHAPHANG" Multiplicity="*" />
     <ReferentialConstraint>
@@ -494,6 +544,7 @@
     <EntitySet Name="MATHANG" EntityType="Self.MATHANG" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NHAPHANG" EntityType="Self.NHAPHANG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NOTIFICATION" EntityType="Self.NOTIFICATION" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="QUANLYVOUCHER" EntityType="Self.QUANLYVOUCHER" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SALE" EntityType="Self.SALE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SIGNARL" EntityType="Self.SIGNARL" Schema="dbo" store:Type="Tables" />
@@ -504,87 +555,99 @@
     <EntitySet Name="THONGKENHAPHANG" EntityType="Self.THONGKENHAPHANG" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TRANGTHAIGIAOHANG" EntityType="Self.TRANGTHAIGIAOHANG" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VOUCHER" EntityType="Self.VOUCHER" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__CHITIETDA__MAMAT__6A30C649" Association="Self.FK__CHITIETDA__MAMAT__6A30C649">
+    <AssociationSet Name="FK__CHITIETDA__MAMAT__619B8048" Association="Self.FK__CHITIETDA__MAMAT__619B8048">
       <End Role="MATHANG" EntitySet="MATHANG" />
       <End Role="CHITIETDATHANG" EntitySet="CHITIETDATHANG" />
     </AssociationSet>
-    <AssociationSet Name="FK__CHITIETDAT__MADH__693CA210" Association="Self.FK__CHITIETDAT__MADH__693CA210">
+    <AssociationSet Name="FK__CHITIETDAT__MADH__60A75C0F" Association="Self.FK__CHITIETDAT__MADH__60A75C0F">
       <End Role="DATHANG" EntitySet="DATHANG" />
       <End Role="CHITIETDATHANG" EntitySet="CHITIETDATHANG" />
     </AssociationSet>
-    <AssociationSet Name="FK__CHITIETGI__MAGIO__70DDC3D8" Association="Self.FK__CHITIETGI__MAGIO__70DDC3D8">
+    <AssociationSet Name="FK__CHITIETGI__MAGIO__68487DD7" Association="Self.FK__CHITIETGI__MAGIO__68487DD7">
       <End Role="GIOHANG" EntitySet="GIOHANG" />
       <End Role="CHITIETGIOHANG" EntitySet="CHITIETGIOHANG" />
     </AssociationSet>
-    <AssociationSet Name="FK__CHITIETGI__MAMAT__6FE99F9F" Association="Self.FK__CHITIETGI__MAMAT__6FE99F9F">
+    <AssociationSet Name="FK__CHITIETGI__MAMAT__6754599E" Association="Self.FK__CHITIETGI__MAMAT__6754599E">
       <End Role="MATHANG" EntitySet="MATHANG" />
       <End Role="CHITIETGIOHANG" EntitySet="CHITIETGIOHANG" />
     </AssociationSet>
-    <AssociationSet Name="FK__CHITIETPH__MAMAT__4F7CD00D" Association="Self.FK__CHITIETPH__MAMAT__4F7CD00D">
+    <AssociationSet Name="FK__CHITIETPH__MAMAT__46E78A0C" Association="Self.FK__CHITIETPH__MAMAT__46E78A0C">
       <End Role="MATHANG" EntitySet="MATHANG" />
       <End Role="CHITIETPHIEUNHAP" EntitySet="CHITIETPHIEUNHAP" />
     </AssociationSet>
-    <AssociationSet Name="FK__CHITIETPH__MANHA__5070F446" Association="Self.FK__CHITIETPH__MANHA__5070F446">
+    <AssociationSet Name="FK__CHITIETPH__MANHA__47DBAE45" Association="Self.FK__CHITIETPH__MANHA__47DBAE45">
       <End Role="NHAPHANG" EntitySet="NHAPHANG" />
       <End Role="CHITIETPHIEUNHAP" EntitySet="CHITIETPHIEUNHAP" />
     </AssociationSet>
-    <AssociationSet Name="FK__DATHANG__MADIADI__6383C8BA" Association="Self.FK__DATHANG__MADIADI__6383C8BA">
+    <AssociationSet Name="FK__DATHANG__MADIADI__5AEE82B9" Association="Self.FK__DATHANG__MADIADI__5AEE82B9">
       <End Role="DIADIEM" EntitySet="DIADIEM" />
       <End Role="DATHANG" EntitySet="DATHANG" />
     </AssociationSet>
-    <AssociationSet Name="FK__DATHANG__MAKHACH__628FA481" Association="Self.FK__DATHANG__MAKHACH__628FA481">
+    <AssociationSet Name="FK__DATHANG__MAKHACH__59FA5E80" Association="Self.FK__DATHANG__MAKHACH__59FA5E80">
       <End Role="KHACHHANG" EntitySet="KHACHHANG" />
       <End Role="DATHANG" EntitySet="DATHANG" />
     </AssociationSet>
-    <AssociationSet Name="FK__DATHANG__MAQUANL__6477ECF3" Association="Self.FK__DATHANG__MAQUANL__6477ECF3">
+    <AssociationSet Name="FK__DATHANG__MAQUANL__5BE2A6F2" Association="Self.FK__DATHANG__MAQUANL__5BE2A6F2">
       <End Role="QUANLYVOUCHER" EntitySet="QUANLYVOUCHER" />
       <End Role="DATHANG" EntitySet="DATHANG" />
     </AssociationSet>
-    <AssociationSet Name="FK__DATHANG__MATHANH__656C112C" Association="Self.FK__DATHANG__MATHANH__656C112C">
+    <AssociationSet Name="FK__DATHANG__MATHANH__5CD6CB2B" Association="Self.FK__DATHANG__MATHANH__5CD6CB2B">
       <End Role="THANHTOAN" EntitySet="THANHTOAN" />
       <End Role="DATHANG" EntitySet="DATHANG" />
     </AssociationSet>
-    <AssociationSet Name="FK__DIADIEM__MAKHACH__5FB337D6" Association="Self.FK__DIADIEM__MAKHACH__5FB337D6">
+    <AssociationSet Name="FK__DATHANG__MAVANDO__5DCAEF64" Association="Self.FK__DATHANG__MAVANDO__5DCAEF64">
+      <End Role="TRANGTHAIGIAOHANG" EntitySet="TRANGTHAIGIAOHANG" />
+      <End Role="DATHANG" EntitySet="DATHANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DIADIEM__MAKHACH__571DF1D5" Association="Self.FK__DIADIEM__MAKHACH__571DF1D5">
       <End Role="KHACHHANG" EntitySet="KHACHHANG" />
       <End Role="DIADIEM" EntitySet="DIADIEM" />
     </AssociationSet>
-    <AssociationSet Name="FK__GIOHANG__MAKHACH__6D0D32F4" Association="Self.FK__GIOHANG__MAKHACH__6D0D32F4">
+    <AssociationSet Name="FK__GIOHANG__MAKHACH__6477ECF3" Association="Self.FK__GIOHANG__MAKHACH__6477ECF3">
       <End Role="KHACHHANG" EntitySet="KHACHHANG" />
       <End Role="GIOHANG" EntitySet="GIOHANG" />
     </AssociationSet>
-    <AssociationSet Name="FK__HINHANH__MAMATHA__4CA06362" Association="Self.FK__HINHANH__MAMATHA__4CA06362">
+    <AssociationSet Name="FK__HINHANH__MAMATHA__440B1D61" Association="Self.FK__HINHANH__MAMATHA__440B1D61">
       <End Role="MATHANG" EntitySet="MATHANG" />
       <End Role="HINHANH" EntitySet="HINHANH" />
     </AssociationSet>
-    <AssociationSet Name="FK__KHACHHANG__EMAIL__534D60F1" Association="Self.FK__KHACHHANG__EMAIL__534D60F1">
+    <AssociationSet Name="FK__KHACHHANG__EMAIL__4AB81AF0" Association="Self.FK__KHACHHANG__EMAIL__4AB81AF0">
       <End Role="TAIKHOAN" EntitySet="TAIKHOAN" />
       <End Role="KHACHHANG" EntitySet="KHACHHANG" />
     </AssociationSet>
-    <AssociationSet Name="FK__MATHANG__MASALE__49C3F6B7" Association="Self.FK__MATHANG__MASALE__49C3F6B7">
+    <AssociationSet Name="FK__MATHANG__MASALE__412EB0B6" Association="Self.FK__MATHANG__MASALE__412EB0B6">
       <End Role="SALE" EntitySet="SALE" />
       <End Role="MATHANG" EntitySet="MATHANG" />
     </AssociationSet>
-    <AssociationSet Name="FK__NHANVIEN__EMAIL__4222D4EF" Association="Self.FK__NHANVIEN__EMAIL__4222D4EF">
+    <AssociationSet Name="FK__NHANVIEN__EMAIL__398D8EEE" Association="Self.FK__NHANVIEN__EMAIL__398D8EEE">
       <End Role="TAIKHOAN" EntitySet="TAIKHOAN" />
       <End Role="NHANVIEN" EntitySet="NHANVIEN" />
     </AssociationSet>
-    <AssociationSet Name="FK__NHAPHANG__MANV__44FF419A" Association="Self.FK__NHAPHANG__MANV__44FF419A">
+    <AssociationSet Name="FK__NHAPHANG__MANV__3C69FB99" Association="Self.FK__NHAPHANG__MANV__3C69FB99">
       <End Role="NHANVIEN" EntitySet="NHANVIEN" />
       <End Role="NHAPHANG" EntitySet="NHAPHANG" />
     </AssociationSet>
-    <AssociationSet Name="FK__QUANLYVOU__MAKHA__5812160E" Association="Self.FK__QUANLYVOU__MAKHA__5812160E">
+    <AssociationSet Name="FK__NOTIFICAT__SENDI__72C60C4A" Association="Self.FK__NOTIFICAT__SENDI__72C60C4A">
+      <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+      <End Role="NOTIFICATION" EntitySet="NOTIFICATION" />
+    </AssociationSet>
+    <AssociationSet Name="FK__NOTIFICATI__MADH__73BA3083" Association="Self.FK__NOTIFICATI__MADH__73BA3083">
+      <End Role="DATHANG" EntitySet="DATHANG" />
+      <End Role="NOTIFICATION" EntitySet="NOTIFICATION" />
+    </AssociationSet>
+    <AssociationSet Name="FK__QUANLYVOU__MAKHA__4F7CD00D" Association="Self.FK__QUANLYVOU__MAKHA__4F7CD00D">
       <End Role="KHACHHANG" EntitySet="KHACHHANG" />
       <End Role="QUANLYVOUCHER" EntitySet="QUANLYVOUCHER" />
     </AssociationSet>
-    <AssociationSet Name="FK__QUANLYVOU__MAVOU__59063A47" Association="Self.FK__QUANLYVOU__MAVOU__59063A47">
+    <AssociationSet Name="FK__QUANLYVOU__MAVOU__5070F446" Association="Self.FK__QUANLYVOU__MAVOU__5070F446">
       <End Role="VOUCHER" EntitySet="VOUCHER" />
       <End Role="QUANLYVOUCHER" EntitySet="QUANLYVOUCHER" />
     </AssociationSet>
-    <AssociationSet Name="FK__SIGNARL__MAKHACH__787EE5A0" Association="Self.FK__SIGNARL__MAKHACH__787EE5A0">
+    <AssociationSet Name="FK__SIGNARL__MAKHACH__6FE99F9F" Association="Self.FK__SIGNARL__MAKHACH__6FE99F9F">
       <End Role="KHACHHANG" EntitySet="KHACHHANG" />
       <End Role="SIGNARL" EntitySet="SIGNARL" />
     </AssociationSet>
-    <AssociationSet Name="FK__THONGKENH__MANHA__75A278F5" Association="Self.FK__THONGKENH__MANHA__75A278F5">
+    <AssociationSet Name="FK__THONGKENH__MANHA__6D0D32F4" Association="Self.FK__THONGKENH__MANHA__6D0D32F4">
       <End Role="NHAPHANG" EntitySet="NHAPHANG" />
       <End Role="THONGKENHAPHANG" EntitySet="THONGKENHAPHANG" />
     </AssociationSet>

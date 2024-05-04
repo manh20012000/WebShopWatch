@@ -135,7 +135,7 @@
                                         </a>
                                         <ul class="account_selection">
                                             <li><a href="/TAIKHOANs/Dangnhap"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
-                                            <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+                                            <li><a href="/TAIKHOANs/Register"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -158,20 +158,19 @@
                             </div>
                             <nav class="navbar" style="color: black; margin-top: 10px;  font-weight: bold  ">
                                 <ul class="navbar_menu">
-                                    <li><a href="#">home</a></li>
-                                    <li><a href="/MatHang/Chitietmathang?id=N-30887L">shop</a></li>
-                                    <li><a href="#">promotion</a></li>
+                                    <li><a href="/Home/homeIndex">home</a></li>
+                                    <li><a href="/QUANLYVOUCHERs/VoucherIndex">shop</a></li>
+                                    <li><a href="/MATHANG/mathang">promotion</a></li>
                                     <li><a href="#">pages</a></li>
                                     <li><a href="#">blog</a></li>
                                     <li><a href="contact.html">contact</a></li>
                                 </ul>
                                 <ul class="navbar_user">
                                     <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                                    <li><a href="/KHACHHANGs/Edit"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                                     <li class="checkout">
                                         <a href="/GioHang/Index">
                                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                            <span id="checkout_items" class="checkout_items">2</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -215,25 +214,18 @@
                                             int a = 3;
                                             foreach (var item in hinhanh_sp)
                                             {
-                                                if (a == 0) { break; };
-                                                <li>
-                                                    <div style="border: solid 1px; border-color: #d9d9d9">
-                                                        <img src="@Url.Content(item.ANHS)" alt="Anh san pham" />
-                                                    </div>
-                                                </li>
-
-                                                a--;
+                                                <li><img src="@Url.Content(item.ANHS)" alt=""></li>
 
                                             }
                                         }
+
                                     </ul>
                                 </div>
                             </div>
                             <div class="col-lg-9 image_col order-lg-2 order-1">
                                 <div class="single_product_image">
-                                    <div class="single_product_image_background">
-                                        <img src="@Url.Content(Model.ANHSANPHAM)" style="max-width:410px;" alt="Anh san pham" />
-                                    </div>
+                                    <img id="single_image_product" class="single_product_image_background" src="@Url.Content(Model.ANHSANPHAM)" alt="" style=" height: 87%">
+
                                 </div>
                             </div>
                         </div>
@@ -280,7 +272,7 @@
                         <div class="product_price">
                             <p style=" font-family: 'Times New Roman', Times, sans-serif;"><b>Price:</b></p>
                             <span class="light-red">
-                                $@String.Format("{0:N0}", Model.GIAHANG)
+                                @String.Format("{0:N0}", Model.GIAHANG) VND
                             </span>
 
                         </div>
@@ -312,274 +304,114 @@
                 </div>
             </div>
 
-        </div>
-        <!-- Tabs -->
-
-        <div class="tabs_section_container">
-
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="tabs_container">
-                            <ul class="tabs d-flex flex-sm-row flex-column align-items-left align-items-md-center justify-content-center">
-                                <li class="tab active" data-active-tab="tab_1"><span>Description</span></li>
-                                <li class="tab" data-active-tab="tab_2"><span>Additional Information</span></li>
-                                <li class="tab" data-active-tab="tab_3"><span>Reviews (2)</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-
-                        <!-- Tab Description -->
-
-                        <div id="tab_1" class="tab_container active">
-                            <div class="row">
-                                <div class="col-lg-5 desc_col">
-                                    <div class="tab_title">
-                                        <h4>Description</h4>
-                                    </div>
-                                    <div class="tab_text_block">
-                                        <h2>Pocket cotton sweatshirt</h2>
-                                        <p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut...</p>
-                                    </div>
-                                    <div class="tab_image">
-                                        <img src="images/desc_1.jpg" alt="">
-                                    </div>
-                                    <div class="tab_text_block">
-                                        <h2>Pocket cotton sweatshirt</h2>
-                                        <p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut...</p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5 offset-lg-2 desc_col">
-                                    <div class="tab_image">
-                                        <img src="images/desc_2.jpg" alt="">
-                                    </div>
-                                    <div class="tab_text_block">
-                                        <h2>Pocket cotton sweatshirt</h2>
-                                        <p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut...</p>
-                                    </div>
-                                    <div class="tab_image desc_last">
-                                        <img src="images/desc_3.jpg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Tab Additional Info -->
-
-                        <div id="tab_2" class="tab_container">
-                            <div class="row">
-                                <div class="col additional_info_col">
-                                    <div class="tab_title additional_info_title">
-                                        <h4>Additional Information</h4>
-                                    </div>
-                                    <p>COLOR:<span>Gold, Red</span></p>
-                                    <p>SIZE:<span>L,M,XL</span></p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Tab Reviews -->
-
-                        <div id="tab_3" class="tab_container">
-                            <div class="row">
-
-                                <!-- User Reviews -->
-
-                                <div class="col-lg-6 reviews_col">
-                                    <div class="tab_title reviews_title">
-                                        <h4>Reviews (2)</h4>
-                                    </div>
-
-                                    <!-- User Review -->
-
-                                    <div class="user_review_container d-flex flex-column flex-sm-row">
-                                        <div class="user">
-                                            <div class="user_pic"></div>
-                                            <div class="user_rating">
-                                                <ul class="star_rating">
-                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="review">
-                                            <div class="review_date">27 Aug 2016</div>
-                                            <div class="user_name">Brandon William</div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                        </div>
-                                    </div>
-
-                                    <!-- User Review -->
-
-                                    <div class="user_review_container d-flex flex-column flex-sm-row">
-                                        <div class="user">
-                                            <div class="user_pic"></div>
-                                            <div class="user_rating">
-                                                <ul class="star_rating">
-                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="review">
-                                            <div class="review_date">27 Aug 2016</div>
-                                            <div class="user_name">Brandon William</div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Add Review -->
-
-                                <div class="col-lg-6 add_review_col">
-
-                                    <div class="add_review">
-                                        <form id="review_form" action="post">
-                                            <div>
-                                                <h1>Add Review</h1>
-                                                <input id="review_name" class="form_input input_name" type="text" name="name" placeholder="Name*" required="required" data-error="Name is required.">
-                                                <input id="review_email" class="form_input input_email" type="email" name="email" placeholder="Email*" required="required" data-error="Valid email is required.">
-                                            </div>
-                                            <div>
-                                                <h1>Your Rating:</h1>
-                                                <ul class="user_star_rating">
-                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                                                </ul>
-                                                <textarea id="review_message" class="input_review" name="message" placeholder="Your Review" rows="4" required data-error="Please, leave us a review."></textarea>
-                                            </div>
-                                            <div class="text-left text-sm-right">
-                                                <button id="review_submit" type="submit" class="red_button review_submit_btn trans_300" value="Submit">submit</button>
-                                            </div>
-                                        </form>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
 
         </div>
 
-        <!-- Benefit -->
+    </div>
+    <!-- Tabs -->
+    <!-- Benefit -->
 
-        <div class="benefit">
-            <div class="container">
-                <div class="row benefit_row">
-                    <div class="col-lg-3 benefit_col">
-                        <div class="benefit_item d-flex flex-row align-items-center">
-                            <div class="benefit_icon"><i class="fa fa-truck" aria-hidden="true"></i></div>
-                            <div class="benefit_content">
-                                <h6>free shipping</h6>
-                                <p>Suffered Alteration in Some Form</p>
-                            </div>
+    <div class="benefit">
+        <div class="container">
+            <div class="row benefit_row">
+                <div class="col-lg-3 benefit_col">
+                    <div class="benefit_item d-flex flex-row align-items-center">
+                        <div class="benefit_icon"><i class="fa fa-truck" aria-hidden="true"></i></div>
+                        <div class="benefit_content">
+                            <h6>free shipping</h6>
+                            <p>Suffered Alteration in Some Form</p>
                         </div>
                     </div>
-                    <div class="col-lg-3 benefit_col">
-                        <div class="benefit_item d-flex flex-row align-items-center">
-                            <div class="benefit_icon"><i class="fa fa-money" aria-hidden="true"></i></div>
-                            <div class="benefit_content">
-                                <h6>cach on delivery</h6>
-                                <p>The Internet Tend To Repeat</p>
-                            </div>
+                </div>
+                <div class="col-lg-3 benefit_col">
+                    <div class="benefit_item d-flex flex-row align-items-center">
+                        <div class="benefit_icon"><i class="fa fa-money" aria-hidden="true"></i></div>
+                        <div class="benefit_content">
+                            <h6>cach on delivery</h6>
+                            <p>The Internet Tend To Repeat</p>
                         </div>
                     </div>
-                    <div class="col-lg-3 benefit_col">
-                        <div class="benefit_item d-flex flex-row align-items-center">
-                            <div class="benefit_icon"><i class="fa fa-undo" aria-hidden="true"></i></div>
-                            <div class="benefit_content">
-                                <h6>45 days return</h6>
-                                <p>Making it Look Like Readable</p>
-                            </div>
+                </div>
+                <div class="col-lg-3 benefit_col">
+                    <div class="benefit_item d-flex flex-row align-items-center">
+                        <div class="benefit_icon"><i class="fa fa-undo" aria-hidden="true"></i></div>
+                        <div class="benefit_content">
+                            <h6>45 days return</h6>
+                            <p>Making it Look Like Readable</p>
                         </div>
                     </div>
-                    <div class="col-lg-3 benefit_col">
-                        <div class="benefit_item d-flex flex-row align-items-center">
-                            <div class="benefit_icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
-                            <div class="benefit_content">
-                                <h6>opening all week</h6>
-                                <p>8AM - 09PM</p>
-                            </div>
+                </div>
+                <div class="col-lg-3 benefit_col">
+                    <div class="benefit_item d-flex flex-row align-items-center">
+                        <div class="benefit_icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
+                        <div class="benefit_content">
+                            <h6>opening all week</h6>
+                            <p>8AM - 09PM</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Newsletter -->
+    <!-- Newsletter -->
 
-        <div class="newsletter">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="newsletter_text d-flex flex-column justify-content-center align-items-lg-start align-items-md-center text-center">
-                            <h4>Newsletter</h4>
-                            <p>Subscribe to our newsletter and get 20% off your first purchase</p>
-                        </div>
+    <div class="newsletter">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="newsletter_text d-flex flex-column justify-content-center align-items-lg-start align-items-md-center text-center">
+                        <h4>Newsletter</h4>
+                        <p>Subscribe to our newsletter and get 20% off your first purchase</p>
                     </div>
-                    <div class="col-lg-6">
-                        <form action="post">
-                            <div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
-                                <input id="newsletter_email" type="email" placeholder="Your email" required="required" data-error="Valid email is required.">
-                                <button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300" value="Submit">subscribe</button>
-                            </div>
-                        </form>
+                </div>
+                <div class="col-lg-6">
+                    <form action="post">
+                        <div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
+                            <input id="newsletter_email" type="email" placeholder="Your email" required="required" data-error="Valid email is required.">
+                            <button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300" value="Submit">subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
+                        <ul class="footer_nav">
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="contact.html">Contact us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="footer_social d-flex flex-row align-items-center justify-content-lg-end justify-content-center">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer_nav_container">
+                        <div class="cr">©2018 All Rights Reserverd. This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#">Colorlib</a> &amp; distributed by <a href="https://themewagon.com">ThemeWagon</a></div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Footer -->
-
-        <footer class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
-                            <ul class="footer_nav">
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">FAQs</a></li>
-                                <li><a href="contact.html">Contact us</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="footer_social d-flex flex-row align-items-center justify-content-lg-end justify-content-center">
-                            <ul>
-                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="footer_nav_container">
-                            <div class="cr">©2018 All Rights Reserverd. This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#">Colorlib</a> &amp; distributed by <a href="https://themewagon.com">ThemeWagon</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+    </footer>
     </div>
 
     <!-- Bootstrap core JavaScript==================================================-->
@@ -591,28 +423,34 @@
     <script src="~/assets/KhachHang/plugins/easing/easing.js"></script>
     <script src="~/assets/KhachHang/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
     <script src="~/assets/KhachHang/js/single_custom.js"></script>
-    <script>
-        // Đợi tài liệu được tải xong trước khi thực hiện các hành động JavaScript
-        document.addEventListener("DOMContentLoaded", function () {
-            // Chọn tất cả các thẻ <img> trong thẻ có lớp CSS "single_product_thumbnails"
-            var thumbnailImages = document.querySelectorAll(".single_product_thumbnails img");
-
-            // Lặp qua mỗi thẻ <img> và thêm sự kiện "click"
-            thumbnailImages.forEach(function (thumbnail) {
-                thumbnail.addEventListener("click", function () {
-                    // Lấy nguồn ảnh của thẻ <img> được nhấp vào
-                    var newImageSrc = this.getAttribute("src");
-
-                    // Chọn thẻ ảnh lớn
-                    var largeImage = document.querySelector(".single_product_image_background img");
-
-                    // Thay đổi nguồn ảnh của ảnh lớn thành nguồn ảnh mới
-                    largeImage.setAttribute("src", newImageSrc);
-                });
-            });
-        });
-    </script>
 
 
 </body>
 </html>
+
+<script>
+    initThumbnail2()
+    function initThumbnail2() {
+
+        if ($('.single_product_thumbnails ul li').length) {
+            var thumbs = $('.single_product_thumbnails ul li');
+
+
+            thumbs.each(function () {
+                var item = $(this);
+                item.on('click', function () {
+
+                    thumbs.removeClass('active');
+                    item.addClass('active');
+                    var img = item.find('img').attr('src');
+                    $('#single_image_product').attr('src', img);
+
+                });
+            });
+        }
+    }
+
+
+
+</script>
+

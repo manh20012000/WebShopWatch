@@ -134,7 +134,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
                 }
                 dATHANG.NGAYNHAN = DateTime.Now;
                 dATHANG.TUYCHON = true;
-                dATHANG.TINHTRANGDH = "đã nhận hàng";
+                dATHANG.TINHTRANGDH = "giao thanh công";
                 db.SaveChanges();
                 return RedirectToAction("listGiaohang", "DATHANG");
 

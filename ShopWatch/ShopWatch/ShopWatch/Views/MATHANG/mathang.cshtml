@@ -1,5 +1,4 @@
-﻿
-@model IPagedList<ShopWatch.Models.MATHANG>
+﻿@model IPagedList<ShopWatch.Models.MATHANG>
 @using PagedList;
 @using PagedList.Mvc;
 @{
@@ -26,8 +25,6 @@
         .pagination {
             display: inline-block;
             margin-left: 0; /* Điều chỉnh khoảng cách phía bên trái */
-            
-           
         }
 
             .pagination a {
@@ -61,6 +58,11 @@
                 .pagination .next:hover {
                     background-color: #ddd; /* Màu nền khi hover */
                 }
+
+        ::placeholder {
+            color: #cccccc;
+            font-size: 2rem;
+        }
     </style>
 </head>
 
@@ -77,11 +79,14 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="top_nav_left" style="color: #fff; text-align: center; text-transform: uppercase; font-family: 'Open Sans', sans-serif">NHÀ PHÂN PHỐI CHÍNH HÃNG CÁC THƯƠNG HIỆU ĐỒNG HỒ HÀNG ĐẦU VIỆT NAM</div>
+                            <div class="top_nav_left" style="color: #fff; text-align: center; text-transform: uppercase; font-family: 'Open Sans', sans-serif"><marquee>NHÀ PHÂN PHỐI CHÍNH HÃNG CÁC THƯƠNG HIỆU ĐỒNG HỒ HÀNG ĐẦU VIỆT NAM</marquee></div>
                         </div>
                         <div class="col-md-6 text-right">
                             <div class="top_nav_right">
                                 <ul class="top_nav_menu" style="">
+
+                                    <!-- Currency / Language / My Account -->
+
 
                                     <li class="account" style="background: #d69a62">
                                         <a href="#" style="color: #fff; text-align: center; font-family: 'Open Sans', sans-serif;  ">
@@ -114,11 +119,12 @@
                             <nav class="navbar" style="color: black; margin-top: 10px;  font-weight: bold  ">
                                 <ul class="navbar_menu">
                                     <li><a href="/MATHANG/homeIndex">Home<span class="underline"></span></a></li>
-                                    <li><a href="/MATHANG/mathang">Shop<span class="underline"></span></a></li>
+                                    <li><a href="/MATHANG/mathang">Product<span class="underline"></span></a></li>
                                     <li><a href="/DatHang/DonHang">Order<span class="underline"></span></a></li>
                                     <li><a href="/KHACHHANGs/Edit">Profile<span class="underline"></span></a></li>
-                                    <li><a href="/QUANLYVOUCHERs/VoucherIndex">listVoucher<span class="underline"></span></a></li>
+                                    <li><a href="/QUANLYVOUCHERs/VoucherIndex">Coupon<span class="underline"></span></a></li>
                                     <li><a href="contact.html">Contact<span class="underline"></span></a></li>
+
                                 </ul>
                                 <ul class="navbar_user">
                                     <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
@@ -126,7 +132,7 @@
                                     <li class="checkout">
                                         <a href="/GioHang/Index">
                                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                            <span id="checkout_items" class="checkout_items">2</span>
+                                          
                                         </a>
                                     </li>
                                 </ul>
@@ -150,17 +156,17 @@
                 <div class="col product_section clearfix">
                     <div class="sidebar">
                         <h5>Product Category</h5>
-                        <select name="type" id="typeSelect" style="height: 40px; margin-bottom: 30px; margin-right: 10px; border: solid 1px #ecedee; color: red" ">
+                        <select name="type" id="typeSelect" style="height: 40px; margin-bottom: 30px; margin-right: 10px; border: solid 1px #ecedee; color: black; wi">
                             <option disabled selected hidden>Chọn loại</option>
-                            <option value="Đồng hồ cơ">Đồng hồ cơ</option>
-                            <option value="ĐH ĐIỆN TỬ">ĐH ĐIỆN TỬ</option>
-                            <option value="ĐH SMARTWATCH">ĐH SMARTWATCH</option>
-                            <option value="cao cấp">cao cấp</option>
+
+                            <option value="ĐH CƠ"> ĐH Cơ</option>
+                            <option value="ĐH THỜI TRANG">ĐH Thời Trang</option>
+                            <option value="ĐH SMARTWATCH">Đồng hồ thông minh</option>
                         </select>
-                      
+
                         <div>
                             <h5>Brand Category</h5>
-                            <select id="brandSelect" name="brand" style="height: 40px; margin-right: 10px; margin-bottom: 30px; border: solid 1px #ecedee; width: 154px;color:red">
+                            <select id="brandSelect" name="brand" style="height: 40px; margin-right: 10px; margin-bottom: 30px; border: solid 1px #ecedee; width: 154px;color:black">
                                 <option disabled selected hidden>Chọn hãng</option>
                                 <option value="Heuer">Heuer</option>
                                 <option value="A.Lange & Söhne">A.Lange & Söhne</option>
@@ -172,35 +178,32 @@
 
 
                         <!-- Price Range Filtering -->
-                        <div >
-                            <h5>Giá</h5>
-                            <select name="price" id="priceSelect" style="height: 40px; margin-right: 10px; border: solid 1px #ecedee; width: 154px ;color:red ;margin-bottom: 30px;">
+                        <div>
+                            <h5>Price</h5>
+                            <select name="price" id="priceSelect" style="height: 40px; margin-right: 10px; border: solid 1px #ecedee; width: 154px ;color:black ;margin-bottom: 30px;">
                                 <option disabled selected hidden>Chọn giá</option>
                                 <option value="1000000">1.000.000</option>
+                                <option value="2000000">2.000.000</option>
+                                <option value="3000000">3.000.000</option>
                                 <option value="4000000">4.000.000</option>
                                 <option value="7000000">7.000.000</option>
                                 <option value="10000000">10.000.000</option>
                                 <option value="20000000">20.000.000</option>
                                 <option value="30000000">30.000.000</option>
-                                <option value="50000000">50.000.000</option>
-                                <option value="100000000">100.000.000</option>
-                                <option value="120000000">120.000.000</option>
-                                <option value="150000000">150.000.000</option>
-                                <option value="250000000">250.000.000</option>
-                                <option value="500000000">500.000.000</option>
                             </select>
                         </div>
-                      
+
                         <div>
                             <h5>Sizes</h5>
 
-                            <select name="size" id="sizeSelect" onchange="filterProducts()" style=" border: solid 1px #ecedee;margin-right: 10px; height: 40px; margin-bottom: 30px; width: 154px;color:red">
+                            <select name="size" id="sizeSelect" onchange="filterProducts()" style=" border: solid 1px #ecedee;margin-right: 10px; height: 40px; margin-bottom: 30px; width: 154px;color:black">
                                 <option disabled selected hidden>Chọn size</option>
                                 <option value="38">38</option>
                                 <option value="44">44</option>
+                                <option value="40">40</option>
                             </select>
                         </div>
-                       
+
 
                     </div>
 
@@ -223,8 +226,8 @@
                                                 <input type="hidden" id="selectedBrand" name="selectedBrand" />
                                                 <input type="hidden" id="selectedPrice" name="selectedPrice" />
                                                 <input type="hidden" id="selectedSize" name="selectedSize" />
-                                                <input name="searchValue" type="text" placeholder="Tìm kiếm tên đồng hồ ..." style="height: 40px; margin-right: 40px;width:450px;border-width:1px;padding:5px;border-radius:12px">
-                                                <input type="submit" style="height: 40px;width:100px;border-radius:10px;background-color:burlywood;border-width:0" value="search" />
+                                                <input name="searchValue" type="text" placeholder="Tìm kiếm tên đồng hồ ..." style=" height: 40px; margin-right: 40px; width: 450px; border-width: 1px; padding: 5px; border-style: solid; border-color: #cccccc">
+                                                <input type="submit" style="height: 40px; width: 100px; background-color: #d69a62; border-width: 0; font-weight: 600; color: white; " value="Search" />
                                             </form>
                                         </div>
 
@@ -236,7 +239,7 @@
                                             @foreach (var item in Model)
                                             {
                                                 <!-- Product 1 -->
-                                                <div class="product-item men">
+                                                <div class="product-item">
                                                     <div class="product discount product_filter">
                                                         @if (item.SALE != null)
                                                         {
@@ -245,7 +248,7 @@
                                                                     <img src="@item.ANHSANPHAM" alt="">
                                                                 </div>
                                                                 <div class="favorite favorite_left"></div>
-                                                                <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>Sale @item.SALE.PHANTRAMSALE %</span></div>
+                                                                <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span style="text-align:center">-@item.SALE.PHANTRAMSALE%</span></div>
                                                                 <div class="product_info">
                                                                     <h6 class="product_name"><a href="single.html">@item.TENHANG</a></h6>
                                                                     <div class="product_price">@String.Format("{0:N0}", item.GIAHANG)</div>
@@ -266,7 +269,7 @@
                                                             </a>
                                                         }
                                                     </div>
-                                                    <button class="red_button add_to_cart_button" onclick="location.href='@Url.Action("AddToCart", "GioHang", new { sanpham = item.MAMATHANG })'">
+                                                    <button class="red_button add_to_cart_button" onclick="location.href='@Url.Action("AddToCart", "GioHang", new { sanpham = item.MAMATHANG })'" style=" font-size:12px; font-weight:700; color:white">
 
                                                         ADD TO CART
                                                     </button>
@@ -279,12 +282,15 @@
 
                                 </div>
                             </div>
-                        </div> <center>
-                            <div style="margin-left:20px;">@Html.PagedListPager(Model, page => Url.Action("homeIndex", new { page }))</div>
-                        </center>
+                        </div>
+
+
                     </div>
                 </div>
-            </div>
+            </div> 
+            <center>
+                <div style="margin-left:20px; ">@Html.PagedListPager(Model, page => Url.Action("mathang", new { page }))</div>
+            </center>
         </div>
 
 

@@ -90,30 +90,29 @@
                 <table id="example" class="table">
                     <thead>
                         <tr style="background-color:#04AA6D; color: white;">
-                            <th style=" padding: 15px; text-align: center;">
+                            <th style=" padding: 15px; text-align: center; color:antiquewhite">
                                 @Html.DisplayNameFor(model => model.MATHONGKE)
                             </th>
-                            <th style=" padding: 15px; text-align: center;">
+                            <th style=" padding: 15px; text-align: center; color:antiquewhite">
                                 @Html.DisplayNameFor(model => model.NGAYTHONGKE)
                             </th>
-                            <th style=" padding: 15px; text-align: center;">
+                            <th style=" padding: 15px; text-align: center; color:antiquewhite">
                                 @Html.DisplayNameFor(model => model.TONGTIEN)
                             </th>
-                            <th style=" padding: 15px; text-align: center;">
+                            <th style=" padding: 15px; text-align: center; color:antiquewhite">
                                 @Html.DisplayNameFor(model => model.SOLUONGBANRA)
                             </th>
 
-                            <th style=" padding: 15px; text-align: center;">
+                            <th style=" padding: 15px; text-align: center; color:antiquewhite">
                                 @Html.DisplayNameFor(model => model.MASPBANCHAY)
                             </th>
-                            <th style=" padding: 15px; text-align: center;">
+                            <th style=" padding: 15px; text-align: center; color:antiquewhite">
                                 @Html.DisplayNameFor(model => model.SANPHAMBANCHAY)
                             </th>
-
-                            <th style=" padding: 15px; text-align: center;">
+                            <th style=" padding: 15px; text-align: center; color:antiquewhite">
                                 @Html.DisplayNameFor(model => model.SOLUONGBANCHAY)
                             </th>
-                            <th></th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -125,8 +124,8 @@
                                     @Html.DisplayFor(modelItem => item.MATHONGKE)
                                 </td>
                                 <td class="text-center" style="font-weight:700;height:60px;">
-                                    @String.Format("{0:dd/MM/yyyy}", item.NGAYTHONGKE)
-
+                                 
+                                    @Html.DisplayFor(modelItem => item.NGAYTHONGKE)
                                 </td>
                                 <td class="text-center" style="font-size:16px;color:brown;font-weight:500">
                                     @String.Format("{0:N0}", item.TONGTIEN) <!-- Sử dụng String.Format để định dạng số -->

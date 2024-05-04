@@ -1,4 +1,4 @@
-﻿@model IPagedList<ShopWatch.Models.QUANLYVOUCHER>
+﻿﻿@model IPagedList<ShopWatch.Models.QUANLYVOUCHER>
 @using PagedList;
 @using PagedList.Mvc;
 
@@ -7,97 +7,85 @@
     Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
 }
 
-<div style="display:flex; align-items: center; justify-content: space-between;">
-    <h2>Danh sách quản ly voucher</h2>
-    <button style="padding: 8px; border-radius: 10px;" onclick="location.href='@Url.Action("Create", "QUANLYVOUCHERs")'">Add QuanlyVoucher</button>
-
-
-</div>
-
+<h2>Danh sách quản ly voucher</h2>
 
 <table class="table">
     <tr style="background-color:#04AA6D;">
-       @* <th class="text-center">
+        <th class="text-center">
             <label>GHI CHÚ</label>
         </th>
         <th class="text-center">
             <label>NOIDUNG</label>
-        </th>*@
+
+        </th>
         <th class="text-center">
             <label>NGAYBATDAU</label>
-      
+
         </th>
         <th class="text-center">
             <label>NGAYKETTHUC</label>
-            
-        </th><th class="text-center">
-         <label>MAKHACHHANG</label>
 
-</th>
-      
-             <th class="text-center">
-                 <label>TENKHACHHANG</label>
+        </th>
 
+        <th class="text-center">
+            <label>TENKHACHHANG</label>
 
-             </th>
+        </th>
         <th class="text-center">
             <label>DIEUKIEN</label>
-            
+
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-<tr>
-    @* <td class="text-center">
-            @Html.DisplayFor(modelItem => item.GHICHU)
-        </td>
-        <td class="text-center">
-            @Html.DisplayFor(modelItem => item.NOIDUNG)
-        </td>*@
-    <td class="text-center">
-        @String.Format("{0:dd/MM/yyyy}", item.NGAYBATDAU)
+        <tr>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.GHICHU)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.NOIDUNG)
+            </td>
+            <td class="text-center">
+                @String.Format("{0:dd/MM/yyyy}", item.NGAYBATDAU)
 
-    </td>
-    <td class="text-center">
-        @String.Format("{0:dd/MM/yyyy}", item.NGAYKETTHUC)
-    </td>
-    <td class="text-center">
-        @Html.DisplayFor(modelItem => item.KHACHHANG.MAKHACHHANG)
-    </td>
-    <td class="text-center">
-        @Html.DisplayFor(modelItem => item.KHACHHANG.TENKHACHHANG)
-    </td>
-  
-    <td class="text-center">
-        @Html.DisplayFor(modelItem => item.VOUCHER.DIEUKIEN)
-    </td>
-    <td class="text-center">
-        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-            <div class="btn-group" role="group">
-                <button id="btnGroupDrop1"
-                        type="button" style="color:brown"
-                        class="btn btn-outline-secondary dropdown-toggle"
-                        data-bs-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false">
-                    Tùy chọn
-                </button>
-                <div class="dropdown-menu" aria-labelledb0pxy="btnGroupDrop1" style="width:20px">
+            </td>
+            <td class="text-center">
+                @String.Format("{0:dd/MM/yyyy}", item.NGAYKETTHUC)
+            </td>
 
-                    @Html.ActionLink("Edit", "Edit", new { id = item.MAQUANLYVOUCHER }, new { @class = " btn btn-primary" })
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.KHACHHANG.TENKHACHHANG)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.VOUCHER.DIEUKIEN)
+            </td>
+            <td class="text-center">
+                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1"
+                                type="button" style="color:brown"
+                                class="btn btn-outline-secondary dropdown-toggle"
+                                data-bs-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">
+                            Tùy chọn
+                        </button>
+                        <div class="dropdown-menu" aria-labelledb0pxy="btnGroupDrop1" style="width:20px">
 
-                    @Html.ActionLink("Delete", "Delete", new { id = item.MAQUANLYVOUCHER }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Edit", "Edit", new { id = item.MAQUANLYVOUCHER }, new { @class = " btn btn-primary" })
+
+                            @Html.ActionLink("Delete", "Delete", new { id = item.MAQUANLYVOUCHER }, new { @class = "btn btn-primary" })
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </td>
-    @*    <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.MAQUANLYVOUCHER }) |
-            @Html.ActionLink("Details", "Details", new { id = item.MAQUANLYVOUCHER }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.MAQUANLYVOUCHER })
-        </td>*@
-</tr>
+            </td>
+            @*    <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MAQUANLYVOUCHER }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.MAQUANLYVOUCHER }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MAQUANLYVOUCHER })
+                </td>*@
+        </tr>
     }
 
 </table>

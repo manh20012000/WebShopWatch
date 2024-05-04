@@ -1,24 +1,52 @@
-﻿@model IEnumerable<ShopWatch.Models.DIADIEM>
+﻿Lê Trà
+@model IEnumerable<ShopWatch.Models.DIADIEM>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    body {
+        margin-left: 45px;
+        max-width: 95%;
+    }
+
+    table, td, th {
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td {
+        padding: 15px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+        color: black;
+        font-weight: 700;
+    }
+</style>
 <div style="margin:200px 10px 10px 10px">
-    <h2>ĐỊA CHỈ GIAO HÀNG </h2>
-    <button style="margin:10px;width:150px;height:50px;border-radius:10px;background-color:coral">
-        @Html.ActionLink("Create New", "Create")
+    <h2 style=" text-align: center; font-weight: 700;">ĐỊA CHỈ GIAO HÀNG </h2>
+    <button style="margin: 15px; width: 150px; color: black; margin-left: 3.3%;">
+        @Html.ActionLink("Create New", "Create", null, new { style = "color:black;font-weight:600" })
     </button>
-    <table class="table">
+
+    <table class="table" style="margin-left: 38px;">
         <tr>
-            <th >
-                @Html.DisplayNameFor(model => model.TENDIACHI)
+            <th>
+                Tên Địa Chỉ
             </th>
             <th class="text-center">
-                @Html.DisplayNameFor(model => model.SDT)
+                SDT
             </th>
             <th class="text-center">
-                @Html.DisplayNameFor(model => model.KHACHHANG.TENKHACHHANG)
+                Tên Khách Hàng
             </th>
             <th class="text-center">CHỌN ĐỊA ĐIỂM </th>
             <th></th>
@@ -26,73 +54,73 @@
 
         @foreach (var item in Model)
         {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TENDIACHI)
-        </td>
-        <td class="text-center">
-            @Html.DisplayFor(modelItem => item.SDT)
-        </td>
-        <td class="text-center">
-            @Html.DisplayFor(modelItem => item.KHACHHANG.TENKHACHHANG)
-        </td>
-        <td class="text-center"> <input type="radio" name="diadiem" class="diadiem" data-id="@item.MADIADIEM" value="@item.MADIADIEM" @(item.MACDINH.GetValueOrDefault() ? "checked" : "") /></td>
-        <td class="text-center">
-            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                <div class="btn-group" role="group">
-                    <button id="btnGroupDrop1"
-                            type="button" style="color:brown"
-                            class="btn btn-outline-secondary dropdown-toggle"
-                            data-bs-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false">
-                        Tùy chọn
-                    </button>
-                    <div class="dropdown-menu" style="width:200px">
-                        <a href="@Url.Action("Edit", new { id = item.MADIADIEM })" class="btn btn-primary">
-                            <i class="fas fa-edit"></i> Edit
-                        </a>
+            <tr>
+                <td style=" font-family: 'open sans' sans-serif;">
+                    @Html.DisplayFor(modelItem => item.TENDIACHI)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.SDT)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.KHACHHANG.TENKHACHHANG)
+                </td>
+                <td class="text-center"> <input type="radio" name="diadiem" class="diadiem" data-id="@item.MADIADIEM" value="@item.MADIADIEM" @(item.MACDINH.GetValueOrDefault() ? "checked" : "") /></td>
+                <td class="text-center">
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1"
+                                    type="button" style="color:black; background-color: white; "
+                                    class="btn btn-outline-secondary dropdown-toggle"
+                                    data-bs-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false">
+                                Tùy chọn
+                            </button>
+                            <div class="dropdown-menu">
+                                <a href="@Url.Action("Edit", new { id = item.MADIADIEM })" class="btn btn-primary" style=" margin-left: 6px;">
+                                    Edit
+                                </a>
 
-                        <a href="@Url.Action("Delete", new { id = item.MADIADIEM })" class="btn btn-primary">
-                            <i class="fas fa-trash-alt"></i>DELETE
-                        </a>
+                                <a href="@Url.Action("Delete", new { id = item.MADIADIEM })" class="btn btn-primary">
+                                    <i class="fas fa-trash-alt"></i>DELETE
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </td>
-        <!--<td>-->
-        @*   @Html.ActionLink("Details", "Details", new { id = item.MADIADIEM }) |*@
-        @*  @Html.ActionLink("Delete", "Delete", new { id = item.MADIADIEM })
-        @Html.ActionLink("Edit", "Edit", new { id = item.MADIADIEM })*@
-        <!--</td>-->
-    </tr>
+                </td>
+                <!--<td>-->
+                @*   @Html.ActionLink("Details", "Details", new { id = item.MADIADIEM }) |*@
+                @*  @Html.ActionLink("Delete", "Delete", new { id = item.MADIADIEM })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MADIADIEM })*@
+                <!--</td>-->
+            </tr>
         }
 
     </table>
 </div>
 
-     <script>
-         document.addEventListener('DOMContentLoaded', function () {
-         var radioButtons = document.querySelectorAll('.diadiem');
-         radioButtons.forEach(function(radioButton) {
-             radioButton.addEventListener('click', function () {
-                 var selectedDiadiemId = this.getAttribute('data-id');
-                 console.log('Selected Diadiem ID:', selectedDiadiemId);
-                 // Gửi ID của địa điểm được chọn đến server qua AJAX
-                 $.ajax({
-                     url: '/DIADIEMs/capnhatdiachi',
-                     type: 'POST',
-                     contentType: 'application/json',
-                     data: JSON.stringify({ diadiemId: selectedDiadiemId }),
-                     success: function (result) {
-                         // Xử lý kết quả nếu cần
-                     },
-                     error: function (xhr, status, error) {
-                         // Xử lý lỗi nếu có
-                     }
-                 });
-             });
-         });
-     });
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var radioButtons = document.querySelectorAll('.diadiem');
+        radioButtons.forEach(function (radioButton) {
+            radioButton.addEventListener('click', function () {
+                var selectedDiadiemId = this.getAttribute('data-id');
+                console.log('Selected Diadiem ID:', selectedDiadiemId);
+                // Gửi ID của địa điểm được chọn đến server qua AJAX
+                $.ajax({
+                    url: '/DIADIEMs/capnhatdiachi',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ diadiemId: selectedDiadiemId }),
+                    success: function (result) {
+                        // Xử lý kết quả nếu cần
+                    },
+                    error: function (xhr, status, error) {
+                        // Xử lý lỗi nếu có
+                    }
+                });
+            });
+        });
+    });
 
 </script>

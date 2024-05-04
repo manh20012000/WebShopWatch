@@ -167,6 +167,7 @@
     <Compile Include="Areas\NhanVien\Controllers\MATHANGsController.cs" />
     <Compile Include="Areas\NhanVien\Controllers\NHANVIENsController.cs" />
     <Compile Include="Areas\NhanVien\Controllers\NHAPHANGsController.cs" />
+    <Compile Include="Areas\NhanVien\Controllers\NOTIFICATIONsController.cs" />
     <Compile Include="Areas\NhanVien\Controllers\QUANLYVOUCHERsController.cs" />
     <Compile Include="Areas\NhanVien\Controllers\SALEsController.cs" />
     <Compile Include="Areas\NhanVien\Controllers\SIGNARLsController.cs" />
@@ -257,6 +258,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\NHAPHANG.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NOTIFICATION.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\QUANLYVOUCHER.cs">
@@ -4900,13 +4904,6 @@
     <Content Include="Areas\NhanVien\Views\web.config" />
     <Content Include="Areas\NhanVien\Views\_ViewStart.cshtml" />
     <Content Include="Payment\appsetting.json" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\NhanVien\Views\DATHANG\Create.cshtml" />
     <Content Include="Areas\NhanVien\Views\DATHANG\Delete.cshtml" />
     <Content Include="Areas\NhanVien\Views\DATHANG\Details.cshtml" />
@@ -5084,6 +5081,18 @@
     <Content Include="Areas\NhanVien\Views\TRANGTHAIGIAOHANGs\Index.cshtml" />
     <Content Include="Areas\NhanVien\Views\DATHANG\listGiaohang.cshtml" />
     <Content Include="Areas\NhanVien\Views\KHACHHANGs\Xacnhandonhang.cshtml" />
+    <Content Include="Areas\NhanVien\Views\NOTIFICATIONs\Create.cshtml" />
+    <Content Include="Areas\NhanVien\Views\NOTIFICATIONs\Delete.cshtml" />
+    <Content Include="Areas\NhanVien\Views\NOTIFICATIONs\Edit.cshtml" />
+    <Content Include="Areas\NhanVien\Views\NOTIFICATIONs\Index.cshtml" />
+    <Content Include="Areas\NhanVien\Views\NOTIFICATIONs\DetailDATHANG.cshtml" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

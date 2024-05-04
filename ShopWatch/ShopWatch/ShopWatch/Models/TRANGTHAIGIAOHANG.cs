@@ -14,10 +14,19 @@ namespace ShopWatch.Models
     
     public partial class TRANGTHAIGIAOHANG
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TRANGTHAIGIAOHANG()
+        {
+            this.DATHANGs = new HashSet<DATHANG>();
+        }
+    
         public int MAVANDON { get; set; }
         public string VITRI { get; set; }
         public Nullable<System.DateTime> THOIGIANGIAOHANG { get; set; }
         public Nullable<System.DateTime> THOIGIANNHANHANG { get; set; }
         public Nullable<bool> TRANGTHAI { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DATHANG> DATHANGs { get; set; }
     }
 }

@@ -67,7 +67,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
             // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
             [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MAVOUCHER,NGAYBATDAU,NGAYKETTHUC,PHANTRAMGIAMGIA,DIEUKIEN,TRANGTHAI")] VOUCHER vOUCHER)
+        public ActionResult Create([Bind(Include = "MAVOUCHER,NGAYBATDAU,NGAYKETTHUC,PHANTRAMGIAMGIA,DIEUKIEN,TRANGTHAI,TRANGTHAIGIOIHAN")] VOUCHER vOUCHER)
         {
             if (ModelState.IsValid)
             {

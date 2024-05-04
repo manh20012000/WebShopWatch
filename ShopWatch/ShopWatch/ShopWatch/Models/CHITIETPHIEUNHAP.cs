@@ -20,7 +20,7 @@ namespace ShopWatch.Models
         public Nullable<int> MANHAPHANG { get; set; }
         public Nullable<double> GIANHAP { get; set; }
     
-        public virtual MATHANG MATHANG { get; set; }
         public virtual NHAPHANG NHAPHANG { get; set; }
+        public virtual MATHANG MATHANG { get; set; }
     }
 }

@@ -1,0 +1,245 @@
+﻿@model ShopWatch.Models.DATHANG
+
+@{
+    ViewBag.Title = "DetailDATHANG";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+
+<style>
+    .label {
+        font-weight: bold;
+        color: #333; /* Màu chữ của tên cột */
+    }
+
+    .envelope {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        padding: 15px;
+    }
+
+    .envelope-header {
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 10px;
+    }
+
+    .envelope-body {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .property {
+        flex: 0 0 50%; /* Chia cột thành 2 */
+        margin-bottom: 10px;
+        padding: 5px;
+        box-sizing: border-box;
+    }
+
+    .property-name {
+        font-weight: bold;
+    }
+
+    .property-value {
+        margin-top: 5px;
+    }
+</style>
+
+<div class="envelope">
+    <div class="envelope-header" style="justify-content:space-between;display:flex;align-content:center;align-items:center">
+        <h4>DATHANG</h4>
+        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("XacNhan", new { id = Model.MADH,idUser=Model.KHACHHANG.EMAIL })'">Xác nhận</button>
+    </div>
+    <div class="envelope-body">
+        <div class="property">
+            <div class="property-name">@Html.DisplayNameFor(model => model.KHACHHANG.TENKHACHHANG)</div>
+            <div class="property-value">@Html.DisplayFor(model => model.KHACHHANG.TENKHACHHANG)</div>
+        </div>
+        <div class="property">
+            <div class="property-name">@Html.DisplayNameFor(model => model.NGAYMUA)</div>
+            <div class="property-value">@Html.DisplayFor(model => model.NGAYMUA)</div>
+        </div>
+
+        <div class="property">
+            <div class="property-name">@Html.DisplayNameFor(model => model.TONGTIEN)</div>
+            <div class="property-value" style="font-weight: bold; color: red;">@String.Format("{0:N0}", Model.TONGTIEN) VND</div>
+        </div>
+        <div class="property">
+            <div class="property-name">@Html.DisplayNameFor(model => model.TRANGTHAI)</div>
+            <div class="property-value" style="font-weight: bold; color: red;">
+                @if (Model.TRANGTHAI == false)
+                {
+                    <text>CHƯA THANH TOÁN</text>
+                }
+                else
+                {
+                    <text>ĐÃ THANH TOÁN</text>
+                }
+            </div>
+        </div>
+
+        <div class="property">
+            <div class="property-name">@Html.DisplayNameFor(model => model.HINHTHUCTHANHTOAN)</div>
+            <div class="property-value">
+                @if (Model.HINHTHUCTHANHTOAN == false)
+                {
+                    <text>COD</text>
+                }
+                else
+                {
+                    <text>ONLINE</text>
+                }
+            </div>
+        </div>
+        <div class="property">
+            <div class="property-name">@Html.DisplayNameFor(model => model.DIADIEM.TENDIACHI)</div>
+            <div class="property-value">@Html.DisplayFor(model => model.DIADIEM.TENDIACHI)</div>
+        </div>
+
+        @if (Model.NGAYHUY != null)
+        {<div class="property">
+                <div class="property-name">@Html.DisplayNameFor(model => model.NGAYHUY)</div>
+                <div class="property-value">@Html.DisplayFor(model => model.NGAYHUY)</div>
+            </div>
+        }
+        @if (Model.NGAYNHAN != null)
+        {
+            <div class="property">
+                <div class="property-name">@Html.DisplayNameFor(model => model.NGAYNHAN)</div>
+                <div class="property-value">@Html.DisplayFor(model => model.NGAYNHAN)</div>
+            </div>
+        }
+        @if (Model.TINHTRANGDH != null)
+        {
+            <div class="property">
+                <div class="property-name">@Html.DisplayNameFor(model => model.THANHTOAN.PHUONGTHUCTHANHTOAN)</div>
+                <div class="property-value">@Html.DisplayFor(model => model.THANHTOAN.PHUONGTHUCTHANHTOAN) </div>
+            </div>
+        }
+        @if (Model.QUANLYVOUCHER != null)
+        {
+            <div class="property">
+                <div class="property-name">@Html.DisplayNameFor(model => Model.QUANLYVOUCHER.VOUCHER.PHANTRAMGIAMGIA)</div>
+                <div class="property-value" style="color:red;font-size:20px;">@Html.DisplayFor(model => Model.QUANLYVOUCHER.VOUCHER.PHANTRAMGIAMGIA)%</div>
+            </div>
+
+        }
+
+
+    </div>
+</div>
+
+<div style="width:100%;height:2px;background-color:brown;margin:10px 0 10px 0;justify-content:center;align-content:center">
+
+</div>
+<h4>DANH SÁCH ĐƠN HÀNG</h4>
+<div style="display: flex; flex-direction: column; align-items:center; width:85%;margin-left:50px;">
+    @{
+        var DataChitietdathang = ViewBag.DataChitietdathangAdmin;
+
+        foreach (var items in DataChitietdathang)
+        {
+
+            <div style="width: 100%; height: auto; align-content: center; justify-content: center; align-items: center; border-width: medium; border-color: black; margin-top: 5px; background-color: #F5F5F5;padding:10px">
+                <div style="width:100%;height:50px;justify-content:space-between;display:flex;align-content:center;align-items:center">
+                    <div style="display:flex;align-items:center">
+                        <label style="">hãng sx:<label style="font-size:19px;font-weight:700">@items.MATHANG.TENHANGSANXUAT</label> </label>
+                    </div>
+
+                    <div style="display:flex;align-items:center">
+
+
+                        <label>
+                            tình trạng đơn hàng : @items.DATHANG.TINHTRANGDH |<label style="color:crimson;font-size:14px">
+                                @if (Model.TRANGTHAI == false)
+                                {
+                                    <text>CHƯA THANH TOÁN</text>
+                                }
+                                else
+                                {
+                                    <text>ĐÃ THANH TOÁN</text>
+                                }
+                            </label>
+                        </label>
+
+                    </div>
+
+                </div>
+                <div style="width:100%;height:1px;justify-content:center;align-content:center;background-color:coral">
+
+                </div>
+                <div style="border-width:10px;border-color:burlywood;flex-direction:row;display:flex;align-items:center">
+                    <div style="display:flex;margin:20px;width:100px;height:150px;">
+                        <img style="width:150px;height:150px;border-width:2px" src="@items.MATHANG.ANHSANPHAM" />
+                    </div>
+                    <div style="margin: 20px 20px 20px 30px; align-items: center; width: 100%;">
+                        <div style="display:flex;width:100%;justify-content:space-between">
+                            <label> TÊN MẶT HÀNG:<lable style="font-size:18px;font-weight:600">@items.MATHANG.TENHANG</lable> </label>
+                            @if (items.MATHANG.SALE?.PHANTRAMSALE != null)
+                            {<div style="background-color: #FF3300;width:80px;height:35px;justify-content:center;align-items:center">
+                                    @items.MATHANG.SALE?.PHANTRAMSALE) %
+                                </div>
+                            }
+                        </div>
+
+                        <div style="display:flex;width:80%">
+                            <label> SỐ LƯỢNG :<label style="color:brown">x @items.SOLUONG</label>  </label>
+                        </div>
+                        <div style="display:flex;width:100%;justify-content:space-between">
+                            <label>
+                                PHÂN LOẠI: @items.MATHANG.LOAI
+                            </label>
+                            <label>
+                                GIÁ SẢN PHẨM:
+                                <label style="color:red;font-weight:600;font-size:15px">@String.Format("{0:N0}", items.MATHANG.GIAHANG) VND</label>
+                            </label>
+                        </div>
+                        <div style="display:flex">
+                            <label style="color:slategrey"> NGÀY NHẬN :@items.DATHANG.NGAYNHAN </label>
+                        </div>
+                        <div style="display:flex;width:80%">
+                            <label> BẢO HÀNH: @items.MATHANG.BAOHANH </label>
+                        </div>
+                        <div style="border-width:2px;border-color:black">
+                            <label style="color:aqua;">trả hàng miễn phí 5 ngày</label>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div style="justify-content:flex-end;width:100%;text-align: right;">
+                    <label>
+                        Tổng Tiền :
+                        <label style="color:brown;font-weight:600;font-size:20px">
+                            @{
+                                var giaHang = items.MATHANG.GIAHANG * items.SOLUONG;
+                                if (items.MATHANG.SALE != null && items.MATHANG.SALE.PHANTRAMSALE != null)
+                                {
+                                    var chietKhau = giaHang * items.MATHANG.SALE.PHANTRAMSALE / 100;
+                                    giaHang -= chietKhau;
+                                }
+
+                                @String.Format("{0:N0}", giaHang)
+                            }VND
+                        </label>
+
+                    </label>
+                </div>
+            </div>
+
+        }
+
+    }
+
+</div>
+
+@*<button style="background-color:aquamarine;width:80%;height:40px;margin:2%;border-radius:10px" onclick="location.href='@Url.Action("DetailDATHANG", "KHACHHANGs",new { id = Model.MADH })'">
+        DETAIL
+    </button>*@
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MADH }, new { @class = "btn btn-primary" }) |
+           @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-secondary" })
+       </p>*@
+
+

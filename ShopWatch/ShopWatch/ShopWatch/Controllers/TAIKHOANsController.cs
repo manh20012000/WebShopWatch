@@ -73,12 +73,8 @@ namespace ShopWatch.Controllers
                                 TRANGTHAI = true,
                             };
                             db.QUANLYVOUCHERs.Add(newQuanlyVoucher);
-                        }
-                           ;
-
+                        }  ;
                     }
-
-
                     db.SaveChanges();
 
                     return RedirectToAction("Dangnhap", "TAIKHOANs");
@@ -90,7 +86,7 @@ namespace ShopWatch.Controllers
             else
             {
                 ViewBag.error = "Email already exists";
-               
+                TempData["thbaolog "] = tAIKHOAN.EMAIL + " tồn tại";
             }
              return View();
         }
@@ -115,8 +111,7 @@ namespace ShopWatch.Controllers
         [HttpPost]
         public ActionResult Dangnhap(TAIKHOAN tAIKHOAN)
         {
-            tAIKHOAN.MATKHAU = "11";
-            tAIKHOAN.EMAIL = "a@gmail.com";
+        
             var f_password = GetMD5(tAIKHOAN.MATKHAU);
             try
             {
@@ -127,8 +122,10 @@ namespace ShopWatch.Controllers
                 if (data_khachhang != null)
                 {
                     Session["EmailClient"] = data_khachhang.EMAIL;
+                        var connectionId = Guid.NewGuid().ToString();
+                        Session["ConnectionId"] = connectionId;
 
-                    SetMaKH(data_khachhang.MAKHACHHANG);
+                        SetMaKH(data_khachhang.MAKHACHHANG);
                     return RedirectToAction("homeIndex", "MATHANG");
                 }
             }

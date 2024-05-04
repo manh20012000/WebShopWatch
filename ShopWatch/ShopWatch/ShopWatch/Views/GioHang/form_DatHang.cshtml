@@ -6,7 +6,15 @@
 
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-}
+}<style>
+    .voucher-wrapper {
+        border: 1px solid #ccc;
+        padding: 10px;
+        cursor: pointer;
+        background-color: #f9f9f9; /* Màu nền cho voucher */
+        /* Thêm các thuộc tính CSS khác tùy theo yêu cầu của bạn */
+    }
+</style>
 <div style="margin:200px 10px 10px 10px"></div>
 <h2 style=" text-align:center;color:black;margin-bottom:30px;font-weight:400;font-family:'Times New Roman', Times, serif">ĐẶT HÀNG </h2>
 
@@ -72,6 +80,7 @@
                 <div class="form-group">
                     <label for="diachi">ĐỊA CHỈ</label>
                     <div class="border p-3">
+
                         @if (ViewBag.DIACHI != null)
                         {
                             <p>ĐỊA CHỈ : @ViewBag.DIACHI.TENDIACHI</p>
@@ -109,8 +118,8 @@
                         <button type="button" class="btn btn-primary mb-3" onclick="toggleAddressList('voucherList')">Chọn voucher thanh toán</button>
                         <div id="voucherList" class="border p-3" style="display: none;">
                             @foreach (var voucher in ViewBag.VOUCHER.Items)
-                        {
-                                <div onclick="selectVoucher('@voucher.MAQUANLYVOUCHER', '@voucher.VOUCHER.PHANTRAMGIAMGIA')" class="mb-3">
+                            {
+                                <div class="voucher-wrapper mb-3" onclick="selectVoucher('@voucher.MAQUANLYVOUCHER', '@voucher.VOUCHER.PHANTRAMGIAMGIA')">
                                     <p>Phần trăm giảm giá: @voucher.VOUCHER.PHANTRAMGIAMGIA %</p>
                                     <p>Hết hạn: @voucher.NGAYKETTHUC - Áp dụng cho: @voucher.VOUCHER.DIEUKIEN</p>
                                 </div>
@@ -175,17 +184,14 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-12">
-                <h2>Tổng tiền</h2>
                 <hr />
                 <div class="form-group">
                     @Html.LabelFor(model => model.TONGTIEN, htmlAttributes: new { @class = "control-label" })
-                    <label class="form-control" style="color: red; font-weight: 600;" required="required">
-                        @String.Format("{0:N0}", Model.TONGTIEN)
-                    </label>
-                    @Html.EditorFor(model => model.TONGTIEN, new { htmlAttributes = new { @type = "hidden" } })
+                    <input id="TONGTIEN" name="TONGTIEN" class="form-control" style="color: red; font-weight: 600;" readonly="readonly" required="required" value=" @Model.TONGTIEN" />
 
                     @Html.ValidationMessageFor(model => model.TONGTIEN, "", new { @class = "text-danger" })
                 </div>
+
             </div>
         </div>
     </div>
@@ -215,12 +221,11 @@
         }
 
         function selectVoucher(maQuanLyVoucher, phanTramGiamGia) {
-            // Tính toán tổng số tiền sau khi áp dụng giảm giá
-            var tongTien = parseFloat(document.getElementById("TONGTIEN").value);
+            var tongTien = parseFloat($("#TONGTIEN").val());
             var tongTienSauGiamGia = tongTien - (tongTien * parseFloat(phanTramGiamGia) / 100);
-
+            console.log(tongTienSauGiamGia);
             // Cập nhật giá trị tổng tiền
-            document.getElementById("TONGTIEN").value = tongTienSauGiamGia.toFixed(2);
+            $("#TONGTIEN").val(tongTienSauGiamGia);
 
             // Ẩn danh sách voucher sau khi chọn
             toggleAddressList('voucherList');

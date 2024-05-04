@@ -112,6 +112,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
         {
             if (ModelState.IsValid)
             {
+                sALE.TRANGTHAI = false;
                 db.Entry(sALE).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

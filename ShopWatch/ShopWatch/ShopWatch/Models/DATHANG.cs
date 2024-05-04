@@ -18,6 +18,7 @@ namespace ShopWatch.Models
         public DATHANG()
         {
             this.CHITIETDATHANGs = new HashSet<CHITIETDATHANG>();
+            this.NOTIFICATIONs = new HashSet<NOTIFICATION>();
         }
     
         public string MADH { get; set; }
@@ -37,9 +38,12 @@ namespace ShopWatch.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHITIETDATHANG> CHITIETDATHANGs { get; set; }
+        public virtual DIADIEM DIADIEM { get; set; }
         public virtual KHACHHANG KHACHHANG { get; set; }
         public virtual QUANLYVOUCHER QUANLYVOUCHER { get; set; }
         public virtual THANHTOAN THANHTOAN { get; set; }
-        public virtual DIADIEM DIADIEM { get; set; }
+        public virtual TRANGTHAIGIAOHANG TRANGTHAIGIAOHANG { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NOTIFICATION> NOTIFICATIONs { get; set; }
     }
 }

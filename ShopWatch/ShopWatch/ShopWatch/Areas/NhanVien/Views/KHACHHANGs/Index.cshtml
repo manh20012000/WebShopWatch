@@ -55,20 +55,19 @@
         <table id="myTable" class="table">
             <thead id="table-wrapper">
                 <tr>
-                    <th>
+                    <th style=" padding: 15px; text-align: center; color:antiquewhite">
                         @Html.DisplayNameFor(model => model.TENKHACHHANG)
                     </th>
-                    <th>
+                    <th style=" padding: 15px; text-align: center; color:antiquewhite">
                         @Html.DisplayNameFor(model => model.SDT)
                     </th>
-                    <th>
+                    <th style=" padding: 15px; text-align: center; color:antiquewhite">
                         @Html.DisplayNameFor(model => model.AVATAR)
                     </th>
 
-                    <th>
+                    <th style=" padding: 15px; text-align: center; color:antiquewhite">
                         @Html.DisplayNameFor(model => model.TAIKHOAN.EMAIL)
-                    </th>
-                    <th></th>
+                    <th style=" padding: 15px; text-align: center; color:antiquewhite">TÙY CHỌN</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -82,36 +81,32 @@
                             @{
                                 if (item.SDT != null)
                                 {
-                                   string formattedPhoneNumber = "0" + item.SDT.Substring(2, 3) + "****" + item.SDT.Substring(7);
-                                   
+                                    string formattedPhoneNumber = "0" + item.SDT.Substring(2, 3) + "****" + item.SDT.Substring(7);
+
                                     <span>@formattedPhoneNumber</span>
                                 }
                             }
-
-
                         </td>
-                        <td>
+                        <td class="text-center">
                             @{
                                 if (item.AVATAR != null)
                                 { <img style="width:100px;height:100px" src=" @item.AVATAR ">
                                 }
                             }
-
-
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.TAIKHOAN.EMAIL)
                         </td>
-                        <td style="display:flex;background-color:burlywood;justify-content:space-around;align-content:center">
-                            <button style="background-color:aquamarine;width:50%;height:40px;margin:2%;border-radius:10px" onclick="location.href='@Url.Action("INFORODER", "KHACHHANGs",new { id = item.MAKHACHHANG })'">
+                        <td style="text-align: center"class="text-center">
+                            <button style="background-color:aquamarine;width:70%;height:40px;margin:2%;border-radius:10px" onclick="location.href='@Url.Action("INFORODER", "KHACHHANGs",new { id = item.MAKHACHHANG })'">
                                 THÔNG TIN ĐẶT HÀNG
                             </button>
-                            <button style="background-color:aquamarine;width:30%;height:40px;margin:2%;border-radius:10px" onclick="location.href='@Url.Action("Details", "KHACHHANGs",new { id = item.MAKHACHHANG })'">
-                               DETAIL
-                            </button>
-                           @* @Html.ActionLink("Edit", "Edit", new { id = item.MAKHACHHANG }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.MAKHACHHANG }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.MAKHACHHANG })*@
+                           @* <button style="background-color:aquamarine;width:30%;height:40px;margin:2%;border-radius:10px" onclick="location.href='@Url.Action("Details", "KHACHHANGs",new { id = item.MAKHACHHANG })'">
+                                DETAIL
+                            </button>*@
+                            @* @Html.ActionLink("Edit", "Edit", new { id = item.MAKHACHHANG }) |
+            @Html.ActionLink("Details", "Details", new { id = item.MAKHACHHANG }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.MAKHACHHANG })*@
                         </td>
                     </tr>
                 }

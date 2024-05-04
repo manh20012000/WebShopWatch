@@ -34,6 +34,38 @@
                 font-weight: bold; /* Làm đậm chữ khi mục được chọn */
                 /* Các thuộc tính CSS khác tùy thuộc vào thiết kế của bạn */
             }
+        .notification-container {
+            position: fixed;
+            top: 12%;
+            right: 1%;
+            width: 25%;
+            height: 80%;
+            background-color: #f8f9fa; /* Màu nền */
+            overflow-y: auto; /* Cho phép scrollview */
+            z-index: 1000; /* Đảm bảo hiển thị trên các phần khác */
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2); /* Đổ bóng */
+            padding: 20px;
+            border: inset;
+            background-color: black;
+            display: none;
+        }
+
+        /* Styling cho từng thông báo */
+        .notification {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #ffffff; /* Màu nền */
+            border: 1px solid #dee2e6; /* Viền */
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+        }
+
+        /* Styling cho nút đóng thông báo */
+        .close-btn {
+            float: right;
+            cursor: pointer;
+        }
+
     </style>
     <!-- Favicon -->
     <link rel="stylesheet" href="~/assets/fontawesome-free-6.3.0-web/css/all.min.css">
@@ -279,20 +311,21 @@
                         }
                         else if (nhanvien == "NV HOTROKHACHHANG")
                         {
-                            <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
-                            <li class="menu-item">
-                                <a href="/NhanVien/KHACHHANGs/Index"
-                                   class="menu-link">
-                                    <i class="menu-icon tf-icons bx bx-support"></i>
-                                    <div data-i18n="Support">SUPPORT KHACHHANG</div>
-                                </a>
-                            </li>
+
                             <li class="menu-header small text-uppercase"><span class="menu-header-text">XÁC NHÂN ĐƠN HÀNG</span></li>
                             <li class="menu-item">
                                 <a href="/NhanVien/KHACHHANGs/Xacnhandonhang"
                                    class="menu-link">
-                                    <i class="menu-icon tf-icons bx bx-support"></i>
+                                    <i class="bi bi-card-list"></i>
                                     <div data-i18n="Support">DANH SÁCH ĐƠN HÀNG</div>
+                                </a>
+                            </li>
+                            <li class="menu-header small text-uppercase"><span class="menu-header-text">SUPPORT</span></li>
+                            <li class="menu-item">
+                                <a href="/NhanVien/KHACHHANGs/Index"
+                                   class="menu-link">
+
+                                    <div data-i18n="Support">SUPPORT KHACHHANG</div>
                                 </a>
                             </li>
                         }
@@ -311,7 +344,14 @@
                     </div>
 
                     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-
+                        @*   @if (nhanvien == "NV HOTROKHACHHANG")
+                            {
+                                <button id="notificationButton" style="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                                        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901" />
+                                    </svg>
+                                </button>
+                            }*@
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
 
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -355,6 +395,7 @@
                                             </div>
                                         </a>
                                     </li>
+
                                     <li>
                                         <div class="dropdown-divider"></div>
                                     </li>
@@ -389,10 +430,19 @@
 
                                         </a>
                                     </li>
+
                                 </ul>
                             </li>
                             <!--/ User -->
                         </ul>
+                        @if (nhanvien == "NV HOTROKHACHHANG")
+                        {
+                            <button id="notificationButton" style="border:0px">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                                    <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901" />
+                                </svg>
+                            </button>
+                        }
                     </div>
                 </nav>
                 <div style="display: flex; justify-content: flex-end; margin-right: 40px;">
@@ -407,6 +457,10 @@
                 <div class="layout-overlay layout-menu-toggle"></div>
             </div>
         </div>
+    </div>
+    <div class="notification-container">
+      
+
     </div>
 
 
@@ -426,13 +480,14 @@
     <script src="~/assets/Admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <script src="~/assets/Admin/plugins/fastclick/fastclick.min.js"></script>
     <script src="~/assets/Admin/dist/js/app.min.js"></script>
-    <script src="~/assets/Admin/dist/js/demo.js"></script>@**@
-   @* <script src="~/assets/Admin/plugins/datatables/jquery.dataTables.min.js"></script>
-     <script src="~/assets/Admin/plugins/datatables/dataTables.bootstrap.min.js"></script>
-    <script src="~/assets/Admin/plugins/datatables/dataTables.alphabetSearch.js"></script>*@
+    <script src="~/assets/Admin/dist/js/demo.js"></script>
+    @**@
+    @* <script src="~/assets/Admin/plugins/datatables/jquery.dataTables.min.js"></script>
+         <script src="~/assets/Admin/plugins/datatables/dataTables.bootstrap.min.js"></script>
+        <script src="~/assets/Admin/plugins/datatables/dataTables.alphabetSearch.js"></script>*@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
-    <script src="~/Signalr/Hub"></script>
     <script>
         const currentUrl = window.location.href;
         const menuLinks = document.querySelectorAll('.menu-item a');
@@ -455,6 +510,58 @@
             $(".dropdown button").click(function () {
                 const dropdownMenu = $(this).next(".dropdown-menu");
                 dropdownMenu.toggle();
+            });
+        });
+        var closeBtns = document.querySelectorAll('.close-btn');
+        closeBtns.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                this.parentElement.style.display = 'none';
+            });
+
+        });
+        $(document).ready(function () {
+            var notificationContainer = $(".notification-container");
+
+            $("#notificationButton").click(function () {
+                // Kiểm tra xem view thông báo đang hiển thị hay không
+                if (notificationContainer.hasClass("show")) {
+                    // Nếu đang hiển thị, ẩn nó đi
+                    notificationContainer.removeClass("show");
+                } else {
+                    // Nếu không hiển thị, thực hiện AJAX để lấy dữ liệu và hiển thị
+                    $.ajax({
+                        url: '/NhanVien/NOTIFICATIONs/GetData',
+                        type: 'GET',
+                        contentType: 'application/json',
+                        success: function (data) {
+                            console.log(data);
+                        $(".notification-container").empty();
+
+                        // Duyệt qua mỗi thông báo trong dữ liệu nhận được
+                           var baseUrl = window.location.protocol + '//' + window.location.host; // Lấy ra địa chỉ cơ sở
+                           var detailUrl = baseUrl + '/NhanVien/NOTIFICATIONs/DetailDATHANG';
+
+                        $.each(data, function (index, notification) {
+                            // Tạo phần tử notification HTML cho mỗi thông báo
+                            var notificationElement = '<div class="notification">' +
+                                '<button class="close-btn" onclick="window.location.href=\'' + detailUrl + '?id=' + notification.MADH + '\'"><i class="fa fa-info-circle"></i></button>' +
+                                '<label>Title: thông báo đặt hàng </label>' +
+                                '<label>Eamil: ' + notification.EMAIL + '</label>' +
+                                '<label>Mã đơn hàng: ' + notification.MADH + '</label>' +
+                                '</div>';
+
+                            // Thêm phần tử notification vào container
+                            $(".notification-container").append(notificationElement);
+                        });
+
+                        // Hiển thị view thông báo
+                        $(".notification-container").addClass("show");
+                        },
+                        error: function (xhr, status, error) {
+                            console.log("Lỗi Ajax: " + error);
+                        }
+                    });
+                }
             });
         });
     </script>

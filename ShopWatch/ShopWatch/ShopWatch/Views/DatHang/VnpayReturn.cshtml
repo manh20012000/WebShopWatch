@@ -7,6 +7,8 @@
 }
 <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/categories_styles.css">
 <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/categories_responsive.css">
+<style>
+</style>
 <div style="margin-top:300px"></div>
 <div class="container product_section_container">
     <div class="row">
@@ -14,21 +16,26 @@
 
             <!-- Breadcrumbs -->
 
-        
+            <div class="breadcrumbs d-flex flex-row align-items-center">
+                <ul>
+                  
+                </ul>
+            </div>
 
             <!-- Sidebar -->
             <!-- Main Content -->
             <div class="row">
 
-                <div class="col-md-12 text-center">
-                    <h1 class="">Thanh toán</h1>
+                <div class="col-md-12 text-center" style="margin-bottom:40px">
+                    <h1 class="" style=" font-weight:700"></h1>
+
                     @if (ViewBag.ThanhToanThanhCong != null)
                     {
-                        <p>Bạn đã thanh toán thành công với @ViewBag.ThanhToanThanhCong!</p>
+                        <h1 style=" font-weight:700">Bạn đã thanh toán thành công với @ViewBag.ThanhToanThanhCong!</h1>
+                        <p style=" color:#000000">Chúng tôi đã nhận được đơn hàng của bạn và sẽ sớm liên hệ với bạn </p>
                     }
                     <p>@ViewBag.InnerText</p>
                 </div>
-
             </div>
             <hr />
             @*<div class="row">
@@ -41,4 +48,3 @@
         </div>
     </div>
 </div>
-

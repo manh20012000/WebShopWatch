@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.SignalR;
 using PagedList;
 using ShopWatch.Models;
 
@@ -79,7 +80,6 @@ namespace ShopWatch.Areas.NhanVien.Controllers
             ViewBag.EMAIL = new SelectList(db.TAIKHOANs, "EMAIL", "MATKHAU", kHACHHANG.EMAIL);
             return View(kHACHHANG);
         }
-
         // GET: NhanVien/KHACHHANGs/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -95,13 +95,19 @@ namespace ShopWatch.Areas.NhanVien.Controllers
             ViewBag.EMAIL = new SelectList(db.TAIKHOANs, "EMAIL", "MATKHAU", kHACHHANG.EMAIL);
             return View(kHACHHANG);
         }
-        public ActionResult Xacnhan(string id)
+        public ActionResult Xacnhan(string id,string emailUser)
         {
             if (Session["UserEmail"] != null)
             {
                 string phanquyen = Session["phanquyen"] as string;
                 string userEmail = Session["UserEmail"] as string;
-
+                var email = emailUser;
+                if (!string.IsNullOrEmpty(email))
+                {
+                    // Gửi thông báo tới client dựa trên email
+                  /*  var hubContext = GlobalHost.ConnectionManager.GetHubContext<MyHub1>();
+                    hubContext.Clients.User(email).displayNotification("Đơn hàng của bạn đã được xác nhận!");*/
+                }
                 NHANVIEN nhanvien = db.NHANVIENs.FirstOrDefault(nv => nv.EMAIL == userEmail);
                 if (nhanvien != null)
                 {
@@ -112,7 +118,11 @@ namespace ShopWatch.Areas.NhanVien.Controllers
                 {
                     var dATHANGs = db.DATHANGs.Find(id);
                     dATHANGs.TINHTRANGDH = "đang giao hàng";
+                    /*var hubContext = GlobalHost.ConnectionManager.GetHubContext<MyHub1>();
+                    hubContext.Clients.User(email).SendNotificationToUser("Đơn hàng của bạn đã được xác nhận");*/
                     db.SaveChanges();
+                    TempData["thongbaoxacnhan"] = id+" đơn hàng đã được xác nhận";
+                    
                     return RedirectToAction("Xacnhandonhang", "KHACHHANGs");
                 }
 
