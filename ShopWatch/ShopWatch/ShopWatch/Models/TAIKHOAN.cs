@@ -32,6 +32,8 @@ namespace ShopWatch.Models
 
         [Required(ErrorMessage = "Please enter the password")]
         public string MATKHAU { get; set; }
+
+
         [Required(ErrorMessage = "Please enter the phan quyen")]
         public string PHANQUYEN { get; set; }
 

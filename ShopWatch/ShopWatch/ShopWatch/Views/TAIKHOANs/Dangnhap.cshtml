@@ -237,7 +237,7 @@
                                     <li class="checkout">
                                         <a href="/GioHang/Index">
                                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                          
+
                                         </a>
                                     </li>
                                 </ul>
@@ -255,7 +255,6 @@
 
         @using (Html.BeginForm())
         {
-            @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div id="formId">
 
@@ -289,7 +288,7 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-12" style="margin-right:-19px; text-align:center">
-                        <input type="submit"  style=" width: 109%; margin-left: -15px;" value="Login" class="btn btn-default btndangnhap " id="btndangnhap" />
+                        <input type="submit" style=" width: 109%; margin-left: -15px;" value="Login" class="btn btn-default btndangnhap " id="btndangnhap" />
                     </div>
                 </div>
 

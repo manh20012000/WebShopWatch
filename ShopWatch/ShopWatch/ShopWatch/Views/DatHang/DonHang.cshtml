@@ -113,8 +113,8 @@
                     }
                         <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Details", new { id = item.MADH })'">Details Order</button>
 
-                       @* @if (item.NGAYNHAN != null && khoangThoiGian.TotalDays <= 5)
-                        {*@
+                        @if ( khoangThoiGian.TotalDays <= 5 && item.TINHTRANGDH != "đang giao hàng")
+                        {
 
                             <input name="tenkhachhang" value="@item.KHACHHANG.TENKHACHHANG" type="hidden" />
                             <input name="avatar" value="@item.KHACHHANG.AVATAR" type="hidden" />
@@ -123,7 +123,7 @@
                             <input name="ngayhuy" value="@DateTime.Now" type="hidden" />
                             <input name="title" value="TITLE:HŨY ĐƠN" type="hidden" />
                             <button type="button" class="btn btn-danger cancel-order-btn" data-id="@item.MADH">Hủy đơn</button>
-                       @* }*@
+                       }
 
                     </td>
             </tr>

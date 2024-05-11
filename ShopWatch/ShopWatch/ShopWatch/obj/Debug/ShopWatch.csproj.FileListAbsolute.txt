@@ -350,4 +350,3 @@ D:\LaptrinhWedNangCao\ShopWatch\ShopWatch\ShopWatch\ShopWatch\obj\Debug\ShopWatc
 D:\LaptrinhWedNangCao\ShopWatch\ShopWatch\ShopWatch\ShopWatch\obj\Debug\ShopWatch.csproj.CopyComplete
 D:\LaptrinhWedNangCao\ShopWatch\ShopWatch\ShopWatch\ShopWatch\obj\Debug\ShopWatch.dll
 D:\LaptrinhWedNangCao\ShopWatch\ShopWatch\ShopWatch\ShopWatch\obj\Debug\ShopWatch.pdb
-D:\LaptrinhWedNangCao\ShopWatch\ShopWatch\ShopWatch\ShopWatch\obj\Debug\ShopWatch.csproj.AssemblyReference.cache

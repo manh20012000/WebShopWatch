@@ -11,7 +11,8 @@ namespace ShopWatch.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class MATHANG
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,19 +23,41 @@ namespace ShopWatch.Models
             this.CHITIETPHIEUNHAPs = new HashSet<CHITIETPHIEUNHAP>();
             this.HINHANHs = new HashSet<HINHANH>();
         }
-    
+
+        [Required(ErrorMessage = "Please enter the MAMATHANG")]
         public string MAMATHANG { get; set; }
+
+        [Required(ErrorMessage = "Please enter the TENHANG")]
         public string TENHANG { get; set; }
+
+        [Required(ErrorMessage = "Please enter the ANHSANPHAM")]
         public string ANHSANPHAM { get; set; }
+
+        [Required(ErrorMessage = "Please enter the NGAYSANXUAT")]
         public Nullable<System.DateTime> NGAYSANXUAT { get; set; }
+
+        [Required(ErrorMessage = "Please enter the TENHANGSANXUAT")]
         public string TENHANGSANXUAT { get; set; }
+
+        [Required(ErrorMessage = "Please enter the GIAHANG")]
         public Nullable<double> GIAHANG { get; set; }
+
+        [Required(ErrorMessage = "Please enter the BAOHANH")]
         public string BAOHANH { get; set; }
+
+        [Required(ErrorMessage = "Please enter the LOAI")]
         public string LOAI { get; set; }
+
+        [Required(ErrorMessage = "Please enter the KICHTHUOC")]
         public Nullable<int> KICHTHUOC { get; set; }
+
+      
         public Nullable<bool> TRANGTHAI { get; set; }
+
+
         public Nullable<int> MASALE { get; set; }
-    
+
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHITIETDATHANG> CHITIETDATHANGs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

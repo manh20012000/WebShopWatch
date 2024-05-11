@@ -27,9 +27,16 @@
                 <h2>Thông tin khách hàng</h2>
                 <hr />
                 <div class="form-group">
-                    @Html.LabelFor(model => model.KHACHHANG.TENKHACHHANG, htmlAttributes: new { @class = "control-label" })
+                    @if (Model.KHACHHANG.TENKHACHHANG != null)
+                    {@Html.LabelFor(model => model.KHACHHANG.TENKHACHHANG, htmlAttributes: new { @class = "control-label" })
                     @Html.EditorFor(model => model.KHACHHANG.TENKHACHHANG, new { htmlAttributes = new { @class = "form-control", required = "required", readOnly = "readOnly", style = "text-transform: uppercase;" } })
                     @Html.ValidationMessageFor(model => model.KHACHHANG.TENKHACHHANG, "", new { @class = "text-danger" })
+                    }
+                    else
+                    {
+                    <label style="color:red">Yêu cầu nhập thông tin địa chỉ </label>
+                    }
+
 
                     <input name="MAKHACHHANG" value="@Model.KHACHHANG.MAKHACHHANG" type="hidden" />
                 </div>
@@ -81,15 +88,26 @@
                     <label for="diachi">ĐỊA CHỈ</label>
                     <div class="border p-3">
 
-                        @if (ViewBag.DIACHI != null)
-                        {
-                            <p>ĐỊA CHỈ : @ViewBag.DIACHI.TENDIACHI</p>
-                            <p> SDT    : @ViewBag.DIACHI.SDT</p>
-                        }
+                        
+                        
+                        @{  var diachi = ViewBag.DIACHI;
+
+
+                            if (diachi != null)
+                            {
+                                <p>ĐỊA CHỈ :@diachi.TENDIACHI</p>
+                                <p> SDT    : @diachi.SDT</p>
+                        <input name="MADIADIEM" type="hidden" value="@ViewBag.DIACHI.MADIADIEM" />
+                            }
+                            else
+                            {
+                                <p>Địa chỉ không có sẵn</p>
+                            }
+                            }
                     </div>
                 </div>
                 <!-- Mã địa điểm -->
-                <input name="MADIADIEM" type="hidden" value="@ViewBag.DIACHI.MADIADIEM" />
+                
             </div>
         </div>
     </div>

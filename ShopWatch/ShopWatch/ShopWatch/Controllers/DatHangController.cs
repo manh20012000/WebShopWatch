@@ -21,36 +21,35 @@ namespace ShopWatch.Controllers
         public ActionResult DonHang()
         {
             var email = Session["EmailClient"] as string;
-            try { 
-             KHACHHANG user = db.KHACHHANGs.FirstOrDefault(u => u.EMAIL == email);
-            int? khachhang = GetMaKH();
-            if (khachhang == null)
+            try
             {
-                return RedirectToAction("Dangnhap", "TAIKHOANs");
-            }
-            DateTime ngayHienTai = DateTime.Now;
-                var donhang = db.DATHANGs
-                      .Where(m => m.MAKHACHHANG == user.MAKHACHHANG && 
-                       (m.TUYCHON != false &&
-                       DbFunctions.AddDays(m.NGAYNHAN, 5) < DateTime.Now));
-                     foreach(var item in donhang)
+                KHACHHANG user = db.KHACHHANGs.FirstOrDefault(u => u.EMAIL == email);
+                int? khachhang = GetMaKH();
+                if (khachhang == null)
                 {
-                      item.TUYCHON = true;
+                    return RedirectToAction("Dangnhap", "TAIKHOANs");
+                }
+                DateTime ngayHienTai = DateTime.Now;
+                var donhang = db.DATHANGs
+                      .Where(m => m.MAKHACHHANG == user.MAKHACHHANG &&
+                       (m.TINHTRANGDH=="" &&
+                       DbFunctions.AddDays(m.NGAYNHAN, 5) < DateTime.Now));
+                foreach (var item in donhang)
+                {
+                    item.TUYCHON = true;
                     item.NGAYNHAN = ngayHienTai;
                     item.TINHTRANGDH = "đã nhận hàng";
                 }
                 db.SaveChanges();
                 var danhsachdonhang = db.DATHANGs
-               .Where(m => m.MAKHACHHANG == user.MAKHACHHANG &&   // Chỉ lấy các đơn hàng của người dùng hiện tại
-                 (m.NGAYHUY == null ||                   // Điều kiện 1: TUYCHON khác false
-                  DbFunctions.AddDays(m.NGAYNHAN, 5) >= DateTime.Now)) // Điều kiện 2: NGAYNHAN + 5 ngày lớn hơn hoặc bằng ngày hiện tại
-               .ToList();
-
+              .Where(m => m.MAKHACHHANG == user.MAKHACHHANG &&   // Chỉ lấy các đơn hàng của người dùng hiện tại
+              (m.NGAYHUY == null || m.NGAYHUY > ngayHienTai) && // Điều kiện 1: Đơn hàng chưa bị hủy hoặc ngày hủy sau ngày hiện tại (không tính giờ và phút)
+               (m.NGAYNHAN == null || DbFunctions.AddDays(m.NGAYNHAN, 5) >= ngayHienTai)) // Điều kiện 2: NGAYNHAN + 5 ngày lớn h
+                .ToList();
                 return View(danhsachdonhang);
-
             } catch(Exception ex)
             {
-                
+                Console.WriteLine(ex);
             }
             return View();
         }
@@ -426,7 +425,7 @@ static string GenerateRandomString(int length, string characters)
                         var hubContext = GlobalHost.ConnectionManager.GetHubContext<MyHub1>();
                         hubContext.Clients.All.displayNotification("Thông báo từ Đơn hàng mới cần xác nhận  với mã " + orderCode);
                         hubContext.Clients.All.SendNotification(nOTIFICATION);
-                        ViewBag.ThanhToanThanhCong = "Số tiền thanh toán (VND):" + vnp_Amount.ToString();
+                        ViewBag.ThanhToanThanhCong = "Số tiền thanh toán (VND):" + @String.Format("{0:N0}", vnp_Amount.ToString());
                         db.NOTIFICATIONs.Add(nOTIFICATION);
                         db.SaveChanges();
 

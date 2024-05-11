@@ -170,7 +170,7 @@ namespace ShopWatch.Controllers
 
                 ViewBag.VOUCHER = new SelectList(quanLyVoucherList.ToList(), "VOUCHER");
                 ViewBag.danhsachGH = selectedItemsData;
-                ViewBag.DIACHI = db.DIADIEMs.FirstOrDefault(dd => dd.MACDINH == true);
+                ViewBag.DIACHI = db.DIADIEMs.FirstOrDefault(dd => dd.MACDINH == true && dd.MAKHACHHANG==user.MAKHACHHANG);
                 var vouchersQL = Session["SessionQUANLYVOUCHER"] as QUANLYVOUCHER;
                
                 if (vouchersQL != null)

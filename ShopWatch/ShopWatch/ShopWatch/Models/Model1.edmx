@@ -661,6 +661,161 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="HINHANH">
+          <Key>
+            <PropertyRef Name="MAHINHANH" />
+          </Key>
+          <Property Name="MAHINHANH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MAMATHANG" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ANHS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MATHANG" Relationship="DHModel.FK__HINHANH__MAMATHA__440B1D61" FromRole="HINHANH" ToRole="MATHANG" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityContainer Name="DHEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="HINHANHs" EntityType="Self.HINHANH" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="QUANLYVOUCHERs" EntityType="DHModel.QUANLYVOUCHER" />
+          <EntitySet Name="CHITIETDATHANGs" EntityType="DHModel.CHITIETDATHANG" />
+          <EntitySet Name="CHITIETGIOHANGs" EntityType="DHModel.CHITIETGIOHANG" />
+          <EntitySet Name="CHITIETPHIEUNHAPs" EntityType="DHModel.CHITIETPHIEUNHAP" />
+          <EntitySet Name="DATHANGs" EntityType="DHModel.DATHANG" />
+          <EntitySet Name="DIADIEMs" EntityType="DHModel.DIADIEM" />
+          <EntitySet Name="GIOHANGs" EntityType="DHModel.GIOHANG" />
+          <EntitySet Name="KHACHHANGs" EntityType="DHModel.KHACHHANG" />
+          <EntitySet Name="NHANVIENs" EntityType="DHModel.NHANVIEN" />
+          <EntitySet Name="NHAPHANGs" EntityType="DHModel.NHAPHANG" />
+          <EntitySet Name="NOTIFICATIONs" EntityType="DHModel.NOTIFICATION" />
+          <EntitySet Name="SALEs" EntityType="DHModel.SALE" />
+          <EntitySet Name="SIGNARLs" EntityType="DHModel.SIGNARL" />
+          <EntitySet Name="TAIKHOANs" EntityType="DHModel.TAIKHOAN" />
+          <EntitySet Name="THANHTOANs" EntityType="DHModel.THANHTOAN" />
+          <EntitySet Name="THONGKEs" EntityType="DHModel.THONGKE" />
+          <EntitySet Name="THONGKENHAPHANGs" EntityType="DHModel.THONGKENHAPHANG" />
+          <EntitySet Name="TRANGTHAIGIAOHANGs" EntityType="DHModel.TRANGTHAIGIAOHANG" />
+          <AssociationSet Name="FK__CHITIETDAT__MADH__5FB337D6" Association="DHModel.FK__CHITIETDAT__MADH__5FB337D6">
+            <End Role="DATHANG" EntitySet="DATHANGs" />
+            <End Role="CHITIETDATHANG" EntitySet="CHITIETDATHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CHITIETGI__MAGIO__6754599E" Association="DHModel.FK__CHITIETGI__MAGIO__6754599E">
+            <End Role="GIOHANG" EntitySet="GIOHANGs" />
+            <End Role="CHITIETGIOHANG" EntitySet="CHITIETGIOHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CHITIETPH__MANHA__46E78A0C" Association="DHModel.FK__CHITIETPH__MANHA__46E78A0C">
+            <End Role="NHAPHANG" EntitySet="NHAPHANGs" />
+            <End Role="CHITIETPHIEUNHAP" EntitySet="CHITIETPHIEUNHAPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DATHANG__MADIADI__59FA5E80" Association="DHModel.FK__DATHANG__MADIADI__59FA5E80">
+            <End Role="DIADIEM" EntitySet="DIADIEMs" />
+            <End Role="DATHANG" EntitySet="DATHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DATHANG__MAKHACH__59063A47" Association="DHModel.FK__DATHANG__MAKHACH__59063A47">
+            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+            <End Role="DATHANG" EntitySet="DATHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DATHANG__MAQUANL__5AEE82B9" Association="DHModel.FK__DATHANG__MAQUANL__5AEE82B9">
+            <End Role="QUANLYVOUCHER" EntitySet="QUANLYVOUCHERs" />
+            <End Role="DATHANG" EntitySet="DATHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DATHANG__MATHANH__5BE2A6F2" Association="DHModel.FK__DATHANG__MATHANH__5BE2A6F2">
+            <End Role="THANHTOAN" EntitySet="THANHTOANs" />
+            <End Role="DATHANG" EntitySet="DATHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DATHANG__MAVANDO__5CD6CB2B" Association="DHModel.FK__DATHANG__MAVANDO__5CD6CB2B">
+            <End Role="TRANGTHAIGIAOHANG" EntitySet="TRANGTHAIGIAOHANGs" />
+            <End Role="DATHANG" EntitySet="DATHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NOTIFICATI__MADH__72C60C4A" Association="DHModel.FK__NOTIFICATI__MADH__72C60C4A">
+            <End Role="DATHANG" EntitySet="DATHANGs" />
+            <End Role="NOTIFICATION" EntitySet="NOTIFICATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DIADIEM__MAKHACH__5629CD9C" Association="DHModel.FK__DIADIEM__MAKHACH__5629CD9C">
+            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+            <End Role="DIADIEM" EntitySet="DIADIEMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GIOHANG__MAKHACH__6383C8BA" Association="DHModel.FK__GIOHANG__MAKHACH__6383C8BA">
+            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+            <End Role="GIOHANG" EntitySet="GIOHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__KHACHHANG__EMAIL__49C3F6B7" Association="DHModel.FK__KHACHHANG__EMAIL__49C3F6B7">
+            <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
+            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NOTIFICAT__SENDI__71D1E811" Association="DHModel.FK__NOTIFICAT__SENDI__71D1E811">
+            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+            <End Role="NOTIFICATION" EntitySet="NOTIFICATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QUANLYVOU__MAKHA__4E88ABD4" Association="DHModel.FK__QUANLYVOU__MAKHA__4E88ABD4">
+            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+            <End Role="QUANLYVOUCHER" EntitySet="QUANLYVOUCHERs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SIGNARL__MAKHACH__6EF57B66" Association="DHModel.FK__SIGNARL__MAKHACH__6EF57B66">
+            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+            <End Role="SIGNARL" EntitySet="SIGNARLs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NHANVIEN__EMAIL__398D8EEE" Association="DHModel.FK__NHANVIEN__EMAIL__398D8EEE">
+            <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NHAPHANG__MANV__3C69FB99" Association="DHModel.FK__NHAPHANG__MANV__3C69FB99">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="NHAPHANG" EntitySet="NHAPHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__THONGKENH__MANHA__6C190EBB" Association="DHModel.FK__THONGKENH__MANHA__6C190EBB">
+            <End Role="NHAPHANG" EntitySet="NHAPHANGs" />
+            <End Role="THONGKENHAPHANG" EntitySet="THONGKENHAPHANGs" />
+          </AssociationSet>
+          <EntitySet Name="VOUCHERs" EntityType="DHModel.VOUCHER" />
+          <AssociationSet Name="FK__QUANLYVOU__MAVOU__4F7CD00D" Association="DHModel.FK__QUANLYVOU__MAVOU__4F7CD00D">
+            <End Role="VOUCHER" EntitySet="VOUCHERs" />
+            <End Role="QUANLYVOUCHER" EntitySet="QUANLYVOUCHERs" />
+          </AssociationSet>
+          <EntitySet Name="MATHANGs" EntityType="DHModel.MATHANG" />
+          <AssociationSet Name="FK__CHITIETDA__MAMAT__619B8048" Association="DHModel.FK__CHITIETDA__MAMAT__619B8048">
+            <End Role="MATHANG" EntitySet="MATHANGs" />
+            <End Role="CHITIETDATHANG" EntitySet="CHITIETDATHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CHITIETGI__MAMAT__6754599E" Association="DHModel.FK__CHITIETGI__MAMAT__6754599E">
+            <End Role="MATHANG" EntitySet="MATHANGs" />
+            <End Role="CHITIETGIOHANG" EntitySet="CHITIETGIOHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CHITIETPH__MAMAT__46E78A0C" Association="DHModel.FK__CHITIETPH__MAMAT__46E78A0C">
+            <End Role="MATHANG" EntitySet="MATHANGs" />
+            <End Role="CHITIETPHIEUNHAP" EntitySet="CHITIETPHIEUNHAPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HINHANH__MAMATHA__440B1D61" Association="DHModel.FK__HINHANH__MAMATHA__440B1D61">
+            <End Role="MATHANG" EntitySet="MATHANGs" />
+            <End Role="HINHANH" EntitySet="HINHANHs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MATHANG__MASALE__412EB0B6" Association="DHModel.FK__MATHANG__MASALE__412EB0B6">
+            <End Role="SALE" EntitySet="SALEs" />
+            <End Role="MATHANG" EntitySet="MATHANGs" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="QUANLYVOUCHER">
+          <Key>
+            <PropertyRef Name="MAQUANLYVOUCHER" />
+          </Key>
+          <Property Name="MAQUANLYVOUCHER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MAKHACHHANG" Type="Int32" />
+          <Property Name="MAVOUCHER" Type="Int32" />
+          <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NOIDUNG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYBATDAU" Type="DateTime" Precision="3" />
+          <Property Name="NGAYKETTHUC" Type="DateTime" Precision="3" />
+          <Property Name="TRANGTHAI" Type="Boolean" />
+          <NavigationProperty Name="DATHANGs" Relationship="DHModel.FK__DATHANG__MAQUANL__5AEE82B9" FromRole="QUANLYVOUCHER" ToRole="DATHANG" />
+          <NavigationProperty Name="KHACHHANG" Relationship="DHModel.FK__QUANLYVOU__MAKHA__4E88ABD4" FromRole="QUANLYVOUCHER" ToRole="KHACHHANG" />
+          <NavigationProperty Name="VOUCHER" Relationship="DHModel.FK__QUANLYVOU__MAVOU__4F7CD00D" FromRole="QUANLYVOUCHER" ToRole="VOUCHER" />
+          </EntityType>
         <EntityType Name="CHITIETDATHANG">
           <Key>
             <PropertyRef Name="MACTDH" />
@@ -670,7 +825,7 @@
           <Property Name="SOLUONG" Type="Int32" />
           <Property Name="GIABAN" Type="Double" />
           <Property Name="MACTDH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="DATHANG" Relationship="Self.FK__CHITIETDAT__MADH__5FB337D6" FromRole="CHITIETDATHANG" ToRole="DATHANG" />
+          <NavigationProperty Name="DATHANG" Relationship="DHModel.FK__CHITIETDAT__MADH__5FB337D6" FromRole="CHITIETDATHANG" ToRole="DATHANG" />
           <NavigationProperty Name="MATHANG" Relationship="DHModel.FK__CHITIETDA__MAMAT__619B8048" FromRole="CHITIETDATHANG" ToRole="MATHANG" />
         </EntityType>
         <EntityType Name="CHITIETGIOHANG">
@@ -681,7 +836,7 @@
           <Property Name="MAMATHANG" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="MAGIOHANG" Type="Int32" />
           <Property Name="SOLUONGMUA" Type="Int32" />
-          <NavigationProperty Name="GIOHANG" Relationship="Self.FK__CHITIETGI__MAGIO__6754599E" FromRole="CHITIETGIOHANG" ToRole="GIOHANG" />
+          <NavigationProperty Name="GIOHANG" Relationship="DHModel.FK__CHITIETGI__MAGIO__6754599E" FromRole="CHITIETGIOHANG" ToRole="GIOHANG" />
           <NavigationProperty Name="MATHANG" Relationship="DHModel.FK__CHITIETGI__MAMAT__6754599E" FromRole="CHITIETGIOHANG" ToRole="MATHANG" />
         </EntityType>
         <EntityType Name="CHITIETPHIEUNHAP">
@@ -693,14 +848,14 @@
           <Property Name="SOLUONG" Type="Int32" />
           <Property Name="MANHAPHANG" Type="Int32" />
           <Property Name="GIANHAP" Type="Double" />
-          <NavigationProperty Name="NHAPHANG" Relationship="Self.FK__CHITIETPH__MANHA__46E78A0C" FromRole="CHITIETPHIEUNHAP" ToRole="NHAPHANG" />
+          <NavigationProperty Name="NHAPHANG" Relationship="DHModel.FK__CHITIETPH__MANHA__46E78A0C" FromRole="CHITIETPHIEUNHAP" ToRole="NHAPHANG" />
           <NavigationProperty Name="MATHANG" Relationship="DHModel.FK__CHITIETPH__MAMAT__46E78A0C" FromRole="CHITIETPHIEUNHAP" ToRole="MATHANG" />
         </EntityType>
         <EntityType Name="DATHANG">
           <Key>
             <PropertyRef Name="MADH" />
           </Key>
-          <Property Name="MADH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MADH" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="NGAYMUA" Type="DateTime" Precision="3" />
           <Property Name="TONGTIEN" Type="Double" />
           <Property Name="MAKHACHHANG" Type="Int32" />
@@ -714,13 +869,13 @@
           <Property Name="NGAYNHAN" Type="DateTime" Precision="3" />
           <Property Name="NGAYHUY" Type="DateTime" Precision="3" />
           <Property Name="TUYCHON" Type="Boolean" />
-          <NavigationProperty Name="CHITIETDATHANGs" Relationship="Self.FK__CHITIETDAT__MADH__5FB337D6" FromRole="DATHANG" ToRole="CHITIETDATHANG" />
-          <NavigationProperty Name="DIADIEM" Relationship="Self.FK__DATHANG__MADIADI__59FA5E80" FromRole="DATHANG" ToRole="DIADIEM" />
-          <NavigationProperty Name="KHACHHANG" Relationship="Self.FK__DATHANG__MAKHACH__59063A47" FromRole="DATHANG" ToRole="KHACHHANG" />
-          <NavigationProperty Name="QUANLYVOUCHER" Relationship="Self.FK__DATHANG__MAQUANL__5AEE82B9" FromRole="DATHANG" ToRole="QUANLYVOUCHER" />
-          <NavigationProperty Name="THANHTOAN" Relationship="Self.FK__DATHANG__MATHANH__5BE2A6F2" FromRole="DATHANG" ToRole="THANHTOAN" />
-          <NavigationProperty Name="TRANGTHAIGIAOHANG" Relationship="Self.FK__DATHANG__MAVANDO__5CD6CB2B" FromRole="DATHANG" ToRole="TRANGTHAIGIAOHANG" />
-          <NavigationProperty Name="NOTIFICATIONs" Relationship="Self.FK__NOTIFICATI__MADH__72C60C4A" FromRole="DATHANG" ToRole="NOTIFICATION" />
+          <NavigationProperty Name="CHITIETDATHANGs" Relationship="DHModel.FK__CHITIETDAT__MADH__5FB337D6" FromRole="DATHANG" ToRole="CHITIETDATHANG" />
+          <NavigationProperty Name="DIADIEM" Relationship="DHModel.FK__DATHANG__MADIADI__59FA5E80" FromRole="DATHANG" ToRole="DIADIEM" />
+          <NavigationProperty Name="KHACHHANG" Relationship="DHModel.FK__DATHANG__MAKHACH__59063A47" FromRole="DATHANG" ToRole="KHACHHANG" />
+          <NavigationProperty Name="QUANLYVOUCHER" Relationship="DHModel.FK__DATHANG__MAQUANL__5AEE82B9" FromRole="DATHANG" ToRole="QUANLYVOUCHER" />
+          <NavigationProperty Name="THANHTOAN" Relationship="DHModel.FK__DATHANG__MATHANH__5BE2A6F2" FromRole="DATHANG" ToRole="THANHTOAN" />
+          <NavigationProperty Name="TRANGTHAIGIAOHANG" Relationship="DHModel.FK__DATHANG__MAVANDO__5CD6CB2B" FromRole="DATHANG" ToRole="TRANGTHAIGIAOHANG" />
+          <NavigationProperty Name="NOTIFICATIONs" Relationship="DHModel.FK__NOTIFICATI__MADH__72C60C4A" FromRole="DATHANG" ToRole="NOTIFICATION" />
         </EntityType>
         <EntityType Name="DIADIEM">
           <Key>
@@ -731,8 +886,8 @@
           <Property Name="TENDIACHI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MACDINH" Type="Boolean" />
-          <NavigationProperty Name="DATHANGs" Relationship="Self.FK__DATHANG__MADIADI__59FA5E80" FromRole="DIADIEM" ToRole="DATHANG" />
-          <NavigationProperty Name="KHACHHANG" Relationship="Self.FK__DIADIEM__MAKHACH__5629CD9C" FromRole="DIADIEM" ToRole="KHACHHANG" />
+          <NavigationProperty Name="DATHANGs" Relationship="DHModel.FK__DATHANG__MADIADI__59FA5E80" FromRole="DIADIEM" ToRole="DATHANG" />
+          <NavigationProperty Name="KHACHHANG" Relationship="DHModel.FK__DIADIEM__MAKHACH__5629CD9C" FromRole="DIADIEM" ToRole="KHACHHANG" />
         </EntityType>
         <EntityType Name="GIOHANG">
           <Key>
@@ -741,17 +896,8 @@
           <Property Name="MAGIOHANG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MAKHACHHANG" Type="Int32" />
           <Property Name="TRANGTHAI" Type="Boolean" />
-          <NavigationProperty Name="CHITIETGIOHANGs" Relationship="Self.FK__CHITIETGI__MAGIO__6754599E" FromRole="GIOHANG" ToRole="CHITIETGIOHANG" />
-          <NavigationProperty Name="KHACHHANG" Relationship="Self.FK__GIOHANG__MAKHACH__6383C8BA" FromRole="GIOHANG" ToRole="KHACHHANG" />
-        </EntityType>
-        <EntityType Name="HINHANH">
-          <Key>
-            <PropertyRef Name="MAHINHANH" />
-          </Key>
-          <Property Name="MAHINHANH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MAMATHANG" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="ANHS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="MATHANG" Relationship="DHModel.FK__HINHANH__MAMATHA__440B1D61" FromRole="HINHANH" ToRole="MATHANG" />
+          <NavigationProperty Name="CHITIETGIOHANGs" Relationship="DHModel.FK__CHITIETGI__MAGIO__6754599E" FromRole="GIOHANG" ToRole="CHITIETGIOHANG" />
+          <NavigationProperty Name="KHACHHANG" Relationship="DHModel.FK__GIOHANG__MAKHACH__6383C8BA" FromRole="GIOHANG" ToRole="KHACHHANG" />
         </EntityType>
         <EntityType Name="KHACHHANG">
           <Key>
@@ -764,13 +910,13 @@
           <Property Name="AVATAR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="THANHVIEN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="XU" Type="Double" />
-          <NavigationProperty Name="DATHANGs" Relationship="Self.FK__DATHANG__MAKHACH__59063A47" FromRole="KHACHHANG" ToRole="DATHANG" />
-          <NavigationProperty Name="DIADIEMs" Relationship="Self.FK__DIADIEM__MAKHACH__5629CD9C" FromRole="KHACHHANG" ToRole="DIADIEM" />
-          <NavigationProperty Name="GIOHANGs" Relationship="Self.FK__GIOHANG__MAKHACH__6383C8BA" FromRole="KHACHHANG" ToRole="GIOHANG" />
-          <NavigationProperty Name="TAIKHOAN" Relationship="Self.FK__KHACHHANG__EMAIL__49C3F6B7" FromRole="KHACHHANG" ToRole="TAIKHOAN" />
-          <NavigationProperty Name="NOTIFICATIONs" Relationship="Self.FK__NOTIFICAT__SENDI__71D1E811" FromRole="KHACHHANG" ToRole="NOTIFICATION" />
-          <NavigationProperty Name="QUANLYVOUCHERs" Relationship="Self.FK__QUANLYVOU__MAKHA__4E88ABD4" FromRole="KHACHHANG" ToRole="QUANLYVOUCHER" />
-          <NavigationProperty Name="SIGNARLs" Relationship="Self.FK__SIGNARL__MAKHACH__6EF57B66" FromRole="KHACHHANG" ToRole="SIGNARL" />
+          <NavigationProperty Name="DATHANGs" Relationship="DHModel.FK__DATHANG__MAKHACH__59063A47" FromRole="KHACHHANG" ToRole="DATHANG" />
+          <NavigationProperty Name="DIADIEMs" Relationship="DHModel.FK__DIADIEM__MAKHACH__5629CD9C" FromRole="KHACHHANG" ToRole="DIADIEM" />
+          <NavigationProperty Name="GIOHANGs" Relationship="DHModel.FK__GIOHANG__MAKHACH__6383C8BA" FromRole="KHACHHANG" ToRole="GIOHANG" />
+          <NavigationProperty Name="TAIKHOAN" Relationship="DHModel.FK__KHACHHANG__EMAIL__49C3F6B7" FromRole="KHACHHANG" ToRole="TAIKHOAN" />
+          <NavigationProperty Name="NOTIFICATIONs" Relationship="DHModel.FK__NOTIFICAT__SENDI__71D1E811" FromRole="KHACHHANG" ToRole="NOTIFICATION" />
+          <NavigationProperty Name="QUANLYVOUCHERs" Relationship="DHModel.FK__QUANLYVOU__MAKHA__4E88ABD4" FromRole="KHACHHANG" ToRole="QUANLYVOUCHER" />
+          <NavigationProperty Name="SIGNARLs" Relationship="DHModel.FK__SIGNARL__MAKHACH__6EF57B66" FromRole="KHACHHANG" ToRole="SIGNARL" />
         </EntityType>
         <EntityType Name="NHANVIEN">
           <Key>
@@ -783,8 +929,8 @@
           <Property Name="EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="AVATAR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TENCHUCNANG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TAIKHOAN" Relationship="Self.FK__NHANVIEN__EMAIL__398D8EEE" FromRole="NHANVIEN" ToRole="TAIKHOAN" />
-          <NavigationProperty Name="NHAPHANGs" Relationship="Self.FK__NHAPHANG__MANV__3C69FB99" FromRole="NHANVIEN" ToRole="NHAPHANG" />
+          <NavigationProperty Name="TAIKHOAN" Relationship="DHModel.FK__NHANVIEN__EMAIL__398D8EEE" FromRole="NHANVIEN" ToRole="TAIKHOAN" />
+          <NavigationProperty Name="NHAPHANGs" Relationship="DHModel.FK__NHAPHANG__MANV__3C69FB99" FromRole="NHANVIEN" ToRole="NHAPHANG" />
         </EntityType>
         <EntityType Name="NHAPHANG">
           <Key>
@@ -795,9 +941,9 @@
           <Property Name="NGAYNHAP" Type="DateTime" Precision="3" />
           <Property Name="MANV" Type="Int32" />
           <Property Name="TRANGTHAI" Type="Boolean" />
-          <NavigationProperty Name="CHITIETPHIEUNHAPs" Relationship="Self.FK__CHITIETPH__MANHA__46E78A0C" FromRole="NHAPHANG" ToRole="CHITIETPHIEUNHAP" />
-          <NavigationProperty Name="NHANVIEN" Relationship="Self.FK__NHAPHANG__MANV__3C69FB99" FromRole="NHAPHANG" ToRole="NHANVIEN" />
-          <NavigationProperty Name="THONGKENHAPHANGs" Relationship="Self.FK__THONGKENH__MANHA__6C190EBB" FromRole="NHAPHANG" ToRole="THONGKENHAPHANG" />
+          <NavigationProperty Name="CHITIETPHIEUNHAPs" Relationship="DHModel.FK__CHITIETPH__MANHA__46E78A0C" FromRole="NHAPHANG" ToRole="CHITIETPHIEUNHAP" />
+          <NavigationProperty Name="NHANVIEN" Relationship="DHModel.FK__NHAPHANG__MANV__3C69FB99" FromRole="NHAPHANG" ToRole="NHANVIEN" />
+          <NavigationProperty Name="THONGKENHAPHANGs" Relationship="DHModel.FK__THONGKENH__MANHA__6C190EBB" FromRole="NHAPHANG" ToRole="THONGKENHAPHANG" />
         </EntityType>
         <EntityType Name="NOTIFICATION">
           <Key>
@@ -812,24 +958,19 @@
           <Property Name="TENKH" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="AVATAR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TENCHUCNANG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="DATHANG" Relationship="Self.FK__NOTIFICATI__MADH__72C60C4A" FromRole="NOTIFICATION" ToRole="DATHANG" />
-          <NavigationProperty Name="KHACHHANG" Relationship="Self.FK__NOTIFICAT__SENDI__71D1E811" FromRole="NOTIFICATION" ToRole="KHACHHANG" />
+          <NavigationProperty Name="DATHANG" Relationship="DHModel.FK__NOTIFICATI__MADH__72C60C4A" FromRole="NOTIFICATION" ToRole="DATHANG" />
+          <NavigationProperty Name="KHACHHANG" Relationship="DHModel.FK__NOTIFICAT__SENDI__71D1E811" FromRole="NOTIFICATION" ToRole="KHACHHANG" />
         </EntityType>
-        <EntityType Name="QUANLYVOUCHER">
+        <EntityType Name="SALE">
           <Key>
-            <PropertyRef Name="MAQUANLYVOUCHER" />
+            <PropertyRef Name="MASALE" />
           </Key>
-          <Property Name="MAQUANLYVOUCHER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MAKHACHHANG" Type="Int32" />
-          <Property Name="MAVOUCHER" Type="Int32" />
-          <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NOIDUNG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NGAYBATDAU" Type="DateTime" Precision="3" />
-          <Property Name="NGAYKETTHUC" Type="DateTime" Precision="3" />
+          <Property Name="MASALE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PHANTRAMSALE" Type="Int32" />
+          <Property Name="NGAYBATDAU" Type="DateTime" Precision="0" />
+          <Property Name="NGAYHETHAN" Type="DateTime" Precision="0" />
           <Property Name="TRANGTHAI" Type="Boolean" />
-          <NavigationProperty Name="DATHANGs" Relationship="Self.FK__DATHANG__MAQUANL__5AEE82B9" FromRole="QUANLYVOUCHER" ToRole="DATHANG" />
-          <NavigationProperty Name="KHACHHANG" Relationship="Self.FK__QUANLYVOU__MAKHA__4E88ABD4" FromRole="QUANLYVOUCHER" ToRole="KHACHHANG" />
-          <NavigationProperty Name="VOUCHER" Relationship="DHModel.FK__QUANLYVOU__MAVOU__5070F446" FromRole="QUANLYVOUCHER" ToRole="VOUCHER" />
+          <NavigationProperty Name="MATHANGs" Relationship="DHModel.FK__MATHANG__MASALE__412EB0B6" FromRole="SALE" ToRole="MATHANG" />
         </EntityType>
         <EntityType Name="SIGNARL">
           <Key>
@@ -842,27 +983,17 @@
           <Property Name="TIME" Type="DateTime" Precision="3" />
           <Property Name="TENKHACHHANG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="AVATAR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="KHACHHANG" Relationship="Self.FK__SIGNARL__MAKHACH__6EF57B66" FromRole="SIGNARL" ToRole="KHACHHANG" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="KHACHHANG" Relationship="DHModel.FK__SIGNARL__MAKHACH__6EF57B66" FromRole="SIGNARL" ToRole="KHACHHANG" />
         </EntityType>
         <EntityType Name="TAIKHOAN">
           <Key>
             <PropertyRef Name="EMAIL" />
           </Key>
-          <Property Name="EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="MATKHAU" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="TENDANGNHAP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="KHACHHANGs" Relationship="Self.FK__KHACHHANG__EMAIL__49C3F6B7" FromRole="TAIKHOAN" ToRole="KHACHHANG" />
-          <NavigationProperty Name="NHANVIENs" Relationship="Self.FK__NHANVIEN__EMAIL__398D8EEE" FromRole="TAIKHOAN" ToRole="NHANVIEN" />
+          <NavigationProperty Name="KHACHHANGs" Relationship="DHModel.FK__KHACHHANG__EMAIL__49C3F6B7" FromRole="TAIKHOAN" ToRole="KHACHHANG" />
+          <NavigationProperty Name="NHANVIENs" Relationship="DHModel.FK__NHANVIEN__EMAIL__398D8EEE" FromRole="TAIKHOAN" ToRole="NHANVIEN" />
         </EntityType>
         <EntityType Name="THANHTOAN">
           <Key>
@@ -872,7 +1003,7 @@
           <Property Name="PHUONGTHUCTHANHTOAN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="MATHE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="NGAYTHANHTOAN" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="DATHANGs" Relationship="Self.FK__DATHANG__MATHANH__5BE2A6F2" FromRole="THANHTOAN" ToRole="DATHANG" />
+          <NavigationProperty Name="DATHANGs" Relationship="DHModel.FK__DATHANG__MATHANH__5BE2A6F2" FromRole="THANHTOAN" ToRole="DATHANG" />
         </EntityType>
         <EntityType Name="THONGKE">
           <Key>
@@ -897,7 +1028,7 @@
           <Property Name="TENNHANVIEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="TENHANG" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="TONGTIEN" Type="Double" />
-          <NavigationProperty Name="NHAPHANG" Relationship="Self.FK__THONGKENH__MANHA__6C190EBB" FromRole="THONGKENHAPHANG" ToRole="NHAPHANG" />
+          <NavigationProperty Name="NHAPHANG" Relationship="DHModel.FK__THONGKENH__MANHA__6C190EBB" FromRole="THONGKENHAPHANG" ToRole="NHAPHANG" />
         </EntityType>
         <EntityType Name="TRANGTHAIGIAOHANG">
           <Key>
@@ -908,11 +1039,11 @@
           <Property Name="THOIGIANGIAOHANG" Type="DateTime" Precision="3" />
           <Property Name="THOIGIANNHANHANG" Type="DateTime" Precision="3" />
           <Property Name="TRANGTHAI" Type="Boolean" />
-          <NavigationProperty Name="DATHANGs" Relationship="Self.FK__DATHANG__MAVANDO__5CD6CB2B" FromRole="TRANGTHAIGIAOHANG" ToRole="DATHANG" />
+          <NavigationProperty Name="DATHANGs" Relationship="DHModel.FK__DATHANG__MAVANDO__5CD6CB2B" FromRole="TRANGTHAIGIAOHANG" ToRole="DATHANG" />
         </EntityType>
         <Association Name="FK__CHITIETDAT__MADH__5FB337D6">
-          <End Role="DATHANG" Type="Self.DATHANG" Multiplicity="0..1" />
-          <End Role="CHITIETDATHANG" Type="Self.CHITIETDATHANG" Multiplicity="*" />
+          <End Type="DHModel.DATHANG" Role="DATHANG" Multiplicity="0..1" />
+          <End Type="DHModel.CHITIETDATHANG" Role="CHITIETDATHANG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DATHANG">
               <PropertyRef Name="MADH" />
@@ -923,8 +1054,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__CHITIETGI__MAGIO__6754599E">
-          <End Role="GIOHANG" Type="Self.GIOHANG" Multiplicity="0..1" />
-          <End Role="CHITIETGIOHANG" Type="Self.CHITIETGIOHANG" Multiplicity="*" />
+          <End Type="DHModel.GIOHANG" Role="GIOHANG" Multiplicity="0..1" />
+          <End Type="DHModel.CHITIETGIOHANG" Role="CHITIETGIOHANG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="GIOHANG">
               <PropertyRef Name="MAGIOHANG" />
@@ -935,8 +1066,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__CHITIETPH__MANHA__46E78A0C">
-          <End Role="NHAPHANG" Type="Self.NHAPHANG" Multiplicity="0..1" />
-          <End Role="CHITIETPHIEUNHAP" Type="Self.CHITIETPHIEUNHAP" Multiplicity="*" />
+          <End Type="DHModel.NHAPHANG" Role="NHAPHANG" Multiplicity="0..1" />
+          <End Type="DHModel.CHITIETPHIEUNHAP" Role="CHITIETPHIEUNHAP" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHAPHANG">
               <PropertyRef Name="MANHAPHANG" />
@@ -947,8 +1078,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__DATHANG__MADIADI__59FA5E80">
-          <End Role="DIADIEM" Type="Self.DIADIEM" Multiplicity="0..1" />
-          <End Role="DATHANG" Type="Self.DATHANG" Multiplicity="*" />
+          <End Type="DHModel.DIADIEM" Role="DIADIEM" Multiplicity="0..1" />
+          <End Type="DHModel.DATHANG" Role="DATHANG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DIADIEM">
               <PropertyRef Name="MADIADIEM" />
@@ -959,8 +1090,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__DATHANG__MAKHACH__59063A47">
-          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
-          <End Role="DATHANG" Type="Self.DATHANG" Multiplicity="*" />
+          <End Type="DHModel.KHACHHANG" Role="KHACHHANG" Multiplicity="0..1" />
+          <End Type="DHModel.DATHANG" Role="DATHANG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KHACHHANG">
               <PropertyRef Name="MAKHACHHANG" />
@@ -971,8 +1102,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__DATHANG__MAQUANL__5AEE82B9">
-          <End Role="QUANLYVOUCHER" Type="Self.QUANLYVOUCHER" Multiplicity="0..1" />
-          <End Role="DATHANG" Type="Self.DATHANG" Multiplicity="*" />
+          <End Type="DHModel.QUANLYVOUCHER" Role="QUANLYVOUCHER" Multiplicity="0..1" />
+          <End Type="DHModel.DATHANG" Role="DATHANG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="QUANLYVOUCHER">
               <PropertyRef Name="MAQUANLYVOUCHER" />
@@ -983,8 +1114,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__DATHANG__MATHANH__5BE2A6F2">
-          <End Role="THANHTOAN" Type="Self.THANHTOAN" Multiplicity="0..1" />
-          <End Role="DATHANG" Type="Self.DATHANG" Multiplicity="*" />
+          <End Type="DHModel.THANHTOAN" Role="THANHTOAN" Multiplicity="0..1" />
+          <End Type="DHModel.DATHANG" Role="DATHANG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="THANHTOAN">
               <PropertyRef Name="MATHANHTOAN" />
@@ -995,8 +1126,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__DATHANG__MAVANDO__5CD6CB2B">
-          <End Role="TRANGTHAIGIAOHANG" Type="Self.TRANGTHAIGIAOHANG" Multiplicity="0..1" />
-          <End Role="DATHANG" Type="Self.DATHANG" Multiplicity="*" />
+          <End Type="DHModel.TRANGTHAIGIAOHANG" Role="TRANGTHAIGIAOHANG" Multiplicity="0..1" />
+          <End Type="DHModel.DATHANG" Role="DATHANG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TRANGTHAIGIAOHANG">
               <PropertyRef Name="MAVANDON" />
@@ -1007,8 +1138,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__NOTIFICATI__MADH__72C60C4A">
-          <End Role="DATHANG" Type="Self.DATHANG" Multiplicity="0..1" />
-          <End Role="NOTIFICATION" Type="Self.NOTIFICATION" Multiplicity="*" />
+          <End Type="DHModel.DATHANG" Role="DATHANG" Multiplicity="0..1" />
+          <End Type="DHModel.NOTIFICATION" Role="NOTIFICATION" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DATHANG">
               <PropertyRef Name="MADH" />
@@ -1019,8 +1150,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__DIADIEM__MAKHACH__5629CD9C">
-          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
-          <End Role="DIADIEM" Type="Self.DIADIEM" Multiplicity="*" />
+          <End Type="DHModel.KHACHHANG" Role="KHACHHANG" Multiplicity="0..1" />
+          <End Type="DHModel.DIADIEM" Role="DIADIEM" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KHACHHANG">
               <PropertyRef Name="MAKHACHHANG" />
@@ -1031,8 +1162,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__GIOHANG__MAKHACH__6383C8BA">
-          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
-          <End Role="GIOHANG" Type="Self.GIOHANG" Multiplicity="*" />
+          <End Type="DHModel.KHACHHANG" Role="KHACHHANG" Multiplicity="0..1" />
+          <End Type="DHModel.GIOHANG" Role="GIOHANG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KHACHHANG">
               <PropertyRef Name="MAKHACHHANG" />
@@ -1043,8 +1174,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__KHACHHANG__EMAIL__49C3F6B7">
-          <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="0..1" />
-          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="*" />
+          <End Type="DHModel.TAIKHOAN" Role="TAIKHOAN" Multiplicity="0..1" />
+          <End Type="DHModel.KHACHHANG" Role="KHACHHANG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TAIKHOAN">
               <PropertyRef Name="EMAIL" />
@@ -1055,8 +1186,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__NOTIFICAT__SENDI__71D1E811">
-          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
-          <End Role="NOTIFICATION" Type="Self.NOTIFICATION" Multiplicity="*" />
+          <End Type="DHModel.KHACHHANG" Role="KHACHHANG" Multiplicity="0..1" />
+          <End Type="DHModel.NOTIFICATION" Role="NOTIFICATION" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KHACHHANG">
               <PropertyRef Name="MAKHACHHANG" />
@@ -1067,8 +1198,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__QUANLYVOU__MAKHA__4E88ABD4">
-          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
-          <End Role="QUANLYVOUCHER" Type="Self.QUANLYVOUCHER" Multiplicity="*" />
+          <End Type="DHModel.KHACHHANG" Role="KHACHHANG" Multiplicity="0..1" />
+          <End Type="DHModel.QUANLYVOUCHER" Role="QUANLYVOUCHER" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KHACHHANG">
               <PropertyRef Name="MAKHACHHANG" />
@@ -1079,8 +1210,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__SIGNARL__MAKHACH__6EF57B66">
-          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
-          <End Role="SIGNARL" Type="Self.SIGNARL" Multiplicity="*" />
+          <End Type="DHModel.KHACHHANG" Role="KHACHHANG" Multiplicity="0..1" />
+          <End Type="DHModel.SIGNARL" Role="SIGNARL" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KHACHHANG">
               <PropertyRef Name="MAKHACHHANG" />
@@ -1091,8 +1222,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__NHANVIEN__EMAIL__398D8EEE">
-          <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="0..1" />
-          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
+          <End Type="DHModel.TAIKHOAN" Role="TAIKHOAN" Multiplicity="0..1" />
+          <End Type="DHModel.NHANVIEN" Role="NHANVIEN" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TAIKHOAN">
               <PropertyRef Name="EMAIL" />
@@ -1103,8 +1234,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__NHAPHANG__MANV__3C69FB99">
-          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
-          <End Role="NHAPHANG" Type="Self.NHAPHANG" Multiplicity="*" />
+          <End Type="DHModel.NHANVIEN" Role="NHANVIEN" Multiplicity="0..1" />
+          <End Type="DHModel.NHAPHANG" Role="NHAPHANG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHANVIEN">
               <PropertyRef Name="MANV" />
@@ -1115,8 +1246,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__THONGKENH__MANHA__6C190EBB">
-          <End Role="NHAPHANG" Type="Self.NHAPHANG" Multiplicity="0..1" />
-          <End Role="THONGKENHAPHANG" Type="Self.THONGKENHAPHANG" Multiplicity="*" />
+          <End Type="DHModel.NHAPHANG" Role="NHAPHANG" Multiplicity="0..1" />
+          <End Type="DHModel.THONGKENHAPHANG" Role="THONGKENHAPHANG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHAPHANG">
               <PropertyRef Name="MANHAPHANG" />
@@ -1126,126 +1257,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DHEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="CHITIETDATHANGs" EntityType="Self.CHITIETDATHANG" />
-          <EntitySet Name="CHITIETGIOHANGs" EntityType="Self.CHITIETGIOHANG" />
-          <EntitySet Name="CHITIETPHIEUNHAPs" EntityType="Self.CHITIETPHIEUNHAP" />
-          <EntitySet Name="DATHANGs" EntityType="Self.DATHANG" />
-          <EntitySet Name="DIADIEMs" EntityType="Self.DIADIEM" />
-          <EntitySet Name="GIOHANGs" EntityType="Self.GIOHANG" />
-          <EntitySet Name="HINHANHs" EntityType="Self.HINHANH" />
-          <EntitySet Name="KHACHHANGs" EntityType="Self.KHACHHANG" />
-          <EntitySet Name="NHANVIENs" EntityType="Self.NHANVIEN" />
-          <EntitySet Name="NHAPHANGs" EntityType="Self.NHAPHANG" />
-          <EntitySet Name="NOTIFICATIONs" EntityType="Self.NOTIFICATION" />
-          <EntitySet Name="QUANLYVOUCHERs" EntityType="Self.QUANLYVOUCHER" />
-          <EntitySet Name="SIGNARLs" EntityType="Self.SIGNARL" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="TAIKHOANs" EntityType="Self.TAIKHOAN" />
-          <EntitySet Name="THANHTOANs" EntityType="Self.THANHTOAN" />
-          <EntitySet Name="THONGKEs" EntityType="Self.THONGKE" />
-          <EntitySet Name="THONGKENHAPHANGs" EntityType="Self.THONGKENHAPHANG" />
-          <EntitySet Name="TRANGTHAIGIAOHANGs" EntityType="Self.TRANGTHAIGIAOHANG" />
-          <AssociationSet Name="FK__CHITIETDAT__MADH__5FB337D6" Association="Self.FK__CHITIETDAT__MADH__5FB337D6">
-            <End Role="DATHANG" EntitySet="DATHANGs" />
-            <End Role="CHITIETDATHANG" EntitySet="CHITIETDATHANGs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__CHITIETGI__MAGIO__6754599E" Association="Self.FK__CHITIETGI__MAGIO__6754599E">
-            <End Role="GIOHANG" EntitySet="GIOHANGs" />
-            <End Role="CHITIETGIOHANG" EntitySet="CHITIETGIOHANGs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__CHITIETPH__MANHA__46E78A0C" Association="Self.FK__CHITIETPH__MANHA__46E78A0C">
-            <End Role="NHAPHANG" EntitySet="NHAPHANGs" />
-            <End Role="CHITIETPHIEUNHAP" EntitySet="CHITIETPHIEUNHAPs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__DATHANG__MADIADI__59FA5E80" Association="Self.FK__DATHANG__MADIADI__59FA5E80">
-            <End Role="DIADIEM" EntitySet="DIADIEMs" />
-            <End Role="DATHANG" EntitySet="DATHANGs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__DATHANG__MAKHACH__59063A47" Association="Self.FK__DATHANG__MAKHACH__59063A47">
-            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
-            <End Role="DATHANG" EntitySet="DATHANGs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__DATHANG__MAQUANL__5AEE82B9" Association="Self.FK__DATHANG__MAQUANL__5AEE82B9">
-            <End Role="QUANLYVOUCHER" EntitySet="QUANLYVOUCHERs" />
-            <End Role="DATHANG" EntitySet="DATHANGs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__DATHANG__MATHANH__5BE2A6F2" Association="Self.FK__DATHANG__MATHANH__5BE2A6F2">
-            <End Role="THANHTOAN" EntitySet="THANHTOANs" />
-            <End Role="DATHANG" EntitySet="DATHANGs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__DATHANG__MAVANDO__5CD6CB2B" Association="Self.FK__DATHANG__MAVANDO__5CD6CB2B">
-            <End Role="TRANGTHAIGIAOHANG" EntitySet="TRANGTHAIGIAOHANGs" />
-            <End Role="DATHANG" EntitySet="DATHANGs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__NOTIFICATI__MADH__72C60C4A" Association="Self.FK__NOTIFICATI__MADH__72C60C4A">
-            <End Role="DATHANG" EntitySet="DATHANGs" />
-            <End Role="NOTIFICATION" EntitySet="NOTIFICATIONs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__DIADIEM__MAKHACH__5629CD9C" Association="Self.FK__DIADIEM__MAKHACH__5629CD9C">
-            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
-            <End Role="DIADIEM" EntitySet="DIADIEMs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__GIOHANG__MAKHACH__6383C8BA" Association="Self.FK__GIOHANG__MAKHACH__6383C8BA">
-            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
-            <End Role="GIOHANG" EntitySet="GIOHANGs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__KHACHHANG__EMAIL__49C3F6B7" Association="Self.FK__KHACHHANG__EMAIL__49C3F6B7">
-            <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
-            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__NOTIFICAT__SENDI__71D1E811" Association="Self.FK__NOTIFICAT__SENDI__71D1E811">
-            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
-            <End Role="NOTIFICATION" EntitySet="NOTIFICATIONs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__QUANLYVOU__MAKHA__4E88ABD4" Association="Self.FK__QUANLYVOU__MAKHA__4E88ABD4">
-            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
-            <End Role="QUANLYVOUCHER" EntitySet="QUANLYVOUCHERs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SIGNARL__MAKHACH__6EF57B66" Association="Self.FK__SIGNARL__MAKHACH__6EF57B66">
-            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
-            <End Role="SIGNARL" EntitySet="SIGNARLs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__NHANVIEN__EMAIL__398D8EEE" Association="Self.FK__NHANVIEN__EMAIL__398D8EEE">
-            <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
-            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__NHAPHANG__MANV__3C69FB99" Association="Self.FK__NHAPHANG__MANV__3C69FB99">
-            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
-            <End Role="NHAPHANG" EntitySet="NHAPHANGs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__THONGKENH__MANHA__6C190EBB" Association="Self.FK__THONGKENH__MANHA__6C190EBB">
-            <End Role="NHAPHANG" EntitySet="NHAPHANGs" />
-            <End Role="THONGKENHAPHANG" EntitySet="THONGKENHAPHANGs" />
-          </AssociationSet>
-          <EntitySet Name="MATHANGs" EntityType="DHModel.MATHANG" />
-          <EntitySet Name="SALEs" EntityType="DHModel.SALE" />
-          <AssociationSet Name="FK__CHITIETDA__MAMAT__619B8048" Association="DHModel.FK__CHITIETDA__MAMAT__619B8048">
-            <End Role="MATHANG" EntitySet="MATHANGs" />
-            <End Role="CHITIETDATHANG" EntitySet="CHITIETDATHANGs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__CHITIETGI__MAMAT__6754599E" Association="DHModel.FK__CHITIETGI__MAMAT__6754599E">
-            <End Role="MATHANG" EntitySet="MATHANGs" />
-            <End Role="CHITIETGIOHANG" EntitySet="CHITIETGIOHANGs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__CHITIETPH__MAMAT__46E78A0C" Association="DHModel.FK__CHITIETPH__MAMAT__46E78A0C">
-            <End Role="MATHANG" EntitySet="MATHANGs" />
-            <End Role="CHITIETPHIEUNHAP" EntitySet="CHITIETPHIEUNHAPs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__HINHANH__MAMATHA__440B1D61" Association="DHModel.FK__HINHANH__MAMATHA__440B1D61">
-            <End Role="MATHANG" EntitySet="MATHANGs" />
-            <End Role="HINHANH" EntitySet="HINHANHs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__MATHANG__MASALE__412EB0B6" Association="DHModel.FK__MATHANG__MASALE__412EB0B6">
-            <End Role="SALE" EntitySet="SALEs" />
-            <End Role="MATHANG" EntitySet="MATHANGs" />
-          </AssociationSet>
-          <EntitySet Name="VOUCHERs" EntityType="DHModel.VOUCHER" />
-          <AssociationSet Name="FK__QUANLYVOU__MAVOU__5070F446" Association="DHModel.FK__QUANLYVOU__MAVOU__5070F446">
-            <End Role="VOUCHER" EntitySet="VOUCHERs" />
-            <End Role="QUANLYVOUCHER" EntitySet="QUANLYVOUCHERs" />
-          </AssociationSet>
-        </EntityContainer>
+        <EntityType Name="VOUCHER">
+          <Key>
+            <PropertyRef Name="MAVOUCHER" />
+          </Key>
+          <Property Name="MAVOUCHER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PHANTRAMGIAMGIA" Type="Int32" />
+          <Property Name="DIEUKIEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TRANGTHAI" Type="Boolean" />
+          <Property Name="TRANGTHAIGIOIHAN" Type="Boolean" />
+          <NavigationProperty Name="QUANLYVOUCHERs" Relationship="DHModel.FK__QUANLYVOU__MAVOU__4F7CD00D" FromRole="VOUCHER" ToRole="QUANLYVOUCHER" />
+        </EntityType>
+        <Association Name="FK__QUANLYVOU__MAVOU__4F7CD00D">
+          <End Type="DHModel.VOUCHER" Role="VOUCHER" Multiplicity="0..1" />
+          <End Type="DHModel.QUANLYVOUCHER" Role="QUANLYVOUCHER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VOUCHER">
+              <PropertyRef Name="MAVOUCHER" />
+            </Principal>
+            <Dependent Role="QUANLYVOUCHER">
+              <PropertyRef Name="MAVOUCHER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="MATHANG">
           <Key>
             <PropertyRef Name="MAMATHANG" />
@@ -1266,17 +1300,6 @@
           <NavigationProperty Name="CHITIETPHIEUNHAPs" Relationship="DHModel.FK__CHITIETPH__MAMAT__46E78A0C" FromRole="MATHANG" ToRole="CHITIETPHIEUNHAP" />
           <NavigationProperty Name="HINHANHs" Relationship="DHModel.FK__HINHANH__MAMATHA__440B1D61" FromRole="MATHANG" ToRole="HINHANH" />
           <NavigationProperty Name="SALE" Relationship="DHModel.FK__MATHANG__MASALE__412EB0B6" FromRole="MATHANG" ToRole="SALE" />
-        </EntityType>
-        <EntityType Name="SALE">
-          <Key>
-            <PropertyRef Name="MASALE" />
-          </Key>
-          <Property Name="MASALE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PHANTRAMSALE" Type="Int32" />
-          <Property Name="NGAYBATDAU" Type="DateTime" Precision="0" />
-          <Property Name="NGAYHETHAN" Type="DateTime" Precision="0" />
-          <Property Name="TRANGTHAI" Type="Boolean" />
-          <NavigationProperty Name="MATHANGs" Relationship="DHModel.FK__MATHANG__MASALE__412EB0B6" FromRole="SALE" ToRole="MATHANG" />
         </EntityType>
         <Association Name="FK__CHITIETDA__MAMAT__619B8048">
           <End Type="DHModel.MATHANG" Role="MATHANG" Multiplicity="0..1" />
@@ -1338,192 +1361,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="VOUCHER">
-          <Key>
-            <PropertyRef Name="MAVOUCHER" />
-          </Key>
-          <Property Name="MAVOUCHER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PHANTRAMGIAMGIA" Type="Int32" />
-          <Property Name="DIEUKIEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TRANGTHAI" Type="Boolean" />
-          <Property Name="TRANGTHAIGIOIHAN" Type="Boolean" />
-          <NavigationProperty Name="QUANLYVOUCHERs" Relationship="DHModel.FK__QUANLYVOU__MAVOU__5070F446" FromRole="VOUCHER" ToRole="QUANLYVOUCHER" />
-        </EntityType>
-        <Association Name="FK__QUANLYVOU__MAVOU__5070F446">
-          <End Type="DHModel.VOUCHER" Role="VOUCHER" Multiplicity="0..1" />
-          <End Type="DHModel.QUANLYVOUCHER" Role="QUANLYVOUCHER" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="VOUCHER">
-              <PropertyRef Name="MAVOUCHER" />
-            </Principal>
-            <Dependent Role="QUANLYVOUCHER">
-              <PropertyRef Name="MAVOUCHER" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DHModelStoreContainer" CdmEntityContainer="DHEntities">
-          <EntitySetMapping Name="CHITIETDATHANGs">
-            <EntityTypeMapping TypeName="DHModel.CHITIETDATHANG">
-              <MappingFragment StoreEntitySet="CHITIETDATHANG">
-                <ScalarProperty Name="MADH" ColumnName="MADH" />
-                <ScalarProperty Name="MAMATHANG" ColumnName="MAMATHANG" />
-                <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
-                <ScalarProperty Name="GIABAN" ColumnName="GIABAN" />
-                <ScalarProperty Name="MACTDH" ColumnName="MACTDH" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CHITIETGIOHANGs">
-            <EntityTypeMapping TypeName="DHModel.CHITIETGIOHANG">
-              <MappingFragment StoreEntitySet="CHITIETGIOHANG">
-                <ScalarProperty Name="MACHITIETGIOHANG" ColumnName="MACHITIETGIOHANG" />
-                <ScalarProperty Name="MAMATHANG" ColumnName="MAMATHANG" />
-                <ScalarProperty Name="MAGIOHANG" ColumnName="MAGIOHANG" />
-                <ScalarProperty Name="SOLUONGMUA" ColumnName="SOLUONGMUA" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CHITIETPHIEUNHAPs">
-            <EntityTypeMapping TypeName="DHModel.CHITIETPHIEUNHAP">
-              <MappingFragment StoreEntitySet="CHITIETPHIEUNHAP">
-                <ScalarProperty Name="MAMATHANG" ColumnName="MAMATHANG" />
-                <ScalarProperty Name="MACTPHIEUNHAP" ColumnName="MACTPHIEUNHAP" />
-                <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
-                <ScalarProperty Name="MANHAPHANG" ColumnName="MANHAPHANG" />
-                <ScalarProperty Name="GIANHAP" ColumnName="GIANHAP" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DATHANGs">
-            <EntityTypeMapping TypeName="DHModel.DATHANG">
-              <MappingFragment StoreEntitySet="DATHANG">
-                <ScalarProperty Name="MADH" ColumnName="MADH" />
-                <ScalarProperty Name="NGAYMUA" ColumnName="NGAYMUA" />
-                <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
-                <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
-                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
-                <ScalarProperty Name="MADIADIEM" ColumnName="MADIADIEM" />
-                <ScalarProperty Name="MAQUANLYVOUCHER" ColumnName="MAQUANLYVOUCHER" />
-                <ScalarProperty Name="MATHANHTOAN" ColumnName="MATHANHTOAN" />
-                <ScalarProperty Name="MAVANDON" ColumnName="MAVANDON" />
-                <ScalarProperty Name="TINHTRANGDH" ColumnName="TINHTRANGDH" />
-                <ScalarProperty Name="HINHTHUCTHANHTOAN" ColumnName="HINHTHUCTHANHTOAN" />
-                <ScalarProperty Name="NGAYNHAN" ColumnName="NGAYNHAN" />
-                <ScalarProperty Name="NGAYHUY" ColumnName="NGAYHUY" />
-                <ScalarProperty Name="TUYCHON" ColumnName="TUYCHON" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DIADIEMs">
-            <EntityTypeMapping TypeName="DHModel.DIADIEM">
-              <MappingFragment StoreEntitySet="DIADIEM">
-                <ScalarProperty Name="MADIADIEM" ColumnName="MADIADIEM" />
-                <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
-                <ScalarProperty Name="TENDIACHI" ColumnName="TENDIACHI" />
-                <ScalarProperty Name="SDT" ColumnName="SDT" />
-                <ScalarProperty Name="MACDINH" ColumnName="MACDINH" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="GIOHANGs">
-            <EntityTypeMapping TypeName="DHModel.GIOHANG">
-              <MappingFragment StoreEntitySet="GIOHANG">
-                <ScalarProperty Name="MAGIOHANG" ColumnName="MAGIOHANG" />
-                <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
-                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="HINHANHs">
             <EntityTypeMapping TypeName="DHModel.HINHANH">
               <MappingFragment StoreEntitySet="HINHANH">
                 <ScalarProperty Name="MAHINHANH" ColumnName="MAHINHANH" />
                 <ScalarProperty Name="MAMATHANG" ColumnName="MAMATHANG" />
                 <ScalarProperty Name="ANHS" ColumnName="ANHS" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="KHACHHANGs">
-            <EntityTypeMapping TypeName="DHModel.KHACHHANG">
-              <MappingFragment StoreEntitySet="KHACHHANG">
-                <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
-                <ScalarProperty Name="TENKHACHHANG" ColumnName="TENKHACHHANG" />
-                <ScalarProperty Name="SDT" ColumnName="SDT" />
-                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-                <ScalarProperty Name="AVATAR" ColumnName="AVATAR" />
-                <ScalarProperty Name="THANHVIEN" ColumnName="THANHVIEN" />
-                <ScalarProperty Name="XU" ColumnName="XU" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NHANVIENs">
-            <EntityTypeMapping TypeName="DHModel.NHANVIEN">
-              <MappingFragment StoreEntitySet="NHANVIEN">
-                <ScalarProperty Name="MANV" ColumnName="MANV" />
-                <ScalarProperty Name="TENNV" ColumnName="TENNV" />
-                <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
-                <ScalarProperty Name="SDT" ColumnName="SDT" />
-                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-                <ScalarProperty Name="AVATAR" ColumnName="AVATAR" />
-                <ScalarProperty Name="TENCHUCNANG" ColumnName="TENCHUCNANG" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NHAPHANGs">
-            <EntityTypeMapping TypeName="DHModel.NHAPHANG">
-              <MappingFragment StoreEntitySet="NHAPHANG">
-                <ScalarProperty Name="MANHAPHANG" ColumnName="MANHAPHANG" />
-                <ScalarProperty Name="THANHTIEN" ColumnName="THANHTIEN" />
-                <ScalarProperty Name="NGAYNHAP" ColumnName="NGAYNHAP" />
-                <ScalarProperty Name="MANV" ColumnName="MANV" />
-                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NOTIFICATIONs">
-            <EntityTypeMapping TypeName="DHModel.NOTIFICATION">
-              <MappingFragment StoreEntitySet="NOTIFICATION">
-                <ScalarProperty Name="MANOTIFICATION" ColumnName="MANOTIFICATION" />
-                <ScalarProperty Name="SENDID" ColumnName="SENDID" />
-                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-                <ScalarProperty Name="NOIDUNG" ColumnName="NOIDUNG" />
-                <ScalarProperty Name="THOIGIAN" ColumnName="THOIGIAN" />
-                <ScalarProperty Name="MADH" ColumnName="MADH" />
-                <ScalarProperty Name="TENKH" ColumnName="TENKH" />
-                <ScalarProperty Name="AVATAR" ColumnName="AVATAR" />
-                <ScalarProperty Name="TENCHUCNANG" ColumnName="TENCHUCNANG" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="QUANLYVOUCHERs">
-            <EntityTypeMapping TypeName="DHModel.QUANLYVOUCHER">
-              <MappingFragment StoreEntitySet="QUANLYVOUCHER">
-                <ScalarProperty Name="MAQUANLYVOUCHER" ColumnName="MAQUANLYVOUCHER" />
-                <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
-                <ScalarProperty Name="MAVOUCHER" ColumnName="MAVOUCHER" />
-                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
-                <ScalarProperty Name="NOIDUNG" ColumnName="NOIDUNG" />
-                <ScalarProperty Name="NGAYBATDAU" ColumnName="NGAYBATDAU" />
-                <ScalarProperty Name="NGAYKETTHUC" ColumnName="NGAYKETTHUC" />
-                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SIGNARLs">
-            <EntityTypeMapping TypeName="DHModel.SIGNARL">
-              <MappingFragment StoreEntitySet="SIGNARL">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
-                <ScalarProperty Name="CONTEN" ColumnName="CONTEN" />
-                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
-                <ScalarProperty Name="TIME" ColumnName="TIME" />
-                <ScalarProperty Name="TENKHACHHANG" ColumnName="TENKHACHHANG" />
-                <ScalarProperty Name="AVATAR" ColumnName="AVATAR" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1538,59 +1387,232 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="QUANLYVOUCHERs">
+            <EntityTypeMapping TypeName="DHModel.QUANLYVOUCHER">
+              <MappingFragment StoreEntitySet="QUANLYVOUCHER">
+                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+                <ScalarProperty Name="NGAYKETTHUC" ColumnName="NGAYKETTHUC" />
+                <ScalarProperty Name="NGAYBATDAU" ColumnName="NGAYBATDAU" />
+                <ScalarProperty Name="NOIDUNG" ColumnName="NOIDUNG" />
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+                <ScalarProperty Name="MAVOUCHER" ColumnName="MAVOUCHER" />
+                <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
+                <ScalarProperty Name="MAQUANLYVOUCHER" ColumnName="MAQUANLYVOUCHER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHITIETDATHANGs">
+            <EntityTypeMapping TypeName="DHModel.CHITIETDATHANG">
+              <MappingFragment StoreEntitySet="CHITIETDATHANG">
+                <ScalarProperty Name="MACTDH" ColumnName="MACTDH" />
+                <ScalarProperty Name="GIABAN" ColumnName="GIABAN" />
+                <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+                <ScalarProperty Name="MAMATHANG" ColumnName="MAMATHANG" />
+                <ScalarProperty Name="MADH" ColumnName="MADH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHITIETGIOHANGs">
+            <EntityTypeMapping TypeName="DHModel.CHITIETGIOHANG">
+              <MappingFragment StoreEntitySet="CHITIETGIOHANG">
+                <ScalarProperty Name="SOLUONGMUA" ColumnName="SOLUONGMUA" />
+                <ScalarProperty Name="MAGIOHANG" ColumnName="MAGIOHANG" />
+                <ScalarProperty Name="MAMATHANG" ColumnName="MAMATHANG" />
+                <ScalarProperty Name="MACHITIETGIOHANG" ColumnName="MACHITIETGIOHANG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHITIETPHIEUNHAPs">
+            <EntityTypeMapping TypeName="DHModel.CHITIETPHIEUNHAP">
+              <MappingFragment StoreEntitySet="CHITIETPHIEUNHAP">
+                <ScalarProperty Name="GIANHAP" ColumnName="GIANHAP" />
+                <ScalarProperty Name="MANHAPHANG" ColumnName="MANHAPHANG" />
+                <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+                <ScalarProperty Name="MACTPHIEUNHAP" ColumnName="MACTPHIEUNHAP" />
+                <ScalarProperty Name="MAMATHANG" ColumnName="MAMATHANG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DATHANGs">
+            <EntityTypeMapping TypeName="DHModel.DATHANG">
+              <MappingFragment StoreEntitySet="DATHANG">
+                <ScalarProperty Name="TUYCHON" ColumnName="TUYCHON" />
+                <ScalarProperty Name="NGAYHUY" ColumnName="NGAYHUY" />
+                <ScalarProperty Name="NGAYNHAN" ColumnName="NGAYNHAN" />
+                <ScalarProperty Name="HINHTHUCTHANHTOAN" ColumnName="HINHTHUCTHANHTOAN" />
+                <ScalarProperty Name="TINHTRANGDH" ColumnName="TINHTRANGDH" />
+                <ScalarProperty Name="MAVANDON" ColumnName="MAVANDON" />
+                <ScalarProperty Name="MATHANHTOAN" ColumnName="MATHANHTOAN" />
+                <ScalarProperty Name="MAQUANLYVOUCHER" ColumnName="MAQUANLYVOUCHER" />
+                <ScalarProperty Name="MADIADIEM" ColumnName="MADIADIEM" />
+                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+                <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
+                <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
+                <ScalarProperty Name="NGAYMUA" ColumnName="NGAYMUA" />
+                <ScalarProperty Name="MADH" ColumnName="MADH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DIADIEMs">
+            <EntityTypeMapping TypeName="DHModel.DIADIEM">
+              <MappingFragment StoreEntitySet="DIADIEM">
+                <ScalarProperty Name="MACDINH" ColumnName="MACDINH" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="TENDIACHI" ColumnName="TENDIACHI" />
+                <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
+                <ScalarProperty Name="MADIADIEM" ColumnName="MADIADIEM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GIOHANGs">
+            <EntityTypeMapping TypeName="DHModel.GIOHANG">
+              <MappingFragment StoreEntitySet="GIOHANG">
+                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+                <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
+                <ScalarProperty Name="MAGIOHANG" ColumnName="MAGIOHANG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KHACHHANGs">
+            <EntityTypeMapping TypeName="DHModel.KHACHHANG">
+              <MappingFragment StoreEntitySet="KHACHHANG">
+                <ScalarProperty Name="XU" ColumnName="XU" />
+                <ScalarProperty Name="THANHVIEN" ColumnName="THANHVIEN" />
+                <ScalarProperty Name="AVATAR" ColumnName="AVATAR" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="TENKHACHHANG" ColumnName="TENKHACHHANG" />
+                <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHANVIENs">
+            <EntityTypeMapping TypeName="DHModel.NHANVIEN">
+              <MappingFragment StoreEntitySet="NHANVIEN">
+                <ScalarProperty Name="TENCHUCNANG" ColumnName="TENCHUCNANG" />
+                <ScalarProperty Name="AVATAR" ColumnName="AVATAR" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+                <ScalarProperty Name="TENNV" ColumnName="TENNV" />
+                <ScalarProperty Name="MANV" ColumnName="MANV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHAPHANGs">
+            <EntityTypeMapping TypeName="DHModel.NHAPHANG">
+              <MappingFragment StoreEntitySet="NHAPHANG">
+                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+                <ScalarProperty Name="MANV" ColumnName="MANV" />
+                <ScalarProperty Name="NGAYNHAP" ColumnName="NGAYNHAP" />
+                <ScalarProperty Name="THANHTIEN" ColumnName="THANHTIEN" />
+                <ScalarProperty Name="MANHAPHANG" ColumnName="MANHAPHANG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NOTIFICATIONs">
+            <EntityTypeMapping TypeName="DHModel.NOTIFICATION">
+              <MappingFragment StoreEntitySet="NOTIFICATION">
+                <ScalarProperty Name="TENCHUCNANG" ColumnName="TENCHUCNANG" />
+                <ScalarProperty Name="AVATAR" ColumnName="AVATAR" />
+                <ScalarProperty Name="TENKH" ColumnName="TENKH" />
+                <ScalarProperty Name="MADH" ColumnName="MADH" />
+                <ScalarProperty Name="THOIGIAN" ColumnName="THOIGIAN" />
+                <ScalarProperty Name="NOIDUNG" ColumnName="NOIDUNG" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="SENDID" ColumnName="SENDID" />
+                <ScalarProperty Name="MANOTIFICATION" ColumnName="MANOTIFICATION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SALEs">
+            <EntityTypeMapping TypeName="DHModel.SALE">
+              <MappingFragment StoreEntitySet="SALE">
+                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+                <ScalarProperty Name="NGAYHETHAN" ColumnName="NGAYHETHAN" />
+                <ScalarProperty Name="NGAYBATDAU" ColumnName="NGAYBATDAU" />
+                <ScalarProperty Name="PHANTRAMSALE" ColumnName="PHANTRAMSALE" />
+                <ScalarProperty Name="MASALE" ColumnName="MASALE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIGNARLs">
+            <EntityTypeMapping TypeName="DHModel.SIGNARL">
+              <MappingFragment StoreEntitySet="SIGNARL">
+                <ScalarProperty Name="AVATAR" ColumnName="AVATAR" />
+                <ScalarProperty Name="TENKHACHHANG" ColumnName="TENKHACHHANG" />
+                <ScalarProperty Name="TIME" ColumnName="TIME" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="CONTEN" ColumnName="CONTEN" />
+                <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TAIKHOANs">
             <EntityTypeMapping TypeName="DHModel.TAIKHOAN">
               <MappingFragment StoreEntitySet="TAIKHOAN">
-                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-                <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
                 <ScalarProperty Name="TENDANGNHAP" ColumnName="TENDANGNHAP" />
+                <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="THANHTOANs">
             <EntityTypeMapping TypeName="DHModel.THANHTOAN">
               <MappingFragment StoreEntitySet="THANHTOAN">
-                <ScalarProperty Name="MATHANHTOAN" ColumnName="MATHANHTOAN" />
-                <ScalarProperty Name="PHUONGTHUCTHANHTOAN" ColumnName="PHUONGTHUCTHANHTOAN" />
-                <ScalarProperty Name="MATHE" ColumnName="MATHE" />
                 <ScalarProperty Name="NGAYTHANHTOAN" ColumnName="NGAYTHANHTOAN" />
+                <ScalarProperty Name="MATHE" ColumnName="MATHE" />
+                <ScalarProperty Name="PHUONGTHUCTHANHTOAN" ColumnName="PHUONGTHUCTHANHTOAN" />
+                <ScalarProperty Name="MATHANHTOAN" ColumnName="MATHANHTOAN" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="THONGKEs">
             <EntityTypeMapping TypeName="DHModel.THONGKE">
               <MappingFragment StoreEntitySet="THONGKE">
-                <ScalarProperty Name="MATHONGKE" ColumnName="MATHONGKE" />
-                <ScalarProperty Name="NGAYTHONGKE" ColumnName="NGAYTHONGKE" />
-                <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
-                <ScalarProperty Name="MASPBANCHAY" ColumnName="MASPBANCHAY" />
-                <ScalarProperty Name="SANPHAMBANCHAY" ColumnName="SANPHAMBANCHAY" />
-                <ScalarProperty Name="SOLUONGBANRA" ColumnName="SOLUONGBANRA" />
                 <ScalarProperty Name="SOLUONGBANCHAY" ColumnName="SOLUONGBANCHAY" />
+                <ScalarProperty Name="SOLUONGBANRA" ColumnName="SOLUONGBANRA" />
+                <ScalarProperty Name="SANPHAMBANCHAY" ColumnName="SANPHAMBANCHAY" />
+                <ScalarProperty Name="MASPBANCHAY" ColumnName="MASPBANCHAY" />
+                <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
+                <ScalarProperty Name="NGAYTHONGKE" ColumnName="NGAYTHONGKE" />
+                <ScalarProperty Name="MATHONGKE" ColumnName="MATHONGKE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="THONGKENHAPHANGs">
             <EntityTypeMapping TypeName="DHModel.THONGKENHAPHANG">
               <MappingFragment StoreEntitySet="THONGKENHAPHANG">
-                <ScalarProperty Name="MATHONGKE" ColumnName="MATHONGKE" />
-                <ScalarProperty Name="NGAYTHONGKE" ColumnName="NGAYTHONGKE" />
-                <ScalarProperty Name="MANHAPHANG" ColumnName="MANHAPHANG" />
-                <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
-                <ScalarProperty Name="TENNHANVIEN" ColumnName="TENNHANVIEN" />
-                <ScalarProperty Name="TENHANG" ColumnName="TENHANG" />
                 <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
+                <ScalarProperty Name="TENHANG" ColumnName="TENHANG" />
+                <ScalarProperty Name="TENNHANVIEN" ColumnName="TENNHANVIEN" />
+                <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+                <ScalarProperty Name="MANHAPHANG" ColumnName="MANHAPHANG" />
+                <ScalarProperty Name="NGAYTHONGKE" ColumnName="NGAYTHONGKE" />
+                <ScalarProperty Name="MATHONGKE" ColumnName="MATHONGKE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TRANGTHAIGIAOHANGs">
             <EntityTypeMapping TypeName="DHModel.TRANGTHAIGIAOHANG">
               <MappingFragment StoreEntitySet="TRANGTHAIGIAOHANG">
-                <ScalarProperty Name="MAVANDON" ColumnName="MAVANDON" />
-                <ScalarProperty Name="VITRI" ColumnName="VITRI" />
-                <ScalarProperty Name="THOIGIANGIAOHANG" ColumnName="THOIGIANGIAOHANG" />
-                <ScalarProperty Name="THOIGIANNHANHANG" ColumnName="THOIGIANNHANHANG" />
                 <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+                <ScalarProperty Name="THOIGIANNHANHANG" ColumnName="THOIGIANNHANHANG" />
+                <ScalarProperty Name="THOIGIANGIAOHANG" ColumnName="THOIGIANGIAOHANG" />
+                <ScalarProperty Name="VITRI" ColumnName="VITRI" />
+                <ScalarProperty Name="MAVANDON" ColumnName="MAVANDON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VOUCHERs">
+            <EntityTypeMapping TypeName="DHModel.VOUCHER">
+              <MappingFragment StoreEntitySet="VOUCHER">
+                <ScalarProperty Name="TRANGTHAIGIOIHAN" ColumnName="TRANGTHAIGIOIHAN" />
+                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+                <ScalarProperty Name="DIEUKIEN" ColumnName="DIEUKIEN" />
+                <ScalarProperty Name="PHANTRAMGIAMGIA" ColumnName="PHANTRAMGIAMGIA" />
+                <ScalarProperty Name="MAVOUCHER" ColumnName="MAVOUCHER" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1611,29 +1633,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SALEs">
-            <EntityTypeMapping TypeName="DHModel.SALE">
-              <MappingFragment StoreEntitySet="SALE">
-                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
-                <ScalarProperty Name="NGAYHETHAN" ColumnName="NGAYHETHAN" />
-                <ScalarProperty Name="NGAYBATDAU" ColumnName="NGAYBATDAU" />
-                <ScalarProperty Name="PHANTRAMSALE" ColumnName="PHANTRAMSALE" />
-                <ScalarProperty Name="MASALE" ColumnName="MASALE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="VOUCHERs">
-            <EntityTypeMapping TypeName="DHModel.VOUCHER">
-              <MappingFragment StoreEntitySet="VOUCHER">
-                <ScalarProperty Name="TRANGTHAIGIOIHAN" ColumnName="TRANGTHAIGIOIHAN" />
-                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
-                <ScalarProperty Name="DIEUKIEN" ColumnName="DIEUKIEN" />
-                <ScalarProperty Name="PHANTRAMGIAMGIA" ColumnName="PHANTRAMGIAMGIA" />
-                <ScalarProperty Name="MAVOUCHER" ColumnName="MAVOUCHER" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

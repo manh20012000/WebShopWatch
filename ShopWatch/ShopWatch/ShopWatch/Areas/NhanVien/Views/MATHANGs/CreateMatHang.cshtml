@@ -204,12 +204,12 @@
     function getSaleInfo(saleId) {
         // Gửi yêu cầu AJAX để lấy thông tin SALE
         $.get('/NhanVien/MATHANGs/GetSaleInfor', { saleId: saleId }, function (data) {
-            console.log(data)
+            console.log(data,'dâtta')
             function formatJsonDate(jsonDate) {
-                
+               
                 // Chuyển đổi ngày từ dạng "/Date(milliseconds)/" sang đối tượng Date
                 var date = new Date(parseInt(jsonDate.substr(6)));
-
+                  console.log(jsonDate)
                 // Lấy thông tin ngày, tháng, năm
                 var day = date.getDate();
                 var month = date.getMonth() + 1; // Tháng bắt đầu từ 0

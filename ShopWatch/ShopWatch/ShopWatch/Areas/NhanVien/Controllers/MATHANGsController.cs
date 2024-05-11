@@ -219,7 +219,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
                     product.TENHANG = mathang.TENHANG;
                     product.TENHANGSANXUAT = mathang.TENHANGSANXUAT;
                     product.BAOHANH = mathang.BAOHANH;
-                        product.MASALE = mathang.MASALE;
+                    product.MASALE = mathang.MASALE;
                     db.SaveChanges();
                     TempData["SuccessMessage"] = "Thêm sản phẩm thành công";
                     return RedirectToAction("Product", "MATHANGs");
@@ -303,8 +303,10 @@ namespace ShopWatch.Areas.NhanVien.Controllers
         [HttpGet]
         public ActionResult GetSaleInfor(int saleId)
         {
+            db.Configuration.ProxyCreationEnabled = false;
             // Lấy thông tin SALE từ cơ sở dữ liệu hoặc từ nơi khác
             var sale = db.SALEs.Find(saleId);
+
 
             return Json(sale, JsonRequestBehavior.AllowGet);
         }

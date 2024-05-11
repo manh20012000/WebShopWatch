@@ -116,24 +116,24 @@ namespace ShopWatch.Controllers
             try
             {
              var data = db.TAIKHOANs.Where(s => s.EMAIL.Equals(tAIKHOAN.EMAIL) && s.MATKHAU.Equals(f_password)).ToList();
-            if (data.Count() > 0)
-            {
-                var data_khachhang = db.KHACHHANGs.Where(s => s.EMAIL.Equals(tAIKHOAN.EMAIL)).FirstOrDefault();
-                if (data_khachhang != null)
+                if (data.Count() > 0)
                 {
-                    Session["EmailClient"] = data_khachhang.EMAIL;
+                    var data_khachhang = db.KHACHHANGs.Where(s => s.EMAIL.Equals(tAIKHOAN.EMAIL)).FirstOrDefault();
+                    if (data_khachhang != null)
+                    {
+                        Session["EmailClient"] = data_khachhang.EMAIL;
                         var connectionId = Guid.NewGuid().ToString();
                         Session["ConnectionId"] = connectionId;
 
                         SetMaKH(data_khachhang.MAKHACHHANG);
-                    return RedirectToAction("homeIndex", "MATHANG");
+                        return RedirectToAction("homeIndex", "MATHANG");
+                    }
                 }
-            }
-            else
-            {
-                ViewBag.error = "Login failed";
-                return View("Login");
-            }
+                else
+                {
+                    ModelState.AddModelError("", "tài khoản hoặc mật khẩu không chính xác");
+                    return View();
+                } 
             }
             catch(Exception ex)
             {
